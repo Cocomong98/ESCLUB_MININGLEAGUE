@@ -24,6 +24,7 @@
 
 ## Admin Features
 - Tabs: member management / season management.
+- Auth: session-based (`/api/login`), not query-string password.
 - Season create fields:
   - `year`, `part`, `startDate`, `startTime`, `endDate`, `endTime`
   - Season name auto-generated as `YYYY-N`.
@@ -41,12 +42,19 @@
   - Daily compatibility file: `player_YYMMDD.json`
 
 ## Backend APIs
+- `POST /api/login`
+- `POST /api/logout`
+- `GET /api/session`
 - `GET/POST /api/managers`
-- `POST /crawl-now`
 - `GET/POST /api/seasons`
 - `POST /api/seasons/split` (compat)
 - `PUT /api/seasons/<season>`
 - `GET /api/history/<season>/<player_id>`
+
+## Security Notes
+- `ADMIN_PASSWORD` must be provided via environment variable.
+- `FLASK_SECRET_KEY` should be set in production.
+- Enable secure cookies in production: `SESSION_COOKIE_SECURE=1`.
 
 ## Deploy Files
 - `app.py`
