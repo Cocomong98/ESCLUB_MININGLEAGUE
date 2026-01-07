@@ -57,7 +57,7 @@ function Footer({ light }) {
               </Icon>
             </MDBox>
             by
-            <Link href="https://www.creative-tim.com/" target="_blank">
+            <Link href="https://www.creative-tim.com/" target="_blank" rel="noopener noreferrer">
               <MDTypography variant="button" fontWeight="medium" color={light ? "white" : "dark"}>
                 &nbsp;Creative Tim&nbsp;
               </MDTypography>
@@ -82,7 +82,7 @@ function Footer({ light }) {
             })}
           >
             <MDBox component="li" pr={2} lineHeight={1}>
-              <Link href="https://www.creative-tim.com/" target="_blank">
+              <Link href="https://www.creative-tim.com/" target="_blank" rel="noopener noreferrer">
                 <MDTypography
                   variant="button"
                   fontWeight="regular"
@@ -94,7 +94,11 @@ function Footer({ light }) {
             </MDBox>
 
             <MDBox component="li" px={2} lineHeight={1}>
-              <Link href="https://www.creative-tim.com/blog" target="_blank">
+              <Link
+                href="https://www.creative-tim.com/blog"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <MDTypography
                   variant="button"
                   fontWeight="regular"
@@ -105,7 +109,11 @@ function Footer({ light }) {
               </Link>
             </MDBox>
             <MDBox component="li" pl={2} lineHeight={1}>
-              <Link href="https://www.creative-tim.com/license" target="_blank">
+              <Link
+                href="https://www.creative-tim.com/license"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <MDTypography
                   variant="button"
                   fontWeight="regular"

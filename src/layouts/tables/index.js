@@ -64,10 +64,18 @@ function Tables() {
         const response = await fetch(
           `/data/${selectedSeason}/current_crawl_display_data.json?t=${timestamp}`
         );
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
         setNewTableData(data);
       } catch (error) {
         console.error("Error fetching ranking data:", error);
+        setNewTableData({
+          results: [],
+          mining_king: {},
+          win_rate_king: {},
+          game_count_king: {},
+          draw_king: {},
+        });
       }
     };
     fetchData();
