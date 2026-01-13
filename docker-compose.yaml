@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    container_name: miningleague
+    ports:
+      - "35721:80"
+    volumes:
+      - /volume1/docker/miningleague:/app
+    privileged: true
+    restart: always
+    env_file:
+      - .env
+    environment:
+      TZ: Asia/Seoul
+      SESSION_COOKIE_SECURE: "${SESSION_COOKIE_SECURE:-1}"
