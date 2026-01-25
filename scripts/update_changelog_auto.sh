@@ -28,6 +28,11 @@ case "${commit_title}" in
     ;;
 esac
 
+# Avoid self-loop commits that only update CHANGELOG.md
+if [[ -z "$(git diff --cached --name-only | grep -v '^CHANGELOG\.md$' || true)" ]]; then
+  exit 0
+fi
+
 semver="patch"
 if [[ "${commit_title}" == *"!"* ]] || grep -qi -- 'breaking change' "${msg_file}"; then
   semver="major"
