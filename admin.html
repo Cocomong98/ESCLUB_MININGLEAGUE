@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ESCLUB Admin | 운영 센터</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f3f5f9;
+        --surface: #ffffff;
+        --surface-2: #f8fafc;
+        --text: #0f172a;
+        --muted: #64748b;
+        --border: #e2e8f0;
+        --primary: #1d4ed8;
+        --primary-strong: #1e40af;
+        --danger: #dc2626;
+        --success: #16a34a;
+        --radius-lg: 14px;
+        --radius-xl: 20px;
+        --shadow-sm: 0 8px 24px rgba(15, 23, 42, 0.06);
+      }
+
+      [x-cloak] {
+        display: none !important;
+      }
+
+      body {
+        background: radial-gradient(circle at 0% 0%, #e2e8f0 0%, var(--bg) 45%);
+        color: var(--text);
+      }
+
+      .panel {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .input-base {
+        width: 100%;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        border-radius: var(--radius-lg);
+        padding: 11px 13px;
+        outline: none;
+        font-size: 14px;
+      }
+
+      .input-base:focus {
+        border-color: #93c5fd;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.14);
+      }
+
+      .btn {
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 14px;
+        padding: 10px 14px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        transition: all 0.18s ease;
+        border: 1px solid transparent;
+      }
+
+      .btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: #fff;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-strong);
+      }
+
+      .btn-secondary {
+        background: var(--surface);
+        border-color: var(--border);
+        color: var(--text);
+      }
+
+      .btn-secondary:hover {
+        background: var(--surface-2);
+      }
+
+      .btn-danger {
+        background: #fee2e2;
+        color: #991b1b;
+        border-color: #fecaca;
+      }
+
+      .btn-danger:hover {
+        background: #fecaca;
+      }
+
+      .segmented {
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 4px;
+        display: inline-flex;
+        gap: 4px;
+      }
+
+      .tab-btn {
+        border-radius: 9px;
+        padding: 8px 12px;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--muted);
+      }
+
+      .tab-btn.active {
+        background: #fff;
+        color: var(--text);
+        box-shadow: 0 2px 7px rgba(15, 23, 42, 0.08);
+      }
+
+      .status-pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .status-ready {
+        background: #dcfce7;
+        color: #166534;
+      }
+
+      .status-empty {
+        background: #fef3c7;
+        color: #92400e;
+      }
+    </style>
+  </head>
+  <body x-data="adminPanel()" class="antialiased">
+    <div x-show="!authorized" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/70 backdrop-blur-sm px-4">
+      <div class="panel w-full max-w-sm p-8">
+        <h2 class="text-2xl font-bold text-center mb-2">ESCLUB Admin</h2>
+        <p class="text-center text-sm text-slate-500 mb-6">운영자 비밀번호를 입력하세요.</p>
+        <input type="password" x-model="password" @keydown.enter="login" class="input-base mb-4" placeholder="Password" />
+        <button @click="login" :disabled="loading.login" class="btn btn-primary w-full">
+          <span class="material-icons-round text-base" x-show="!loading.login">login</span>
+          <span x-text="loading.login ? '확인 중...' : '로그인'"></span>
+        </button>
+      </div>
+    </div>
+
+    <div x-show="authorized" x-cloak class="max-w-7xl mx-auto px-4 py-10 md:py-12">
+      <header class="mb-6 panel p-5 md:p-6">
+        <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">ESCLUB 운영 센터</h1>
+            <p class="text-sm text-slate-500 mt-1">클럽원 데이터와 시즌 기간을 관리합니다.</p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2">
+            <div class="segmented">
+              <button @click="activeTab = 'members'" :class="activeTab === 'members' ? 'tab-btn active' : 'tab-btn'" class="inline-flex items-center gap-1">
+                <span class="material-icons-round text-sm">groups</span>클럽원 관리
+              </button>
+              <button @click="activeTab = 'seasons'" :class="activeTab === 'seasons' ? 'tab-btn active' : 'tab-btn'" class="inline-flex items-center gap-1">
+                <span class="material-icons-round text-sm">date_range</span>시즌 관리
+              </button>
+            </div>
+
+            <template x-if="activeTab === 'members'">
+              <div class="flex flex-wrap items-center gap-2">
+                <button @click="sortBy = 'name'" class="btn btn-secondary" :class="sortBy === 'name' ? 'ring-2 ring-blue-200' : ''">
+                  <span class="material-icons-round text-sm">sort_by_alpha</span>가나다순
+                </button>
+                <button @click="sortBy = 'date'" class="btn btn-secondary" :class="sortBy === 'date' ? 'ring-2 ring-blue-200' : ''">
+                  <span class="material-icons-round text-sm">calendar_today</span>가입일순
+                </button>
+                <button @click="addManager" class="btn btn-secondary">
+                  <span class="material-icons-round text-sm">add</span>추가
+                </button>
+                <button @click="runCrawl" :disabled="loading.crawl" class="btn btn-secondary">
+                  <span class="material-icons-round text-sm">sync</span>
+                  <span x-text="loading.crawl ? '실행 중...' : '크롤링 시작'"></span>
+                </button>
+                <button @click="saveData" :disabled="loading.save" class="btn btn-primary">
+                  <span class="material-icons-round text-sm">save</span>
+                  <span x-text="loading.save ? '저장 중...' : '저장'"></span>
+                </button>
+              </div>
+            </template>
+          </div>
+        </div>
+      </header>
+
+      <section x-show="activeTab === 'members'" class="panel overflow-hidden">
+        <div class="overflow-auto">
+          <table class="w-full text-left border-collapse min-w-[860px]">
+            <thead class="sticky top-0 z-10">
+              <tr class="bg-slate-50 text-slate-600 uppercase text-xs tracking-wider font-bold">
+                <th class="px-5 py-4">이름</th>
+                <th class="px-5 py-4 text-center">가입일</th>
+                <th class="px-5 py-4">Stat URL</th>
+                <th class="px-5 py-4">Squad URL</th>
+                <th class="px-5 py-4 text-center">삭제</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-sm">
+              <template x-for="(manager, index) in sortedManagers" :key="index">
+                <tr class="hover:bg-slate-50/70 transition">
+                  <td class="px-5 py-3"><input type="text" x-model="manager.name" class="input-base" /></td>
+                  <td class="px-5 py-3"><input type="date" x-model="manager.joined_at" class="input-base" /></td>
+                  <td class="px-5 py-3"><input type="text" x-model="manager.stat_url" class="input-base" placeholder="Stat URL" /></td>
+                  <td class="px-5 py-3"><input type="text" x-model="manager.squad_url" class="input-base" placeholder="Squad URL" /></td>
+                  <td class="px-5 py-3 text-center">
+                    <button @click="removeManager(manager)" class="btn btn-danger !px-2 !py-2" title="삭제">
+                      <span class="material-icons-round text-base">delete_outline</span>
+                    </button>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section x-show="activeTab === 'seasons'" x-cloak class="space-y-5">
+        <div class="panel p-5 md:p-6">
+          <h2 class="text-lg md:text-xl font-bold mb-1">시즌 자동 분할 생성</h2>
+          <p class="text-sm text-slate-500 mb-4">연도/시즌 차수와 기간을 선택하면 해당 범위의 파일로 시즌을 생성합니다.</p>
+          <div class="grid grid-cols-1 md:grid-cols-7 gap-3">
+            <input type="number" min="2024" max="2100" step="1" x-model="seasonForm.year" class="input-base" placeholder="연도 (예: 2026)" />
+            <select x-model="seasonForm.part" class="input-base">
+              <option value="">차수 선택</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+            <input type="text" :value="computedSeasonName" class="input-base bg-slate-50" placeholder="시즌명 자동 생성" readonly />
+            <input type="date" x-model="seasonForm.startDate" class="input-base" />
+            <input type="time" step="3600" x-model="seasonForm.startTime" class="input-base" />
+            <input type="date" x-model="seasonForm.endDate" class="input-base" />
+            <input type="time" step="3600" x-model="seasonForm.endTime" class="input-base" />
+          </div>
+          <div class="mt-3 grid grid-cols-1 md:grid-cols-7 gap-3">
+            <div class="md:col-span-6 text-xs text-slate-500 pt-2">시즌명은 자동으로 <code>연도-차수</code> 형식으로 생성됩니다. 시간 미입력 시 시작 00:00 / 종료 23:00로 처리됩니다.</div>
+            <button @click="createSeasonAndSplit" :disabled="loading.season" class="btn btn-primary h-[46px]">
+              <span class="material-icons-round text-sm">call_split</span>
+              <span x-text="loading.season ? '생성 중...' : '시즌 생성'"></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="panel overflow-hidden">
+          <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+            <h3 class="font-bold text-slate-800">등록 시즌 목록</h3>
+            <button @click="loadSeasons" :disabled="loading.seasonList" class="btn btn-secondary !py-2">
+              <span class="material-icons-round text-sm">refresh</span>
+              <span x-text="loading.seasonList ? '불러오는 중...' : '새로고침'"></span>
+            </button>
+          </div>
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-50 text-slate-600 uppercase text-xs tracking-wider font-bold">
+                <th class="px-5 py-3">시즌</th>
+                <th class="px-5 py-3">시작일</th>
+                <th class="px-5 py-3">시작시간</th>
+                <th class="px-5 py-3">종료일</th>
+                <th class="px-5 py-3">종료시간</th>
+                <th class="px-5 py-3">상태</th>
+                <th class="px-5 py-3 text-right">수정</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-sm">
+              <template x-if="seasons.length === 0">
+                <tr>
+                  <td colspan="7" class="px-5 py-10 text-center text-slate-500">등록된 시즌 정보가 없습니다.</td>
+                </tr>
+              </template>
+              <template x-for="season in seasons" :key="season.season || season.name">
+                <tr class="hover:bg-slate-50/70 transition">
+                  <td class="px-5 py-3 font-semibold" x-text="season.season || season.name || '-'"></td>
+                  <td class="px-5 py-3 text-slate-600">
+                    <input type="date" x-model="season.startDate" class="input-base !py-2" />
+                  </td>
+                  <td class="px-5 py-3 text-slate-600">
+                    <input type="time" step="3600" x-model="season.startTime" class="input-base !py-2" />
+                  </td>
+                  <td class="px-5 py-3 text-slate-600">
+                    <input type="date" x-model="season.endDate" class="input-base !py-2" />
+                  </td>
+                  <td class="px-5 py-3 text-slate-600">
+                    <input type="time" step="3600" x-model="season.endTime" class="input-base !py-2" />
+                  </td>
+                  <td class="px-5 py-3">
+                    <span class="status-pill" :class="season.hasData === false || season.status === 'empty' ? 'status-empty' : 'status-ready'" x-text="season.hasData === false || season.status === 'empty' ? '데이터 없음' : '사용 가능'"></span>
+                  </td>
+                  <td class="px-5 py-3 text-right">
+                    <button @click="updateSeasonRange(season)" :disabled="loading.seasonUpdate" class="btn btn-secondary !py-2">
+                      <span class="material-icons-round text-sm">edit_calendar</span>
+                      <span x-text="loading.seasonUpdate ? '저장 중...' : '기간 저장'"></span>
+                    </button>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div x-show="toast.show" x-transition class="fixed right-4 top-4 z-[100] panel px-4 py-3 min-w-[260px]" :class="toast.type === 'error' ? 'border-red-200' : toast.type === 'success' ? 'border-green-200' : 'border-slate-200'" x-cloak>
+      <div class="flex items-start gap-2">
+        <span class="material-icons-round text-lg" :class="toast.type === 'error' ? 'text-red-600' : toast.type === 'success' ? 'text-green-600' : 'text-slate-600'" x-text="toast.type === 'error' ? 'error' : toast.type === 'success' ? 'check_circle' : 'info'"></span>
+        <p class="text-sm font-medium" x-text="toast.message"></p>
+      </div>
+    </div>
+
+    <script>
+      function adminPanel() {
+        return {
+          password: "",
+          authorized: false,
+          activeTab: "members",
+          managers: [],
+          seasons: [],
+          sortBy: "name",
+          seasonForm: { year: new Date().getFullYear(), part: "", startDate: "", startTime: "00:00", endDate: "", endTime: "23:00" },
+          loading: { login: false, save: false, crawl: false, season: false, seasonList: false, seasonUpdate: false },
+          toast: { show: false, type: "info", message: "" },
+
+          showToast(type, message) {
+            this.toast = { show: true, type, message };
+            setTimeout(() => {
+              this.toast.show = false;
+            }, 2600);
+          },
+
+          normalizeHourTime(value, fallback) {
+            const raw = String(value || "").trim();
+            if (!raw) return fallback;
+            const m = raw.match(/^(\d{1,2})(?::\d{1,2})?$/);
+            if (!m) return fallback;
+            const hour = Number(m[1]);
+            if (Number.isNaN(hour) || hour < 0 || hour > 23) return fallback;
+            return `${String(hour).padStart(2, "0")}:00`;
+          },
+
+          get sortedManagers() {
+            if (this.sortBy === "name") {
+              return [...this.managers].sort((a, b) => (a.name || "").localeCompare(b.name || "", "ko"));
+            }
+            return [...this.managers].sort((a, b) => new Date(b.joined_at || 0) - new Date(a.joined_at || 0));
+          },
+
+          get computedSeasonName() {
+            const year = String(this.seasonForm.year || "").trim();
+            const part = String(this.seasonForm.part || "").trim();
+            if (!/^[0-9]{4}$/.test(year) || !/^[0-9]+$/.test(part)) return "";
+            return `${year}-${part}`;
+          },
+
+          async login() {
+            this.loading.login = true;
+            try {
+              const res = await fetch(`/api/managers?pw=${encodeURIComponent(this.password)}`);
+              if (!res.ok) {
+                this.password = "";
+                this.showToast("error", "비밀번호가 올바르지 않습니다.");
+                return;
+              }
+              this.managers = await res.json();
+              this.authorized = true;
+              await this.loadSeasons();
+              this.showToast("success", "관리자 인증이 완료되었습니다.");
+            } catch (error) {
+              this.showToast("error", "로그인 중 오류가 발생했습니다.");
+            } finally {
+              this.loading.login = false;
+            }
+          },
+
+          async loadSeasons() {
+            this.loading.seasonList = true;
+            try {
+              const res = await fetch(`/api/seasons?pw=${encodeURIComponent(this.password)}`);
+              if (!res.ok) throw new Error("failed");
+              const data = await res.json();
+              this.seasons = Array.isArray(data)
+                ? data.map((season) => ({
+                    ...season,
+                    startDate: season.startDate || season.start_date || "",
+                    startTime: season.startTime || season.start_time || "00:00",
+                    endDate: season.endDate || season.end_date || "",
+                    endTime: season.endTime || season.end_time || "23:00",
+                  }))
+                : [];
+            } catch (error) {
+              this.seasons = [];
+              this.showToast("error", "시즌 목록을 불러오지 못했습니다.");
+            } finally {
+              this.loading.seasonList = false;
+            }
+          },
+
+          addManager() {
+            this.managers.push({
+              name: "새 감독",
+              joined_at: new Date().toISOString().split("T")[0],
+              stat_url: "",
+              squad_url: "",
+            });
+          },
+
+          removeManager(m) {
+            if (!confirm("삭제하시겠습니까?")) return;
+            this.managers = this.managers.filter((i) => i !== m);
+          },
+
+          async saveData() {
+            this.loading.save = true;
+            try {
+              const res = await fetch("/api/managers", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ pw: this.password, managers: this.managers }),
+              });
+              if (!res.ok) {
+                this.showToast("error", "저장에 실패했습니다.");
+                return;
+              }
+              this.showToast("success", "클럽원 데이터가 저장되었습니다.");
+            } catch (error) {
+              this.showToast("error", "저장 중 오류가 발생했습니다.");
+            } finally {
+              this.loading.save = false;
+            }
+          },
+
+          async runCrawl() {
+            if (!confirm("크롤링을 시작하시겠습니까?")) return;
+            this.loading.crawl = true;
+            try {
+              const res = await fetch("/crawl-now", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ pw: this.password }),
+              });
+              const data = await res.json();
+              if (!res.ok) {
+                this.showToast("error", data.message || "크롤링 시작에 실패했습니다.");
+                return;
+              }
+              this.showToast("success", data.message || "크롤링이 시작되었습니다.");
+            } catch (error) {
+              this.showToast("error", "크롤링 요청 중 오류가 발생했습니다.");
+            } finally {
+              this.loading.crawl = false;
+            }
+          },
+
+          async createSeasonAndSplit() {
+            const season = this.computedSeasonName;
+            const startDate = this.seasonForm.startDate;
+            const endDate = this.seasonForm.endDate;
+            const startTime = this.normalizeHourTime(this.seasonForm.startTime, "00:00");
+            const endTime = this.normalizeHourTime(this.seasonForm.endTime, "23:00");
+
+            if (!season || !startDate || !endDate || !startTime || !endTime) {
+              this.showToast("error", "연도, 차수, 시작/종료 일시를 모두 입력하세요.");
+              return;
+            }
+            if (new Date(`${startDate}T${startTime}:00`) > new Date(`${endDate}T${endTime}:00`)) {
+              this.showToast("error", "시작 일시는 종료 일시보다 늦을 수 없습니다.");
+              return;
+            }
+
+            this.loading.season = true;
+            const payload = {
+              pw: this.password,
+              season,
+              startDate,
+              startTime,
+              endDate,
+              endTime,
+              autoSplit: true,
+            };
+
+            try {
+              let res = await fetch("/api/seasons/split", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+              });
+
+              if (!res.ok) {
+                res = await fetch("/api/seasons", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(payload),
+                });
+              }
+
+              let message = "시즌 생성이 완료되었습니다.";
+              try {
+                const data = await res.json();
+                if (data && data.message) message = data.message;
+              } catch (error) {}
+
+              if (!res.ok) {
+                this.showToast("error", message || "시즌 생성에 실패했습니다.");
+                return;
+              }
+
+              this.showToast("success", message);
+              this.seasonForm = {
+                year: new Date().getFullYear(),
+                part: "",
+                startDate: "",
+                startTime: "00:00",
+                endDate: "",
+                endTime: "23:00",
+              };
+              await this.loadSeasons();
+            } catch (error) {
+              this.showToast("error", "시즌 생성 중 오류가 발생했습니다.");
+            } finally {
+              this.loading.season = false;
+            }
+          },
+
+          async updateSeasonRange(seasonRow) {
+            const season = seasonRow.season || seasonRow.name;
+            const startDate = seasonRow.startDate;
+            const startTime = this.normalizeHourTime(seasonRow.startTime, "00:00");
+            const endDate = seasonRow.endDate;
+            const endTime = this.normalizeHourTime(seasonRow.endTime, "23:00");
+
+            if (!season || !startDate || !endDate || !startTime || !endTime) {
+              this.showToast("error", "수정할 시즌의 시작/종료 일시를 입력하세요.");
+              return;
+            }
+            if (new Date(`${startDate}T${startTime}:00`) > new Date(`${endDate}T${endTime}:00`)) {
+              this.showToast("error", "시작 일시는 종료 일시보다 늦을 수 없습니다.");
+              return;
+            }
+
+            this.loading.seasonUpdate = true;
+            try {
+              const res = await fetch(`/api/seasons/${encodeURIComponent(season)}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ pw: this.password, startDate, startTime, endDate, endTime }),
+              });
+
+              let message = "시즌 기간이 수정되었습니다.";
+              try {
+                const data = await res.json();
+                if (data && data.message) message = data.message;
+              } catch (error) {}
+
+              if (!res.ok) {
+                this.showToast("error", message || "시즌 기간 수정에 실패했습니다.");
+                return;
+              }
+
+              this.showToast("success", message);
+              await this.loadSeasons();
+            } catch (error) {
+              this.showToast("error", "시즌 기간 수정 중 오류가 발생했습니다.");
+            } finally {
+              this.loading.seasonUpdate = false;
+            }
+          },
+        };
+      }
+    </script>
+  </body>
+</html>
