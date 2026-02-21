@@ -187,16 +187,15 @@
                 <button @click="addManager" class="btn btn-secondary">
                   <span class="material-icons-round text-sm">add</span>추가
                 </button>
-                <button @click="runCrawl" :disabled="loading.crawl" class="btn btn-secondary">
-                  <span class="material-icons-round text-sm">sync</span>
-                  <span x-text="loading.crawl ? '실행 중...' : '크롤링 시작'"></span>
-                </button>
                 <button @click="saveData" :disabled="loading.save" class="btn btn-primary">
                   <span class="material-icons-round text-sm">save</span>
                   <span x-text="loading.save ? '저장 중...' : '저장'"></span>
                 </button>
               </div>
             </template>
+            <button @click="logout" x-show="authorized" class="btn btn-secondary">
+              <span class="material-icons-round text-sm">logout</span>로그아웃
+            </button>
           </div>
         </div>
       </header>
@@ -330,6 +329,9 @@
     <script>
       function adminPanel() {
         return {
+          init() {
+            this.restoreSession();
+          },
           password: "",
           authorized: false,
           activeTab: "members",
@@ -337,7 +339,7 @@
           seasons: [],
           sortBy: "name",
           seasonForm: { year: new Date().getFullYear(), part: "", startDate: "", startTime: "00:00", endDate: "", endTime: "23:00" },
-          loading: { login: false, save: false, crawl: false, season: false, seasonList: false, seasonUpdate: false },
+          loading: { login: false, save: false, season: false, seasonList: false, seasonUpdate: false },
           toast: { show: false, type: "info", message: "" },
 
           showToast(type, message) {
@@ -371,17 +373,35 @@
             return `${year}-${part}`;
           },
 
+          async restoreSession() {
+            try {
+              const res = await fetch("/api/session", { credentials: "same-origin" });
+              if (!res.ok) return;
+              const data = await res.json();
+              if (data.authenticated) {
+                this.authorized = true;
+                await this.loadManagers();
+                await this.loadSeasons();
+              }
+            } catch (error) {}
+          },
+
           async login() {
             this.loading.login = true;
             try {
-              const res = await fetch(`/api/managers?pw=${encodeURIComponent(this.password)}`);
+              const res = await fetch("/api/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "same-origin",
+                body: JSON.stringify({ pw: this.password }),
+              });
               if (!res.ok) {
                 this.password = "";
                 this.showToast("error", "비밀번호가 올바르지 않습니다.");
                 return;
               }
-              this.managers = await res.json();
               this.authorized = true;
+              await this.loadManagers();
               await this.loadSeasons();
               this.showToast("success", "관리자 인증이 완료되었습니다.");
             } catch (error) {
@@ -391,10 +411,45 @@
             }
           },
 
+          async logout() {
+            try {
+              await fetch("/api/logout", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "same-origin",
+              });
+            } catch (error) {}
+            this.authorized = false;
+            this.password = "";
+            this.managers = [];
+            this.seasons = [];
+            this.showToast("info", "로그아웃되었습니다.");
+          },
+
+          async loadManagers() {
+            try {
+              const res = await fetch("/api/managers", { credentials: "same-origin" });
+              if (res.status === 401) {
+                this.authorized = false;
+                return;
+              }
+              if (!res.ok) throw new Error("failed");
+              this.managers = await res.json();
+            } catch (error) {
+              this.managers = [];
+              this.showToast("error", "클럽원 목록을 불러오지 못했습니다.");
+            }
+          },
+
           async loadSeasons() {
             this.loading.seasonList = true;
             try {
-              const res = await fetch(`/api/seasons?pw=${encodeURIComponent(this.password)}`);
+              const res = await fetch("/api/seasons", { credentials: "same-origin" });
+              if (res.status === 401) {
+                this.authorized = false;
+                this.showToast("error", "세션이 만료되었습니다. 다시 로그인하세요.");
+                return;
+              }
               if (!res.ok) throw new Error("failed");
               const data = await res.json();
               this.seasons = Array.isArray(data)
@@ -434,8 +489,14 @@
               const res = await fetch("/api/managers", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ pw: this.password, managers: this.managers }),
+                credentials: "same-origin",
+                body: JSON.stringify({ managers: this.managers }),
               });
+              if (res.status === 401) {
+                this.authorized = false;
+                this.showToast("error", "세션이 만료되었습니다. 다시 로그인하세요.");
+                return;
+              }
               if (!res.ok) {
                 this.showToast("error", "저장에 실패했습니다.");
                 return;
@@ -445,28 +506,6 @@
               this.showToast("error", "저장 중 오류가 발생했습니다.");
             } finally {
               this.loading.save = false;
-            }
-          },
-
-          async runCrawl() {
-            if (!confirm("크롤링을 시작하시겠습니까?")) return;
-            this.loading.crawl = true;
-            try {
-              const res = await fetch("/crawl-now", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ pw: this.password }),
-              });
-              const data = await res.json();
-              if (!res.ok) {
-                this.showToast("error", data.message || "크롤링 시작에 실패했습니다.");
-                return;
-              }
-              this.showToast("success", data.message || "크롤링이 시작되었습니다.");
-            } catch (error) {
-              this.showToast("error", "크롤링 요청 중 오류가 발생했습니다.");
-            } finally {
-              this.loading.crawl = false;
             }
           },
 
@@ -488,7 +527,6 @@
 
             this.loading.season = true;
             const payload = {
-              pw: this.password,
               season,
               startDate,
               startTime,
@@ -501,6 +539,7 @@
               let res = await fetch("/api/seasons/split", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
+                credentials: "same-origin",
                 body: JSON.stringify(payload),
               });
 
@@ -508,6 +547,7 @@
                 res = await fetch("/api/seasons", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
+                  credentials: "same-origin",
                   body: JSON.stringify(payload),
                 });
               }
@@ -518,6 +558,11 @@
                 if (data && data.message) message = data.message;
               } catch (error) {}
 
+              if (res.status === 401) {
+                this.authorized = false;
+                this.showToast("error", "세션이 만료되었습니다. 다시 로그인하세요.");
+                return;
+              }
               if (!res.ok) {
                 this.showToast("error", message || "시즌 생성에 실패했습니다.");
                 return;
@@ -561,7 +606,8 @@
               const res = await fetch(`/api/seasons/${encodeURIComponent(season)}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ pw: this.password, startDate, startTime, endDate, endTime }),
+                credentials: "same-origin",
+                body: JSON.stringify({ startDate, startTime, endDate, endTime }),
               });
 
               let message = "시즌 기간이 수정되었습니다.";
@@ -570,6 +616,11 @@
                 if (data && data.message) message = data.message;
               } catch (error) {}
 
+              if (res.status === 401) {
+                this.authorized = false;
+                this.showToast("error", "세션이 만료되었습니다. 다시 로그인하세요.");
+                return;
+              }
               if (!res.ok) {
                 this.showToast("error", message || "시즌 기간 수정에 실패했습니다.");
                 return;

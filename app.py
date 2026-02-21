@@ -1,12 +1,42 @@
-from flask import Flask, render_template, send_from_directory, jsonify, request, make_response
+from flask import Flask, render_template, send_from_directory, jsonify, request, make_response, session
 from flask_compress import Compress 
 import requests
 from bs4 import BeautifulSoup
 from apscheduler.schedulers.background import BackgroundScheduler
-import time, re, os, json, shutil
+from collections import defaultdict
+from functools import wraps
+import time, re, os, json, shutil, hmac, secrets
 from datetime import datetime, timedelta, timezone, time as dt_time
 
+def load_local_env(path=".env"):
+    if not os.path.exists(path):
+        return
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            for raw_line in f:
+                line = raw_line.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                key, value = line.split("=", 1)
+                key = key.strip()
+                if not key or key in os.environ:
+                    continue
+                value = value.strip()
+                if len(value) >= 2 and value[0] == value[-1] and value[0] in ("'", '"'):
+                    value = value[1:-1]
+                os.environ[key] = value
+    except OSError as e:
+        print(f"[WARN] Failed to load .env: {e}", flush=True)
+
+load_local_env()
+
 app = Flask(__name__, static_folder='static', template_folder='.')
+app.config.update(
+    SECRET_KEY=os.environ.get("FLASK_SECRET_KEY") or secrets.token_hex(32),
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE="Strict",
+    SESSION_COOKIE_SECURE=os.environ.get("SESSION_COOKIE_SECURE", "0") == "1",
+)
 
 # 1. 성능 최적화: Gzip 압축
 Compress(app)
@@ -18,9 +48,14 @@ app.config['COMPRESS_MIN_SIZE'] = 500
 MANAGERS_FILE = "managers.json"
 DATA_BASE_DIR = "data"
 SEASON_CONFIG_FILE = "season_config.json"
-ADMIN_PASSWORD = "240416" 
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "").strip()
 KST = timezone(timedelta(hours=9))
 scheduler = BackgroundScheduler(timezone=KST)
+SEASON_NAME_PATTERN = re.compile(r"^\d{4}-\d{1,2}$")
+rate_limit_buckets = defaultdict(list)
+
+if not ADMIN_PASSWORD:
+    print("[WARN] ADMIN_PASSWORD is not set. Admin login will be unavailable.", flush=True)
 
 def ensure_scheduler_running():
     if not scheduler.running:
@@ -33,9 +68,86 @@ def add_header(response):
         response.cache_control.no_cache = True
     elif 'application/javascript' in response.content_type or 'text/css' in response.content_type:
         response.cache_control.max_age = 2678400 # 31일
+    response.headers.setdefault("X-Content-Type-Options", "nosniff")
+    response.headers.setdefault("X-Frame-Options", "DENY")
+    response.headers.setdefault("Referrer-Policy", "strict-origin-when-cross-origin")
+    response.headers.setdefault("Permissions-Policy", "camera=(), microphone=(), geolocation=()")
+    response.headers.setdefault(
+        "Content-Security-Policy",
+        "default-src 'self'; "
+        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://unpkg.com https://www.googletagmanager.com https://api.nepcha.com; "
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; "
+        "img-src 'self' data: https:; "
+        "font-src 'self' https://fonts.gstatic.com data:; "
+        "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://api.nepcha.com; "
+        "frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+    )
     return response
 
 # --- 유틸리티 함수 ---
+def get_client_ip():
+    forwarded = request.headers.get("X-Forwarded-For", "")
+    if forwarded:
+        return forwarded.split(",")[0].strip()
+    return request.remote_addr or "unknown"
+
+def consume_rate_limit(bucket_key, max_requests, window_seconds):
+    now = time.time()
+    bucket = rate_limit_buckets[bucket_key]
+    cutoff = now - window_seconds
+    while bucket and bucket[0] < cutoff:
+        bucket.pop(0)
+    if len(bucket) >= max_requests:
+        return False
+    bucket.append(now)
+    return True
+
+def require_admin_auth(fn):
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+        if not session.get("is_admin"):
+            return jsonify({"error": "Unauthorized"}), 401
+        return fn(*args, **kwargs)
+    return wrapper
+
+def verify_admin_password(pw):
+    if not ADMIN_PASSWORD:
+        return False
+    if not isinstance(pw, str):
+        return False
+    return hmac.compare_digest(pw, ADMIN_PASSWORD)
+
+def is_valid_season_name(season):
+    if not isinstance(season, str):
+        return False
+    text = season.strip()
+    if not SEASON_NAME_PATTERN.fullmatch(text):
+        return False
+    year_text, part_text = text.split("-", 1)
+    try:
+        year = int(year_text)
+        part = int(part_text)
+    except ValueError:
+        return False
+    return 2024 <= year <= 2100 and 1 <= part <= 12
+
+def season_dir_path(season):
+    if not is_valid_season_name(season):
+        raise ValueError("Invalid season name")
+    base_dir = os.path.abspath(DATA_BASE_DIR)
+    path = os.path.abspath(os.path.join(base_dir, season))
+    if not path.startswith(base_dir + os.sep):
+        raise ValueError("Invalid season path")
+    return path
+
+def resolve_frontend_file(filename):
+    search_dirs = [os.path.join(app.root_path, "build"), app.root_path]
+    for directory in search_dirs:
+        candidate = os.path.join(directory, filename)
+        if os.path.isfile(candidate):
+            return directory
+    return ""
+
 def get_current_season():
     default_season = "2025-5"
     if not os.path.exists(SEASON_CONFIG_FILE):
@@ -285,7 +397,7 @@ def list_all_source_user_files():
     return all_files
 
 def split_season_data(target_season, start_dt, end_dt, reset_target=False):
-    target_dir = os.path.join(DATA_BASE_DIR, target_season)
+    target_dir = season_dir_path(target_season)
     if reset_target and os.path.exists(target_dir):
         shutil.rmtree(target_dir)
     target_user_dir = os.path.join(target_dir, "user")
@@ -441,6 +553,29 @@ def serve_data(filename):
     res.cache_control.no_cache = True
     return res
 
+@app.route('/season_config.json')
+def serve_season_config():
+    root_dir = app.root_path
+    build_dir = os.path.join(app.root_path, "build")
+    if os.path.isfile(os.path.join(root_dir, "season_config.json")):
+        directory = root_dir
+    elif os.path.isfile(os.path.join(build_dir, "season_config.json")):
+        directory = build_dir
+    else:
+        return jsonify({"error": "season_config.json not found"}), 404
+    res = make_response(send_from_directory(directory, "season_config.json"))
+    res.cache_control.no_cache = True
+    return res
+
+@app.route('/manifest.json')
+def serve_web_manifest():
+    directory = resolve_frontend_file("manifest.json")
+    if not directory:
+        return jsonify({"error": "manifest.json not found"}), 404
+    res = make_response(send_from_directory(directory, "manifest.json"))
+    res.cache_control.no_cache = True
+    return res
+
 # 2. 통합 히스토리 API (Lighthouse 최적화용)
 @app.route('/api/history/<season>/<player_id>')
 def get_user_history(season, player_id):
@@ -461,23 +596,44 @@ def admin_page():
     return render_template('admin.html')
 
 # 4. 관리자 API
+@app.route('/api/login', methods=['POST'])
+def api_login():
+    ip = get_client_ip()
+    if not consume_rate_limit(f"login:{ip}", max_requests=10, window_seconds=300):
+        return jsonify({"error": "Too many login attempts. Try again later."}), 429
+
+    body = request.get_json(silent=True) or {}
+    pw = body.get("pw", "")
+    if not verify_admin_password(pw):
+        return jsonify({"error": "Unauthorized"}), 401
+
+    session.clear()
+    session["is_admin"] = True
+    session["login_at"] = datetime.now(KST).isoformat()
+    return jsonify({"status": "success"})
+
+@app.route('/api/logout', methods=['POST'])
+def api_logout():
+    session.clear()
+    return jsonify({"status": "success"})
+
+@app.route('/api/session', methods=['GET'])
+def api_session():
+    return jsonify({"authenticated": bool(session.get("is_admin"))})
+
 @app.route('/api/managers', methods=['GET', 'POST'])
+@require_admin_auth
 def api_managers():
     body = request.get_json(silent=True) or {}
-    pw = request.args.get('pw') or body.get('pw')
-    if pw != ADMIN_PASSWORD:
-        return jsonify({"error": "Unauthorized"}), 401
     if request.method == 'GET':
         return jsonify(load_managers())
     save_managers(body.get('managers', []))
     return jsonify({"status": "success"})
 
 @app.route('/api/seasons', methods=['GET', 'POST'])
+@require_admin_auth
 def api_seasons():
     body = request.get_json(silent=True) or {}
-    pw = request.args.get('pw') or body.get('pw')
-    if pw != ADMIN_PASSWORD:
-        return jsonify({"error": "Unauthorized"}), 401
 
     if request.method == 'GET':
         config = load_season_config()
@@ -499,6 +655,8 @@ def api_seasons():
         return jsonify(payload)
 
     season = str(body.get("season", "")).strip()
+    if not is_valid_season_name(season):
+        return jsonify({"message": "season 형식이 유효하지 않습니다. (예: 2026-1)"}), 400
     start_date = parse_date_or_none(body.get("startDate"))
     start_time = parse_time_or_none(body.get("startTime") or "00:00")
     end_date = parse_date_or_none(body.get("endDate"))
@@ -546,11 +704,11 @@ def api_seasons_split():
     return api_seasons()
 
 @app.route('/api/seasons/<season>', methods=['PUT'])
+@require_admin_auth
 def api_update_season(season):
+    if not is_valid_season_name(season):
+        return jsonify({"message": "season 형식이 유효하지 않습니다. (예: 2026-1)"}), 400
     body = request.get_json(silent=True) or {}
-    pw = request.args.get('pw') or body.get('pw')
-    if pw != ADMIN_PASSWORD:
-        return jsonify({"error": "Unauthorized"}), 401
 
     start_date = parse_date_or_none(body.get("startDate"))
     start_time = parse_time_or_none(body.get("startTime") or "00:00")
@@ -592,21 +750,25 @@ def api_update_season(season):
         "season": season
     })
 
-@app.route('/crawl-now', methods=['POST'])
-def api_manual_crawl():
-    data = request.get_json(silent=True) or {}
-    if data.get('pw') != ADMIN_PASSWORD: return jsonify({"status": "error"}), 401
-    ensure_scheduler_running()
-    scheduler.add_job(func=run_full_crawl, trigger='date', run_date=datetime.now(KST))
-    return jsonify({"status": "success", "message": "크롤링 시작"})
-
 # 5. 캐치올 (맨 마지막)
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    f_p = os.path.join(app.root_path, path)
-    if path != "" and os.path.exists(f_p): return send_from_directory(app.root_path, path)
-    return render_template('index.html')
+    build_dir = os.path.join(app.root_path, "build")
+    build_root = os.path.abspath(build_dir)
+    if path:
+        requested = os.path.abspath(os.path.join(build_dir, path))
+        if requested.startswith(build_root + os.sep) and os.path.isfile(requested):
+            return send_from_directory(build_dir, path)
+
+    index_in_build = os.path.join(build_dir, "index.html")
+    if os.path.isfile(index_in_build):
+        return send_from_directory(build_dir, "index.html")
+
+    fallback_index = os.path.join(app.root_path, "index.html")
+    if os.path.isfile(fallback_index):
+        return send_from_directory(app.root_path, "index.html")
+    return jsonify({"error": "Frontend not found"}), 404
 
 if __name__ == '__main__':
     scheduler.add_job(func=run_full_crawl, trigger="cron", hour=4, minute=0)
