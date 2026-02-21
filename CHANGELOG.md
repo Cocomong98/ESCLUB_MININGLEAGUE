@@ -1,5 +1,77 @@
 # Change Log
 
+## Project SemVer Summary (ESCLUB MINING LEAGUE)
+
+`기존 HTML 기반 페이지 -> React 리뉴얼` 전환 이력을 기준으로 재정의한 프로젝트 버전 요약입니다.
+상세 근거는 `CHANGELOG_SEMVER.md`를 참조하세요.
+
+### `v3.3.0` (Unreleased, 후보)
+
+- 유형: `MINOR` 권장
+- 핵심:
+  - 시즌 데이터 대규모 확장/분리 (`public/data/2025-4`, `public/data/2025-5`, `public/data/2026-1`)
+  - 기존 루트 데이터 다수 삭제 (`public/data/user/*`, `public/data/current_crawl_display_data.json`)
+  - `public/index.html` Google Analytics 스크립트 추가
+- 주의:
+  - 외부 소비자가 기존 루트 경로를 직접 참조하면 `MAJOR` 재판정 필요
+
+### `v3.2.1` (2026-02-19)
+
+- 유형: `PATCH`
+- 커밋: `ec00dd4`
+- 핵심: 운영 인수인계 문서 추가 (`PROJECT_STATE.md`)
+
+### `v3.2.0` (2026-02-19)
+
+- 유형: `MINOR`
+- 커밋: `72d08a3`
+- 핵심: Flask 서버 및 시즌 검증/분할/크롤링 라우팅 도입 (`app.py`)
+
+### `v3.1.0` (2026-02-19)
+
+- 유형: `MINOR`
+- 커밋: `01062ea`
+- 핵심: 운영자 페이지 및 시즌 생성/수정 UX 추가 (`admin.html`)
+
+### `v3.0.0` (2026-02-19)
+
+- 유형: `MAJOR`
+- 커밋: `dda5967`
+- 핵심:
+  - 데이터 경로 계약 변경: `/data/<season>/...`
+  - 시즌 쿼리 기반 라우팅(`dashboard/:id?season=...`) 도입
+
+### `v2.0.2` (2025-10-28)
+
+- 유형: `PATCH`
+- 커밋: `9773fb2`
+- 핵심: 템플릿 잔여 파일 정리 (`ISSUE_TEMPLATE.md` 삭제)
+
+### `v2.0.1` (2025-10-28)
+
+- 유형: `PATCH`
+- 커밋: `6622f8b`
+- 핵심: README를 서비스 문맥으로 개편
+
+### `v2.0.0` (2025-10-27)
+
+- 유형: `MAJOR`
+- 커밋: `a7114d9`
+- 핵심: React 기반 리뉴얼 베이스라인 도입
+
+### `v1.x` (Legacy, Git 이전)
+
+- 유형: 참고용
+- 핵심: HTML 기반 구버전 운영 단계
+
+## Auto Commit Log
+
+<!-- auto-commit-log:start -->
+- 2026-02-21 17:55 | patch | chore(data): ignore runtime data and keep mockup fixtures (files: 114)
+<!-- auto-commit-log:end -->
+
+---
+
 ## [2.2.0] 2023-22-05
 
 - Fix issues
