@@ -25,31 +25,43 @@ import Icon from "@mui/material/Icon";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 
-function DefaultInfoCard({ color, icon, title, description, value }) {
+function DefaultInfoCard({ color, icon, title, description, value, compactMobile }) {
   return (
     <Card>
-      <MDBox p={2} mx={3} display="flex" justifyContent="center">
+      <MDBox
+        p={{ xs: compactMobile ? 1 : 2, md: 2 }}
+        mx={{ xs: compactMobile ? 1 : 3, md: 3 }}
+        display="flex"
+        justifyContent="center"
+      >
         <MDBox
           display="grid"
           justifyContent="center"
           alignItems="center"
           bgColor={color}
           color="white"
-          width={{ xs: "3rem", md: "4rem" }}
-          height={{ xs: "3rem", md: "4rem" }}
+          width={{ xs: compactMobile ? "2.2rem" : "3rem", md: "4rem" }}
+          height={{ xs: compactMobile ? "2.2rem" : "3rem", md: "4rem" }}
           shadow="md"
           borderRadius="lg"
           variant="gradient"
         >
-          <Icon fontSize="large">{icon}</Icon>
+          <Icon sx={{ fontSize: { xs: compactMobile ? "1.1rem" : "1.5rem", md: "2rem" } }}>
+            {icon}
+          </Icon>
         </MDBox>
       </MDBox>
-      <MDBox pb={2} px={2} textAlign="center" lineHeight={1.25}>
+      <MDBox
+        pb={{ xs: compactMobile ? 1 : 2, md: 2 }}
+        px={{ xs: compactMobile ? 1 : 2, md: 2 }}
+        textAlign="center"
+        lineHeight={1.2}
+      >
         <MDTypography
           variant="h6"
           fontWeight="medium"
           textTransform="capitalize"
-          sx={{ fontSize: { xs: "0.75rem", sm: "1rem" } }}
+          sx={{ fontSize: { xs: compactMobile ? "0.66rem" : "0.75rem", sm: "1rem" } }}
         >
           {title}
         </MDTypography>
@@ -58,17 +70,17 @@ function DefaultInfoCard({ color, icon, title, description, value }) {
             variant="caption"
             color="text"
             fontWeight="regular"
-            sx={{ fontSize: { xs: "0.65rem", sm: "0.75rem" } }}
+            sx={{ fontSize: { xs: compactMobile ? "0.58rem" : "0.65rem", sm: "0.75rem" } }}
           >
             {description}
           </MDTypography>
         )}
-        {description && !value ? null : <Divider />}
+        {description && !value ? null : <Divider sx={{ my: compactMobile ? 0.5 : 1 }} />}
         {value && (
           <MDTypography
             variant="h5"
             fontWeight="medium"
-            sx={{ fontSize: { xs: "0.875rem", sm: "1.25rem" } }}
+            sx={{ fontSize: { xs: compactMobile ? "0.72rem" : "0.875rem", sm: "1.25rem" } }}
           >
             {value}
           </MDTypography>
@@ -83,6 +95,7 @@ DefaultInfoCard.defaultProps = {
   color: "info",
   value: "",
   description: "",
+  compactMobile: false,
 };
 
 // Typechecking props for the DefaultInfoCard
@@ -92,6 +105,7 @@ DefaultInfoCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  compactMobile: PropTypes.bool,
 };
 
 export default DefaultInfoCard;

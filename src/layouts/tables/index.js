@@ -10,7 +10,7 @@ Coded by www.creative-tim.com
 */
 
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 // @mui material components
 import Grid from "@mui/material/Grid";
@@ -44,6 +44,8 @@ function Tables() {
     game_count_king: {},
     draw_king: {},
   });
+  const [sortConfig, setSortConfig] = useState({ key: "rank", direction: "asc" });
+  const [hasSortedOnce, setHasSortedOnce] = useState(false);
 
   // 1. 시즌 설정 로드
   useEffect(() => {
@@ -81,34 +83,156 @@ function Tables() {
     fetchData();
   }, [selectedSeason]);
 
+  const parseNumberValue = (value) => {
+    if (typeof value === "number") return value;
+    if (value === null || value === undefined) return 0;
+    const normalized = String(value).replace(/[% ,]/g, "").trim();
+    const parsed = Number(normalized);
+    return Number.isFinite(parsed) ? parsed : 0;
+  };
+
+  const parseClubValue = (value) => {
+    if (typeof value === "number") return value;
+    if (value === null || value === undefined) return 0;
+
+    const text = String(value).trim();
+    if (!text) return 0;
+
+    if (text.includes("조")) {
+      const numericMatch = text.match(/(\d+(?:\.\d+)?)/);
+      if (!numericMatch) return text.includes("미만") ? 999999999999 : 0;
+      const trillionValue = Number(numericMatch[1]) * 1000000000000;
+      return text.includes("미만") ? Math.max(trillionValue - 1, 0) : trillionValue;
+    }
+
+    return parseNumberValue(text);
+  };
+
+  const getSortValue = (player, sortKey) => {
+    switch (sortKey) {
+      case "rank":
+        return parseNumberValue(player.순위);
+      case "win_rate":
+        return parseNumberValue(player.승률);
+      case "games":
+        return parseNumberValue(player.판수);
+      case "mining":
+        return parseNumberValue(player["채굴 효율"]);
+      case "growth":
+        return parseNumberValue(player["성장력"]);
+      case "value":
+        return parseClubValue(player["구단 가치"] ?? player.구단가치);
+      default:
+        return 0;
+    }
+  };
+
+  const handleSort = (key) => {
+    setHasSortedOnce(true);
+    setSortConfig((prev) => {
+      if (prev.key === key) {
+        return { key, direction: prev.direction === "asc" ? "desc" : "asc" };
+      }
+      return { key, direction: "asc" };
+    });
+  };
+
+  const renderSortHeader = (label, key) => {
+    const isActive = sortConfig.key === key;
+    return (
+      <MDBox
+        component="button"
+        type="button"
+        onClick={() => handleSort(key)}
+        sx={{
+          border: 0,
+          background: "transparent",
+          padding: 0,
+          cursor: "pointer",
+          userSelect: "none",
+          display: "inline-flex",
+          alignItems: "center",
+          color: "inherit",
+          fontSize: "inherit",
+          fontFamily: "inherit",
+          fontWeight: "inherit",
+          lineHeight: "inherit",
+          outline: "none",
+        }}
+      >
+        <MDBox component="span">{label}</MDBox>
+        {hasSortedOnce && isActive && (
+          <MDBox
+            component="span"
+            sx={{
+              ml: 0.5,
+              display: "inline-flex",
+              color: "inherit",
+              fontSize: "inherit",
+              fontFamily: "inherit",
+              fontWeight: 700,
+              lineHeight: "inherit",
+            }}
+          >
+            {sortConfig.direction === "asc" ? "▲" : "▼"}
+          </MDBox>
+        )}
+      </MDBox>
+    );
+  };
+
+  const renderStaticHeader = (label) => (
+    <MDBox
+      component="span"
+      sx={{
+        color: "inherit",
+        fontSize: "inherit",
+        fontFamily: "inherit",
+        fontWeight: "inherit",
+        lineHeight: "inherit",
+      }}
+    >
+      {label}
+    </MDBox>
+  );
+
+  const sortedResults = useMemo(() => {
+    const results = [...newTableData.results];
+    results.sort((a, b) => {
+      const diff = getSortValue(a, sortConfig.key) - getSortValue(b, sortConfig.key);
+      if (diff !== 0) return sortConfig.direction === "asc" ? diff : -diff;
+      return parseNumberValue(a.순위) - parseNumberValue(b.순위);
+    });
+    return results;
+  }, [newTableData.results, sortConfig]);
+
   const allColumns = [
-    { Header: "순위", accessor: "rank", align: "center" },
-    { Header: "구단주", accessor: "owner", width: "25%", align: "left" },
-    { Header: "전적", accessor: "record", align: "center" },
-    { Header: "승률", accessor: "win_rate", align: "center" },
-    { Header: "판수", accessor: "games", align: "center" },
-    { Header: "채굴 효율", accessor: "mining", align: "center" },
-    { Header: "구단 가치", accessor: "value", align: "center" },
+    { Header: renderSortHeader("순위", "rank"), accessor: "rank", align: "center" },
+    { Header: renderStaticHeader("구단주"), accessor: "owner", width: "25%", align: "left" },
+    { Header: renderStaticHeader("전적"), accessor: "record", align: "center" },
+    { Header: renderSortHeader("승률", "win_rate"), accessor: "win_rate", align: "center" },
+    { Header: renderSortHeader("판수", "games"), accessor: "games", align: "center" },
+    { Header: renderSortHeader("채굴 효율", "mining"), accessor: "mining", align: "center" },
+    { Header: renderSortHeader("성장력", "growth"), accessor: "growth", align: "center" },
+    { Header: renderSortHeader("구단 가치", "value"), accessor: "value", align: "center" },
   ];
 
   const columns = isMobile
     ? allColumns.filter((col) => ["rank", "owner", "mining"].includes(col.accessor))
     : allColumns;
 
-  const rows = newTableData.results.map((player) => ({
+  const rows = sortedResults.map((player) => ({
     rank: (
       <MDTypography variant="body2" color="text" fontWeight="medium">
         {player.순위}
       </MDTypography>
     ),
     owner: (
-      <Link to={`/dashboard/${player.player_id}?season=${encodeURIComponent(selectedSeason)}`}>
-        <MDTypography
-          variant="body2"
-          color="text"
-          fontWeight="medium"
-          sx={{ cursor: "pointer", "&:hover": { color: "info.main" } }}
-        >
+      <Link
+        to={`/dashboard/${player.player_id}?season=${encodeURIComponent(selectedSeason)}`}
+        style={{ color: "inherit", textDecoration: "none" }}
+      >
+        <MDTypography variant="body2" color="text" fontWeight="medium" sx={{ cursor: "pointer" }}>
           {player.구단주명}
         </MDTypography>
       </Link>
@@ -133,18 +257,23 @@ function Tables() {
         {player["채굴 효율"]}
       </MDTypography>
     ),
+    growth: (
+      <MDTypography variant="body2" color="text" fontWeight="medium">
+        {Number(player["성장력"]) > 0 ? `+${player["성장력"]}` : player["성장력"] ?? "-"}
+      </MDTypography>
+    ),
     value: (
       <MDTypography variant="body2" color="text">
-        {player["구단 가치"]}
+        {player["구단 가치"] ?? player.구단가치 ?? "-"}
       </MDTypography>
     ),
   }));
 
   return (
     <DashboardLayout>
-      <DashboardNavbar />
-      <MDBox pt={6} pb={3}>
-        <MDBox mb={4} display="flex" alignItems="center">
+      <DashboardNavbar pageTitle="시즌 순위표" />
+      <MDBox pt={isMobile ? 4 : 6} pb={isMobile ? 2 : 3}>
+        <MDBox mb={isMobile ? 2 : 4} display="flex" alignItems="center">
           <MDTypography variant="h6" fontWeight="medium" mr={2}>
             시즌 데이터 조회:
           </MDTypography>
@@ -161,42 +290,46 @@ function Tables() {
           </Select>
         </MDBox>
 
-        <Grid container spacing={3}>
-          <Grid item xs={6} md={3}>
+        <Grid container spacing={isMobile ? 0.75 : 3}>
+          <Grid item xs={3} md={3}>
             <DefaultInfoCard
               icon="military_tech"
               title="채굴왕"
               description={newTableData.mining_king.구단주명 || "---"}
               value={newTableData.mining_king["지난 시즌 채굴 효율"] || "0"}
+              compactMobile={isMobile}
             />
           </Grid>
-          <Grid item xs={6} md={3}>
+          <Grid item xs={3} md={3}>
             <DefaultInfoCard
               icon="emoji_events"
               title="승률왕"
               description={newTableData.win_rate_king.구단주명 || "---"}
               value={newTableData.win_rate_king["지난 시즌 승률"] || "0%"}
+              compactMobile={isMobile}
             />
           </Grid>
-          <Grid item xs={6} md={3}>
+          <Grid item xs={3} md={3}>
             <DefaultInfoCard
               icon="casino"
               title="판수왕"
               description={newTableData.game_count_king.구단주명 || "---"}
               value={newTableData.game_count_king["지난 시즌 판수"] || "0"}
+              compactMobile={isMobile}
             />
           </Grid>
-          <Grid item xs={6} md={3}>
+          <Grid item xs={3} md={3}>
             <DefaultInfoCard
               icon="balance"
               title="승부왕"
               description={newTableData.draw_king.구단주명 || "---"}
               value={newTableData.draw_king["지난 시즌 무"] || "0"}
+              compactMobile={isMobile}
             />
           </Grid>
         </Grid>
 
-        <Grid container spacing={3} mt={3}>
+        <Grid container spacing={3} mt={isMobile ? 2 : 4}>
           <Grid item xs={12}>
             <Card>
               <MDBox
