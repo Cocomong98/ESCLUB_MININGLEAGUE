@@ -299,7 +299,7 @@ function Dashboard() {
           </Grid>
         </Grid>
         <MDBox mt={4.5}>
-          <Grid container spacing={3}>
+          <Grid container spacing={{ xs: 4, md: 3 }}>
             <Grid item xs={12} md={6} lg={4}>
               <ReportsLineChart
                 color="dark"
