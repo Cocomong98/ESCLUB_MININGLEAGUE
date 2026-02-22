@@ -32,7 +32,6 @@ import {
 
 // @mui material components
 import Card from "@mui/material/Card";
-import Divider from "@mui/material/Divider";
 import Icon from "@mui/material/Icon";
 
 // Material Dashboard 2 React components
@@ -67,14 +66,13 @@ function ReportsBarChart({ color, title, description, chart, yAxis }) {
           ),
           [color, chart]
         )}
-        <MDBox pt={3} pb={1} px={1}>
+        <MDBox pt={3} pb={0} px={1}>
           <MDTypography variant="h6" textTransform="capitalize">
             {title}
           </MDTypography>
           <MDTypography component="div" variant="button" color="text" fontWeight="light">
             {description}
           </MDTypography>
-          <Divider />
         </MDBox>
       </MDBox>
     </Card>

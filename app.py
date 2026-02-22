@@ -379,6 +379,52 @@ def load_results_by_date(season, date_yymmdd):
         item['순위'] = i + 1
     return results
 
+def list_daily_dates_for_season(season):
+    dates = set()
+    user_root = os.path.join(DATA_BASE_DIR, season, "user")
+    if not os.path.isdir(user_root):
+        return []
+    for player_id in os.listdir(user_root):
+        player_dir = os.path.join(user_root, player_id)
+        if not os.path.isdir(player_dir):
+            continue
+        for filename in os.listdir(player_dir):
+            match = re.search(r'_(\d{6})\.json$', filename)
+            if match:
+                dates.add(match.group(1))
+    return sorted(dates)
+
+def previous_daily_date(season, current_date_yymmdd):
+    candidates = [d for d in list_daily_dates_for_season(season) if d < current_date_yymmdd]
+    return candidates[-1] if candidates else None
+
+def to_int_or_default(value, default_value=0):
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return default_value
+
+def apply_growth_metric(results, season, current_date_yymmdd):
+    prev_date = previous_daily_date(season, current_date_yymmdd)
+    if not prev_date:
+        for item in results:
+            item["성장력"] = 0
+        return results
+
+    prev_results = load_results_by_date(season, prev_date)
+    prev_by_player = {}
+    for row in prev_results:
+        pid = str(row.get("player_id") or row.get("아이디") or "")
+        if pid:
+            prev_by_player[pid] = row
+
+    for item in results:
+        pid = str(item.get("player_id") or item.get("아이디") or "")
+        curr_eff = to_int_or_default(item.get("채굴 효율"), 0)
+        prev_eff = to_int_or_default(prev_by_player.get(pid, {}).get("채굴 효율"), curr_eff)
+        item["성장력"] = curr_eff - prev_eff
+    return results
+
 def list_all_source_user_files():
     all_files = []
     if not os.path.exists(DATA_BASE_DIR):
@@ -437,6 +483,7 @@ def split_season_data(target_season, start_dt, end_dt, reset_target=False):
     if latest_date:
         results = load_results_by_date(target_season, latest_date)
         if results:
+            results = apply_growth_metric(results, target_season, latest_date)
             summary = build_summary_from_results(results)
             with open(os.path.join(target_dir, "current_crawl_display_data.json"), 'w', encoding='utf-8') as f:
                 json.dump(summary, f, indent=4, ensure_ascii=False)
@@ -505,6 +552,7 @@ def run_full_crawl():
             time.sleep(1)
     results.sort(key=lambda x: x.get('채굴 효율', -9999), reverse=True)
     for i, item in enumerate(results): item['순위'] = i + 1
+    results = apply_growth_metric(results, season, now_kst.strftime('%y%m%d'))
     ampm = "오전" if now_kst.hour < 12 else "오후"
     hour12 = now_kst.hour % 12 or 12
     for item in results:

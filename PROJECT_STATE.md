@@ -3,6 +3,8 @@
 ## Scope
 - React dashboard (`src/*`) + Flask server (`app.py`) + admin page (`admin.html`).
 - Goal: season-based data management/crawling and user dashboard views.
+- Hall of fame page (`/hall-of-fame`): season-level 4 kings aggregation view.
+- Tables page includes `성장력` metric (day-over-day `채굴 효율` delta).
 
 ## Read First (next session)
 1. `PROJECT_STATE.md`
