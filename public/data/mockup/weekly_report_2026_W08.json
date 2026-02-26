@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "report_type": "weekly",
+  "week_id": "2026-W08",
+  "timezone": "Asia/Seoul",
+  "window_start": "2026-02-19T05:00:00+09:00",
+  "window_end": "2026-02-26T04:59:59+09:00",
+  "generated_at": "2026-02-26T05:05:12+09:00",
+  "policy": {
+    "min_weekly_games": 500,
+    "imputation": "none",
+    "require_boundary_points": true
+  },
+  "weekly_kings": {
+    "mining_king": {
+      "player_id": "1374062161",
+      "manager_name": "ES맨유",
+      "weekly_games_delta": 612,
+      "metric_value": 1680,
+      "eligible": true
+    },
+    "win_rate_king": {
+      "player_id": "350839137",
+      "manager_name": "ES라야",
+      "weekly_games_delta": 540,
+      "metric_value": 57.4,
+      "eligible": true
+    },
+    "game_count_king": {
+      "player_id": "1038218816",
+      "manager_name": "ES스페인",
+      "weekly_games_delta": 722,
+      "metric_value": 722,
+      "eligible": true
+    },
+    "draw_king": null
+  },
+  "value_buckets": [
+    {
+      "bucket_id": "100_200_jo",
+      "label": "100조~200조",
+      "min_value_krw": 100000000000000,
+      "max_value_krw": 200000000000000,
+      "samples": 34,
+      "avg_weekly_mining_delta": 512.4,
+      "avg_weekly_win_rate": 51.8
+    }
+  ],
+  "quality": {
+    "total_players": 62,
+    "eligible_players": 49,
+    "excluded_players": 13
+  }
+}

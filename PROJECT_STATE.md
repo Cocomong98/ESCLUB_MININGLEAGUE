@@ -43,6 +43,27 @@
   - Hour snapshot: `player_YYMMDD_HHMM.json`
   - Daily compatibility file: `player_YYMMDD.json`
 
+## Weekly Report Policy (Approved)
+- Weekly window (KST):
+  - Start: Thursday `05:00:00`
+  - End: next Thursday `04:59:59`
+  - Batch run target: Thursday `05:05`
+  - Execution: internal APScheduler job in `app.py` (no separate NAS scheduler)
+- Season boundary handling:
+  - If a weekly range crosses seasons, split by season and aggregate.
+  - If cumulative metrics reset (`end < start`), treat as new-season reset.
+- Missing data policy:
+  - No imputation (`imputation = none`).
+  - Require boundary points for weekly delta metrics.
+  - Use eligibility thresholds (minimum valid days) for KPI candidates.
+- KPI minimum sample policy:
+  - Weekly kings use minimum weekly games `>= 500`.
+  - This rule is for weekly report only.
+  - Existing season kings logic (`current_crawl_display_data.json`) must remain unchanged.
+- Schema contract:
+  - See `WEEKLY_REPORT_SCHEMA.md`.
+  - Mock sample: `public/data/mockup/weekly_report_2026_W08.json`.
+
 ## Backend APIs
 - `POST /api/login`
 - `POST /api/logout`

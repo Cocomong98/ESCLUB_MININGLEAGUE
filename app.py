@@ -4,8 +4,9 @@ import requests
 from bs4 import BeautifulSoup
 from apscheduler.schedulers.background import BackgroundScheduler
 from collections import defaultdict
+from contextlib import suppress
 from functools import wraps
-import time, re, os, json, shutil, hmac, secrets
+import time, re, os, json, shutil, hmac, secrets, sys, fcntl
 from datetime import datetime, timedelta, timezone, time as dt_time
 
 def load_local_env(path=".env"):
@@ -53,6 +54,13 @@ KST = timezone(timedelta(hours=9))
 scheduler = BackgroundScheduler(timezone=KST)
 SEASON_NAME_PATTERN = re.compile(r"^\d{4}-\d{1,2}$")
 rate_limit_buckets = defaultdict(list)
+WEEKLY_SCHEMA_VERSION = "1.0.0"
+WEEKLY_MIN_GAMES = 500
+WEEKLY_MIN_VALID_DAYS = 5
+WEEKLY_IMPUTATION = "none"
+WEEKLY_REQUIRE_BOUNDARY_POINTS = True
+WEEKLY_LOCK_FILE = os.path.join(DATA_BASE_DIR, ".weekly_report.lock")
+WEEKLY_DAILY_CRAWL_HOUR = 4
 
 if not ADMIN_PASSWORD:
     print("[WARN] ADMIN_PASSWORD is not set. Admin login will be unavailable.", flush=True)
@@ -491,6 +499,477 @@ def split_season_data(target_season, start_dt, end_dt, reset_target=False):
                 json.dump({"endDate": latest_date}, f, ensure_ascii=False)
     return copied_count, latest_date
 
+def atomic_write_json(path, payload):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    tmp_path = f"{path}.tmp.{os.getpid()}"
+    with open(tmp_path, 'w', encoding='utf-8') as f:
+        json.dump(payload, f, indent=2, ensure_ascii=False)
+    os.replace(tmp_path, path)
+
+def parse_percent_to_float(value):
+    if value is None:
+        return None
+    if isinstance(value, (int, float)):
+        return float(value)
+    text = str(value).replace("%", "").strip()
+    if not text:
+        return None
+    try:
+        return float(text)
+    except (TypeError, ValueError):
+        return None
+
+def parse_club_value_to_krw(value):
+    if value is None:
+        return None
+    if isinstance(value, (int, float)):
+        return int(value)
+
+    text = str(value).strip()
+    if not text:
+        return None
+    normalized = text.replace(" ", "").replace(",", "")
+
+    if "미만" in normalized and "조" in normalized:
+        return 999999999999
+
+    m_gyeong = re.fullmatch(r"(\d+)경(?:(\d+)조)?", normalized)
+    if m_gyeong:
+        gyeong = int(m_gyeong.group(1))
+        jo = int(m_gyeong.group(2) or "0")
+        return (gyeong * 10000 + jo) * 1000000000000
+
+    m_jo = re.fullmatch(r"(\d+)조", normalized)
+    if m_jo:
+        jo = int(m_jo.group(1))
+        return jo * 1000000000000
+
+    return None
+
+def format_krw_to_gyeong_jo(krw):
+    if krw is None:
+        return "-"
+    if krw < 1000000000000:
+        return "1조 미만"
+    total_jo = int(krw // 1000000000000)
+    if total_jo < 10000:
+        return f"{total_jo}조"
+    gyeong = total_jo // 10000
+    remain_jo = total_jo % 10000
+    if remain_jo == 0:
+        return f"{gyeong}경"
+    return f"{gyeong}경 {remain_jo}조"
+
+def delta_with_reset(end_value, start_value):
+    end_v = to_int_or_default(end_value, 0)
+    start_v = to_int_or_default(start_value, 0)
+    diff = end_v - start_v
+    if diff < 0:
+        return end_v
+    return diff
+
+def build_weekly_window(reference_dt):
+    if reference_dt.tzinfo is None:
+        reference_dt = reference_dt.replace(tzinfo=KST)
+    days_since_thu = (reference_dt.weekday() - 3) % 7
+    thursday_date = (reference_dt - timedelta(days=days_since_thu)).date()
+    window_end = datetime.combine(thursday_date, dt_time(4, 59, 59)).replace(tzinfo=KST)
+    if reference_dt < window_end:
+        window_end -= timedelta(days=7)
+    window_start = window_end - timedelta(days=7) + timedelta(seconds=1)
+    return window_start, window_end
+
+def next_daily_snapshot_at_or_after(dt):
+    base = dt.replace(hour=WEEKLY_DAILY_CRAWL_HOUR, minute=0, second=0, microsecond=0)
+    if base < dt:
+        base += timedelta(days=1)
+    return base
+
+def previous_daily_snapshot_at_or_before(dt):
+    base = dt.replace(hour=WEEKLY_DAILY_CRAWL_HOUR, minute=0, second=0, microsecond=0)
+    if base > dt:
+        base -= timedelta(days=1)
+    return base
+
+def expected_weekly_snapshot_points(window_start, window_end):
+    first = next_daily_snapshot_at_or_after(window_start)
+    last = previous_daily_snapshot_at_or_before(window_end)
+    if first > last:
+        return []
+    points = []
+    cursor = first
+    while cursor <= last:
+        points.append(cursor)
+        cursor += timedelta(days=1)
+    return points
+
+def compute_weekly_segments(window_start, window_end):
+    config = load_season_config()
+    segments = []
+    for season in sort_seasons_desc(config.get("seasons", [])):
+        meta = (config.get("season_ranges", {}) or {}).get(season, {})
+        season_start, season_end = parse_range_datetime(meta)
+        if season_start is None or season_end is None:
+            continue
+        seg_start = max(window_start, season_start)
+        seg_end = min(window_end, season_end)
+        if seg_start <= seg_end:
+            segments.append({
+                "season": season,
+                "start": seg_start,
+                "end": seg_end,
+            })
+
+    if segments:
+        return sorted(segments, key=lambda x: x["start"])
+
+    fallback_season = pick_active_season_for_datetime(window_end) or get_current_season()
+    return [{
+        "season": fallback_season,
+        "start": window_start,
+        "end": window_end,
+    }]
+
+def collect_daily_records_in_range(season, range_start, range_end):
+    user_root = os.path.join(DATA_BASE_DIR, season, "user")
+    if not os.path.isdir(user_root):
+        return []
+    records = []
+    for player_id in os.listdir(user_root):
+        player_dir = os.path.join(user_root, player_id)
+        if not os.path.isdir(player_dir):
+            continue
+        for filename in os.listdir(player_dir):
+            if not re.fullmatch(rf"{re.escape(player_id)}_(\d{{6}})\.json", filename):
+                continue
+            m = re.search(r'_(\d{6})\.json$', filename)
+            if not m:
+                continue
+            yymmdd = m.group(1)
+            file_dt = datetime.strptime(yymmdd, "%y%m%d").replace(
+                tzinfo=KST,
+                hour=WEEKLY_DAILY_CRAWL_HOUR,
+                minute=0,
+                second=0,
+                microsecond=0,
+            )
+            if not (range_start <= file_dt <= range_end):
+                continue
+            file_path = os.path.join(player_dir, filename)
+            try:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    payload = json.load(f)
+                if isinstance(payload, list) and payload:
+                    row = payload[0]
+                elif isinstance(payload, dict):
+                    row = payload
+                else:
+                    continue
+            except Exception:
+                continue
+            records.append({
+                "season": season,
+                "player_id": str(row.get("player_id") or row.get("아이디") or player_id),
+                "datetime": file_dt,
+                "date": yymmdd,
+                "row": row,
+            })
+    return records
+
+def build_weekly_player_stats(records_by_player, expected_points):
+    stats = {}
+    first_expected = expected_points[0] if expected_points else None
+    last_expected = expected_points[-1] if expected_points else None
+
+    for player_id, entries in records_by_player.items():
+        ordered = sorted(entries, key=lambda x: x["datetime"])
+        if not ordered:
+            continue
+        dt_set = {item["datetime"] for item in ordered}
+        has_start_boundary = (first_expected in dt_set) if first_expected else True
+        has_end_boundary = (last_expected in dt_set) if last_expected else True
+        boundary_ok = (has_start_boundary and has_end_boundary) if WEEKLY_REQUIRE_BOUNDARY_POINTS else True
+        valid_days = len(ordered)
+        eligible_base = boundary_ok and valid_days >= WEEKLY_MIN_VALID_DAYS
+
+        manager_name = str(ordered[-1]["row"].get("구단주명") or ordered[-1]["row"].get("name") or "-")
+        wins_delta = 0
+        draws_delta = 0
+        losses_delta = 0
+        games_delta = 0
+        mining_delta = 0
+
+        by_season = defaultdict(list)
+        for item in ordered:
+            by_season[item["season"]].append(item)
+
+        for season_entries in by_season.values():
+            season_entries = sorted(season_entries, key=lambda x: x["datetime"])
+            if not season_entries:
+                continue
+            start_row = season_entries[0]["row"]
+            end_row = season_entries[-1]["row"]
+            wins_delta += delta_with_reset(end_row.get("승"), start_row.get("승"))
+            draws_delta += delta_with_reset(end_row.get("무"), start_row.get("무"))
+            losses_delta += delta_with_reset(end_row.get("패"), start_row.get("패"))
+            games_delta += delta_with_reset(end_row.get("판수"), start_row.get("판수"))
+            mining_delta += delta_with_reset(end_row.get("채굴 효율"), start_row.get("채굴 효율"))
+
+        weekly_win_rate = None
+        draw_rate = None
+        if games_delta > 0:
+            weekly_win_rate = round((wins_delta / games_delta) * 100, 2)
+            draw_rate = draws_delta / games_delta
+
+        eligible_kpi = eligible_base and games_delta >= WEEKLY_MIN_GAMES
+        stats[player_id] = {
+            "player_id": player_id,
+            "manager_name": manager_name,
+            "valid_days": valid_days,
+            "has_start_boundary": has_start_boundary,
+            "has_end_boundary": has_end_boundary,
+            "eligible_base": eligible_base,
+            "eligible_kpi": eligible_kpi,
+            "weekly_wins_delta": wins_delta,
+            "weekly_draws_delta": draws_delta,
+            "weekly_losses_delta": losses_delta,
+            "weekly_games_delta": games_delta,
+            "weekly_mining_delta": mining_delta,
+            "weekly_win_rate": weekly_win_rate,
+            "weekly_draw_rate": draw_rate,
+        }
+    return stats
+
+def king_payload(player_stat, metric_value):
+    if not player_stat:
+        return None
+    return {
+        "player_id": player_stat["player_id"],
+        "manager_name": player_stat["manager_name"],
+        "weekly_games_delta": player_stat["weekly_games_delta"],
+        "metric_value": metric_value,
+        "eligible": True,
+    }
+
+def pick_weekly_kings(player_stats):
+    candidates = [x for x in player_stats.values() if x.get("eligible_kpi")]
+    if not candidates:
+        return {
+            "mining_king": None,
+            "win_rate_king": None,
+            "game_count_king": None,
+            "draw_king": None,
+        }
+
+    def select_max(metric_key):
+        valid = [x for x in candidates if x.get(metric_key) is not None]
+        if not valid:
+            return None
+        valid.sort(key=lambda x: (-x.get(metric_key, 0), -x.get("weekly_games_delta", 0), str(x.get("player_id", ""))))
+        return valid[0]
+
+    def select_min(metric_key):
+        valid = [x for x in candidates if x.get(metric_key) is not None]
+        if not valid:
+            return None
+        valid.sort(key=lambda x: (x.get(metric_key, 0), -x.get("weekly_games_delta", 0), str(x.get("player_id", ""))))
+        return valid[0]
+
+    mining = select_max("weekly_mining_delta")
+    win_rate = select_max("weekly_win_rate")
+    game_count = select_max("weekly_games_delta")
+    draw = select_min("weekly_draw_rate")
+    return {
+        "mining_king": king_payload(mining, mining.get("weekly_mining_delta") if mining else None),
+        "win_rate_king": king_payload(win_rate, win_rate.get("weekly_win_rate") if win_rate else None),
+        "game_count_king": king_payload(game_count, game_count.get("weekly_games_delta") if game_count else None),
+        "draw_king": king_payload(draw, round((draw.get("weekly_draw_rate") or 0) * 100, 2) if draw else None),
+    }
+
+def bucket_specs():
+    trillion = 1000000000000
+    return [
+        {"id": "lt_10_jo", "label": "10조 미만", "min": 0, "max": 10 * trillion},
+        {"id": "10_20_jo", "label": "10조~20조", "min": 10 * trillion, "max": 20 * trillion},
+        {"id": "20_50_jo", "label": "20조~50조", "min": 20 * trillion, "max": 50 * trillion},
+        {"id": "50_100_jo", "label": "50조~100조", "min": 50 * trillion, "max": 100 * trillion},
+        {"id": "100_200_jo", "label": "100조~200조", "min": 100 * trillion, "max": 200 * trillion},
+        {"id": "200_500_jo", "label": "200조~500조", "min": 200 * trillion, "max": 500 * trillion},
+        {"id": "500_1000_jo", "label": "500조~1000조", "min": 500 * trillion, "max": 1000 * trillion},
+        {"id": "gte_1000_jo", "label": "1000조 이상", "min": 1000 * trillion, "max": None},
+    ]
+
+def resolve_bucket(value_krw):
+    for spec in bucket_specs():
+        lower_ok = value_krw >= spec["min"]
+        upper_ok = True if spec["max"] is None else value_krw < spec["max"]
+        if lower_ok and upper_ok:
+            return spec
+    return None
+
+def build_value_bucket_report(records_by_player):
+    accum = {}
+    for spec in bucket_specs():
+        accum[spec["id"]] = {
+            "bucket_id": spec["id"],
+            "label": spec["label"],
+            "min_value_krw": spec["min"],
+            "max_value_krw": spec["max"],
+            "samples": 0,
+            "mining_sum": 0.0,
+            "win_rate_sum": 0.0,
+            "win_rate_count": 0,
+        }
+
+    for entries in records_by_player.values():
+        ordered = sorted(entries, key=lambda x: x["datetime"])
+        prev = None
+        for current in ordered:
+            row = current["row"]
+            if prev and prev["season"] == current["season"]:
+                day_mining = delta_with_reset(row.get("채굴 효율"), prev["row"].get("채굴 효율"))
+                club_value = parse_club_value_to_krw(row.get("구단 가치"))
+                if club_value is not None:
+                    spec = resolve_bucket(club_value)
+                    if spec:
+                        target = accum[spec["id"]]
+                        target["samples"] += 1
+                        target["mining_sum"] += float(day_mining)
+                        win_rate_value = parse_percent_to_float(row.get("승률"))
+                        if win_rate_value is not None:
+                            target["win_rate_sum"] += win_rate_value
+                            target["win_rate_count"] += 1
+            prev = current
+
+    output = []
+    for spec in bucket_specs():
+        data = accum[spec["id"]]
+        samples = data["samples"]
+        avg_mining = round(data["mining_sum"] / samples, 2) if samples > 0 else None
+        avg_win_rate = round(data["win_rate_sum"] / data["win_rate_count"], 2) if data["win_rate_count"] > 0 else None
+        output.append({
+            "bucket_id": data["bucket_id"],
+            "label": data["label"],
+            "min_value_krw": data["min_value_krw"],
+            "max_value_krw": data["max_value_krw"],
+            "samples": samples,
+            "avg_weekly_mining_delta": avg_mining,
+            "avg_weekly_win_rate": avg_win_rate,
+        })
+    return output
+
+def season_for_weekly_report(window_end):
+    return pick_active_season_for_datetime(window_end) or get_current_season()
+
+def weekly_report_filename(window_end):
+    iso_year, iso_week, _ = window_end.isocalendar()
+    return f"weekly_report_{iso_year}_{iso_week:02d}.json", f"{iso_year}-W{iso_week:02d}"
+
+def build_weekly_report_payload(window_start, window_end, generated_at, player_stats, kings, buckets, week_id):
+    total_players = len(player_stats)
+    eligible_players = len([x for x in player_stats.values() if x.get("eligible_kpi")])
+    return {
+        "schema_version": WEEKLY_SCHEMA_VERSION,
+        "report_type": "weekly",
+        "week_id": week_id,
+        "timezone": "Asia/Seoul",
+        "window_start": window_start.isoformat(),
+        "window_end": window_end.isoformat(),
+        "generated_at": generated_at.isoformat(),
+        "policy": {
+            "min_weekly_games": WEEKLY_MIN_GAMES,
+            "imputation": WEEKLY_IMPUTATION,
+            "require_boundary_points": WEEKLY_REQUIRE_BOUNDARY_POINTS,
+            "min_valid_days": WEEKLY_MIN_VALID_DAYS,
+        },
+        "weekly_kings": kings,
+        "value_buckets": buckets,
+        "quality": {
+            "total_players": total_players,
+            "eligible_players": eligible_players,
+            "excluded_players": max(total_players - eligible_players, 0),
+        },
+    }
+
+def run_weekly_report_batch(target_datetime=None, force=False):
+    now_kst = (target_datetime or datetime.now(KST))
+    if now_kst.tzinfo is None:
+        now_kst = now_kst.replace(tzinfo=KST)
+
+    lock_dir = os.path.dirname(WEEKLY_LOCK_FILE)
+    if lock_dir:
+        os.makedirs(lock_dir, exist_ok=True)
+
+    lock_fp = open(WEEKLY_LOCK_FILE, "w", encoding="utf-8")
+    try:
+        try:
+            fcntl.flock(lock_fp, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            print("[WEEKLY] Another weekly batch is running. Skip.", flush=True)
+            return {"status": "skipped", "reason": "locked"}
+
+        window_start, window_end = build_weekly_window(now_kst)
+        segments = compute_weekly_segments(window_start, window_end)
+
+        records_by_player = defaultdict(list)
+        for seg in segments:
+            segment_records = collect_daily_records_in_range(seg["season"], seg["start"], seg["end"])
+            for item in segment_records:
+                records_by_player[item["player_id"]].append(item)
+
+        expected_points = expected_weekly_snapshot_points(window_start, window_end)
+        player_stats = build_weekly_player_stats(records_by_player, expected_points)
+        kings = pick_weekly_kings(player_stats)
+        buckets = build_value_bucket_report(records_by_player)
+
+        generated_at = datetime.now(KST)
+        filename, week_id = weekly_report_filename(window_end)
+        target_season = season_for_weekly_report(window_end)
+        target_path = os.path.join(season_dir_path(target_season), filename)
+
+        if os.path.exists(target_path) and not force:
+            print(f"[WEEKLY] {filename} already exists. Overwrite with latest aggregate.", flush=True)
+
+        payload = build_weekly_report_payload(
+            window_start=window_start,
+            window_end=window_end,
+            generated_at=generated_at,
+            player_stats=player_stats,
+            kings=kings,
+            buckets=buckets,
+            week_id=week_id,
+        )
+        atomic_write_json(target_path, payload)
+        print(f"[WEEKLY] Saved {target_path}", flush=True)
+        return {"status": "success", "path": target_path, "week_id": week_id}
+    finally:
+        with suppress(Exception):
+            fcntl.flock(lock_fp, fcntl.LOCK_UN)
+        lock_fp.close()
+
+def parse_week_id_to_run_datetime(week_id):
+    m = re.fullmatch(r"(\d{4})[-_]?W?(\d{1,2})", str(week_id or "").strip(), flags=re.IGNORECASE)
+    if not m:
+        raise ValueError("Invalid week id format. Use YYYY-Www (e.g., 2026-W08).")
+    year = int(m.group(1))
+    week = int(m.group(2))
+    thursday = datetime.fromisocalendar(year, week, 4).date()
+    return datetime.combine(thursday, dt_time(hour=5, minute=5, second=0)).replace(tzinfo=KST)
+
+def rebuild_weekly_reports(start_week_id, end_week_id, force=False):
+    start_dt = parse_week_id_to_run_datetime(start_week_id)
+    end_dt = parse_week_id_to_run_datetime(end_week_id)
+    if start_dt > end_dt:
+        start_dt, end_dt = end_dt, start_dt
+
+    results = []
+    cursor = start_dt
+    while cursor <= end_dt:
+        result = run_weekly_report_batch(target_datetime=cursor, force=force)
+        results.append(result)
+        cursor += timedelta(days=7)
+    return results
+
 # --- [핵심] 고속 API 크롤링 로직 (조 단위 변환 포함) ---
 def _crawl_single_manager_api(m):
     player_id = re.search(r'popup/(\d+)', m['stat_url']).group(1)
@@ -819,6 +1298,49 @@ def catch_all(path):
     return jsonify({"error": "Frontend not found"}), 404
 
 if __name__ == '__main__':
-    scheduler.add_job(func=run_full_crawl, trigger="cron", hour=4, minute=0)
+    if len(sys.argv) >= 2:
+        cmd = sys.argv[1].strip().lower()
+        if cmd == "weekly-report":
+            force = "--force" in sys.argv[2:]
+            if "--week" in sys.argv[2:]:
+                idx = sys.argv.index("--week")
+                if idx + 1 >= len(sys.argv):
+                    raise SystemExit("Usage: python app.py weekly-report [--week YYYY-Www] [--force]")
+                run_dt = parse_week_id_to_run_datetime(sys.argv[idx + 1])
+            else:
+                run_dt = datetime.now(KST)
+            result = run_weekly_report_batch(target_datetime=run_dt, force=force)
+            raise SystemExit(0 if result.get("status") == "success" else 1)
+
+        if cmd == "weekly-backfill":
+            if len(sys.argv) < 4:
+                raise SystemExit("Usage: python app.py weekly-backfill <START_WEEK> <END_WEEK> [--force]")
+            force = "--force" in sys.argv[4:]
+            rows = rebuild_weekly_reports(sys.argv[2], sys.argv[3], force=force)
+            success_count = len([x for x in rows if x.get("status") == "success"])
+            print(f"[WEEKLY] Backfill done. success={success_count}, total={len(rows)}", flush=True)
+            raise SystemExit(0 if success_count == len(rows) else 1)
+
+        raise SystemExit("Unsupported command. Use: weekly-report | weekly-backfill")
+
+    scheduler.add_job(
+        func=run_full_crawl,
+        trigger="cron",
+        hour=4,
+        minute=0,
+        id="daily_crawl",
+        replace_existing=True,
+        coalesce=True,
+    )
+    scheduler.add_job(
+        func=run_weekly_report_batch,
+        trigger="cron",
+        day_of_week="thu",
+        hour=5,
+        minute=5,
+        id="weekly_report",
+        replace_existing=True,
+        coalesce=True,
+    )
     ensure_scheduler_running()
     app.run(host='0.0.0.0', port=80, threaded=True)
