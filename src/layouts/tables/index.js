@@ -97,15 +97,47 @@ function Tables() {
 
     const text = String(value).trim();
     if (!text) return 0;
+    const normalizedText = text.replace(/,/g, "");
 
-    if (text.includes("조")) {
-      const numericMatch = text.match(/(\d+(?:\.\d+)?)/);
-      if (!numericMatch) return text.includes("미만") ? 999999999999 : 0;
+    if (normalizedText.includes("경")) {
+      const gyeongMatch = normalizedText.match(/(\d+(?:\.\d+)?)\s*경/);
+      const joMatch = normalizedText.match(/(\d+(?:\.\d+)?)\s*조/);
+      const gyeongValue = gyeongMatch ? Number(gyeongMatch[1]) : 0;
+      const joValue = joMatch ? Number(joMatch[1]) : 0;
+      if (Number.isFinite(gyeongValue) && Number.isFinite(joValue)) {
+        return (gyeongValue * 10000 + joValue) * 1000000000000;
+      }
+    }
+
+    if (normalizedText.includes("조")) {
+      const numericMatch = normalizedText.match(/(\d+(?:\.\d+)?)/);
+      if (!numericMatch) return normalizedText.includes("미만") ? 999999999999 : 0;
       const trillionValue = Number(numericMatch[1]) * 1000000000000;
-      return text.includes("미만") ? Math.max(trillionValue - 1, 0) : trillionValue;
+      return normalizedText.includes("미만") ? Math.max(trillionValue - 1, 0) : trillionValue;
     }
 
     return parseNumberValue(text);
+  };
+
+  const formatClubValueLabel = (value) => {
+    if (value === null || value === undefined) return "-";
+    const text = String(value).trim();
+    if (!text) return "-";
+    if (text.includes("미만")) return text;
+
+    const normalizedText = text.replace(/,/g, "");
+    if (normalizedText.includes("경")) return text;
+
+    const joMatch = normalizedText.match(/(\d+(?:\.\d+)?)\s*조/);
+    if (!joMatch) return text;
+
+    const totalJo = Number(joMatch[1]);
+    if (!Number.isFinite(totalJo) || totalJo < 10000) return text;
+
+    const gyeong = Math.floor(totalJo / 10000);
+    const remainJo = Math.floor(totalJo % 10000);
+    if (remainJo === 0) return `${gyeong}경`;
+    return `${gyeong}경 ${remainJo}조`;
   };
 
   const getSortValue = (player, sortKey) => {
@@ -264,7 +296,7 @@ function Tables() {
     ),
     value: (
       <MDTypography variant="body2" color="text">
-        {player["구단 가치"] ?? player.구단가치 ?? "-"}
+        {formatClubValueLabel(player["구단 가치"] ?? player.구단가치)}
       </MDTypography>
     ),
   }));
