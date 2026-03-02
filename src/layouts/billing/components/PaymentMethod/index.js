@@ -60,7 +60,17 @@ function PaymentMethod() {
                   `${borderWidth[1]} solid ${borderColor}`,
               }}
             >
-              <MDBox component="img" src={masterCardLogo} alt="master card" width="10%" mr={2} />
+              <MDBox
+                component="img"
+                src={masterCardLogo}
+                alt="master card"
+                width={52}
+                height={32}
+                loading="lazy"
+                decoding="async"
+                sx={{ width: "10%", maxWidth: "52px", height: "auto" }}
+                mr={2}
+              />
               <MDTypography variant="h6" fontWeight="medium">
                 ****&nbsp;&nbsp;****&nbsp;&nbsp;****&nbsp;&nbsp;7852
               </MDTypography>
@@ -85,7 +95,17 @@ function PaymentMethod() {
                   `${borderWidth[1]} solid ${borderColor}`,
               }}
             >
-              <MDBox component="img" src={visaLogo} alt="master card" width="10%" mr={2} />
+              <MDBox
+                component="img"
+                src={visaLogo}
+                alt="master card"
+                width={52}
+                height={32}
+                loading="lazy"
+                decoding="async"
+                sx={{ width: "10%", maxWidth: "52px", height: "auto" }}
+                mr={2}
+              />
               <MDTypography variant="h6" fontWeight="medium">
                 ****&nbsp;&nbsp;****&nbsp;&nbsp;****&nbsp;&nbsp;5248
               </MDTypography>

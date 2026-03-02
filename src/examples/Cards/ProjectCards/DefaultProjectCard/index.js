@@ -66,8 +66,13 @@ function DefaultProjectCard({ image, label, title, description, action, authors 
           src={image}
           component="img"
           title={title}
+          loading="lazy"
+          decoding="async"
           sx={{
+            width: "100%",
             maxWidth: "100%",
+            aspectRatio: "16 / 9",
+            height: "auto",
             margin: 0,
             boxShadow: ({ boxShadows: { md } }) => md,
             objectFit: "cover",

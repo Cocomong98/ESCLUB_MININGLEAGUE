@@ -31,7 +31,7 @@ import MDButton from "components/MDButton";
 function SimpleBlogCard({ image, title, description, action }) {
   return (
     <Card>
-      <MDBox position="relative" borderRadius="lg" mt={-3} mx={2}>
+      <MDBox position="relative" borderRadius="lg" mt={-3} mx={2} sx={{ aspectRatio: "16 / 9" }}>
         <MDBox
           component="img"
           src={image}
@@ -40,8 +40,11 @@ function SimpleBlogCard({ image, title, description, action }) {
           shadow="md"
           width="100%"
           height="100%"
+          loading="lazy"
+          decoding="async"
           position="relative"
           zIndex={1}
+          sx={{ objectFit: "cover" }}
         />
         <MDBox
           borderRadius="lg"

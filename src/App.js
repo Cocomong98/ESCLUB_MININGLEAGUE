@@ -15,7 +15,7 @@ Coded by www.creative-tim.com
 
 // disable-eslint
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 
 // react-router components
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
@@ -52,8 +52,8 @@ import routes from "routes";
 import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context";
 
 // Images
-import brandWhite from "assets/images/logo-ct.png";
-import brandDark from "assets/images/logo-ct-dark.png";
+import brandWhite from "assets/images/logo-ct.webp";
+import brandDark from "assets/images/logo-ct-dark.webp";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -203,7 +203,7 @@ export default function App() {
       {layout === "vr" && <Configurator />}
       <Routes>
         {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/tables" />} />{" "}
+        <Route path="*" element={<Navigate to="/tables" />} />
       </Routes>
     </ThemeProvider>
   );
