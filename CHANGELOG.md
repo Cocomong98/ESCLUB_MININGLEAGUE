@@ -67,6 +67,7 @@
 ## Auto Commit Log
 
 <!-- auto-commit-log:start -->
+- 2026-03-02 09:27 | minor | feat: 프론트 성능 최적화 및 자산 포맷 개선 (files: 19)
 - 2026-02-26 16:31 | minor | feat: 주간 리포트 엔진과 스키마 추가 (files: 6)
 - 2026-02-22 10:38 | minor | feat(tables): 성장력 지표와 정렬 기능 추가 (files: 4)
 - 2026-02-21 17:55 | patch | chore(data): ignore runtime data and keep mockup fixtures (files: 114)
