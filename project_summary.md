@@ -85,11 +85,17 @@
 
 #### **7. Open API 분석 자동화 (운영 배치)**
 
-- **배치 순서:** 일일 크롤링(`04:00`) -> Open API 분석 배치(`04:10`)
-- **스케줄러:** Flask 내부 APScheduler 잡 `openapi_analytics`
-- **락 파일:** `data/.openapi_analytics.lock` (중복 실행 방지)
-- **캐시 루트:** `data/openapi_cache/` (TTL 정책: 29일)
+- **배치 순서:** 일일 크롤링 잡(`daily_crawl`, `04:00`) 실행 후 동일 프로세스에서 Open API 분석 배치를 연쇄 실행
+- **스케줄러:** Flask 내부 APScheduler 잡(`daily_crawl`, `weekly_report`)
+- **락 파일:** `.private/locks/openapi.lock`, `.private/locks/daily_crawl.lock` (중복 실행 방지)
+- **캐시 루트:** `OPENAPI_CACHE_DIR` 환경변수 또는 기본값 `.private/openapi_cache/` (TTL 정책: 29일, `/data/*` 비공개)
 - **운영 CLI:**
   - `python app.py openapi-selftest`
   - `python app.py openapi-sync-user --season <YYYY-N> --id <PLAYER_ID>`
   - `python app.py openapi-update-analysis --season <YYYY-N> --id <PLAYER_ID>`
+
+#### **8. 운영 배포 환경 (Deployment Context)**
+
+- **호스팅 장비:** UGREEN NAS DXP2800 (개인 NAS)
+- **실행 형태:** 단일 Flask 프로세스가 React 빌드 정적 파일 + `/data/*` JSON를 함께 서빙
+- **스케줄 실행 주체:** 외부 스케줄러가 아닌 앱 내부 APScheduler

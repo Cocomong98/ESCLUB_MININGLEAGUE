@@ -10,6 +10,12 @@
 - Squad page top section includes `베스트11 포지션 맵` + `지표 한눈에` (team advanced metrics from `last200.json`).
 - Squad table player click navigates to player detail page (`/dashboard/:id/squad/player/:playerKey`).
 
+## Deployment Context
+
+- Runtime host: UGREEN NAS DXP2800 (personal NAS).
+- Process model: single Flask app serves React build + `/data/*` JSON.
+- Scheduler source: internal APScheduler in `app.py` (no external NAS cron required).
+
 ## Read First (next session)
 
 1. `PROJECT_STATE.md`
@@ -82,7 +88,7 @@
 - Data serving base:
   - Runtime JSON is served from `/data/*` (`DATA_BASE_DIR="data"` in `app.py`).
 - Cache/artifact paths:
-  - Cache root: `data/openapi_cache/`
+  - Cache root: `OPENAPI_CACHE_DIR` or default `.private/openapi_cache/` (not publicly served)
   - User analysis: `data/{season}/user/{id}/analysis/`
   - Files: `last200.json`, `shot_events_last200.json`, `player_usage_last200.json`, `squad_analysis_all.json`
 - Squad analysis row identity/schema:
@@ -90,9 +96,9 @@
   - Row stable key: `playerKey = String(spId)`
   - Row fields include `spId`, `spPosition`, `seasonId`, `playerName`, `positionName` (plus existing stats)
 - Scheduler:
-  - `daily_crawl`: every day `04:00` (existing)
-  - `openapi_analytics`: every day `04:10` (new, after crawl)
-  - Lock file: `data/.openapi_analytics.lock`
+  - `daily_crawl`: every day `04:00` (run_full_crawl 후 OpenAPI 배치 연쇄 실행)
+  - `weekly_report`: every Thursday `05:05`
+  - Lock files: `.private/locks/daily_crawl.lock`, `.private/locks/openapi.lock`
 - Throttling:
   - Per-user randomized delay `0.2~0.5s` in batch loop
   - 429/5xx retry handled by Open API client retry/backoff
