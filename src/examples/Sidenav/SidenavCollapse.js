@@ -41,12 +41,13 @@ function SidenavCollapse({ icon, name, active, ...rest }) {
   const { miniSidenav, transparentSidenav, whiteSidenav, darkMode, sidenavColor } = controller;
 
   return (
-    <ListItem component="li">
+    <ListItem component="li" disablePadding sx={{ display: "block" }}>
       <MDBox
         {...rest}
         sx={(theme) =>
           collapseItem(theme, {
             active,
+            miniSidenav,
             transparentSidenav,
             whiteSidenav,
             darkMode,
@@ -56,7 +57,13 @@ function SidenavCollapse({ icon, name, active, ...rest }) {
       >
         <ListItemIcon
           sx={(theme) =>
-            collapseIconBox(theme, { transparentSidenav, whiteSidenav, darkMode, active })
+            collapseIconBox(theme, {
+              miniSidenav,
+              transparentSidenav,
+              whiteSidenav,
+              darkMode,
+              active,
+            })
           }
         >
           {typeof icon === "string" ? (

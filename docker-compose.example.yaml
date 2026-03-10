@@ -8,7 +8,6 @@ services:
     volumes:
       # Set this to your NAS/host deployment path
       - /path/to/your/deploy-dir:/app
-    privileged: true
     restart: always
     env_file:
       - .env

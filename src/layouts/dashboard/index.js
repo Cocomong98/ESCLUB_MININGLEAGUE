@@ -10,7 +10,7 @@ Coded by www.creative-tim.com
 */
 
 import { useEffect, useState, useCallback } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams, Link } from "react-router-dom";
 
 // @mui material components
 import Grid from "@mui/material/Grid";
@@ -18,6 +18,7 @@ import { Select, MenuItem } from "@mui/material";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
+import MDButton from "components/MDButton";
 import MDTypography from "components/MDTypography";
 
 // Material Dashboard 2 React example components
@@ -28,6 +29,17 @@ import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
 import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
 import { fetchSeasonsWithData } from "utils/seasonUtils";
+
+const navActionSx = ({ palette }) => ({
+  color: `${palette.info.main} !important`,
+  borderColor: `${palette.info.main} !important`,
+  backgroundColor: "transparent",
+  "&:hover": {
+    color: `${palette.common.white} !important`,
+    borderColor: `${palette.info.main} !important`,
+    backgroundColor: palette.info.main,
+  },
+});
 
 function Dashboard() {
   const { id } = useParams();
@@ -244,7 +256,7 @@ function Dashboard() {
     <DashboardLayout>
       <DashboardNavbar pageTitle={ownerName} />
       <MDBox py={3}>
-        <MDBox mb={3}>
+        <MDBox mb={3} display="flex" justifyContent="space-between" alignItems="center" gap={1.5}>
           <Select value={selectedSeason} onChange={(e) => setSelectedSeason(e.target.value)}>
             {seasons.map((season) => (
               <MenuItem key={season} value={season}>
@@ -252,6 +264,32 @@ function Dashboard() {
               </MenuItem>
             ))}
           </Select>
+          <MDBox display="flex" gap={1}>
+            <MDButton
+              component={Link}
+              to={`/dashboard/${id}/analysis${
+                selectedSeason ? `?season=${encodeURIComponent(selectedSeason)}` : ""
+              }`}
+              variant="outlined"
+              color="info"
+              size="small"
+              sx={navActionSx}
+            >
+              세부 분석 보기
+            </MDButton>
+            <MDButton
+              component={Link}
+              to={`/dashboard/${id}/squad${
+                selectedSeason ? `?season=${encodeURIComponent(selectedSeason)}` : ""
+              }`}
+              variant="outlined"
+              color="info"
+              size="small"
+              sx={navActionSx}
+            >
+              스쿼드 분석 보기
+            </MDButton>
+          </MDBox>
         </MDBox>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={3}>

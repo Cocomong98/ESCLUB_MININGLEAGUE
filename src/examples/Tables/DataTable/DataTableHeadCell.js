@@ -49,6 +49,8 @@ function DataTableHeadCell({ width, children, sorted, align, ...rest }) {
           fontSize: size.sm,
           fontWeight: fontWeightBold,
           textTransform: "uppercase",
+          whiteSpace: "nowrap",
+          wordBreak: "keep-all",
           cursor: sorted && "pointer",
           userSelect: sorted && "none",
         })}

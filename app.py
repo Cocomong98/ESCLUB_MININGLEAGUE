@@ -1,12 +1,21 @@
 from flask import Flask, render_template, send_from_directory, jsonify, request, make_response, session
-from flask_compress import Compress 
+try:
+    from flask_compress import Compress
+except ModuleNotFoundError:
+    class Compress:  # fallback for environments without flask-compress
+        def __init__(self, app=None):
+            if app is not None:
+                self.init_app(app)
+
+        def init_app(self, app):
+            return None
 import requests
 from bs4 import BeautifulSoup
 from apscheduler.schedulers.background import BackgroundScheduler
 from collections import defaultdict
-from contextlib import suppress
+from contextlib import contextmanager, suppress
 from functools import wraps
-import time, re, os, json, shutil, hmac, secrets, sys, fcntl
+import time, re, os, json, shutil, hmac, secrets, sys, fcntl, random
 from datetime import datetime, timedelta, timezone, time as dt_time
 
 def load_local_env(path=".env"):
@@ -61,6 +70,9 @@ WEEKLY_IMPUTATION = "none"
 WEEKLY_REQUIRE_BOUNDARY_POINTS = True
 WEEKLY_LOCK_FILE = os.path.join(DATA_BASE_DIR, ".weekly_report.lock")
 WEEKLY_DAILY_CRAWL_HOUR = 4
+PRIVATE_LOCK_DIR = os.path.join(app.root_path, ".private", "locks")
+OPENAPI_JOB_LOCK_FILE = os.path.join(PRIVATE_LOCK_DIR, "openapi.lock")
+DAILY_CRAWL_LOCK_FILE = os.path.join(PRIVATE_LOCK_DIR, "daily_crawl.lock")
 
 if not ADMIN_PASSWORD:
     print("[WARN] ADMIN_PASSWORD is not set. Admin login will be unavailable.", flush=True)
@@ -68,6 +80,50 @@ if not ADMIN_PASSWORD:
 def ensure_scheduler_running():
     if not scheduler.running:
         scheduler.start()
+
+
+class OpenApiJobAlreadyRunningError(RuntimeError):
+    pass
+
+
+def _try_acquire_exclusive_lock(lock_path):
+    lock_dir = os.path.dirname(lock_path)
+    if lock_dir:
+        os.makedirs(lock_dir, exist_ok=True)
+    lock_fp = open(lock_path, "a+", encoding="utf-8")
+    try:
+        fcntl.flock(lock_fp, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        return lock_fp
+    except BlockingIOError:
+        lock_fp.close()
+        return None
+
+
+def _release_lock(lock_fp):
+    if not lock_fp:
+        return
+    with suppress(Exception):
+        fcntl.flock(lock_fp, fcntl.LOCK_UN)
+    lock_fp.close()
+
+
+def is_lock_held(lock_path):
+    lock_fp = _try_acquire_exclusive_lock(lock_path)
+    if not lock_fp:
+        return True
+    _release_lock(lock_fp)
+    return False
+
+
+@contextmanager
+def openapi_job_lock():
+    lock_fp = _try_acquire_exclusive_lock(OPENAPI_JOB_LOCK_FILE)
+    if not lock_fp:
+        raise OpenApiJobAlreadyRunningError("OpenAPI job already running")
+    try:
+        yield
+    finally:
+        _release_lock(lock_fp)
 
 # 2. 브라우저 캐싱 정책 (Lighthouse 최적화)
 @app.after_request
@@ -970,6 +1026,200 @@ def rebuild_weekly_reports(start_week_id, end_week_id, force=False):
         cursor += timedelta(days=7)
     return results
 
+def extract_manager_player_id(manager):
+    if not isinstance(manager, dict):
+        return ""
+
+    direct_id = str(manager.get("player_id", "")).strip()
+    if direct_id.isdigit():
+        return direct_id
+
+    candidates = [
+        str(manager.get("stat_url", "")).strip(),
+        str(manager.get("squad_url", "")).strip(),
+    ]
+    patterns = [
+        r"/popup/(\d+)",
+        r"/TeamInfo/(\d+)",
+        r"n8NexonSN=(\d+)",
+        r"(\d{6,})",
+    ]
+    for text in candidates:
+        if not text:
+            continue
+        for pattern in patterns:
+            matched = re.search(pattern, text)
+            if matched:
+                return matched.group(1)
+    return ""
+
+def run_openapi_update_analysis_for_user(
+    season,
+    player_id,
+    *,
+    max_matches=1200,
+    window_matches=None,
+    refresh_ouid=False,
+):
+    from fconline_openapi.analytics import OpenApiAnalyticsError, build_manager_mode_analysis
+    from fconline_openapi.sync import OpenApiSyncError, sync_user_manager_mode
+
+    try:
+        sync_report = sync_user_manager_mode(
+            season=season,
+            player_id=player_id,
+            matchtype=52,
+            max_matches=max_matches,
+            data_base_dir=DATA_BASE_DIR,
+            refresh_ouid=refresh_ouid,
+        )
+        analysis_report = build_manager_mode_analysis(
+            season=season,
+            player_id=player_id,
+            matchtype=52,
+            window_matches=window_matches,
+            data_base_dir=DATA_BASE_DIR,
+        )
+        return {
+            "sync": sync_report,
+            "analysis": analysis_report,
+        }
+    except (OpenApiSyncError, OpenApiAnalyticsError):
+        raise
+
+def run_openapi_analytics_all():
+    now_kst = datetime.now(KST)
+    season = pick_active_season_for_datetime(now_kst) or get_current_season()
+    managers = load_managers()
+    if is_lock_held(DAILY_CRAWL_LOCK_FILE):
+        print("[OPENAPI] Daily crawl is running. Skip.", flush=True)
+        return {"status": "skipped", "reason": "daily_crawl_running", "season": season}
+
+    try:
+        with openapi_job_lock():
+            maintenance = {}
+            try:
+                from fconline_openapi.cache import list_stale_match_ids, purge_stale_cache
+
+                purge_summary = purge_stale_cache(max_age_days=29, data_base_dir=DATA_BASE_DIR)
+                maintenance["purge"] = purge_summary
+                print(
+                    "[OPENAPI] Cache maintenance purge "
+                    f"scanned={purge_summary.get('scanned', 0)} "
+                    f"deleted={purge_summary.get('deleted', 0)} "
+                    f"errors={purge_summary.get('errors', 0)}",
+                    flush=True,
+                )
+
+                refresh_enabled = os.environ.get("OPENAPI_REFRESH_STALE", "0").strip() == "1"
+                if refresh_enabled:
+                    from fconline_openapi.client import NexonFconlineClient
+                    from fconline_openapi.sync import refresh_stale_match_details
+
+                    stale_ids = list_stale_match_ids(max_age_days=25, data_base_dir=DATA_BASE_DIR)
+                    refresh_summary = refresh_stale_match_details(
+                        client=NexonFconlineClient(),
+                        stale_ids=stale_ids,
+                        data_base_dir=DATA_BASE_DIR,
+                    )
+                    maintenance["refresh"] = refresh_summary
+                    print(
+                        "[OPENAPI] Cache maintenance refresh "
+                        f"stale={refresh_summary.get('staleFound', 0)} "
+                        f"selected={refresh_summary.get('selected', 0)} "
+                        f"refreshed={refresh_summary.get('refreshed', 0)} "
+                        f"errors={refresh_summary.get('errors', 0)} "
+                        f"budget={refresh_summary.get('budget', 0)}",
+                        flush=True,
+                    )
+                else:
+                    maintenance["refresh"] = {
+                        "enabled": False,
+                        "reason": "OPENAPI_REFRESH_STALE!=1",
+                    }
+                    print(
+                        "[OPENAPI] Cache maintenance refresh disabled "
+                        "(set OPENAPI_REFRESH_STALE=1 to enable)",
+                        flush=True,
+                    )
+            except Exception as exc:
+                maintenance["error"] = str(exc)
+                print(f"[OPENAPI] Cache maintenance error: {exc}", flush=True)
+
+            if not managers:
+                print("[OPENAPI] Skip analytics batch: no managers configured.", flush=True)
+                return {
+                    "status": "skipped",
+                    "reason": "no_managers",
+                    "season": season,
+                    "maintenance": maintenance,
+                }
+
+            print(f"[OPENAPI] Analytics batch start. season={season}, managers={len(managers)}", flush=True)
+            success = 0
+            failed = 0
+            skipped = 0
+            details = []
+
+            for idx, manager in enumerate(managers):
+                player_id = extract_manager_player_id(manager)
+                if not player_id:
+                    skipped += 1
+                    details.append({"status": "skipped", "reason": "player_id_not_found"})
+                    print("[OPENAPI] Skip manager: player_id not found.", flush=True)
+                    continue
+
+                try:
+                    report = run_openapi_update_analysis_for_user(
+                        season=season,
+                        player_id=player_id,
+                        max_matches=1200,
+                        window_matches=None,
+                        refresh_ouid=False,
+                    )
+                    success += 1
+                    details.append({
+                        "status": "success",
+                        "player_id": player_id,
+                        "newMatchCount": report["sync"].get("newMatchCount", 0),
+                        "actualMatches": report["analysis"].get("actualMatches", 0),
+                    })
+                    print(
+                        f"[OPENAPI] OK player_id={player_id} new={report['sync'].get('newMatchCount', 0)} "
+                        f"actual={report['analysis'].get('actualMatches', 0)}",
+                        flush=True,
+                    )
+                except Exception as exc:
+                    failed += 1
+                    details.append({
+                        "status": "failed",
+                        "player_id": player_id,
+                        "error": str(exc),
+                    })
+                    print(f"[OPENAPI] FAIL player_id={player_id}: {exc}", flush=True)
+
+                if idx < len(managers) - 1:
+                    time.sleep(random.uniform(0.2, 0.5))
+
+            summary = {
+                "status": "success" if failed == 0 else "partial",
+                "season": season,
+                "total": len(managers),
+                "success": success,
+                "failed": failed,
+                "skipped": skipped,
+                "details": details,
+                "maintenance": maintenance,
+            }
+            print(
+                f"[OPENAPI] Analytics batch done. success={success}, failed={failed}, skipped={skipped}",
+                flush=True,
+            )
+            return summary
+    except OpenApiJobAlreadyRunningError:
+        print("[OPENAPI] OpenAPI job already running. Skip.", flush=True)
+        return {"status": "skipped", "reason": "openapi_job_running", "season": season}
+
 # --- [핵심] 고속 API 크롤링 로직 (조 단위 변환 포함) ---
 def _crawl_single_manager_api(m):
     player_id = re.search(r'popup/(\d+)', m['stat_url']).group(1)
@@ -1071,12 +1321,51 @@ def run_full_crawl():
         json.dump({"endDate": d_str, "endDateTime": f"{d_str}_{t_str}"}, f, ensure_ascii=False)
     print("--- 갱신 완료 ---", flush=True)
 
+
+def run_daily_crawl_then_openapi():
+    crawl_lock = _try_acquire_exclusive_lock(DAILY_CRAWL_LOCK_FILE)
+    if not crawl_lock:
+        print("[CRAWL] Daily crawl already running. Skip.", flush=True)
+        return {"status": "skipped", "reason": "daily_crawl_running"}
+    try:
+        run_full_crawl()
+    finally:
+        _release_lock(crawl_lock)
+    return run_openapi_analytics_all()
+
 # --- 라우팅 (순서가 매우 중요함) ---
+
+def normalize_data_filename(filename):
+    text = str(filename or "").replace("\\", "/")
+    text = re.sub(r"/+", "/", text)
+    while text.startswith("./"):
+        text = text[2:]
+    return text.lstrip("/")
+
+
+def is_blocked_data_filename(filename):
+    safe = normalize_data_filename(filename)
+    lowered = safe.lower()
+    if lowered.startswith("openapi_cache/"):
+        return True
+    if lowered.startswith("."):
+        return True
+    if "/." in lowered:
+        return True
+    if lowered.endswith(".lock"):
+        return True
+    if lowered.startswith("_private/") or lowered.startswith(".private/"):
+        return True
+    return False
+
 
 # 1. 데이터 직접 서빙
 @app.route('/data/<path:filename>')
 def serve_data(filename):
-    res = make_response(send_from_directory(DATA_BASE_DIR, filename))
+    safe_filename = normalize_data_filename(filename)
+    if is_blocked_data_filename(safe_filename):
+        return jsonify({"error": "Not found"}), 404
+    res = make_response(send_from_directory(DATA_BASE_DIR, safe_filename))
     res.cache_control.no_cache = True
     return res
 
@@ -1300,6 +1589,293 @@ def catch_all(path):
 if __name__ == '__main__':
     if len(sys.argv) >= 2:
         cmd = sys.argv[1].strip().lower()
+        if cmd == "openapi-security-selfcheck":
+            usage = (
+                "Usage: python app.py openapi-security-selfcheck "
+                "--season <YYYY-N> --id <PLAYER_ID>"
+            )
+            args = sys.argv[2:]
+
+            def read_arg_value(flag):
+                if flag not in args:
+                    return None
+                idx = args.index(flag)
+                if idx + 1 >= len(args):
+                    raise SystemExit(usage)
+                value = args[idx + 1].strip()
+                if not value:
+                    raise SystemExit(usage)
+                return value
+
+            season = read_arg_value("--season")
+            player_id = read_arg_value("--id")
+            if not season or not player_id:
+                raise SystemExit(usage)
+
+            probe_dir = os.path.join(DATA_BASE_DIR, "openapi_cache")
+            probe_file = os.path.join(probe_dir, "_probe.txt")
+            probe_created = False
+            probe_error = None
+            try:
+                os.makedirs(probe_dir, exist_ok=True)
+                with open(probe_file, "w", encoding="utf-8") as f:
+                    f.write("probe")
+                probe_created = True
+            except Exception as exc:
+                probe_error = str(exc)
+
+            analysis_rel = f"{season}/user/{player_id}/analysis/last200.json"
+            analysis_abs = os.path.join(DATA_BASE_DIR, season, "user", player_id, "analysis", "last200.json")
+
+            with app.test_client() as client:
+                blocked_resp = client.get("/data/openapi_cache/_probe.txt")
+                analysis_resp = client.get(f"/data/{analysis_rel}")
+
+            blocked_ok = blocked_resp.status_code == 404
+            analysis_exists = os.path.isfile(analysis_abs)
+            if analysis_exists:
+                analysis_ok = analysis_resp.status_code == 200
+            else:
+                analysis_ok = analysis_resp.status_code == 404
+
+            report = {
+                "status": "success" if (blocked_ok and analysis_ok) else "failed",
+                "blockedProbePath": "/data/openapi_cache/_probe.txt",
+                "blockedProbeStatus": blocked_resp.status_code,
+                "analysisPath": f"/data/{analysis_rel}",
+                "analysisFileExists": analysis_exists,
+                "analysisStatus": analysis_resp.status_code,
+                "probeCreated": probe_created,
+            }
+            if probe_error:
+                report["probeError"] = probe_error
+
+            print(json.dumps(report, ensure_ascii=False, indent=2), flush=True)
+
+            if probe_created:
+                with suppress(Exception):
+                    os.remove(probe_file)
+                with suppress(Exception):
+                    if os.path.isdir(probe_dir) and not os.listdir(probe_dir):
+                        os.rmdir(probe_dir)
+
+            raise SystemExit(0 if report["status"] == "success" else 1)
+
+        if cmd == "openapi-migrate-cache":
+            try:
+                from fconline_openapi.cache import (
+                    get_cache_root,
+                    get_legacy_cache_root,
+                    migrate_legacy_cache_dir,
+                )
+            except Exception as exc:
+                print(f"[OPENAPI] FAIL: import error: {exc}", flush=True)
+                raise SystemExit(1)
+
+            try:
+                old_path = get_legacy_cache_root(DATA_BASE_DIR)
+                target_path = get_cache_root()
+                old_exists = os.path.isdir(old_path)
+                print(f"[OPENAPI] Legacy cache path: {old_path}", flush=True)
+                print(f"[OPENAPI] Legacy cache exists: {old_exists}", flush=True)
+                print(f"[OPENAPI] Target cache path: {target_path}", flush=True)
+                report = migrate_legacy_cache_dir(data_base_dir=DATA_BASE_DIR)
+                print(f"[OPENAPI] Migration action: {report.get('action', 'none')}", flush=True)
+                print(json.dumps(report, ensure_ascii=False, indent=2), flush=True)
+                if report.get("status") in {"success", "skipped"}:
+                    raise SystemExit(0)
+                raise SystemExit(1)
+            except Exception as exc:
+                print(f"[OPENAPI] FAIL: {exc}", flush=True)
+                raise SystemExit(1)
+
+        if cmd == "openapi-selftest":
+            try:
+                from fconline_openapi.client import NexonFconlineClient, NexonOpenApiError
+            except Exception as exc:
+                print(f"[OPENAPI] FAIL: import error: {exc}", flush=True)
+                raise SystemExit(1)
+
+            def contains_matchtype_52(payload):
+                if isinstance(payload, dict):
+                    for key, value in payload.items():
+                        key_text = str(key).strip().lower()
+                        if key_text in {"matchtype", "match_type"}:
+                            try:
+                                if int(value) == 52:
+                                    return True
+                            except (TypeError, ValueError):
+                                pass
+                        if contains_matchtype_52(value):
+                            return True
+                    return False
+                if isinstance(payload, list):
+                    return any(contains_matchtype_52(item) for item in payload)
+                return False
+
+            try:
+                client = NexonFconlineClient()
+                payload = client.get_meta_matchtype()
+                if contains_matchtype_52(payload):
+                    print("[OPENAPI] OK: meta matchtype reachable and includes 52", flush=True)
+                    raise SystemExit(0)
+                print("[OPENAPI] FAIL: meta matchtype reachable but 52 not found", flush=True)
+                raise SystemExit(1)
+            except ValueError as exc:
+                print(f"[OPENAPI] FAIL: {exc}", flush=True)
+                raise SystemExit(1)
+            except NexonOpenApiError as exc:
+                print(f"[OPENAPI] FAIL: {exc}", flush=True)
+                raise SystemExit(1)
+            except Exception as exc:
+                print(f"[OPENAPI] FAIL: unexpected error: {exc}", flush=True)
+                raise SystemExit(1)
+
+        if cmd == "openapi-sync-user":
+            usage = (
+                "Usage: python app.py openapi-sync-user "
+                "--season <YYYY-N> --id <PLAYER_ID> [--max-matches 1200] [--refresh-ouid]"
+            )
+            args = sys.argv[2:]
+
+            def read_arg_value(flag):
+                if flag not in args:
+                    return None
+                idx = args.index(flag)
+                if idx + 1 >= len(args):
+                    raise SystemExit(usage)
+                value = args[idx + 1].strip()
+                if not value:
+                    raise SystemExit(usage)
+                return value
+
+            season = read_arg_value("--season")
+            player_id = read_arg_value("--id")
+            max_matches_raw = read_arg_value("--max-matches") or "1200"
+            refresh_ouid = "--refresh-ouid" in args
+
+            if not season or not player_id:
+                raise SystemExit(usage)
+            try:
+                max_matches = int(max_matches_raw)
+            except ValueError:
+                raise SystemExit(usage)
+            if max_matches <= 0:
+                raise SystemExit("--max-matches must be >= 1")
+
+            try:
+                from fconline_openapi.sync import OpenApiSyncError, sync_user_manager_mode
+
+                if is_lock_held(DAILY_CRAWL_LOCK_FILE):
+                    print("OpenAPI job already running", flush=True)
+                    raise SystemExit(2)
+
+                try:
+                    with openapi_job_lock():
+                        report = sync_user_manager_mode(
+                            season=season,
+                            player_id=player_id,
+                            matchtype=52,
+                            max_matches=max_matches,
+                            data_base_dir=DATA_BASE_DIR,
+                            refresh_ouid=refresh_ouid,
+                        )
+                except OpenApiJobAlreadyRunningError:
+                    print("OpenAPI job already running", flush=True)
+                    raise SystemExit(2)
+
+                print("[OPENAPI] Sync user completed.", flush=True)
+                print(json.dumps(report, ensure_ascii=False, indent=2), flush=True)
+                raise SystemExit(0)
+            except OpenApiSyncError as exc:
+                print(f"[OPENAPI] FAIL: {exc}", flush=True)
+                raise SystemExit(1)
+            except Exception as exc:
+                print(f"[OPENAPI] FAIL: unexpected error: {exc}", flush=True)
+                raise SystemExit(1)
+
+        if cmd == "openapi-update-analysis":
+            usage = (
+                "Usage: python app.py openapi-update-analysis "
+                "--season <YYYY-N> --id <PLAYER_ID> "
+                "[--max-matches 1200] [--window-matches N|all] [--refresh-ouid]"
+            )
+            args = sys.argv[2:]
+
+            def read_arg_value(flag):
+                if flag not in args:
+                    return None
+                idx = args.index(flag)
+                if idx + 1 >= len(args):
+                    raise SystemExit(usage)
+                value = args[idx + 1].strip()
+                if not value:
+                    raise SystemExit(usage)
+                return value
+
+            season = read_arg_value("--season")
+            player_id = read_arg_value("--id")
+            max_matches_raw = read_arg_value("--max-matches") or "1200"
+            window_matches_raw = read_arg_value("--window-matches") or "all"
+            refresh_ouid = "--refresh-ouid" in args
+
+            if not season or not player_id:
+                raise SystemExit(usage)
+            try:
+                max_matches = int(max_matches_raw)
+            except ValueError:
+                raise SystemExit(usage)
+            window_raw = str(window_matches_raw or "").strip().lower()
+            if window_raw in {"", "all", "0"}:
+                window_matches = None
+            else:
+                try:
+                    window_matches = int(window_raw)
+                except ValueError:
+                    raise SystemExit(usage)
+            if max_matches <= 0:
+                raise SystemExit("--max-matches must be >= 1")
+            if window_matches is not None and window_matches <= 0:
+                raise SystemExit("--window-matches must be >= 1 or 'all'")
+
+            try:
+                from fconline_openapi.analytics import OpenApiAnalyticsError
+                from fconline_openapi.sync import OpenApiSyncError
+
+                if is_lock_held(DAILY_CRAWL_LOCK_FILE):
+                    print("OpenAPI job already running", flush=True)
+                    raise SystemExit(2)
+
+                try:
+                    with openapi_job_lock():
+                        report = run_openapi_update_analysis_for_user(
+                            season=season,
+                            player_id=player_id,
+                            max_matches=max_matches,
+                            window_matches=window_matches,
+                            refresh_ouid=refresh_ouid,
+                        )
+                except OpenApiJobAlreadyRunningError:
+                    print("OpenAPI job already running", flush=True)
+                    raise SystemExit(2)
+
+                print("[OPENAPI] Analysis update completed.", flush=True)
+                print(
+                    json.dumps(
+                        report,
+                        ensure_ascii=False,
+                        indent=2,
+                    ),
+                    flush=True,
+                )
+                raise SystemExit(0)
+            except (OpenApiSyncError, OpenApiAnalyticsError) as exc:
+                print(f"[OPENAPI] FAIL: {exc}", flush=True)
+                raise SystemExit(1)
+            except Exception as exc:
+                print(f"[OPENAPI] FAIL: unexpected error: {exc}", flush=True)
+                raise SystemExit(1)
+
         if cmd == "weekly-report":
             force = "--force" in sys.argv[2:]
             if "--week" in sys.argv[2:]:
@@ -1321,10 +1897,14 @@ if __name__ == '__main__':
             print(f"[WEEKLY] Backfill done. success={success_count}, total={len(rows)}", flush=True)
             raise SystemExit(0 if success_count == len(rows) else 1)
 
-        raise SystemExit("Unsupported command. Use: weekly-report | weekly-backfill")
+        raise SystemExit(
+            "Unsupported command. Use: "
+            "openapi-security-selfcheck | openapi-migrate-cache | openapi-selftest | "
+            "openapi-sync-user | openapi-update-analysis | weekly-report | weekly-backfill"
+        )
 
     scheduler.add_job(
-        func=run_full_crawl,
+        func=run_daily_crawl_then_openapi,
         trigger="cron",
         hour=4,
         minute=0,

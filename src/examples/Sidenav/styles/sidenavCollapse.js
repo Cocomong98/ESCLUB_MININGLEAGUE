@@ -14,7 +14,8 @@ Coded by www.creative-tim.com
 */
 function collapseItem(theme, ownerState) {
   const { palette, transitions, breakpoints, boxShadows, borders, functions } = theme;
-  const { active, transparentSidenav, whiteSidenav, darkMode, sidenavColor } = ownerState;
+  const { active, miniSidenav, transparentSidenav, whiteSidenav, darkMode, sidenavColor } =
+    ownerState;
 
   const { white, transparent, dark, grey, gradients } = palette;
   const { md } = boxShadows;
@@ -31,6 +32,7 @@ function collapseItem(theme, ownerState) {
         : white.main,
     display: "flex",
     alignItems: "center",
+    justifyContent: miniSidenav ? "center" : "flex-start",
     width: "100%",
     padding: `${pxToRem(8)} ${pxToRem(10)}`,
     margin: `${pxToRem(1.5)} ${pxToRem(16)}`,
@@ -40,6 +42,10 @@ function collapseItem(theme, ownerState) {
     whiteSpace: "nowrap",
     boxShadow: active && !whiteSidenav && !darkMode && !transparentSidenav ? md : "none",
     [breakpoints.up("xl")]: {
+      justifyContent: miniSidenav ? "center" : "flex-start",
+      width: miniSidenav ? `calc(100% - ${pxToRem(16)})` : "100%",
+      margin: miniSidenav ? `${pxToRem(1.5)} auto` : `${pxToRem(1.5)} ${pxToRem(16)}`,
+      padding: miniSidenav ? `${pxToRem(8)} 0` : `${pxToRem(8)} ${pxToRem(10)}`,
       transition: transitions.create(["box-shadow", "background-color"], {
         easing: transitions.easing.easeInOut,
         duration: transitions.duration.shorter,
@@ -65,7 +71,7 @@ function collapseItem(theme, ownerState) {
 
 function collapseIconBox(theme, ownerState) {
   const { palette, transitions, borders, functions } = theme;
-  const { transparentSidenav, whiteSidenav, darkMode, active } = ownerState;
+  const { miniSidenav, transparentSidenav, whiteSidenav, darkMode, active } = ownerState;
 
   const { white, dark } = palette;
   const { borderRadius } = borders;
@@ -81,6 +87,7 @@ function collapseIconBox(theme, ownerState) {
     borderRadius: borderRadius.md,
     display: "grid",
     placeItems: "center",
+    margin: miniSidenav ? 0 : "inherit",
     transition: transitions.create("margin", {
       easing: transitions.easing.easeInOut,
       duration: transitions.duration.standard,
@@ -107,6 +114,7 @@ function collapseText(theme, ownerState) {
     marginLeft: pxToRem(10),
 
     [breakpoints.up("xl")]: {
+      display: miniSidenav || (miniSidenav && transparentSidenav) ? "none" : "block",
       opacity: miniSidenav || (miniSidenav && transparentSidenav) ? 0 : 1,
       maxWidth: miniSidenav || (miniSidenav && transparentSidenav) ? 0 : "100%",
       marginLeft: miniSidenav || (miniSidenav && transparentSidenav) ? 0 : pxToRem(10),
