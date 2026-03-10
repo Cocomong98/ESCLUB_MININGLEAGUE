@@ -5,6 +5,20 @@
 `기존 HTML 기반 페이지 -> React 리뉴얼` 전환 이력을 기준으로 재정의한 프로젝트 버전 요약입니다.
 상세 근거는 `CHANGELOG_SEMVER.md`를 참조하세요.
 
+### `v3.4.0` (Unreleased, 후보)
+
+- 유형: `MINOR` 권장
+- 핵심:
+  - Nexon Open API 기반 감독모드 분석 파이프라인 추가 (`fconline_openapi/*`)
+  - 신규 CLI 추가:
+    - `openapi-selftest`
+    - `openapi-sync-user`
+    - `openapi-update-analysis`
+  - 개인 대시보드 Open API 세부 분석 섹션 추가 (lazy-load, 404 시 준비중 처리)
+  - 운영 자동화:
+    - APScheduler `openapi_analytics` 잡 추가 (`04:10`, daily crawl 이후)
+    - 배치 중복 실행 락(`data/.openapi_analytics.lock`) 적용
+
 ### `v3.3.0` (Unreleased, 후보)
 
 - 유형: `MINOR` 권장
@@ -67,6 +81,8 @@
 ## Auto Commit Log
 
 <!-- auto-commit-log:start -->
+- 2026-03-10 15:08 | minor | feat: 스쿼드 지표 패널 적응형 렌더링 규칙 적용 (files: 2)
+- 2026-03-02 11:20 | minor | feat: Open API 분석 파이프라인/대시보드/자동 배치 추가 (files: 9)
 - 2026-03-02 09:27 | minor | feat: 프론트 성능 최적화 및 자산 포맷 개선 (files: 19)
 - 2026-02-26 16:31 | minor | feat: 주간 리포트 엔진과 스키마 추가 (files: 6)
 - 2026-02-22 10:38 | minor | feat(tables): 성장력 지표와 정렬 기능 추가 (files: 4)
