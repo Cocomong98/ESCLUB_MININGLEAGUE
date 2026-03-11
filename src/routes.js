@@ -37,7 +37,7 @@ Coded by www.creative-tim.com
 
 // Material Dashboard 2 React layouts
 import Dashboard from "layouts/dashboard";
-import DashboardAnalysis from "layouts/dashboard-analysis";
+// import DashboardAnalysis from "layouts/dashboard-analysis";
 import DashboardSquad from "layouts/dashboard-squad";
 import DashboardPlayer from "layouts/dashboard-player";
 import Tables from "layouts/tables";
@@ -60,13 +60,13 @@ const routes = [
     route: "/dashboard/:id",
     component: <Dashboard />,
   },
-  {
-    type: "title",
-    key: "dashboard-analysis",
-    icon: <Icon fontSize="small">insights</Icon>,
-    route: "/dashboard/:id/analysis",
-    component: <DashboardAnalysis />,
-  },
+  // {
+  //   type: "title",
+  //   key: "dashboard-analysis",
+  //   icon: <Icon fontSize="small">insights</Icon>,
+  //   route: "/dashboard/:id/analysis",
+  //   component: <DashboardAnalysis />,
+  // },
   {
     type: "title",
     key: "dashboard-squad",

@@ -1979,6 +1979,7 @@ function SquadAnalysis() {
                 </Select>
               </MDBox>
               <MDBox display="flex" gap={1}>
+                {/* 감독모드 인사이트 임시 비활성화
                 <MDButton
                   component={Link}
                   to={`/dashboard/${id}/analysis${
@@ -1991,6 +1992,7 @@ function SquadAnalysis() {
                 >
                   세부 분석
                 </MDButton>
+                */}
                 <MDButton
                   component={Link}
                   to={`/dashboard/${id}${

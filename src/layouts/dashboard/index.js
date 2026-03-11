@@ -265,6 +265,7 @@ function Dashboard() {
             ))}
           </Select>
           <MDBox display="flex" gap={1}>
+            {/* 감독모드 인사이트 임시 비활성화
             <MDButton
               component={Link}
               to={`/dashboard/${id}/analysis${
@@ -277,6 +278,7 @@ function Dashboard() {
             >
               세부 분석 보기
             </MDButton>
+            */}
             <MDButton
               component={Link}
               to={`/dashboard/${id}/squad${
