@@ -91,16 +91,20 @@
   - Cache root: `OPENAPI_CACHE_DIR` or default `.private/openapi_cache/` (not publicly served)
   - User analysis: `data/{season}/user/{id}/analysis/`
   - Files: `last200.json`, `shot_events_last200.json`, `player_usage_last200.json`, `squad_analysis_all.json`
+  - Nickname resolution: prefer `managers.json:name` (batch path), fallback to latest daily file nickname fields.
+  - Season range fallback: when `season_ranges[season]` is missing, infer start/end from `data/{season}/user/*/*_YYMMDD(_HHMM).json` (or `manifest.endDate`) before filtering matches.
 - Squad analysis row identity/schema:
   - `squad_analysis_all.json` schemaVersion: `0.1.2`
   - Row stable key: `playerKey = String(spId)`
   - Row fields include `spId`, `spPosition`, `seasonId`, `playerName`, `positionName` (plus existing stats)
 - Scheduler:
-  - `daily_crawl`: every day `04:00` (run_full_crawl 후 OpenAPI 배치 연쇄 실행)
+  - `daily_crawl`: every day `04:00` (run_full_crawl only)
+  - `openapi_analytics`: every 2 hours at `:10` (run_openapi_analytics_all)
   - `weekly_report`: every Thursday `05:05`
   - Lock files: `.private/locks/daily_crawl.lock`, `.private/locks/openapi.lock`
 - Throttling:
-  - Per-user randomized delay `0.2~0.5s` in batch loop
+  - Batch knobs (env): `OPENAPI_BATCH_MAX_MATCHES` (default `300`), `OPENAPI_BATCH_WINDOW_MATCHES` (default `200`, `all` 가능)
+  - Per-user randomized delay env: `OPENAPI_BATCH_DELAY_MIN` (default `0.8`), `OPENAPI_BATCH_DELAY_MAX` (default `1.6`)
   - 429/5xx retry handled by Open API client retry/backoff
 - Failure mode:
   - Missing analysis JSON on dashboard shows `분석 데이터 준비 중`

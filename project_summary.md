@@ -85,10 +85,13 @@
 
 #### **7. Open API 분석 자동화 (운영 배치)**
 
-- **배치 순서:** 일일 크롤링 잡(`daily_crawl`, `04:00`) 실행 후 동일 프로세스에서 Open API 분석 배치를 연쇄 실행
-- **스케줄러:** Flask 내부 APScheduler 잡(`daily_crawl`, `weekly_report`)
+- **배치 순서:** 일일 크롤링 잡(`daily_crawl`, `04:00`)과 Open API 분석 잡(`openapi_analytics`, `2시간 간격`)을 분리 운영
+- **스케줄러:** Flask 내부 APScheduler 잡(`daily_crawl`, `openapi_analytics`, `weekly_report`)
 - **락 파일:** `.private/locks/openapi.lock`, `.private/locks/daily_crawl.lock` (중복 실행 방지)
 - **캐시 루트:** `OPENAPI_CACHE_DIR` 환경변수 또는 기본값 `.private/openapi_cache/` (TTL 정책: 29일, `/data/*` 비공개)
+- **닉네임 해석 우선순위:** 관리자 목록(`managers.json`)의 `name`을 우선 사용하고, 없을 때만 최신 일일파일(`data/{season}/user/{id}/{id}_YYMMDD.json`)에서 fallback
+- **시즌 범위 fallback:** `season_config.json`의 `season_ranges[season]`가 비어 있으면 `data/{season}/user/*/*_YYMMDD(_HHMM).json`(없으면 `manifest.endDate`)에서 범위를 추정해 분석을 지속
+- **배치 부하 제어(환경변수):** `OPENAPI_BATCH_MAX_MATCHES`(기본 300), `OPENAPI_BATCH_WINDOW_MATCHES`(기본 200, `all` 허용), `OPENAPI_BATCH_DELAY_MIN/MAX`(기본 0.8~1.6초)
 - **운영 CLI:**
   - `python app.py openapi-selftest`
   - `python app.py openapi-sync-user --season <YYYY-N> --id <PLAYER_ID>`
