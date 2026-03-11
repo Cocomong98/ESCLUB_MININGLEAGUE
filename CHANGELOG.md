@@ -81,6 +81,7 @@
 ## Auto Commit Log
 
 <!-- auto-commit-log:start -->
+- 2026-03-11 13:14 | minor | feat(frontend): 스쿼드 포지션 카드 크기와 테두리 스케일 축소 (files: 3)
 - 2026-03-11 13:14 | patch | chore(frontend): 감독모드 인사이트 라우트 및 진입 버튼 임시 비활성화 (files: 3)
 - 2026-03-10 15:28 | patch | docs: 운영 배포 환경(NAS) 및 OpenAPI 배치 경로 정합화 (files: 2)
 - 2026-03-10 15:11 | minor | feat: 기존 누적 변경사항 일괄 반영 (files: 31)

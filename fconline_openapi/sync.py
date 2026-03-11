@@ -16,6 +16,12 @@ from .client import NexonOpenApiClient
 
 KST = timezone(timedelta(hours=9))
 DAILY_FILE_NAME_RE = re.compile(r"^(?P<player_id>\d+)_(?P<yymmdd>\d{6})\.json$")
+MANAGER_PLAYER_ID_PATTERNS = [
+    r"/popup/(\d+)",
+    r"/TeamInfo/(\d+)",
+    r"n8NexonSN=(\d+)",
+    r"(\d{6,})",
+]
 
 
 class OpenApiSyncError(RuntimeError):
@@ -85,8 +91,63 @@ def _extract_rows_from_daily_file(path: Path) -> list[dict[str, Any]]:
     return [row for row in rows if isinstance(row, dict)]
 
 
-def resolve_nickname_for_player(season: str, player_id: str, data_base_dir: str = "data") -> str:
-    """Resolve manager nickname from latest crawled daily file for player."""
+def _extract_manager_player_id(manager: dict[str, Any]) -> str:
+    candidates = [
+        manager.get("player_id"),
+        manager.get("playerId"),
+        manager.get("stat_url"),
+        manager.get("squad_url"),
+    ]
+    for raw in candidates:
+        text = str(raw or "").strip()
+        if not text:
+            continue
+        for pattern in MANAGER_PLAYER_ID_PATTERNS:
+            matched = re.search(pattern, text)
+            if matched:
+                return matched.group(1)
+    return ""
+
+
+def _resolve_nickname_from_managers_file(player_id: str, managers_file: str = "managers.json") -> str:
+    path = Path(managers_file)
+    if not path.is_file():
+        return ""
+    try:
+        with path.open("r", encoding="utf-8") as f:
+            managers = json.load(f)
+    except Exception:
+        return ""
+    if not isinstance(managers, list):
+        return ""
+    for manager in managers:
+        if not isinstance(manager, dict):
+            continue
+        if _extract_manager_player_id(manager) != str(player_id):
+            continue
+        name = str(manager.get("name", "")).strip()
+        if name:
+            return name
+    return ""
+
+
+def resolve_nickname_for_player(
+    season: str,
+    player_id: str,
+    data_base_dir: str = "data",
+    *,
+    nickname_hint: str | None = None,
+    managers_file: str = "managers.json",
+) -> str:
+    """Resolve nickname with priority: explicit hint > managers.json > latest daily file."""
+    hinted = str(nickname_hint or "").strip()
+    if hinted:
+        return hinted
+
+    from_managers = _resolve_nickname_from_managers_file(str(player_id), managers_file=managers_file)
+    if from_managers:
+        return from_managers
+
     latest_path = _find_latest_daily_file(data_base_dir, season, str(player_id))
     rows = _extract_rows_from_daily_file(latest_path)
     first = rows[0]
@@ -168,6 +229,7 @@ def sync_user_manager_mode(
     max_matches: int = 1200,
     data_base_dir: str = "data",
     refresh_ouid: bool = False,
+    nickname_hint: str | None = None,
     api_client: NexonOpenApiClient | None = None,
     cache: JsonFileCache | None = None,
 ) -> dict[str, Any]:
@@ -175,7 +237,12 @@ def sync_user_manager_mode(
     if max_matches <= 0:
         raise OpenApiSyncError("max_matches는 1 이상이어야 합니다.")
 
-    nickname = resolve_nickname_for_player(season, str(player_id), data_base_dir=data_base_dir)
+    nickname = resolve_nickname_for_player(
+        season,
+        str(player_id),
+        data_base_dir=data_base_dir,
+        nickname_hint=nickname_hint,
+    )
     cache = cache or JsonFileCache(data_base_dir=data_base_dir)
     api_client = api_client or NexonOpenApiClient()
 

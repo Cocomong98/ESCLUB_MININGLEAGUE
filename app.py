@@ -115,6 +115,43 @@ def is_lock_held(lock_path):
     return False
 
 
+def env_int(name, default, *, min_value=1):
+    raw = str(os.environ.get(name, "")).strip()
+    if not raw:
+        return default
+    try:
+        value = int(raw)
+    except ValueError:
+        return default
+    if value < min_value:
+        return default
+    return value
+
+
+def env_float(name, default, *, min_value=0.0):
+    raw = str(os.environ.get(name, "")).strip()
+    if not raw:
+        return default
+    try:
+        value = float(raw)
+    except ValueError:
+        return default
+    if value < min_value:
+        return default
+    return value
+
+
+def resolve_batch_window_matches(default=200):
+    raw = str(os.environ.get("OPENAPI_BATCH_WINDOW_MATCHES", str(default))).strip().lower()
+    if raw in {"", "all", "none", "0"}:
+        return None
+    try:
+        value = int(raw)
+    except ValueError:
+        return default
+    return value if value > 0 else default
+
+
 @contextmanager
 def openapi_job_lock():
     lock_fp = _try_acquire_exclusive_lock(OPENAPI_JOB_LOCK_FILE)
@@ -1060,6 +1097,7 @@ def run_openapi_update_analysis_for_user(
     max_matches=1200,
     window_matches=None,
     refresh_ouid=False,
+    nickname_hint=None,
 ):
     from fconline_openapi.analytics import OpenApiAnalyticsError, build_manager_mode_analysis
     from fconline_openapi.sync import OpenApiSyncError, sync_user_manager_mode
@@ -1072,6 +1110,7 @@ def run_openapi_update_analysis_for_user(
             max_matches=max_matches,
             data_base_dir=DATA_BASE_DIR,
             refresh_ouid=refresh_ouid,
+            nickname_hint=nickname_hint,
         )
         analysis_report = build_manager_mode_analysis(
             season=season,
@@ -1091,6 +1130,12 @@ def run_openapi_analytics_all():
     now_kst = datetime.now(KST)
     season = pick_active_season_for_datetime(now_kst) or get_current_season()
     managers = load_managers()
+    batch_max_matches = env_int("OPENAPI_BATCH_MAX_MATCHES", 300, min_value=1)
+    batch_window_matches = resolve_batch_window_matches(default=200)
+    delay_min = env_float("OPENAPI_BATCH_DELAY_MIN", 0.8, min_value=0.0)
+    delay_max = env_float("OPENAPI_BATCH_DELAY_MAX", 1.6, min_value=0.0)
+    if delay_max < delay_min:
+        delay_min, delay_max = delay_max, delay_min
     if is_lock_held(DAILY_CRAWL_LOCK_FILE):
         print("[OPENAPI] Daily crawl is running. Skip.", flush=True)
         return {"status": "skipped", "reason": "daily_crawl_running", "season": season}
@@ -1155,7 +1200,13 @@ def run_openapi_analytics_all():
                     "maintenance": maintenance,
                 }
 
-            print(f"[OPENAPI] Analytics batch start. season={season}, managers={len(managers)}", flush=True)
+            print(
+                "[OPENAPI] Analytics batch start. "
+                f"season={season}, managers={len(managers)}, "
+                f"max_matches={batch_max_matches}, window_matches={batch_window_matches or 'all'}, "
+                f"delay={delay_min:.2f}~{delay_max:.2f}s",
+                flush=True,
+            )
             success = 0
             failed = 0
             skipped = 0
@@ -1173,9 +1224,10 @@ def run_openapi_analytics_all():
                     report = run_openapi_update_analysis_for_user(
                         season=season,
                         player_id=player_id,
-                        max_matches=1200,
-                        window_matches=None,
+                        max_matches=batch_max_matches,
+                        window_matches=batch_window_matches,
                         refresh_ouid=False,
+                        nickname_hint=manager.get("name"),
                     )
                     success += 1
                     details.append({
@@ -1199,7 +1251,7 @@ def run_openapi_analytics_all():
                     print(f"[OPENAPI] FAIL player_id={player_id}: {exc}", flush=True)
 
                 if idx < len(managers) - 1:
-                    time.sleep(random.uniform(0.2, 0.5))
+                    time.sleep(random.uniform(delay_min, delay_max))
 
             summary = {
                 "status": "success" if failed == 0 else "partial",
@@ -1208,6 +1260,12 @@ def run_openapi_analytics_all():
                 "success": success,
                 "failed": failed,
                 "skipped": skipped,
+                "batchConfig": {
+                    "maxMatches": batch_max_matches,
+                    "windowMatches": batch_window_matches,
+                    "delayMin": delay_min,
+                    "delayMax": delay_max,
+                },
                 "details": details,
                 "maintenance": maintenance,
             }
@@ -1332,6 +1390,18 @@ def run_daily_crawl_then_openapi():
     finally:
         _release_lock(crawl_lock)
     return run_openapi_analytics_all()
+
+
+def run_daily_crawl_only():
+    crawl_lock = _try_acquire_exclusive_lock(DAILY_CRAWL_LOCK_FILE)
+    if not crawl_lock:
+        print("[CRAWL] Daily crawl already running. Skip.", flush=True)
+        return {"status": "skipped", "reason": "daily_crawl_running"}
+    try:
+        run_full_crawl()
+        return {"status": "success"}
+    finally:
+        _release_lock(crawl_lock)
 
 # --- 라우팅 (순서가 매우 중요함) ---
 
@@ -1904,11 +1974,20 @@ if __name__ == '__main__':
         )
 
     scheduler.add_job(
-        func=run_daily_crawl_then_openapi,
+        func=run_daily_crawl_only,
         trigger="cron",
         hour=4,
         minute=0,
         id="daily_crawl",
+        replace_existing=True,
+        coalesce=True,
+    )
+    scheduler.add_job(
+        func=run_openapi_analytics_all,
+        trigger="cron",
+        hour="*/2",
+        minute=10,
+        id="openapi_analytics",
         replace_existing=True,
         coalesce=True,
     )
