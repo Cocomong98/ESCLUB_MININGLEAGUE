@@ -23,6 +23,9 @@ KST = timezone(timedelta(hours=9))
 UTC = timezone.utc
 GOAL_TIME_SEGMENT = 1 << 24
 DAILY_FILE_NAME_RE = re.compile(r"^(?P<player_id>\d+)_(?P<yymmdd>\d{6})\.json$")
+SNAPSHOT_FILE_NAME_RE = re.compile(
+    r"^(?P<player_id>\d+)_(?P<yymmdd>\d{6})(?:_(?P<hhmm>\d{4}))?\.json$"
+)
 GOAL_TIME_BINS = [
     "0-15",
     "16-30",
@@ -528,6 +531,63 @@ def _resolve_nickname_for_player(data_base_dir: str, season: str, player_id: str
 
 
 def _resolve_season_range_kst(season: str, data_base_dir: str) -> tuple[datetime, datetime]:
+    def _parse_yymmdd_token(token: str) -> datetime | None:
+        try:
+            return datetime.strptime(str(token), "%y%m%d")
+        except ValueError:
+            return None
+
+    def _infer_range_from_data_files() -> tuple[datetime, datetime] | None:
+        season_dir = Path(data_base_dir) / str(season)
+        user_root = season_dir / "user"
+
+        min_day: datetime | None = None
+        max_day: datetime | None = None
+        if user_root.is_dir():
+            for user_dir in user_root.iterdir():
+                if not user_dir.is_dir():
+                    continue
+                for path in user_dir.iterdir():
+                    if not path.is_file():
+                        continue
+                    matched = SNAPSHOT_FILE_NAME_RE.match(path.name)
+                    if not matched:
+                        continue
+                    day = _parse_yymmdd_token(matched.group("yymmdd"))
+                    if day is None:
+                        continue
+                    if min_day is None or day < min_day:
+                        min_day = day
+                    if max_day is None or day > max_day:
+                        max_day = day
+
+        # user 폴더에서 추정 실패 시 manifest의 endDate 기반으로 최소 범위라도 복구
+        if min_day is None or max_day is None:
+            manifest_path = season_dir / "manifest.json"
+            if manifest_path.is_file():
+                try:
+                    with manifest_path.open("r", encoding="utf-8") as f:
+                        manifest = json.load(f)
+                except Exception:
+                    manifest = {}
+                if isinstance(manifest, dict):
+                    token = str(manifest.get("endDate") or "").strip()
+                    if not token:
+                        raw = str(manifest.get("endDateTime") or "").strip()
+                        if raw:
+                            token = raw.split("_", 1)[0]
+                    parsed = _parse_yymmdd_token(token) if token else None
+                    if parsed is not None:
+                        min_day = min_day or parsed
+                        max_day = max_day or parsed
+
+        if min_day is None or max_day is None:
+            return None
+
+        start_dt = min_day.replace(hour=0, minute=0, second=0, microsecond=0, tzinfo=KST)
+        end_dt = max_day.replace(hour=23, minute=59, second=59, microsecond=0, tzinfo=KST)
+        return start_dt, end_dt
+
     base_dir = Path(data_base_dir)
     candidate_paths = [
         Path("season_config.json"),
@@ -559,6 +619,16 @@ def _resolve_season_range_kst(season: str, data_base_dir: str) -> tuple[datetime
         start_dt, end_dt = parse_range_datetime(meta)
         if start_dt is None or end_dt is None:
             raise OpenApiAnalyticsError(f"season 범위 파싱 실패: season={season}")
+        return start_dt, end_dt
+
+    fallback_range = _infer_range_from_data_files()
+    if fallback_range is not None:
+        start_dt, end_dt = fallback_range
+        print(
+            "[OPENAPI] season_range fallback from data files "
+            f"season={season} start={start_dt.isoformat()} end={end_dt.isoformat()}",
+            flush=True,
+        )
         return start_dt, end_dt
 
     if found_config_file:
