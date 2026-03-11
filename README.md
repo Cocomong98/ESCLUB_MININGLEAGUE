@@ -1,35 +1,116 @@
 # ESCLUB MINING LEAGUE 대시보드
 
-이 프로젝트는 ESCLUB MINING LEAGUE 사용자의 순위 및 통계 데이터를 시각적으로 보여주는 React 기반 대시보드입니다.
+FC ONLINE 클럽원 데이터를 시즌 단위로 수집/집계하고, 순위/대시보드/스쿼드 분석까지 조회하는 React + Flask 통합 서비스입니다.
 
-## ✨ 주요 기능
+## 개요
 
-- **사용자 통계 확인**: 순위, 채굴 파워, 승률, 판수 등 주요 지표를 실시간으로 확인할 수 있습니다.
-- **데이터 시각화**: 차트를 통해 순위 변동, 일일 채굴 성장량, 승률 추이 등을 쉽게 파악할 수 있습니다.
-- **개인화된 데이터**: URL을 통해 특정 사용자의 데이터를 조회하고 분석할 수 있습니다.
+- 프론트엔드: React(MUI, Chart.js, React Router)
+- 백엔드: Flask 단일 앱(`app.py`)
+- 데이터: `data/{season}/...` JSON 파일 기반
+- 운영 환경: UGREEN NAS DXP2800 (단일 컨테이너/프로세스)
 
-## 🚀 시작하기
+## 핵심 페이지
 
-### 1. 의존성 설치
+- `/tables`: 시즌 순위표(순위/승률/판수/채굴 효율/성장력/구단가치)
+- `/dashboard/:id`: 개인 지표 카드 + 최근 5일 차트
+- `/dashboard/:id/analysis`: Open API 기반 세부 분석
+- `/dashboard/:id/squad`: 베스트11 포지션 맵 + 지표 한눈에
+- `/hall-of-fame`: 시즌별 4대 왕 지표
+- `/admin.html`: 관리자(세션 로그인, 시즌/구단주 관리)
 
-프로젝트를 실행하기 위해 필요한 라이브러리들을 설치합니다.
+## 런타임 데이터 경로
+
+- 시즌 집계: `data/{season}/current_crawl_display_data.json`
+- 개인 일별: `data/{season}/user/{id}/{id}_YYMMDD.json`
+- Open API 분석: `data/{season}/user/{id}/analysis/*.json`
+- 시즌 설정: `season_config.json`
+- 구단주 목록: `managers.json`
+
+## 환경 변수(.env)
+
+필수/권장 값은 `.env.example`을 기준으로 관리합니다.
+
+- `ADMIN_PASSWORD`: 관리자 로그인 비밀번호
+- `FLASK_SECRET_KEY`: Flask 세션 서명 키
+- `SESSION_COOKIE_SECURE`: HTTPS 환경이면 `1`
+- `NEXON_OPEN_API_KEY`: Nexon Open API 키
+- `OPENAPI_CACHE_DIR`: Open API 캐시 루트(미지정 시 `./.private/openapi_cache`)
+- `OPENAPI_REFRESH_STALE`: 캐시 stale refresh 사용 여부 (`0`/`1`)
+- `OPENAPI_REFRESH_BUDGET_PER_RUN`: stale refresh 예산
+- `OPENAPI_BATCH_MAX_MATCHES`: 배치 유저당 동기화 상한(기본 300)
+- `OPENAPI_BATCH_WINDOW_MATCHES`: 분석 윈도우(기본 200, `all` 가능)
+- `OPENAPI_BATCH_DELAY_MIN`, `OPENAPI_BATCH_DELAY_MAX`: 유저 간 지연(기본 0.8~1.6초)
+
+주의: 시크릿(secrets)은 Git에 커밋하지 않습니다.
+
+## 로컬 실행
+
+1. 프론트 개발 서버
 
 ```bash
 npm install
-```
-
-### 2. 프로젝트 실행
-
-다음 명령어를 사용하여 개발 서버를 시작합니다.
-
-```bash
 npm start
 ```
 
-서버가 시작되면 `http://localhost:3000` 주소로 접속하여 대시보드를 확인할 수 있습니다.
+2. 백엔드 실행(운영형 통합 서빙)
 
-## 🛠️ 기술 스택
+```bash
+python3 app.py
+```
 
-- **React**: 사용자 인터페이스를 구축하기 위한 JavaScript 라이브러리
-- **Material-UI (MUI)**: Material Design을 기반으로 한 UI 컴포넌트 라이브러리
-- **Chart.js**: 데이터 시각화를 위한 차트 라이브러리
+기본 실행 포트는 `80`이며, `app.py`가 `build/`와 `/data/*`를 함께 서빙합니다.
+
+## 주요 CLI
+
+Open API/주간 리포트 관련 수동 실행 명령:
+
+```bash
+python3 app.py openapi-selftest
+python3 app.py openapi-sync-user --season <YYYY-N> --id <PLAYER_ID> [--max-matches 1200] [--refresh-ouid]
+python3 app.py openapi-update-analysis --season <YYYY-N> --id <PLAYER_ID> [--max-matches 1200] [--window-matches N|all] [--refresh-ouid]
+python3 app.py weekly-report [--week YYYY-Www] [--force]
+python3 app.py weekly-backfill <START_WEEK> <END_WEEK> [--force]
+```
+
+## 스케줄러(앱 내부 APScheduler)
+
+- `daily_crawl`: 매일 `04:00`
+- `openapi_analytics`: 2시간 간격 `:10`
+- `weekly_report`: 매주 목요일 `05:05`
+
+락 파일:
+
+- `.private/locks/daily_crawl.lock`
+- `.private/locks/openapi.lock`
+
+## NAS 배포(드래그&드롭 기준)
+
+권장 절차:
+
+1. 로컬에서 빌드
+
+```bash
+npm run build
+```
+
+2. 서버 배포 폴더(`/app` 기준)에 반영
+
+- 코드/설정: `app.py`, `admin.html`, `fconline_openapi/`, `season_config.json`, `managers.json`
+- 프론트 빌드: `build/index.html`, `build/static/*` 및 빌드 산출물
+- 데이터: `data/`는 운영 데이터 유지(불필요한 덮어쓰기 금지)
+- 환경변수: `.env`는 서버에서 직접 관리
+
+3. 컨테이너/프로세스 재시작 후 확인
+
+- `python3 app.py openapi-selftest`
+- 웹 라우트(`/tables`, `/dashboard/:id`, `/dashboard/:id/squad`) 확인
+
+## 트러블슈팅
+
+- `NEXON_OPEN_API_KEY` 미로딩:
+  - `python3 -c "import os; print(bool(os.environ.get('NEXON_OPEN_API_KEY')))"` 로 확인
+  - 앱 외부 쉘에서 직접 실행 시 `.env` 자동 로딩 여부를 확인
+- `OPENAPI00007`(429/잠시 후 재시도):
+  - 점검/제한 상황일 수 있으므로 배치 지연/상한(`OPENAPI_BATCH_*`)을 낮춰 재시도
+- `season_range` 누락 에러:
+  - 최신 코드에서는 데이터 파일 기반 fallback으로 보완되며, 장기적으로 `season_config.json`에 시즌 범위를 명시하는 것을 권장
