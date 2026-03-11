@@ -1159,14 +1159,14 @@ function SquadAnalysis() {
     const height = pitchHeight || Math.round((width * 4) / 3);
 
     const desiredSize = isDesktopLayout
-      ? Math.min(width * 0.205, height * 0.152)
-      : Math.min(width * 0.175, height * 0.132);
+      ? Math.min(width * 0.168, height * 0.126)
+      : Math.min(width * 0.148, height * 0.112);
     const responsiveMin = isDesktopLayout
-      ? clamp(Math.round(width * 0.16), 44, 72)
-      : clamp(Math.round(width * 0.1), 36, 56);
+      ? clamp(Math.round(width * 0.14), 38, 60)
+      : clamp(Math.round(width * 0.09), 32, 48);
     const responsiveMax = isDesktopLayout
-      ? clamp(Math.round(width * 0.24), 88, 126)
-      : clamp(Math.round(width * 0.19), 74, 98);
+      ? clamp(Math.round(width * 0.2), 78, 104)
+      : clamp(Math.round(width * 0.16), 62, 82);
 
     return clamp(Math.round(desiredSize), responsiveMin, responsiveMax);
   }, [isDesktopLayout, pitchHeight, pitchWidth, pitchWrapWidth]);

@@ -41,25 +41,25 @@ function PlayerChip({
 }) {
   const posText = String(displayPos || "N/A");
   const posLength = posText.length;
-  const chipHeight = Math.round(tokenSize * 0.98);
-  const innerPaddingX = Math.max(4, Math.round(tokenSize * 0.08));
-  const innerPaddingY = Math.max(3, Math.round(tokenSize * 0.06));
+  const chipHeight = Math.round(tokenSize * 0.92);
+  const innerPaddingX = Math.max(3, Math.round(tokenSize * 0.07));
+  const innerPaddingY = Math.max(2, Math.round(tokenSize * 0.05));
   const posBadgeMinWidth =
     posLength >= 5
-      ? Math.max(28, Math.round(tokenSize * 0.42))
-      : Math.max(24, Math.round(tokenSize * 0.34));
+      ? Math.max(24, Math.round(tokenSize * 0.36))
+      : Math.max(20, Math.round(tokenSize * 0.3));
   const posFontSizePx = Math.max(
-    7,
+    6,
     Math.min(
-      11,
-      tokenSize * (posLength >= 8 ? 0.083 : posLength >= 6 ? 0.09 : posLength >= 4 ? 0.097 : 0.105)
+      10,
+      tokenSize * (posLength >= 8 ? 0.078 : posLength >= 6 ? 0.086 : posLength >= 4 ? 0.093 : 0.1)
     )
   );
-  const secondaryFontSizePx = Math.max(7, Math.min(10, tokenSize * 0.09));
-  const secondaryMaxWidth = Math.max(24, Math.round(tokenSize * 0.42));
-  const avatarSize = Math.max(20, Math.round(tokenSize * 0.4));
-  const fallbackShirtSize = Math.max(16, Math.round(tokenSize * 0.24));
-  const nameFontSizePx = Math.max(7, Math.min(11, tokenSize * 0.1));
+  const secondaryFontSizePx = Math.max(6, Math.min(9, tokenSize * 0.082));
+  const secondaryMaxWidth = Math.max(20, Math.round(tokenSize * 0.36));
+  const avatarSize = Math.max(18, Math.round(tokenSize * 0.34));
+  const fallbackShirtSize = Math.max(14, Math.round(tokenSize * 0.2));
+  const nameFontSizePx = Math.max(6, Math.min(10, tokenSize * 0.09));
   const [imageIndex, setImageIndex] = useState(0);
   const currentImageUrl = playerImageUrls[imageIndex] || "";
   const imageKey = playerImageUrls.join("|");
@@ -76,21 +76,21 @@ function PlayerChip({
       sx={{
         width: `${tokenSize}px`,
         height: `${chipHeight}px`,
-        borderRadius: "10px",
+        borderRadius: "8px",
         background: "rgba(20,25,35,0.85)",
-        border: "1px solid rgba(255,255,255,0.12)",
-        boxShadow: "0 8px 18px rgba(0,0,0,0.35)",
+        border: "1px solid rgba(255,255,255,0.1)",
+        boxShadow: "0 6px 14px rgba(0,0,0,0.28)",
         backdropFilter: "blur(2px)",
         transition: "transform 130ms ease, box-shadow 130ms ease, border-color 130ms ease",
         "&:hover": {
-          transform: "scale(1.03)",
+          transform: "scale(1.02)",
           zIndex: 3,
           borderColor: "rgba(125,211,252,0.55)",
-          boxShadow: "0 10px 22px rgba(0,0,0,0.42)",
+          boxShadow: "0 8px 18px rgba(0,0,0,0.34)",
         },
         "&.Mui-focusVisible": {
-          outline: "2px solid rgba(125,211,252,0.75)",
-          outlineOffset: "2px",
+          outline: "1px solid rgba(125,211,252,0.75)",
+          outlineOffset: "1px",
         },
         outline: debugOutline,
       }}
@@ -114,8 +114,8 @@ function PlayerChip({
               minWidth: `${posBadgeMinWidth}px`,
               px: `${Math.max(3, Math.round(tokenSize * 0.05))}px`,
               py: `${Math.max(1, Math.round(tokenSize * 0.02))}px`,
-              borderRadius: "6px",
-              border: "1px solid rgba(255,255,255,0.18)",
+              borderRadius: "5px",
+              border: "1px solid rgba(255,255,255,0.14)",
               backgroundColor: "rgba(15,23,42,0.85)",
               outline: debugOutline,
             }}
