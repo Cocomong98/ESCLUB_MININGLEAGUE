@@ -81,6 +81,7 @@
 ## Auto Commit Log
 
 <!-- auto-commit-log:start -->
+- 2026-03-11 13:16 | patch | docs: OpenAPI 스케줄/부하제어/시즌 fallback 운영 문서 갱신 (files: 3)
 - 2026-03-11 13:15 | minor | feat(openapi): season range 누락 시 데이터 기반 fallback 추가 (files: 2)
 - 2026-03-11 13:15 | minor | feat(openapi): 배치 주기 분리와 닉네임 해석 우선순위 적용 (files: 3)
 - 2026-03-11 13:14 | minor | feat(frontend): 스쿼드 포지션 카드 크기와 테두리 스케일 축소 (files: 3)
