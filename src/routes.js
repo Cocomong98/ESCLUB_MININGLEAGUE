@@ -37,6 +37,9 @@ Coded by www.creative-tim.com
 
 // Material Dashboard 2 React layouts
 import Dashboard from "layouts/dashboard";
+// import DashboardAnalysis from "layouts/dashboard-analysis";
+import DashboardSquad from "layouts/dashboard-squad";
+import DashboardPlayer from "layouts/dashboard-player";
 import Tables from "layouts/tables";
 import HallOfFame from "layouts/hall-of-fame";
 // import Billing from "layouts/billing";
@@ -56,6 +59,26 @@ const routes = [
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/dashboard/:id",
     component: <Dashboard />,
+  },
+  // {
+  //   type: "title",
+  //   key: "dashboard-analysis",
+  //   icon: <Icon fontSize="small">insights</Icon>,
+  //   route: "/dashboard/:id/analysis",
+  //   component: <DashboardAnalysis />,
+  // },
+  {
+    type: "title",
+    key: "dashboard-squad",
+    icon: <Icon fontSize="small">groups</Icon>,
+    route: "/dashboard/:id/squad",
+    component: <DashboardSquad />,
+  },
+  {
+    type: "hidden",
+    key: "dashboard-player",
+    route: "/dashboard/:id/squad/player/:playerKey",
+    component: <DashboardPlayer />,
   },
   {
     type: "collapse",

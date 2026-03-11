@@ -83,7 +83,7 @@ export default function App() {
 
   // Open sidenav when mouse enter on mini sidenav
   const handleOnMouseEnter = () => {
-    if (miniSidenav && !onMouseEnter) {
+    if (window.innerWidth >= 1200 && miniSidenav && !onMouseEnter) {
       setMiniSidenav(dispatch, false);
       setOnMouseEnter(true);
     }
@@ -91,7 +91,7 @@ export default function App() {
 
   // Close sidenav when mouse leave mini sidenav
   const handleOnMouseLeave = () => {
-    if (onMouseEnter) {
+    if (window.innerWidth >= 1200 && onMouseEnter) {
       setMiniSidenav(dispatch, true);
       setOnMouseEnter(false);
     }
