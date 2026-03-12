@@ -19,6 +19,7 @@ import DataTable from "examples/Tables/DataTable";
 
 // Utils
 import { fetchSeasonsWithData } from "utils/seasonUtils";
+import { uiTypography } from "utils/uiTypography";
 
 const KING_DEFS = [
   {
@@ -88,27 +89,36 @@ function KingCell({ king, season }) {
     king.metricValue === null || king.metricValue === undefined ? "-" : king.metricValue;
 
   return (
-    <MDBox lineHeight={1.3}>
+    <MDBox
+      sx={{
+        p: 1,
+        borderRadius: "10px",
+        border: "1px solid",
+        borderColor: "rgba(148,163,184,0.24)",
+        backgroundColor: "rgba(248,250,252,0.8)",
+        lineHeight: 1.35,
+      }}
+    >
       {king.playerId ? (
         <Link
           to={`/dashboard/${king.playerId}?season=${encodeURIComponent(season)}`}
           style={{ color: "inherit", textDecoration: "none" }}
         >
           <MDTypography
-            variant="body2"
-            fontWeight="medium"
+            {...uiTypography.tableTextStrong}
             sx={{ "&:hover": { color: "info.main" } }}
           >
             {king.managerName}
           </MDTypography>
         </Link>
       ) : (
-        <MDTypography variant="body2" fontWeight="medium">
-          {king.managerName}
-        </MDTypography>
+        <MDTypography {...uiTypography.tableTextStrong}>{king.managerName}</MDTypography>
       )}
-      <MDTypography variant="body2" color="text" display="block">
-        {king.metricLabel}: {displayValue}
+      <MDTypography {...uiTypography.metaLabel} display="block" mt={0.2}>
+        {king.metricLabel}
+      </MDTypography>
+      <MDTypography {...uiTypography.metaValue} color="dark" display="block" mt={0.2}>
+        {displayValue}
       </MDTypography>
     </MDBox>
   );
@@ -134,6 +144,7 @@ function MobileKingCell({ king, season, title }) {
       borderRadius="md"
       sx={{
         height: "100%",
+        border: "1px solid rgba(148,163,184,0.24)",
         backgroundColor: ({ palette }) => palette.grey[100],
       }}
     >
@@ -145,17 +156,20 @@ function MobileKingCell({ king, season, title }) {
           to={`/dashboard/${king.playerId}?season=${encodeURIComponent(season)}`}
           style={{ color: "inherit", textDecoration: "none" }}
         >
-          <MDTypography variant="button" fontWeight="medium" display="block">
+          <MDTypography {...uiTypography.tableTextStrong} display="block">
             {king.managerName}
           </MDTypography>
         </Link>
       ) : (
-        <MDTypography variant="button" fontWeight="medium" display="block">
+        <MDTypography {...uiTypography.tableTextStrong} display="block">
           {king.managerName}
         </MDTypography>
       )}
-      <MDTypography variant="caption" color="text" display="block">
-        {king.metricLabel}: {displayValue}
+      <MDTypography {...uiTypography.metaLabel} display="block">
+        {king.metricLabel}
+      </MDTypography>
+      <MDTypography {...uiTypography.metaValue} color="dark" display="block" mt={0.25}>
+        {displayValue}
       </MDTypography>
     </MDBox>
   );
@@ -233,7 +247,7 @@ function HallOfFame() {
 
   const rows = visibleRecords.map((record) => ({
     season: (
-      <MDTypography variant="body2" color="text" fontWeight="medium">
+      <MDTypography {...uiTypography.metaValue} color="text">
         {record.season}
       </MDTypography>
     ),
@@ -249,11 +263,7 @@ function HallOfFame() {
   ];
 
   const mobileRows = visibleRecords.map((record) => ({
-    season: (
-      <MDTypography variant="body2" color="text" fontWeight="medium">
-        {record.season}
-      </MDTypography>
-    ),
+    season: <MDTypography {...uiTypography.tableTextStrong}>{record.season}</MDTypography>,
     kings: (
       <MDBox
         sx={{
@@ -280,10 +290,11 @@ function HallOfFame() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox pt={isMobile ? 4 : 6} pb={isMobile ? 2 : 3}>
+      <MDBox pt={isMobile ? 3.5 : 6} pb={isMobile ? 2 : 3}>
         <MDBox mb={isMobile ? 3 : 6}>
-          <MDTypography variant="h6" fontWeight="medium">
-            명예의 전당
+          <MDTypography {...uiTypography.pageTitle}>명예의 전당</MDTypography>
+          <MDTypography {...uiTypography.sectionSub}>
+            시즌 {visibleRecords.length}개 기준, 지표별 1위 기록
           </MDTypography>
         </MDBox>
 
@@ -298,14 +309,14 @@ function HallOfFame() {
             borderRadius="lg"
             coloredShadow="info"
           >
-            <MDTypography variant="h6" color="white">
+            <MDTypography {...uiTypography.sectionTitle} color="white">
               시즌별 최고 순위
             </MDTypography>
           </MDBox>
 
           <MDBox pt={3}>
             {loading ? (
-              <MDTypography variant="button" color="text" textAlign="center" py={3} display="block">
+              <MDTypography {...uiTypography.status} textAlign="center" py={3} display="block">
                 명예의 전당 데이터를 불러오는 중...
               </MDTypography>
             ) : rows.length > 0 ? (
@@ -316,9 +327,10 @@ function HallOfFame() {
                 showTotalEntries={false}
                 showAllEntries
                 noEndBorder
+                dense={isMobile}
               />
             ) : (
-              <MDTypography variant="button" color="text" textAlign="center" py={3} display="block">
+              <MDTypography {...uiTypography.status} textAlign="center" py={3} display="block">
                 표시할 시즌 데이터가 없습니다.
               </MDTypography>
             )}

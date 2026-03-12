@@ -81,6 +81,7 @@
 ## Auto Commit Log
 
 <!-- auto-commit-log:start -->
+- 2026-03-12 11:23 | patch | fix(admin): stabilize member editor input and session expiration (files: 4)
 - 2026-03-12 09:39 | patch | docs(deploy): align route docs and add server deployment cautions (files: 6)
 - 2026-03-12 09:39 | patch | chore(config): sync season config and batch env defaults (files: 3)
 - 2026-03-12 09:38 | patch | fix(openapi): add nickname candidate fallback chain for OUID lookup (files: 2)

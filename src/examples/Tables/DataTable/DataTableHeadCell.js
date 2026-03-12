@@ -25,7 +25,7 @@ import MDBox from "components/MDBox";
 // Material Dashboard 2 React contexts
 import { useMaterialUIController } from "context";
 
-function DataTableHeadCell({ width, children, sorted, align, ...rest }) {
+function DataTableHeadCell({ width, children, sorted, align, dense, ...rest }) {
   const [controller] = useMaterialUIController();
   const { darkMode } = controller;
 
@@ -33,8 +33,8 @@ function DataTableHeadCell({ width, children, sorted, align, ...rest }) {
     <MDBox
       component="th"
       width={width}
-      py={1.5}
-      px={3}
+      py={dense ? 1 : 1.5}
+      px={dense ? 1.5 : 3}
       sx={({ palette: { light }, borders: { borderWidth } }) => ({
         borderBottom: `${borderWidth[1]} solid ${light.main}`,
       })}
@@ -46,7 +46,7 @@ function DataTableHeadCell({ width, children, sorted, align, ...rest }) {
         color={darkMode ? "white" : "secondary"}
         opacity={0.7}
         sx={({ typography: { size, fontWeightBold } }) => ({
-          fontSize: size.sm,
+          fontSize: dense ? size.xs : size.sm,
           fontWeight: fontWeightBold,
           textTransform: "uppercase",
           whiteSpace: "nowrap",
@@ -94,6 +94,7 @@ DataTableHeadCell.defaultProps = {
   width: "auto",
   sorted: "none",
   align: "left",
+  dense: false,
 };
 
 // Typechecking props for the DataTableHeadCell
@@ -102,6 +103,7 @@ DataTableHeadCell.propTypes = {
   children: PropTypes.node.isRequired,
   sorted: PropTypes.oneOf([false, "none", "asce", "desc"]),
   align: PropTypes.oneOf(["left", "right", "center"]),
+  dense: PropTypes.bool,
 };
 
 export default DataTableHeadCell;

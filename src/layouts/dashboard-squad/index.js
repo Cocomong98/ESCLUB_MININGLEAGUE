@@ -22,6 +22,7 @@ import FmMetricPanel from "components/metrics/FmMetricPanel";
 import useElementSize from "hooks/useElementSize";
 import { buildPlayerPortraitUrls } from "utils/playerImageUtils";
 import { fetchSeasonsWithData } from "utils/seasonUtils";
+import { uiTypography } from "utils/uiTypography";
 
 const navActionSx = ({ palette }) => ({
   color: `${palette.info.main} !important`,
@@ -523,8 +524,7 @@ function renderHeaderWithTooltip(label, description) {
   return (
     <Tooltip title={description} arrow placement="top">
       <MDTypography
-        variant="body2"
-        color="text"
+        {...uiTypography.tableText}
         sx={{
           textDecoration: "underline dotted",
           textUnderlineOffset: "2px",
@@ -1013,6 +1013,16 @@ function SquadAnalysis() {
     }
     return [...tabs, ...advancedMetricGroups];
   }, [advancedMetricGroups, insightSummaryGroup]);
+
+  const insightQuickMetrics = useMemo(
+    () =>
+      insightSummaryGroup.items.slice(0, 4).map((item) => ({
+        key: item.key || item.label,
+        label: item.label,
+        value: item.valueText || "-",
+      })),
+    [insightSummaryGroup.items]
+  );
 
   useEffect(() => {
     if (insightTabIndex < insightTabs.length) return;
@@ -1716,16 +1726,8 @@ function SquadAnalysis() {
         { Header: "값", accessor: "value", align: "center" },
       ],
       rows: detailRows.map((row) => ({
-        metric: (
-          <MDTypography variant="body2" color="text" fontWeight="medium">
-            {row.label}
-          </MDTypography>
-        ),
-        value: (
-          <MDTypography variant="body2" color="text">
-            {row.value}
-          </MDTypography>
-        ),
+        metric: <MDTypography {...uiTypography.tableTextStrong}>{row.label}</MDTypography>,
+        value: <MDTypography {...uiTypography.tableText}>{row.value}</MDTypography>,
       })),
     };
   }, [selectedPlayerDetail]);
@@ -1754,7 +1756,7 @@ function SquadAnalysis() {
       ],
       rows: rows.map((row) => ({
         position: (
-          <MDTypography variant="body2" color="text" fontWeight="medium">
+          <MDTypography {...uiTypography.tableTextStrong}>
             {row.positionName || row.position || "-"}
           </MDTypography>
         ),
@@ -1772,7 +1774,7 @@ function SquadAnalysis() {
                 }}
               />
             ) : (
-              <MDTypography variant="body2" color="text">
+              <MDTypography {...uiTypography.tableText}>
                 {row.seasonName || row.seasonId || "-"}
               </MDTypography>
             )}
@@ -1793,9 +1795,7 @@ function SquadAnalysis() {
             }}
           >
             <MDTypography
-              variant="body2"
-              color="text"
-              fontWeight="medium"
+              {...uiTypography.tableTextStrong}
               sx={({ palette }) => ({
                 textDecoration: "underline",
                 textDecorationColor: palette.grey[500],
@@ -1808,12 +1808,10 @@ function SquadAnalysis() {
           </MDBox>
         ),
         appearances: (
-          <MDTypography variant="body2" color="text">
-            {toNumber(row.appearances, 0)}
-          </MDTypography>
+          <MDTypography {...uiTypography.tableText}>{toNumber(row.appearances, 0)}</MDTypography>
         ),
         winRate: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(
               row.playerWinRate !== undefined && row.playerWinRate !== null
                 ? row.playerWinRate
@@ -1823,67 +1821,57 @@ function SquadAnalysis() {
           </MDTypography>
         ),
         attackPower: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {toNumber(row.attackPower, 0).toFixed(2)}
           </MDTypography>
         ),
         defensePower: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {toNumber(row.defensePower, 0).toFixed(2)}
           </MDTypography>
         ),
         expectedGoalRate: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(row.expectedGoalRate, 1)}
           </MDTypography>
         ),
         attackPoint: (
-          <MDTypography variant="body2" color="text">
-            {toNumber(row.attackPoint, 0)}
-          </MDTypography>
+          <MDTypography {...uiTypography.tableText}>{toNumber(row.attackPoint, 0)}</MDTypography>
         ),
-        goal: (
-          <MDTypography variant="body2" color="text">
-            {toNumber(row.goal, 0)}
-          </MDTypography>
-        ),
-        assist: (
-          <MDTypography variant="body2" color="text">
-            {toNumber(row.assist, 0)}
-          </MDTypography>
-        ),
+        goal: <MDTypography {...uiTypography.tableText}>{toNumber(row.goal, 0)}</MDTypography>,
+        assist: <MDTypography {...uiTypography.tableText}>{toNumber(row.assist, 0)}</MDTypography>,
         passSuccessRate: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(row.passSuccessRate, 1)}
           </MDTypography>
         ),
         dribbleSuccessRate: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(row.dribbleSuccessRate, 1)}
           </MDTypography>
         ),
         interceptPerGame: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(row.interceptPerGame, 1)}
           </MDTypography>
         ),
         aerialSuccessRate: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(row.aerialSuccessRate, 1)}
           </MDTypography>
         ),
         tackleSuccessRate: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(row.tackleSuccessRate, 1)}
           </MDTypography>
         ),
         savePerGame: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(row.savePerGame, 1)}
           </MDTypography>
         ),
         shotDefenseRate: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(row.shotDefenseRate, 1)}
           </MDTypography>
         ),
@@ -1919,32 +1907,30 @@ function SquadAnalysis() {
       ],
       rows: rows.map((row) => ({
         name: (
-          <MDTypography variant="body2" color="text" fontWeight="medium">
+          <MDTypography {...uiTypography.tableTextStrong}>
             {row.name || `SPID ${row.spId}`}
           </MDTypography>
         ),
         position: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {row.positionName || row.position || "-"}
           </MDTypography>
         ),
         appearances: (
-          <MDTypography variant="body2" color="text">
-            {toNumber(row.appearances, 0)}
-          </MDTypography>
+          <MDTypography {...uiTypography.tableText}>{toNumber(row.appearances, 0)}</MDTypography>
         ),
         longShotAttemptRate: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(row.longShotAttemptRate, 1)}
           </MDTypography>
         ),
         longShotSelectionEfficiency: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(row.longShotSelectionEfficiency, 1)}
           </MDTypography>
         ),
         longShotGoalShare: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(row.longShotGoalShare, 1)}
           </MDTypography>
         ),
@@ -1956,20 +1942,19 @@ function SquadAnalysis() {
   return (
     <DashboardLayout>
       <DashboardNavbar pageTitle="스쿼드 분석" />
-      <MDBox py={3} sx={{ outline: debugOutline("rgba(255, 0, 0, 0.9)", "2px") }}>
-        <Grid container spacing={3}>
+      <MDBox py={{ xs: 2, md: 3 }} sx={{ outline: debugOutline("rgba(255, 0, 0, 0.9)", "2px") }}>
+        <Grid container spacing={{ xs: 2, md: 3 }}>
           <Grid item xs={12}>
             <MDBox
               display="flex"
               justifyContent="space-between"
-              alignItems="center"
+              alignItems={{ xs: "stretch", sm: "center" }}
+              flexDirection={{ xs: "column", sm: "row" }}
               gap={1.5}
               mb={2}
             >
-              <MDBox display="flex" alignItems="center" gap={1.5}>
-                <MDTypography variant="button" color="text">
-                  시즌
-                </MDTypography>
+              <MDBox display="flex" alignItems="center" gap={1.5} flexWrap="wrap">
+                <MDTypography {...uiTypography.sectionSub}>시즌</MDTypography>
                 <Select value={selectedSeason} onChange={(e) => setSelectedSeason(e.target.value)}>
                   {seasons.map((season) => (
                     <MenuItem key={season} value={season}>
@@ -1978,7 +1963,12 @@ function SquadAnalysis() {
                   ))}
                 </Select>
               </MDBox>
-              <MDBox display="flex" gap={1}>
+              <MDBox
+                display="flex"
+                gap={1}
+                flexWrap="wrap"
+                justifyContent={{ xs: "flex-end", sm: "flex-start" }}
+              >
                 {/* 감독모드 인사이트 임시 비활성화
                 <MDButton
                   component={Link}
@@ -2070,8 +2060,8 @@ function SquadAnalysis() {
                   pb={0.5}
                   sx={{ outline: debugOutline("rgba(255, 160, 160, 0.95)", "1px") }}
                 >
-                  <MDTypography variant="h6">베스트 11 포지션 맵</MDTypography>
-                  <MDTypography variant="button" color="text">
+                  <MDTypography {...uiTypography.sectionTitle}>베스트 11 포지션 맵</MDTypography>
+                  <MDTypography {...uiTypography.sectionSub}>
                     출전 기준 상위 11명 (클릭 시 선수 페이지)
                   </MDTypography>
                 </MDBox>
@@ -2146,7 +2136,7 @@ function SquadAnalysis() {
                       </PitchBoard>
                     </MDBox>
                   ) : (
-                    <MDTypography variant="button" color="text">
+                    <MDTypography {...uiTypography.status}>
                       {status === "loading" && "스쿼드 데이터 로딩 중..."}
                       {status === "pending" && "스쿼드 데이터 준비 중"}
                       {status === "error" && "스쿼드 데이터 로드 실패"}
@@ -2182,10 +2172,8 @@ function SquadAnalysis() {
                   pb={0.5}
                   sx={{ outline: debugOutline("rgba(255, 160, 160, 0.95)", "1px") }}
                 >
-                  <MDTypography variant="h6">지표 한눈에</MDTypography>
-                  <MDTypography variant="button" color="text">
-                    팀 세부 지표 (시즌 분석)
-                  </MDTypography>
+                  <MDTypography {...uiTypography.sectionTitle}>지표 한눈에</MDTypography>
+                  <MDTypography {...uiTypography.sectionSub}>팀 세부 지표 (시즌 분석)</MDTypography>
                 </MDBox>
                 <MDBox
                   px={1}
@@ -2199,20 +2187,48 @@ function SquadAnalysis() {
                     outline: debugOutline("rgba(255, 0, 0, 0.95)", "2px"),
                   }}
                 >
+                  {insightStatus === "ready" && insightQuickMetrics.length > 0 && (
+                    <MDBox
+                      mb={0.8}
+                      sx={{
+                        display: "grid",
+                        gridTemplateColumns: {
+                          xs: "repeat(2, minmax(0, 1fr))",
+                          md: "repeat(4, minmax(0, 1fr))",
+                        },
+                        gap: 0.6,
+                      }}
+                    >
+                      {insightQuickMetrics.map((item) => (
+                        <MDBox
+                          key={item.key}
+                          sx={({ palette }) => ({
+                            border: `1px solid ${palette.grey[300]}`,
+                            borderRadius: "8px",
+                            px: 0.9,
+                            py: 0.7,
+                            minHeight: 52,
+                            backgroundColor: palette.grey[100],
+                          })}
+                        >
+                          <MDTypography {...uiTypography.metaLabel}>{item.label}</MDTypography>
+                          <MDTypography {...uiTypography.metaValue} display="block" mt={0.1}>
+                            {item.value}
+                          </MDTypography>
+                        </MDBox>
+                      ))}
+                    </MDBox>
+                  )}
                   {insightStatus === "loading" && (
-                    <MDTypography variant="button" color="text">
+                    <MDTypography {...uiTypography.status}>
                       팀 세부지표를 불러오는 중...
                     </MDTypography>
                   )}
                   {insightStatus === "pending" && (
-                    <MDTypography variant="button" color="text">
-                      팀 세부지표 데이터 준비 중
-                    </MDTypography>
+                    <MDTypography {...uiTypography.status}>팀 세부지표 데이터 준비 중</MDTypography>
                   )}
                   {insightStatus === "error" && (
-                    <MDTypography variant="button" color="text">
-                      팀 세부지표 로드 실패
-                    </MDTypography>
+                    <MDTypography {...uiTypography.status}>팀 세부지표 로드 실패</MDTypography>
                   )}
                   {insightStatus === "ready" && (
                     <MDBox
@@ -2274,7 +2290,7 @@ function SquadAnalysis() {
                               columns={insightTabColumns}
                             />
                           ) : (
-                            <MDTypography variant="button" color="text">
+                            <MDTypography {...uiTypography.status}>
                               표시할 지표가 없습니다.
                             </MDTypography>
                           )}
@@ -2321,23 +2337,23 @@ function SquadAnalysis() {
               backgroundColor: "rgba(255, 0, 0, 0.03)",
             }}
           >
-            <MDTypography variant="caption" fontWeight="bold" color="text">
+            <MDTypography {...uiTypography.metaLabel} fontWeight="bold">
               Alignment Probe
             </MDTypography>
             <MDBox mt={0.5} sx={{ display: "grid", rowGap: 0.2 }}>
-              <MDTypography variant="caption" color="text">
+              <MDTypography {...uiTypography.metaLabel}>
                 topRow-cards ΔX: {alignmentProbe.deltaTopRowVsCards}px
               </MDTypography>
-              <MDTypography variant="caption" color="text">
+              <MDTypography {...uiTypography.metaLabel}>
                 pitch-leftCard ΔX: {alignmentProbe.deltaPitchVsLeftCard}px
               </MDTypography>
-              <MDTypography variant="caption" color="text">
+              <MDTypography {...uiTypography.metaLabel}>
                 lineup-pitch ΔX: {alignmentProbe.deltaLineupVsPitch}px
               </MDTypography>
-              <MDTypography variant="caption" color="text">
+              <MDTypography {...uiTypography.metaLabel}>
                 lineup gap L/R: {alignmentProbe.lineupLeftGap}px / {alignmentProbe.lineupRightGap}px
               </MDTypography>
-              <MDTypography variant="caption" color="text">
+              <MDTypography {...uiTypography.metaLabel}>
                 lineup offset X/Y: {alignmentProbe.lineupOffsetX}px / {alignmentProbe.lineupOffsetY}
                 px
               </MDTypography>
@@ -2356,7 +2372,9 @@ function SquadAnalysis() {
             <>
               <DialogTitle sx={{ pb: 1 }}>
                 <MDBox display="flex" justifyContent="space-between" alignItems="center" gap={1.5}>
-                  <MDTypography variant="h6">{modalPlayerTitle} - 선수 상세 지표</MDTypography>
+                  <MDTypography {...uiTypography.sectionTitle}>
+                    {modalPlayerTitle} - 선수 상세 지표
+                  </MDTypography>
                   <MDButton
                     variant="outlined"
                     color="info"
@@ -2366,7 +2384,7 @@ function SquadAnalysis() {
                     닫기
                   </MDButton>
                 </MDBox>
-                <MDTypography variant="button" color="text" display="block">
+                <MDTypography {...uiTypography.sectionSub} display="block">
                   데이터 생성 시각: {formatGeneratedAt(payload?.generatedAt)}
                 </MDTypography>
               </DialogTitle>
@@ -2387,12 +2405,14 @@ function SquadAnalysis() {
                   })}
                 >
                   <MDBox>
-                    <MDTypography variant="h5">{modalPlayerTitle}</MDTypography>
-                    <MDTypography variant="button" color="text" display="block">
+                    <MDTypography variant="h5" fontWeight="medium">
+                      {modalPlayerTitle}
+                    </MDTypography>
+                    <MDTypography {...uiTypography.sectionSub} display="block">
                       {selectedPlayerDetail.positionName || selectedPlayerDetail.position || "-"} ·{" "}
                       {selectedPlayerDetail.seasonName || selectedPlayerDetail.seasonId || "-"}
                     </MDTypography>
-                    <MDTypography variant="button" color="text" display="block">
+                    <MDTypography {...uiTypography.sectionSub} display="block">
                       출전 {toNumber(selectedPlayerDetail.appearances, 0)}경 · 승률{" "}
                       {formatPercentOrDash(
                         selectedPlayerDetail.playerWinRate !== undefined &&
@@ -2436,9 +2456,7 @@ function SquadAnalysis() {
                         }}
                       />
                     ) : (
-                      <MDTypography variant="caption" color="text">
-                        이미지 없음
-                      </MDTypography>
+                      <MDTypography {...uiTypography.metaLabel}>이미지 없음</MDTypography>
                     )}
                   </MDBox>
                 </MDBox>
@@ -2450,6 +2468,7 @@ function SquadAnalysis() {
                     showTotalEntries={false}
                     showAllEntries
                     noEndBorder
+                    dense={!isDesktopLayout}
                   />
                 </MDBox>
               </DialogContent>
@@ -2459,7 +2478,9 @@ function SquadAnalysis() {
 
         <Card>
           <MDBox p={2}>
-            <MDTypography variant="h6">{nickname} - FC온라인 감독경기 스쿼드 분석</MDTypography>
+            <MDTypography {...uiTypography.pageTitle}>
+              {nickname} - FC온라인 감독경기 스쿼드 분석
+            </MDTypography>
             <MDBox
               mt={1}
               sx={{
@@ -2468,22 +2489,19 @@ function SquadAnalysis() {
               }}
             >
               <MDTypography
-                variant="body2"
-                color="text"
+                {...uiTypography.tableText}
                 sx={{ lineHeight: 1.6, wordBreak: "keep-all", letterSpacing: "0.01em" }}
               >
                 데이터 생성 시각: {formatGeneratedAt(payload?.generatedAt)}
               </MDTypography>
               <MDTypography
-                variant="body2"
-                color="text"
+                {...uiTypography.tableText}
                 sx={{ lineHeight: 1.6, wordBreak: "keep-all", letterSpacing: "0.01em" }}
               >
                 시즌 내 분석 경기 수: {toNumber(scope.actualMatches, 0)}경
               </MDTypography>
               <MDTypography
-                variant="body2"
-                color="text"
+                {...uiTypography.tableText}
                 sx={{ lineHeight: 1.6, wordBreak: "keep-all", letterSpacing: "0.01em" }}
               >
                 집계 선수 수: {toNumber(summary.uniquePlayers, 0)}명
@@ -2493,22 +2511,18 @@ function SquadAnalysis() {
 
           <MDBox px={2} pb={2}>
             {status === "loading" && (
-              <MDTypography variant="button" color="text">
+              <MDTypography {...uiTypography.status}>
                 스쿼드 분석 데이터를 불러오는 중...
               </MDTypography>
             )}
             {status === "pending" && (
-              <MDTypography variant="button" color="text">
-                스쿼드 분석 데이터 준비 중
-              </MDTypography>
+              <MDTypography {...uiTypography.status}>스쿼드 분석 데이터 준비 중</MDTypography>
             )}
             {status === "error" && (
-              <MDTypography variant="button" color="text">
-                스쿼드 분석 데이터 로드 실패
-              </MDTypography>
+              <MDTypography {...uiTypography.status}>스쿼드 분석 데이터 로드 실패</MDTypography>
             )}
             {status === "ready" && rows.length === 0 && (
-              <MDTypography variant="button" color="text">
+              <MDTypography {...uiTypography.status}>
                 표시할 스쿼드 분석 데이터가 없습니다.
               </MDTypography>
             )}
@@ -2520,6 +2534,7 @@ function SquadAnalysis() {
                 showTotalEntries={false}
                 showAllEntries
                 noEndBorder
+                dense={!isDesktopLayout}
               />
             )}
           </MDBox>
@@ -2529,8 +2544,8 @@ function SquadAnalysis() {
           <MDBox mt={3}>
             <Card>
               <MDBox p={2}>
-                <MDTypography variant="h6">중거리 보조 지표</MDTypography>
-                <MDTypography variant="button" color="text" display="block">
+                <MDTypography {...uiTypography.sectionTitle}>중거리 보조 지표</MDTypography>
+                <MDTypography {...uiTypography.sectionSub} display="block">
                   메인 스쿼드 지표와 분리된 보조 통계
                 </MDTypography>
               </MDBox>
@@ -2542,6 +2557,7 @@ function SquadAnalysis() {
                   showTotalEntries={false}
                   showAllEntries
                   noEndBorder
+                  dense={!isDesktopLayout}
                 />
               </MDBox>
             </Card>
