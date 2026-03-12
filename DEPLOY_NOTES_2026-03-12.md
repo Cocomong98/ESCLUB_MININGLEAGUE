@@ -6,6 +6,8 @@
 - OpenAPI 재시도/오류 메시지 개선 (`fconline_openapi/client.py`)
 - OpenAPI 닉네임 후보 fallback 강화 (`fconline_openapi/sync.py`)
 - 시즌 설정 파일 정합화 (`season_config.json`, `public/season_config.json`)
+- UI 테마/가독성 보정 (다크모드 대비, 스쿼드 선수 모달/지표 카드)
+- UI 상태 유지(localStorage `md2-ui-controller`) 및 사이드바 mini 로고 중앙 정렬 보정
 - 문서 정합화 (`README.md`, `project_summary.md`, `PROJECT_STATE.md`)
 
 ## 배포 전 체크
@@ -22,7 +24,8 @@
    - `app.py`
    - `admin.html`, `admin-panel.js`
    - `fconline_openapi/`
-   - `build/` 또는 서버에서 사용하는 정적 산출물
+   - `build/index.html` + `build/static/*` (둘 다 교체)
+   - `asset-manifest.json` (권장)
    - `season_config.json`
    - `public/season_config.json` (동기화 사본)
 2. 유지 대상
@@ -35,6 +38,7 @@
 3. OpenAPI 429(OPENAPI00007) 발생 시 빈도보다 `OPENAPI_BATCH_DELAY_*`와 `OPENAPI_BATCH_MAX_MATCHES`를 먼저 완화한다.
 4. `/dashboard/:id/analysis` 라우트는 임시 비활성화 상태이므로 운영 확인은 `/dashboard/:id/squad` 기준으로 진행한다.
 5. 관리자 세션 만료 정책(`ADMIN_SESSION_TTL_MINUTES`, `ADMIN_SESSION_IDLE_MINUTES`)을 운영 환경 `.env`에 설정한다.
+6. 프론트만 배포할 때도 `index.html`과 `static`은 해시 참조 일치 관점에서 함께 교체한다.
 
 ## 배포 후 확인 체크리스트
 1. 페이지 확인

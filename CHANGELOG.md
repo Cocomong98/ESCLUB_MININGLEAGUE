@@ -19,6 +19,18 @@
     - APScheduler `openapi_analytics` 잡 추가 (`04:10`, daily crawl 이후)
     - 배치 중복 실행 락(`data/.openapi_analytics.lock`) 적용
 
+### `v3.6.1` (Unreleased, 후보)
+
+- 유형: `PATCH` 권장
+- 핵심:
+  - 다크모드 전역 가독성 보정:
+    - 순위표 `순위` 배지, 명예의 전당 카드, 스쿼드/선수 상세 카드, 선수 모달 텍스트 대비 개선
+  - UI 상태 유지:
+    - `md2-ui-controller` 로컬 스토리지 기반으로 다크모드/사이드바 상태를 새로고침 후에도 유지
+  - 스쿼드 페이지 운영 정리:
+    - 임시 정렬 디버그 보더/프로브 코드 제거
+    - 미니 사이드바 로고 중앙 정렬 보정
+
 ### `v3.3.0` (Unreleased, 후보)
 
 - 유형: `MINOR` 권장
@@ -81,6 +93,7 @@
 ## Auto Commit Log
 
 <!-- auto-commit-log:start -->
+- 2026-03-12 20:50 | patch | fix(ui): stabilize dark mode contrast, persist controller state, and clean squad debug code (files: 14)
 - 2026-03-12 16:30 | patch | fix(admin): load panel script before Alpine init (files: 1)
 - 2026-03-12 11:26 | patch | docs(deploy): document admin panel split and session policy (files: 5)
 - 2026-03-12 11:24 | minor | feat(frontend): refine dashboard density and typography consistency (files: 10)

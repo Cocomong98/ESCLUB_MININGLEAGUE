@@ -10,6 +10,19 @@
 - Squad page top section includes `베스트11 포지션 맵` + `지표 한눈에` (team advanced metrics from `last200.json`).
 - Squad table player click navigates to player detail page (`/dashboard/:id/squad/player/:playerKey`).
 - Analysis route (`/dashboard/:id/analysis`) is temporarily disabled; use squad route for Open API insights.
+- Dashboard 상단 메타 블록(`구단주 / 조회 시즌 / 현재 진행 시즌`)은 제거된 상태.
+
+## UI Theme/Persistence
+
+- Material UI controller state is persisted to `localStorage` key: `md2-ui-controller`.
+- Persisted keys include: `darkMode`, `miniSidenav`, `transparentSidenav`, `whiteSidenav`, `sidenavColor`, `transparentNavbar`, `fixedNavbar`, `direction`, `layout`.
+- Dark mode contrast fixes are applied to:
+  - `/tables` rank badge
+  - `/hall-of-fame` king cards (desktop/mobile)
+  - `/dashboard/:id/squad` quick metrics + player modal
+  - `/dashboard/:id/squad/player` summary card/quick metrics
+- Sidenav mini mode logo alignment:
+  - brand icon is centered in collapsed width and brand label is not rendered in mini mode.
 
 ## Deployment Context
 
