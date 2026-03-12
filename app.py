@@ -171,7 +171,9 @@ def openapi_job_lock():
 def add_header(response):
     if 'application/json' in response.content_type:
         response.cache_control.no_cache = True
-    elif 'application/javascript' in response.content_type or 'text/css' in response.content_type:
+    elif (not response.cache_control.no_cache) and (
+        'application/javascript' in response.content_type or 'text/css' in response.content_type
+    ):
         response.cache_control.max_age = 2678400 # 31일
     response.headers.setdefault("X-Content-Type-Options", "nosniff")
     response.headers.setdefault("X-Frame-Options", "DENY")
@@ -1521,7 +1523,11 @@ def get_user_history(season, player_id):
 # 3. 관리자 페이지 (이게 있어야 esclub.info/admin 접속 가능)
 @app.route('/admin')
 def admin_page():
-    return render_template('admin.html')
+    res = make_response(render_template('admin.html'))
+    res.cache_control.no_cache = True
+    res.cache_control.no_store = True
+    res.cache_control.must_revalidate = True
+    return res
 
 
 @app.route('/admin-panel.js')
@@ -1532,6 +1538,8 @@ def admin_panel_script():
         return jsonify({"error": "admin-panel.js not found"}), 404
     res = make_response(send_from_directory(app.root_path, filename))
     res.cache_control.no_cache = True
+    res.cache_control.no_store = True
+    res.cache_control.must_revalidate = True
     return res
 
 

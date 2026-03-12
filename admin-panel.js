@@ -93,6 +93,15 @@
         });
       },
 
+      flushActiveInput() {
+        try {
+          const active = document.activeElement;
+          if (active && typeof active.blur === "function") {
+            active.blur();
+          }
+        } catch (error) {}
+      },
+
       get computedSeasonName() {
         const year = String(this.seasonForm.year || "").trim();
         const part = String(this.seasonForm.part || "").trim();
@@ -162,7 +171,9 @@
           }
           if (!res.ok) throw new Error("failed");
           const rows = await res.json();
-          this.managers = (Array.isArray(rows) ? rows : []).map((row) => this.normalizeManagerRow(row));
+          this.managers = (Array.isArray(rows) ? rows : []).map((row) =>
+            this.normalizeManagerRow(row)
+          );
           this.applyManagerSort();
         } catch (error) {
           this.managers = [];
@@ -216,6 +227,10 @@
       async saveData() {
         this.loading.save = true;
         try {
+          // x-model.lazy가 마지막 입력을 반영하도록 현재 포커스를 먼저 종료한다.
+          this.flushActiveInput();
+          await new Promise((resolve) => setTimeout(resolve, 0));
+
           const res = await fetch("/api/managers", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
