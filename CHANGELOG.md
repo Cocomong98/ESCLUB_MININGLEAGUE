@@ -81,6 +81,7 @@
 ## Auto Commit Log
 
 <!-- auto-commit-log:start -->
+- 2026-03-12 16:30 | patch | fix(admin): load panel script before Alpine init (files: 1)
 - 2026-03-12 11:26 | patch | docs(deploy): document admin panel split and session policy (files: 5)
 - 2026-03-12 11:24 | minor | feat(frontend): refine dashboard density and typography consistency (files: 10)
 - 2026-03-12 11:23 | patch | fix(admin): stabilize member editor input and session expiration (files: 4)
