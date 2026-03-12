@@ -3,7 +3,7 @@
 ## Project SemVer Summary (ESCLUB MINING LEAGUE)
 
 `기존 HTML 기반 페이지 -> React 리뉴얼` 전환 이력을 기준으로 재정의한 프로젝트 버전 요약입니다.
-상세 근거는 `CHANGELOG_SEMVER.md`를 참조하세요.
+상세 근거는 `docs/changelog/changelog_semver.md`를 참조하세요.
 
 ### `v3.4.0` (Unreleased, 후보)
 

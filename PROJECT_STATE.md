@@ -15,7 +15,8 @@
 ## UI Theme/Persistence
 
 - Material UI controller state is persisted to `localStorage` key: `md2-ui-controller`.
-- Persisted keys include: `darkMode`, `miniSidenav`, `transparentSidenav`, `whiteSidenav`, `sidenavColor`, `transparentNavbar`, `fixedNavbar`, `direction`, `layout`.
+- Persisted keys include: `darkMode`, `miniSidenav`, `transparentSidenav`, `whiteSidenav`, `sidenavColor`, `transparentNavbar`, `fixedNavbar`, `layout`.
+- RTL 방향 전환 기능은 미사용 정책으로 제거되었고, 앱은 LTR 고정으로 동작합니다.
 - Dark mode contrast fixes are applied to:
   - `/tables` rank badge
   - `/hall-of-fame` king cards (desktop/mobile)
@@ -94,7 +95,7 @@
   - This rule is for weekly report only.
   - Existing season kings logic (`current_crawl_display_data.json`) must remain unchanged.
 - Schema contract:
-  - See `WEEKLY_REPORT_SCHEMA.md`.
+  - See `docs/specs/weekly_report_schema.md`.
   - Mock sample: `public/data/mockup/weekly_report_2026_W08.json`.
 
 ## Open API Analytics Policy
@@ -114,15 +115,21 @@
 - Scheduler:
   - `crawl_openapi_chain`: every 2 hours at `:10` (even hours)
   - execution order: `run_full_crawl` -> `run_openapi_analytics_all`
+  - A안 적용: `run_full_crawl`은 2시간마다 시간 스냅샷(`_YYMMDD_HHMM`)을 저장하되,
+    테이블/개인 대시보드용 일별 발행(`_YYMMDD`, `current_crawl_display_data.json`, `manifest.json`)은 하루 1회만 수행
+  - daily publish gate: 기본 `04:10` KST 이후 첫 실행 1회
+  - marker file: `.private/locks/daily_publish_marker.json` (당일+시즌 중복 발행 방지)
   - `weekly_report`: every Thursday `05:05`
   - Lock files: `.private/locks/daily_crawl.lock`, `.private/locks/openapi.lock`
 - Throttling:
   - Batch knobs (env): `OPENAPI_BATCH_MAX_MATCHES` (default `300`), `OPENAPI_BATCH_WINDOW_MATCHES` (default `200`, `all` 가능)
   - Per-user randomized delay env: `OPENAPI_BATCH_DELAY_MIN` (default `0.8`), `OPENAPI_BATCH_DELAY_MAX` (default `1.6`)
+  - Daily publish gate env: `DAILY_PUBLISH_HOUR` (default `4`), `DAILY_PUBLISH_MINUTE` (default `10`)
   - 429/5xx retry handled by Open API client retry/backoff
 - Failure mode:
   - Missing analysis JSON on dashboard shows `분석 데이터 준비 중`
   - Fetch hard-fail hides Open API section only (base dashboard stays intact)
+  - Daily publish gate 시점에 크롤링 결과가 0건이면 marker를 갱신하지 않아 같은 날 다음 배치에서 재시도 가능
 
 ## Backend APIs
 

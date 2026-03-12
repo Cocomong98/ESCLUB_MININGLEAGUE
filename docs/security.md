@@ -13,6 +13,10 @@
 - Use `OPENAPI_CACHE_DIR` and mount it to a private host path/volume.
 - Recommended: mount a separate private volume outside `/app/data`.
 
+## CSP Hardening Rollout
+- For staged CSP migration plan and operational impact, see:
+  - `docs/csp_hardening_rollout.md`
+
 ## 30-Day Refresh Obligation
 - Nexon Open API crawled payloads must be refreshed or removed within 30 days.
 - Current policy:
