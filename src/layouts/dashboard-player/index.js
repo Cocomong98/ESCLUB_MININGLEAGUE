@@ -15,6 +15,7 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
+import { useMaterialUIController } from "context";
 
 import { fetchSeasonsWithData } from "utils/seasonUtils";
 import { buildPlayerPortraitUrls } from "utils/playerImageUtils";
@@ -62,6 +63,8 @@ function SquadPlayerDetail() {
   const [searchParams] = useSearchParams();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [controller] = useMaterialUIController();
+  const { darkMode } = controller;
 
   const [seasons, setSeasons] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState("");
@@ -328,19 +331,26 @@ function SquadPlayerDetail() {
           {status === "ready" && selectedPlayer && (
             <MDBox px={2} pb={1}>
               <MDBox
-                sx={({ palette }) => ({
-                  width: "100%",
-                  minHeight: 158,
-                  borderRadius: "12px",
-                  border: `1px solid ${palette.grey[300]}`,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  px: 2,
-                  py: 1.5,
-                  gap: 2,
-                  background: `linear-gradient(135deg, ${palette.grey[100]} 0%, ${palette.white.main} 100%)`,
-                })}
+                sx={({ palette }) => {
+                  const isDarkTheme = darkMode || palette.mode === "dark";
+                  return {
+                    width: "100%",
+                    minHeight: 158,
+                    borderRadius: "12px",
+                    border: `1px solid ${
+                      isDarkTheme ? "rgba(255,255,255,0.14)" : palette.grey[300]
+                    }`,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    px: 2,
+                    py: 1.5,
+                    gap: 2,
+                    background: isDarkTheme
+                      ? "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)"
+                      : `linear-gradient(135deg, ${palette.grey[100]} 0%, ${palette.white.main} 100%)`,
+                  };
+                }}
               >
                 <MDBox>
                   <MDTypography {...uiTypography.sectionTitle}>{title}</MDTypography>
@@ -360,17 +370,22 @@ function SquadPlayerDetail() {
                   </MDTypography>
                 </MDBox>
                 <MDBox
-                  sx={{
-                    width: 120,
-                    height: 120,
-                    borderRadius: "10px",
-                    border: "1px solid rgba(0,0,0,0.08)",
-                    bgcolor: "white",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    overflow: "hidden",
-                    flexShrink: 0,
+                  sx={({ palette }) => {
+                    const isDarkTheme = darkMode || palette.mode === "dark";
+                    return {
+                      width: 120,
+                      height: 120,
+                      borderRadius: "10px",
+                      border: `1px solid ${
+                        isDarkTheme ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.08)"
+                      }`,
+                      bgcolor: isDarkTheme ? "rgba(255,255,255,0.03)" : "white",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      overflow: "hidden",
+                      flexShrink: 0,
+                    };
                   }}
                 >
                   {portraitUrl ? (
@@ -410,13 +425,18 @@ function SquadPlayerDetail() {
                 {quickMetrics.map((item) => (
                   <MDBox
                     key={item.label}
-                    sx={({ palette }) => ({
-                      border: `1px solid ${palette.grey[300]}`,
-                      borderRadius: "10px",
-                      px: 1.1,
-                      py: 0.8,
-                      backgroundColor: palette.grey[100],
-                    })}
+                    sx={({ palette }) => {
+                      const isDarkTheme = darkMode || palette.mode === "dark";
+                      return {
+                        border: `1px solid ${
+                          isDarkTheme ? "rgba(255,255,255,0.12)" : palette.grey[300]
+                        }`,
+                        borderRadius: "10px",
+                        px: 1.1,
+                        py: 0.8,
+                        backgroundColor: isDarkTheme ? "rgba(255,255,255,0.04)" : palette.grey[100],
+                      };
+                    }}
                   >
                     <MDTypography {...uiTypography.metaLabel}>{item.label}</MDTypography>
                     <MDTypography {...uiTypography.metaValue} display="block" mt={0.15}>

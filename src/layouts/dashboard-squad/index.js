@@ -20,6 +20,7 @@ import PlayerChip from "components/pitch/PlayerChip";
 import PitchBoard from "components/pitch/PitchBoard";
 import FmMetricPanel from "components/metrics/FmMetricPanel";
 import useElementSize from "hooks/useElementSize";
+import { useMaterialUIController } from "context";
 import { buildPlayerPortraitUrls } from "utils/playerImageUtils";
 import { fetchSeasonsWithData } from "utils/seasonUtils";
 import { uiTypography } from "utils/uiTypography";
@@ -34,9 +35,6 @@ const navActionSx = ({ palette }) => ({
     backgroundColor: palette.info.main,
   },
 });
-
-const DEBUG_LAYOUT_BORDERS = false;
-const DEBUG_ALIGNMENT_PROBE = false;
 
 const TOP_ROW_MIN_HEIGHT = 420;
 const TOP_ROW_MAX_HEIGHT = 760;
@@ -551,14 +549,6 @@ function getNextInsightLayoutMode(current, isDesktopLayout) {
   return order[currentIndex + 1];
 }
 
-function debugOutline(color = "rgba(255, 0, 0, 0.95)", width = "1px") {
-  return DEBUG_LAYOUT_BORDERS ? `${width} solid ${color}` : undefined;
-}
-
-function round2(value) {
-  return Number.isFinite(value) ? Number(value.toFixed(2)) : null;
-}
-
 function clampToPitch(value, margin, fullSize) {
   if (!Number.isFinite(fullSize) || fullSize <= 0) return value;
   const min = Math.min(margin, fullSize / 2);
@@ -587,6 +577,8 @@ function SquadAnalysis() {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
   const isDesktopLayout = useMediaQuery("(min-width:1200px)");
+  const [controller] = useMaterialUIController();
+  const { darkMode } = controller;
 
   const [seasons, setSeasons] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState("");
@@ -597,9 +589,6 @@ function SquadAnalysis() {
   const [selectedPlayerDetail, setSelectedPlayerDetail] = useState(null);
   const [playerPortraitIndex, setPlayerPortraitIndex] = useState(0);
   const topRowRef = useRef(null);
-  const topCardsRef = useRef(null);
-  const leftCardRef = useRef(null);
-  const rightCardRef = useRef(null);
   const insightViewportRef = useRef(null);
   const insightContentRef = useRef(null);
   const insightViewportSizeRef = useRef({ width: 0, height: 0 });
@@ -607,9 +596,7 @@ function SquadAnalysis() {
   const lineupOffsetRef = useRef({ x: 0, y: 0 });
   const resizeRafRef = useRef(null);
   const [topRowHeight, setTopRowHeight] = useState(null);
-  const [alignmentProbe, setAlignmentProbe] = useState(null);
   const [lineupVisualOffset, setLineupVisualOffset] = useState({ x: 0, y: 0 });
-  const [lineupVisualBounds, setLineupVisualBounds] = useState(null);
   const [insightLayoutMode, setInsightLayoutMode] = useState("full");
   const [insightViewportSize, setInsightViewportSize] = useState({ width: 0, height: 0 });
   const [insightTabIndex, setInsightTabIndex] = useState(0);
@@ -1436,7 +1423,6 @@ function SquadAnalysis() {
     if (typeof window === "undefined") return undefined;
 
     if (!pitchPlayers.length) {
-      setLineupVisualBounds(null);
       lineupOffsetRef.current = { x: 0, y: 0 };
       setLineupVisualOffset((prev) => (prev.x === 0 && prev.y === 0 ? prev : { x: 0, y: 0 }));
       return undefined;
@@ -1510,30 +1496,6 @@ function SquadAnalysis() {
             ? prev
             : nextOffset
         );
-
-        const nextBounds = {
-          minX: baseMinX + nextOffset.x - pitchRect.left,
-          maxX: baseMaxX + nextOffset.x - pitchRect.left,
-          minY: baseMinY + nextOffset.y - pitchRect.top,
-          maxY: baseMaxY + nextOffset.y - pitchRect.top,
-        };
-        nextBounds.centerX = (nextBounds.minX + nextBounds.maxX) / 2;
-        nextBounds.centerY = (nextBounds.minY + nextBounds.maxY) / 2;
-
-        setLineupVisualBounds((prev) => {
-          if (!prev) return nextBounds;
-          if (
-            Math.abs(prev.minX - nextBounds.minX) < 0.05 &&
-            Math.abs(prev.maxX - nextBounds.maxX) < 0.05 &&
-            Math.abs(prev.minY - nextBounds.minY) < 0.05 &&
-            Math.abs(prev.maxY - nextBounds.maxY) < 0.05 &&
-            Math.abs(prev.centerX - nextBounds.centerX) < 0.05 &&
-            Math.abs(prev.centerY - nextBounds.centerY) < 0.05
-          ) {
-            return prev;
-          }
-          return nextBounds;
-        });
       });
     };
 
@@ -1555,71 +1517,6 @@ function SquadAnalysis() {
       }
     };
   }, [pitchPlayers, pitchRef]);
-
-  useLayoutEffect(() => {
-    if (!DEBUG_ALIGNMENT_PROBE || typeof window === "undefined") return undefined;
-
-    const measure = () => {
-      const topRowRect = topRowRef.current?.getBoundingClientRect();
-      const topCardsRect = topCardsRef.current?.getBoundingClientRect();
-      const leftCardRect = leftCardRef.current?.getBoundingClientRect();
-      const rightCardRect = rightCardRef.current?.getBoundingClientRect();
-      const pitchRect = pitchRef.current?.getBoundingClientRect();
-      if (!topRowRect || !topCardsRect || !leftCardRect || !rightCardRect || !pitchRect) return;
-
-      const topRowCenterX = topRowRect.left + topRowRect.width / 2;
-      const topCardsCenterX = topCardsRect.left + topCardsRect.width / 2;
-      const leftCardCenterX = leftCardRect.left + leftCardRect.width / 2;
-      const rightCardCenterX = rightCardRect.left + rightCardRect.width / 2;
-      const pitchCenterX = pitchRect.left + pitchRect.width / 2;
-
-      const effectiveBounds = lineupVisualBounds || lineupBounds;
-      const usingVisualBounds = Boolean(lineupVisualBounds);
-      const lineupCenterX = effectiveBounds ? pitchRect.left + effectiveBounds.centerX : null;
-      const leftGap = effectiveBounds
-        ? usingVisualBounds
-          ? effectiveBounds.minX
-          : effectiveBounds.minX - chipSize / 2
-        : null;
-      const rightGap = effectiveBounds
-        ? usingVisualBounds
-          ? pitchRect.width - effectiveBounds.maxX
-          : pitchRect.width - (effectiveBounds.maxX + chipSize / 2)
-        : null;
-
-      const nextProbe = {
-        topRowCenterX: round2(topRowCenterX),
-        topCardsCenterX: round2(topCardsCenterX),
-        leftCardCenterX: round2(leftCardCenterX),
-        rightCardCenterX: round2(rightCardCenterX),
-        pitchCenterX: round2(pitchCenterX),
-        lineupCenterX: round2(lineupCenterX),
-        lineupOffsetX: round2(lineupVisualOffset.x),
-        lineupOffsetY: round2(lineupVisualOffset.y),
-        deltaTopRowVsCards: round2(topCardsCenterX - topRowCenterX),
-        deltaPitchVsLeftCard: round2(pitchCenterX - leftCardCenterX),
-        deltaLineupVsPitch: round2(
-          Number.isFinite(lineupCenterX) ? lineupCenterX - pitchCenterX : Number.NaN
-        ),
-        lineupLeftGap: round2(leftGap),
-        lineupRightGap: round2(rightGap),
-      };
-
-      setAlignmentProbe((prev) => {
-        if (JSON.stringify(prev) === JSON.stringify(nextProbe)) return prev;
-        return nextProbe;
-      });
-    };
-
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, [chipSize, lineupBounds, lineupVisualBounds, lineupVisualOffset, pitchRef, topRowHeight]);
-
-  useEffect(() => {
-    if (!DEBUG_ALIGNMENT_PROBE || !alignmentProbe) return;
-    console.table(alignmentProbe);
-  }, [alignmentProbe]);
 
   useEffect(() => {
     if (!selectedPlayerDetail) return;
@@ -1942,7 +1839,7 @@ function SquadAnalysis() {
   return (
     <DashboardLayout>
       <DashboardNavbar pageTitle="스쿼드 분석" />
-      <MDBox py={{ xs: 2, md: 3 }} sx={{ outline: debugOutline("rgba(255, 0, 0, 0.9)", "2px") }}>
+      <MDBox py={{ xs: 2, md: 3 }}>
         <Grid container spacing={{ xs: 2, md: 3 }}>
           <Grid item xs={12}>
             <MDBox
@@ -2007,25 +1904,9 @@ function SquadAnalysis() {
             position: "relative",
             minHeight: { lg: TOP_ROW_MIN_HEIGHT },
             height: { xs: "auto", lg: topRowHeight ? `${topRowHeight}px` : "calc(100vh - 360px)" },
-            outline: debugOutline("rgba(255, 0, 0, 0.95)", "2px"),
           }}
         >
-          {DEBUG_ALIGNMENT_PROBE && (
-            <MDBox
-              sx={{
-                position: "absolute",
-                top: 0,
-                bottom: 0,
-                left: "50%",
-                width: "1px",
-                backgroundColor: "rgba(255, 0, 0, 0.75)",
-                zIndex: 5,
-                pointerEvents: "none",
-              }}
-            />
-          )}
           <MDBox
-            ref={topCardsRef}
             sx={{
               display: "grid",
               gridTemplateColumns: { xs: "1fr", lg: "5fr 7fr" },
@@ -2033,7 +1914,6 @@ function SquadAnalysis() {
               height: "100%",
               minHeight: 0,
               alignItems: "stretch",
-              outline: debugOutline("rgba(255, 64, 64, 0.95)", "2px"),
             }}
           >
             <MDBox
@@ -2041,25 +1921,18 @@ function SquadAnalysis() {
                 height: { xs: "auto", lg: "100%" },
                 minHeight: 0,
                 display: "flex",
-                outline: debugOutline("rgba(255, 96, 96, 0.95)", "2px"),
               }}
             >
               <Card
-                ref={leftCardRef}
                 sx={{
                   height: "100%",
                   width: "100%",
                   display: "flex",
                   flexDirection: "column",
                   minHeight: 0,
-                  outline: debugOutline("rgba(255, 128, 128, 0.95)", "2px"),
                 }}
               >
-                <MDBox
-                  p={1.25}
-                  pb={0.5}
-                  sx={{ outline: debugOutline("rgba(255, 160, 160, 0.95)", "1px") }}
-                >
+                <MDBox p={1.25} pb={0.5}>
                   <MDTypography {...uiTypography.sectionTitle}>베스트 11 포지션 맵</MDTypography>
                   <MDTypography {...uiTypography.sectionSub}>
                     출전 기준 상위 11명 (클릭 시 선수 페이지)
@@ -2076,19 +1949,11 @@ function SquadAnalysis() {
                     justifyContent: "center",
                     alignItems: "center",
                     overflow: "hidden",
-                    outline: debugOutline("rgba(255, 0, 0, 0.95)", "2px"),
                   }}
                 >
                   {status === "ready" && pitchPlayers.length > 0 ? (
-                    <MDBox
-                      sx={{ width: "100%", outline: debugOutline("rgba(255, 120, 120, 0.95)") }}
-                    >
-                      <PitchBoard
-                        ref={pitchRef}
-                        maxWidth={pitchBoardMaxWidth}
-                        aspectRatio="3 / 4"
-                        debugBorders={DEBUG_LAYOUT_BORDERS}
-                      >
+                    <MDBox sx={{ width: "100%" }}>
+                      <PitchBoard ref={pitchRef} maxWidth={pitchBoardMaxWidth} aspectRatio="3 / 4">
                         <MDBox
                           ref={lineupLayerRef}
                           sx={{
@@ -2097,7 +1962,6 @@ function SquadAnalysis() {
                             transform: `translate(${lineupVisualOffset.x}px, ${lineupVisualOffset.y}px)`,
                             transformOrigin: "center center",
                             pointerEvents: "none",
-                            outline: debugOutline("rgba(255, 96, 96, 0.95)", "1px"),
                           }}
                         >
                           {pitchPlayers.map((player) => (
@@ -2115,7 +1979,6 @@ function SquadAnalysis() {
                                 transform: "translate(-50%, -50%)",
                                 zIndex: 2,
                                 pointerEvents: "auto",
-                                outline: debugOutline("rgba(255, 0, 0, 0.95)", "1px"),
                               }}
                             >
                               <PlayerChip
@@ -2128,7 +1991,6 @@ function SquadAnalysis() {
                                   player.spId || player.playerKey || player.id
                                 )}
                                 onClick={() => handleOpenPlayerPage(player)}
-                                debugBorder={DEBUG_LAYOUT_BORDERS}
                               />
                             </MDBox>
                           ))}
@@ -2153,25 +2015,18 @@ function SquadAnalysis() {
                 height: { xs: "auto", lg: "100%" },
                 minHeight: 0,
                 display: "flex",
-                outline: debugOutline("rgba(255, 96, 96, 0.95)", "2px"),
               }}
             >
               <Card
-                ref={rightCardRef}
                 sx={{
                   height: "100%",
                   width: "100%",
                   display: "flex",
                   flexDirection: "column",
                   minHeight: 0,
-                  outline: debugOutline("rgba(255, 128, 128, 0.95)", "2px"),
                 }}
               >
-                <MDBox
-                  p={1.25}
-                  pb={0.5}
-                  sx={{ outline: debugOutline("rgba(255, 160, 160, 0.95)", "1px") }}
-                >
+                <MDBox p={1.25} pb={0.5}>
                   <MDTypography {...uiTypography.sectionTitle}>지표 한눈에</MDTypography>
                   <MDTypography {...uiTypography.sectionSub}>팀 세부 지표 (시즌 분석)</MDTypography>
                 </MDBox>
@@ -2184,7 +2039,6 @@ function SquadAnalysis() {
                     overflow: "hidden",
                     display: "flex",
                     flexDirection: "column",
-                    outline: debugOutline("rgba(255, 0, 0, 0.95)", "2px"),
                   }}
                 >
                   {insightStatus === "ready" && insightQuickMetrics.length > 0 && (
@@ -2202,17 +2056,32 @@ function SquadAnalysis() {
                       {insightQuickMetrics.map((item) => (
                         <MDBox
                           key={item.key}
-                          sx={({ palette }) => ({
-                            border: `1px solid ${palette.grey[300]}`,
-                            borderRadius: "8px",
-                            px: 0.9,
-                            py: 0.7,
-                            minHeight: 52,
-                            backgroundColor: palette.grey[100],
-                          })}
+                          sx={({ palette }) => {
+                            const isDarkTheme = darkMode || palette.mode === "dark";
+                            return {
+                              border: `1px solid ${
+                                isDarkTheme ? "rgba(255,255,255,0.12)" : palette.grey[300]
+                              }`,
+                              borderRadius: "8px",
+                              px: 0.9,
+                              py: 0.7,
+                              minHeight: 52,
+                              backgroundColor: isDarkTheme
+                                ? "rgba(255,255,255,0.04)"
+                                : palette.grey[100],
+                              color: isDarkTheme ? palette.text.main : palette.dark.main,
+                            };
+                          }}
                         >
-                          <MDTypography {...uiTypography.metaLabel}>{item.label}</MDTypography>
-                          <MDTypography {...uiTypography.metaValue} display="block" mt={0.1}>
+                          <MDTypography {...uiTypography.metaLabel} color="inherit">
+                            {item.label}
+                          </MDTypography>
+                          <MDTypography
+                            {...uiTypography.metaValue}
+                            color="inherit"
+                            display="block"
+                            mt={0.1}
+                          >
                             {item.value}
                           </MDTypography>
                         </MDBox>
@@ -2239,7 +2108,6 @@ function SquadAnalysis() {
                         overflow: "hidden",
                         display: "flex",
                         flexDirection: "column",
-                        outline: debugOutline("rgba(255, 0, 0, 0.95)", "1px"),
                       }}
                     >
                       {insightLayoutMode === "tabs" ? (
@@ -2304,10 +2172,7 @@ function SquadAnalysis() {
                           }}
                         >
                           {advancedMetricGroups.map((group) => (
-                            <MDBox
-                              key={group.key}
-                              sx={{ outline: debugOutline("rgba(255, 0, 0, 0.95)") }}
-                            >
+                            <MDBox key={group.key}>
                               <FmMetricPanel
                                 title={group.title}
                                 items={group.items}
@@ -2328,51 +2193,40 @@ function SquadAnalysis() {
           </MDBox>
         </MDBox>
 
-        {DEBUG_ALIGNMENT_PROBE && alignmentProbe && (
-          <MDBox
-            mb={2}
-            p={1.25}
-            sx={{
-              border: "1px dashed rgba(255, 0, 0, 0.7)",
-              backgroundColor: "rgba(255, 0, 0, 0.03)",
-            }}
-          >
-            <MDTypography {...uiTypography.metaLabel} fontWeight="bold">
-              Alignment Probe
-            </MDTypography>
-            <MDBox mt={0.5} sx={{ display: "grid", rowGap: 0.2 }}>
-              <MDTypography {...uiTypography.metaLabel}>
-                topRow-cards ΔX: {alignmentProbe.deltaTopRowVsCards}px
-              </MDTypography>
-              <MDTypography {...uiTypography.metaLabel}>
-                pitch-leftCard ΔX: {alignmentProbe.deltaPitchVsLeftCard}px
-              </MDTypography>
-              <MDTypography {...uiTypography.metaLabel}>
-                lineup-pitch ΔX: {alignmentProbe.deltaLineupVsPitch}px
-              </MDTypography>
-              <MDTypography {...uiTypography.metaLabel}>
-                lineup gap L/R: {alignmentProbe.lineupLeftGap}px / {alignmentProbe.lineupRightGap}px
-              </MDTypography>
-              <MDTypography {...uiTypography.metaLabel}>
-                lineup offset X/Y: {alignmentProbe.lineupOffsetX}px / {alignmentProbe.lineupOffsetY}
-                px
-              </MDTypography>
-            </MDBox>
-          </MDBox>
-        )}
-
         <Dialog
           open={Boolean(selectedPlayerDetail)}
           onClose={handleClosePlayerModal}
           maxWidth="md"
           fullWidth
           scroll="paper"
+          PaperProps={{
+            sx: ({ palette }) => {
+              const isDarkTheme = darkMode || palette.mode === "dark";
+              return {
+                backgroundColor: isDarkTheme ? palette.background.card : palette.background.paper,
+                color: isDarkTheme ? palette.text.main : palette.text.primary,
+                backgroundImage: "none",
+                "& .MuiDialogContent-dividers": {
+                  borderColor: isDarkTheme ? "rgba(255,255,255,0.12)" : palette.grey[300],
+                },
+                "& .MuiTableCell-root": {
+                  borderColor: isDarkTheme ? "rgba(255,255,255,0.08) !important" : undefined,
+                },
+                "& .MuiTableCell-root, & .MuiTableCell-root *": {
+                  color: isDarkTheme ? `${palette.text.main} !important` : undefined,
+                },
+                "& .MuiSvgIcon-root": {
+                  color: isDarkTheme ? `${palette.text.main} !important` : undefined,
+                },
+              };
+            },
+          }}
         >
           {selectedPlayerDetail && (
             <>
               <DialogTitle sx={{ pb: 1 }}>
                 <MDBox display="flex" justifyContent="space-between" alignItems="center" gap={1.5}>
-                  <MDTypography {...uiTypography.sectionTitle}>
+                  <MDTypography {...uiTypography.sectionTitle} color="inherit">
                     {modalPlayerTitle} - 선수 상세 지표
                   </MDTypography>
                   <MDButton
@@ -2384,35 +2238,56 @@ function SquadAnalysis() {
                     닫기
                   </MDButton>
                 </MDBox>
-                <MDTypography {...uiTypography.sectionSub} display="block">
+                <MDTypography {...uiTypography.sectionSub} color="inherit" display="block">
                   데이터 생성 시각: {formatGeneratedAt(payload?.generatedAt)}
                 </MDTypography>
               </DialogTitle>
               <DialogContent dividers>
                 <MDBox
-                  sx={({ palette }) => ({
-                    width: "100%",
-                    minHeight: 158,
-                    borderRadius: "12px",
-                    border: `1px solid ${palette.grey[300]}`,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    px: 2,
-                    py: 1.5,
-                    gap: 2,
-                    background: `linear-gradient(135deg, ${palette.grey[100]} 0%, ${palette.white.main} 100%)`,
-                  })}
+                  sx={({ palette }) => {
+                    const isDarkTheme = darkMode || palette.mode === "dark";
+                    return {
+                      width: "100%",
+                      minHeight: 158,
+                      borderRadius: "12px",
+                      border: `1px solid ${
+                        isDarkTheme ? "rgba(255,255,255,0.14)" : palette.grey[300]
+                      }`,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      px: 2,
+                      py: 1.5,
+                      gap: 2,
+                      background: isDarkTheme
+                        ? "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)"
+                        : `linear-gradient(135deg, ${palette.grey[100]} 0%, ${palette.white.main} 100%)`,
+                      color: isDarkTheme ? palette.text.main : palette.dark.main,
+                    };
+                  }}
                 >
-                  <MDBox>
-                    <MDTypography variant="h5" fontWeight="medium">
+                  <MDBox
+                    sx={({ palette }) => {
+                      const isDarkTheme = darkMode || palette.mode === "dark";
+                      const forcedColor = isDarkTheme
+                        ? `${palette.common.white} !important`
+                        : `${palette.dark.main} !important`;
+                      return {
+                        color: forcedColor,
+                        "&, & *": {
+                          color: forcedColor,
+                        },
+                      };
+                    }}
+                  >
+                    <MDTypography variant="h5" fontWeight="medium" color="inherit">
                       {modalPlayerTitle}
                     </MDTypography>
-                    <MDTypography {...uiTypography.sectionSub} display="block">
+                    <MDTypography {...uiTypography.sectionSub} color="inherit" display="block">
                       {selectedPlayerDetail.positionName || selectedPlayerDetail.position || "-"} ·{" "}
                       {selectedPlayerDetail.seasonName || selectedPlayerDetail.seasonId || "-"}
                     </MDTypography>
-                    <MDTypography {...uiTypography.sectionSub} display="block">
+                    <MDTypography {...uiTypography.sectionSub} color="inherit" display="block">
                       출전 {toNumber(selectedPlayerDetail.appearances, 0)}경 · 승률{" "}
                       {formatPercentOrDash(
                         selectedPlayerDetail.playerWinRate !== undefined &&
@@ -2424,17 +2299,22 @@ function SquadAnalysis() {
                     </MDTypography>
                   </MDBox>
                   <MDBox
-                    sx={{
-                      width: 120,
-                      height: 120,
-                      borderRadius: "10px",
-                      border: "1px solid rgba(0,0,0,0.08)",
-                      bgcolor: "white",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      overflow: "hidden",
-                      flexShrink: 0,
+                    sx={({ palette }) => {
+                      const isDarkTheme = darkMode || palette.mode === "dark";
+                      return {
+                        width: 120,
+                        height: 120,
+                        borderRadius: "10px",
+                        border: `1px solid ${
+                          isDarkTheme ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.08)"
+                        }`,
+                        bgcolor: isDarkTheme ? "rgba(255,255,255,0.03)" : "white",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        overflow: "hidden",
+                        flexShrink: 0,
+                      };
                     }}
                   >
                     {modalPortraitUrl ? (

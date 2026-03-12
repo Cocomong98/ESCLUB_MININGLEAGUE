@@ -16,11 +16,15 @@ Coded by www.creative-tim.com
 // Material Dashboard 2 React Base Styles
 import colors from "assets/theme-dark/base/colors";
 
-const { info, dark } = colors;
+const { info, text, background } = colors;
 
 const globals = {
   html: {
     scrollBehavior: "smooth",
+  },
+  body: {
+    color: text.main,
+    backgroundColor: background.default,
   },
   "*, *::before, *::after": {
     margin: 0,
@@ -28,9 +32,10 @@ const globals = {
   },
   "a, a:link, a:visited": {
     textDecoration: "none !important",
+    color: "inherit",
   },
   "a.link, .link, a.link:link, .link:link, a.link:visited, .link:visited": {
-    color: `${dark.main} !important`,
+    color: `${text.main} !important`,
     transition: "color 150ms ease-in !important",
   },
   "a.link:hover, .link:hover, a.link:focus, .link:focus": {

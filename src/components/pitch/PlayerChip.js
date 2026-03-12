@@ -37,7 +37,6 @@ function PlayerChip({
   highlight,
   secondaryText,
   playerImageUrls,
-  debugBorder,
 }) {
   const posText = String(displayPos || "N/A");
   const posLength = posText.length;
@@ -63,7 +62,6 @@ function PlayerChip({
   const [imageIndex, setImageIndex] = useState(0);
   const currentImageUrl = playerImageUrls[imageIndex] || "";
   const imageKey = playerImageUrls.join("|");
-  const debugOutline = debugBorder ? "1px solid rgba(255, 0, 0, 0.95)" : undefined;
 
   useEffect(() => {
     setImageIndex(0);
@@ -92,7 +90,6 @@ function PlayerChip({
           outline: "1px solid rgba(125,211,252,0.75)",
           outlineOffset: "1px",
         },
-        outline: debugOutline,
       }}
       aria-label={`${posText} ${playerName || ""}`.trim()}
     >
@@ -105,7 +102,6 @@ function PlayerChip({
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          outline: debugOutline,
         }}
       >
         <Box display="flex" alignItems="center" justifyContent="space-between" gap={0.6}>
@@ -117,7 +113,6 @@ function PlayerChip({
               borderRadius: "5px",
               border: "1px solid rgba(255,255,255,0.14)",
               backgroundColor: "rgba(15,23,42,0.85)",
-              outline: debugOutline,
             }}
           >
             <Typography
@@ -216,7 +211,6 @@ PlayerChip.propTypes = {
   highlight: PropTypes.bool,
   secondaryText: PropTypes.string,
   playerImageUrls: PropTypes.arrayOf(PropTypes.string),
-  debugBorder: PropTypes.bool,
 };
 
 PlayerChip.defaultProps = {
@@ -227,7 +221,6 @@ PlayerChip.defaultProps = {
   highlight: false,
   secondaryText: "",
   playerImageUrls: [],
-  debugBorder: false,
 };
 
 export default PlayerChip;

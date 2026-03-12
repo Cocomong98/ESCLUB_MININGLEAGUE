@@ -30,6 +30,7 @@ import Footer from "examples/Footer";
 import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
 import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
+import { useMaterialUIController } from "context";
 import { fetchSeasonsWithData } from "utils/seasonUtils";
 import { uiTypography } from "utils/uiTypography";
 
@@ -49,6 +50,8 @@ function Dashboard() {
   const [searchParams] = useSearchParams();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [controller] = useMaterialUIController();
+  const { darkMode } = controller;
   const [seasons, setSeasons] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState("");
   const [currentSeason, setCurrentSeason] = useState("");
@@ -308,60 +311,6 @@ function Dashboard() {
             >
               스쿼드 분석 보기
             </MDButton>
-          </MDBox>
-        </MDBox>
-        <MDBox
-          mb={2.2}
-          sx={{
-            display: "grid",
-            gridTemplateColumns: {
-              xs: "repeat(1, minmax(0, 1fr))",
-              md: "repeat(3, minmax(0, 1fr))",
-            },
-            gap: 0.9,
-          }}
-        >
-          <MDBox
-            sx={({ palette }) => ({
-              border: `1px solid ${palette.grey[300]}`,
-              borderRadius: "10px",
-              px: 1.2,
-              py: 0.85,
-              backgroundColor: palette.grey[100],
-            })}
-          >
-            <MDTypography {...uiTypography.metaLabel}>구단주</MDTypography>
-            <MDTypography {...uiTypography.metaValue} display="block" mt={0.15}>
-              {ownerName || "-"}
-            </MDTypography>
-          </MDBox>
-          <MDBox
-            sx={({ palette }) => ({
-              border: `1px solid ${palette.grey[300]}`,
-              borderRadius: "10px",
-              px: 1.2,
-              py: 0.85,
-              backgroundColor: palette.grey[100],
-            })}
-          >
-            <MDTypography {...uiTypography.metaLabel}>조회 시즌</MDTypography>
-            <MDTypography {...uiTypography.metaValue} display="block" mt={0.15}>
-              {selectedSeason || "-"}
-            </MDTypography>
-          </MDBox>
-          <MDBox
-            sx={({ palette }) => ({
-              border: `1px solid ${palette.grey[300]}`,
-              borderRadius: "10px",
-              px: 1.2,
-              py: 0.85,
-              backgroundColor: palette.grey[100],
-            })}
-          >
-            <MDTypography {...uiTypography.metaLabel}>현재 진행 시즌</MDTypography>
-            <MDTypography {...uiTypography.metaValue} display="block" mt={0.15}>
-              {currentSeason || "-"}
-            </MDTypography>
           </MDBox>
         </MDBox>
         <Grid container spacing={{ xs: 1.5, md: 3 }}>

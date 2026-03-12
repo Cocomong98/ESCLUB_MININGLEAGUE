@@ -29,12 +29,15 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
 import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
+import { useMaterialUIController } from "context";
 import { fetchSeasonsWithData } from "utils/seasonUtils";
 import { uiTypography } from "utils/uiTypography";
 
 function Tables() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [controller] = useMaterialUIController();
+  const { darkMode } = controller;
 
   const [seasons, setSeasons] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState("");
@@ -277,20 +280,33 @@ function Tables() {
     rank: (
       <MDBox
         component="span"
-        sx={({ palette }) => ({
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          minWidth: 32,
-          px: 1,
-          py: 0.25,
-          borderRadius: "999px",
-          fontSize: "0.75rem",
-          fontWeight: 700,
-          color: palette.text.primary,
-          backgroundColor:
-            Number(player.순위) <= 3 ? "rgba(59,130,246,0.16)" : "rgba(148,163,184,0.12)",
-        })}
+        color={darkMode ? "white" : "dark"}
+        sx={({ palette }) => {
+          const isDarkTheme = darkMode || palette.mode === "dark";
+          const isTopRank = Number(player.순위) <= 3;
+          return {
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            minWidth: 32,
+            px: 1,
+            py: 0.25,
+            borderRadius: "999px",
+            fontSize: "0.75rem",
+            fontWeight: 700,
+            color: isDarkTheme
+              ? `${palette.common.white} !important`
+              : `${palette.dark.main} !important`,
+            border: `1px solid ${isDarkTheme ? "rgba(255,255,255,0.18)" : "rgba(15,23,42,0.08)"}`,
+            backgroundColor: isTopRank
+              ? isDarkTheme
+                ? "rgba(59,130,246,0.34)"
+                : "rgba(59,130,246,0.16)"
+              : isDarkTheme
+              ? "rgba(148,163,184,0.24)"
+              : "rgba(148,163,184,0.12)",
+          };
+        }}
       >
         {player.순위}
       </MDBox>

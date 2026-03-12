@@ -3,14 +3,9 @@ import PropTypes from "prop-types";
 
 import Box from "@mui/material/Box";
 
-const PitchBoard = forwardRef(function PitchBoard(
-  { children, maxWidth, aspectRatio, debugBorders },
-  ref
-) {
-  const debugOutline = debugBorders ? "1px solid rgba(255, 0, 0, 0.95)" : undefined;
-
+const PitchBoard = forwardRef(function PitchBoard({ children, maxWidth, aspectRatio }, ref) {
   return (
-    <Box display="flex" justifyContent="center" width="100%" sx={{ outline: debugOutline }}>
+    <Box display="flex" justifyContent="center" width="100%">
       <Box
         ref={ref}
         sx={{
@@ -33,7 +28,6 @@ const PitchBoard = forwardRef(function PitchBoard(
             linear-gradient(180deg, #1f6f4c 0%, #15543a 100%)
           `,
           backgroundBlendMode: "screen, normal, normal",
-          outline: debugOutline,
         }}
       >
         <Box
@@ -43,7 +37,6 @@ const PitchBoard = forwardRef(function PitchBoard(
             zIndex: 1,
             pointerEvents: "none",
             opacity: 0.86,
-            outline: debugOutline,
           }}
         >
           <Box
@@ -78,9 +71,7 @@ const PitchBoard = forwardRef(function PitchBoard(
           </Box>
         </Box>
 
-        <Box sx={{ position: "absolute", inset: 0, zIndex: 2, outline: debugOutline }}>
-          {children}
-        </Box>
+        <Box sx={{ position: "absolute", inset: 0, zIndex: 2 }}>{children}</Box>
       </Box>
     </Box>
   );
@@ -90,14 +81,12 @@ PitchBoard.propTypes = {
   children: PropTypes.node,
   maxWidth: PropTypes.number,
   aspectRatio: PropTypes.string,
-  debugBorders: PropTypes.bool,
 };
 
 PitchBoard.defaultProps = {
   children: null,
   maxWidth: 520,
   aspectRatio: "3 / 4",
-  debugBorders: false,
 };
 
 export default PitchBoard;

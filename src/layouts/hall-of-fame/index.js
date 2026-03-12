@@ -16,6 +16,7 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
+import { useMaterialUIController } from "context";
 
 // Utils
 import { fetchSeasonsWithData } from "utils/seasonUtils";
@@ -84,19 +85,22 @@ function normalizeSeasonRecord(season, payload) {
   };
 }
 
-function KingCell({ king, season }) {
+function KingCell({ king, season, darkMode }) {
   const displayValue =
     king.metricValue === null || king.metricValue === undefined ? "-" : king.metricValue;
 
   return (
     <MDBox
-      sx={{
-        p: 1,
-        borderRadius: "10px",
-        border: "1px solid",
-        borderColor: "rgba(148,163,184,0.24)",
-        backgroundColor: "rgba(248,250,252,0.8)",
-        lineHeight: 1.35,
+      sx={({ palette }) => {
+        const isDarkTheme = darkMode || palette.mode === "dark";
+        return {
+          p: 1,
+          borderRadius: "10px",
+          border: "1px solid",
+          borderColor: isDarkTheme ? "rgba(255,255,255,0.14)" : "rgba(148,163,184,0.24)",
+          backgroundColor: isDarkTheme ? "rgba(255,255,255,0.04)" : "rgba(248,250,252,0.8)",
+          lineHeight: 1.35,
+        };
       }}
     >
       {king.playerId ? (
@@ -132,9 +136,10 @@ KingCell.propTypes = {
     metricValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   }).isRequired,
   season: PropTypes.string.isRequired,
+  darkMode: PropTypes.bool.isRequired,
 };
 
-function MobileKingCell({ king, season, title }) {
+function MobileKingCell({ king, season, title, darkMode }) {
   const displayValue =
     king.metricValue === null || king.metricValue === undefined ? "-" : king.metricValue;
 
@@ -142,10 +147,13 @@ function MobileKingCell({ king, season, title }) {
     <MDBox
       p={1}
       borderRadius="md"
-      sx={{
-        height: "100%",
-        border: "1px solid rgba(148,163,184,0.24)",
-        backgroundColor: ({ palette }) => palette.grey[100],
+      sx={({ palette }) => {
+        const isDarkTheme = darkMode || palette.mode === "dark";
+        return {
+          height: "100%",
+          border: `1px solid ${isDarkTheme ? "rgba(255,255,255,0.14)" : "rgba(148,163,184,0.24)"}`,
+          backgroundColor: isDarkTheme ? "rgba(255,255,255,0.04)" : palette.grey[100],
+        };
       }}
     >
       <MDTypography variant="caption" fontWeight="bold" color="text" display="block" mb={0.35}>
@@ -184,11 +192,14 @@ MobileKingCell.propTypes = {
   }).isRequired,
   season: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  darkMode: PropTypes.bool.isRequired,
 };
 
 function HallOfFame() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [controller] = useMaterialUIController();
+  const { darkMode } = controller;
   const [records, setRecords] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -251,10 +262,16 @@ function HallOfFame() {
         {record.season}
       </MDTypography>
     ),
-    miningKing: <KingCell king={record.kings.mining_king} season={record.season} />,
-    winRateKing: <KingCell king={record.kings.win_rate_king} season={record.season} />,
-    gameCountKing: <KingCell king={record.kings.game_count_king} season={record.season} />,
-    drawKing: <KingCell king={record.kings.draw_king} season={record.season} />,
+    miningKing: (
+      <KingCell king={record.kings.mining_king} season={record.season} darkMode={darkMode} />
+    ),
+    winRateKing: (
+      <KingCell king={record.kings.win_rate_king} season={record.season} darkMode={darkMode} />
+    ),
+    gameCountKing: (
+      <KingCell king={record.kings.game_count_king} season={record.season} darkMode={darkMode} />
+    ),
+    drawKing: <KingCell king={record.kings.draw_king} season={record.season} darkMode={darkMode} />,
   }));
 
   const mobileColumns = [
@@ -278,6 +295,7 @@ function HallOfFame() {
             king={record.kings[def.key]}
             season={record.season}
             title={def.title}
+            darkMode={darkMode}
           />
         ))}
       </MDBox>
