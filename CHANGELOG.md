@@ -81,6 +81,7 @@
 ## Auto Commit Log
 
 <!-- auto-commit-log:start -->
+- 2026-03-12 09:39 | patch | docs(deploy): align route docs and add server deployment cautions (files: 6)
 - 2026-03-12 09:39 | patch | chore(config): sync season config and batch env defaults (files: 3)
 - 2026-03-12 09:38 | patch | fix(openapi): add nickname candidate fallback chain for OUID lookup (files: 2)
 - 2026-03-12 09:38 | patch | fix(openapi): improve retry backoff and failure diagnostics (files: 1)
