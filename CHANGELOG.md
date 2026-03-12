@@ -81,6 +81,7 @@
 ## Auto Commit Log
 
 <!-- auto-commit-log:start -->
+- 2026-03-12 09:39 | patch | chore(config): sync season config and batch env defaults (files: 3)
 - 2026-03-12 09:38 | patch | fix(openapi): add nickname candidate fallback chain for OUID lookup (files: 2)
 - 2026-03-12 09:38 | patch | fix(openapi): improve retry backoff and failure diagnostics (files: 1)
 - 2026-03-11 13:54 | patch | docs(readme): 현재 운영 구조/배포/OpenAPI 실행 가이드 갱신 (files: 1)

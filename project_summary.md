@@ -28,8 +28,9 @@
     - 시즌/구단주 검색 및 시즌 정렬(최신/오래된 순)을 지원합니다.
     - 각 왕 항목에서 해당 구단주의 상세 대시보드로 이동할 수 있습니다.
 
-4.  **개인 분석 확장 페이지 (`/dashboard/:id/analysis`, `/dashboard/:id/squad`)**
-    - Open API 분석 JSON(`last200`, `shot_events_last200`, `player_usage_last200`, `squad_analysis_all`) 기반의 세부 분석/스쿼드 분석 페이지를 제공합니다.
+4.  **개인 분석 확장 페이지 (`/dashboard/:id/squad`)**
+    - Open API 분석 JSON(`last200`, `shot_events_last200`, `player_usage_last200`, `squad_analysis_all`) 기반의 스쿼드 분석 페이지를 제공합니다.
+    - `/dashboard/:id/analysis` 라우트는 임시 비활성화 상태입니다.
     - 스쿼드 분석 페이지 상단에서 좌측 `베스트11 포지션 맵`과 우측 `지표 한눈에`(팀 세부 지표)를 함께 조회할 수 있습니다.
     - 스쿼드 분석의 선수명을 클릭하면 선수별 상세 페이지(`/dashboard/:id/squad/player/:playerKey`)로 이동해 출전/승률 등 표 데이터를 조회할 수 있습니다.
 

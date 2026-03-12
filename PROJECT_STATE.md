@@ -9,6 +9,7 @@
 - Open API manager-mode analytics (`fconline_openapi/*`) + dashboard Open API section.
 - Squad page top section includes `베스트11 포지션 맵` + `지표 한눈에` (team advanced metrics from `last200.json`).
 - Squad table player click navigates to player detail page (`/dashboard/:id/squad/player/:playerKey`).
+- Analysis route (`/dashboard/:id/analysis`) is temporarily disabled; use squad route for Open API insights.
 
 ## Deployment Context
 
