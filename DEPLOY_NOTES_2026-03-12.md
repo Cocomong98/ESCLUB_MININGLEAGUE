@@ -20,6 +20,7 @@
 ## 서버 업로드 시 교체 원칙
 1. 교체 대상
    - `app.py`
+   - `admin.html`, `admin-panel.js`
    - `fconline_openapi/`
    - `build/` 또는 서버에서 사용하는 정적 산출물
    - `season_config.json`
@@ -33,6 +34,7 @@
 2. 컨테이너 쉘에서 직접 Python 단발 실행 시 `.env` 로딩 여부를 반드시 확인한다.
 3. OpenAPI 429(OPENAPI00007) 발생 시 빈도보다 `OPENAPI_BATCH_DELAY_*`와 `OPENAPI_BATCH_MAX_MATCHES`를 먼저 완화한다.
 4. `/dashboard/:id/analysis` 라우트는 임시 비활성화 상태이므로 운영 확인은 `/dashboard/:id/squad` 기준으로 진행한다.
+5. 관리자 세션 만료 정책(`ADMIN_SESSION_TTL_MINUTES`, `ADMIN_SESSION_IDLE_MINUTES`)을 운영 환경 `.env`에 설정한다.
 
 ## 배포 후 확인 체크리스트
 1. 페이지 확인

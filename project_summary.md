@@ -47,6 +47,7 @@
 
 이 프로젝트는 **React 프론트엔드 + Flask 백엔드(`app.py`)** 구조입니다.
 데이터 파일은 정적 JSON으로 관리되지만, 관리자 기능/크롤링/시즌 분할/히스토리 조회는 Flask API가 담당합니다.
+관리자 페이지는 템플릿 `admin.html`과 외부 스크립트 `admin-panel.js`를 통해 동작합니다.
 
 1.  **데이터 소스:**
 
@@ -72,6 +73,7 @@
 
 - **인증 방식:** 관리자 API는 세션 기반 인증(`POST /api/login`)으로 보호됩니다.
 - **비밀번호 관리:** 운영 비밀번호는 코드 하드코딩이 아닌 환경변수 `ADMIN_PASSWORD`로 주입합니다.
+- **세션 만료 정책:** `ADMIN_SESSION_TTL_MINUTES`(절대 만료), `ADMIN_SESSION_IDLE_MINUTES`(유휴 만료) 기준으로 자동 만료됩니다.
 - **쿠키 정책:** `HttpOnly`, `SameSite=Strict` 쿠키를 사용합니다 (`SESSION_COOKIE_SECURE`는 운영 환경에서 `1` 권장).
 - **요청 제한:** 로그인 요청에 IP 기반 간단 Rate Limit이 적용됩니다.
 - **경로 보호:** 시즌명 형식 검증(`YYYY-N`) 및 catch-all 라우팅 제한으로 임의 파일 노출/경로 조작을 방지합니다.

@@ -2,7 +2,7 @@
 
 ## Scope
 
-- React dashboard (`src/*`) + Flask server (`app.py`) + admin page (`admin.html`).
+- React dashboard (`src/*`) + Flask server (`app.py`) + admin page (`admin.html`, `admin-panel.js`).
 - Goal: season-based data management/crawling and user dashboard views.
 - Hall of fame page (`/hall-of-fame`): season-level 4 kings aggregation view.
 - Tables page includes `성장력` metric (day-over-day `채굴 효율` delta).
@@ -126,6 +126,9 @@
 
 - `ADMIN_PASSWORD` must be provided via environment variable.
 - `FLASK_SECRET_KEY` should be set in production.
+- Admin session expiry policy:
+  - `ADMIN_SESSION_TTL_MINUTES` (absolute)
+  - `ADMIN_SESSION_IDLE_MINUTES` (idle timeout)
 - Enable secure cookies in production: `SESSION_COOKIE_SECURE=1`.
 
 ## Deploy Files
