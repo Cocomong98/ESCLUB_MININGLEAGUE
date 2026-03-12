@@ -93,6 +93,7 @@
 ## Auto Commit Log
 
 <!-- auto-commit-log:start -->
+- 2026-03-12 21:41 | minor | feat(scheduler): chain crawl and openapi batch at even-hour :10 (files: 5)
 - 2026-03-12 21:14 | patch | fix(admin): stop shift-input cursor jump and harden admin cache invalidation (files: 3)
 - 2026-03-12 20:50 | patch | docs: sync changelog and operation docs with latest ui/theming updates (files: 6)
 - 2026-03-12 20:50 | patch | fix(ui): stabilize dark mode contrast, persist controller state, and clean squad debug code (files: 14)
