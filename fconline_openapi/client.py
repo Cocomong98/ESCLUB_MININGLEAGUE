@@ -35,6 +35,19 @@ class NexonFconlineClient:
         self.max_retries = max_retries
         self.sess = requests.Session()
 
+    @staticmethod
+    def _retry_wait_seconds(attempt: int, response: requests.Response | None = None) -> float:
+        if response is not None:
+            retry_after = (response.headers.get("Retry-After") or "").strip()
+            if retry_after:
+                try:
+                    retry_after_value = float(retry_after)
+                    if retry_after_value > 0:
+                        return min(retry_after_value, 60.0)
+                except ValueError:
+                    pass
+        return float(min(2 ** attempt, 30))
+
     def _get(self, path: str, params: dict[str, Any] | None = None) -> Any:
         url = f"{self.BASE_URL}{path}"
         headers = {
@@ -47,38 +60,44 @@ class NexonFconlineClient:
                 response = self.sess.get(
                     url, headers=headers, params=params, timeout=self.timeout
                 )
-                if response.status_code == 429 or 500 <= response.status_code <= 599:
-                    wait_seconds = min(2 ** attempt, 30)
-                    time.sleep(wait_seconds)
-                    continue
-                if response.status_code != 200:
-                    raise NexonOpenApiError(
-                        f"HTTP {response.status_code} {response.text[:200]}"
-                    )
-                try:
-                    return response.json()
-                except ValueError:
-                    pass
-
-                content_type = (response.headers.get("Content-Type") or "").lower()
-                text_body = (response.text or "").strip()
-                if (
-                    "application/json" in content_type
-                    or content_type.endswith("+json")
-                    or text_body.startswith("{")
-                    or text_body.startswith("[")
-                ):
-                    try:
-                        return json.loads(text_body)
-                    except ValueError:
-                        pass
-                return response.content
-            except Exception as exc:  # includes requests/network/json errors
+            except requests.RequestException as exc:
                 last_err = exc
                 if attempt < self.max_retries:
-                    time.sleep(min(2 ** attempt, 30))
+                    time.sleep(self._retry_wait_seconds(attempt))
                     continue
-        raise NexonOpenApiError(f"Request failed after retries: {last_err}")
+                break
+
+            status_code = response.status_code
+            text_snippet = (response.text or "").strip().replace("\n", " ")[:200]
+            if status_code == 429 or 500 <= status_code <= 599:
+                last_err = NexonOpenApiError(f"HTTP {status_code} {text_snippet or '(empty body)'}")
+                if attempt < self.max_retries:
+                    time.sleep(self._retry_wait_seconds(attempt, response))
+                    continue
+                break
+            if status_code != 200:
+                raise NexonOpenApiError(f"HTTP {status_code} {text_snippet or '(empty body)'}")
+
+            try:
+                return response.json()
+            except ValueError:
+                pass
+
+            content_type = (response.headers.get("Content-Type") or "").lower()
+            text_body = (response.text or "").strip()
+            if (
+                "application/json" in content_type
+                or content_type.endswith("+json")
+                or text_body.startswith("{")
+                or text_body.startswith("[")
+            ):
+                try:
+                    return json.loads(text_body)
+                except ValueError:
+                    pass
+            return response.content
+
+        raise NexonOpenApiError(f"Request failed after retries: {last_err or 'unknown'}")
 
     def get_ouid(self, nickname: str) -> str:
         data = self._get("/fconline/v1/id", params={"nickname": nickname})
