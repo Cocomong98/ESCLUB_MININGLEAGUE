@@ -2037,21 +2037,13 @@ if __name__ == '__main__':
             "openapi-sync-user | openapi-update-analysis | weekly-report | weekly-backfill"
         )
 
+    # 운영 배치: 짝수시 10분마다 전적 크롤링 -> OpenAPI 분석 순차 실행
     scheduler.add_job(
-        func=run_daily_crawl_only,
-        trigger="cron",
-        hour=4,
-        minute=0,
-        id="daily_crawl",
-        replace_existing=True,
-        coalesce=True,
-    )
-    scheduler.add_job(
-        func=run_openapi_analytics_all,
+        func=run_daily_crawl_then_openapi,
         trigger="cron",
         hour="*/2",
         minute=10,
-        id="openapi_analytics",
+        id="crawl_openapi_chain",
         replace_existing=True,
         coalesce=True,
     )

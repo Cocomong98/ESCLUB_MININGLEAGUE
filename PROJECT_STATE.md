@@ -112,8 +112,8 @@
   - Row stable key: `playerKey = String(spId)`
   - Row fields include `spId`, `spPosition`, `seasonId`, `playerName`, `positionName` (plus existing stats)
 - Scheduler:
-  - `daily_crawl`: every day `04:00` (run_full_crawl only)
-  - `openapi_analytics`: every 2 hours at `:10` (run_openapi_analytics_all)
+  - `crawl_openapi_chain`: every 2 hours at `:10` (even hours)
+  - execution order: `run_full_crawl` -> `run_openapi_analytics_all`
   - `weekly_report`: every Thursday `05:05`
   - Lock files: `.private/locks/daily_crawl.lock`, `.private/locks/openapi.lock`
 - Throttling:

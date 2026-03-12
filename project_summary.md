@@ -29,6 +29,7 @@
     - 각 왕 항목에서 해당 구단주의 상세 대시보드로 이동할 수 있습니다.
 
 4.  **개인 분석 확장 페이지 (`/dashboard/:id/squad`)**
+
     - Open API 분석 JSON(`last200`, `shot_events_last200`, `player_usage_last200`, `squad_analysis_all`) 기반의 스쿼드 분석 페이지를 제공합니다.
     - `/dashboard/:id/analysis` 라우트는 임시 비활성화 상태입니다.
     - 스쿼드 분석 페이지 상단에서 좌측 `베스트11 포지션 맵`과 우측 `지표 한눈에`(팀 세부 지표)를 함께 조회할 수 있습니다.
@@ -93,8 +94,8 @@
 
 #### **7. Open API 분석 자동화 (운영 배치)**
 
-- **배치 순서:** 일일 크롤링 잡(`daily_crawl`, `04:00`)과 Open API 분석 잡(`openapi_analytics`, `2시간 간격`)을 분리 운영
-- **스케줄러:** Flask 내부 APScheduler 잡(`daily_crawl`, `openapi_analytics`, `weekly_report`)
+- **배치 순서:** 통합 잡(`crawl_openapi_chain`)에서 전적 크롤링 후 Open API 분석을 순차 실행
+- **스케줄러:** Flask 내부 APScheduler 잡(`crawl_openapi_chain`, `weekly_report`)
 - **락 파일:** `.private/locks/openapi.lock`, `.private/locks/daily_crawl.lock` (중복 실행 방지)
 - **캐시 루트:** `OPENAPI_CACHE_DIR` 환경변수 또는 기본값 `.private/openapi_cache/` (TTL 정책: 29일, `/data/*` 비공개)
 - **닉네임 해석 우선순위:** 관리자 목록(`managers.json`)의 `name`을 우선 사용하고, 없을 때만 최신 일일파일(`data/{season}/user/{id}/{id}_YYMMDD.json`)에서 fallback

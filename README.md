@@ -85,8 +85,8 @@ python3 app.py weekly-backfill <START_WEEK> <END_WEEK> [--force]
 
 ## 스케줄러(앱 내부 APScheduler)
 
-- `daily_crawl`: 매일 `04:00`
-- `openapi_analytics`: 2시간 간격 `:10`
+- `crawl_openapi_chain`: 2시간 간격 `:10` (짝수시)
+  - 실행 순서: 전적 크롤링(`run_full_crawl`) -> OpenAPI 분석(`run_openapi_analytics_all`)
 - `weekly_report`: 매주 목요일 `05:05`
 
 락 파일:
