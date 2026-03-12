@@ -81,6 +81,7 @@
 ## Auto Commit Log
 
 <!-- auto-commit-log:start -->
+- 2026-03-12 09:38 | patch | fix(openapi): add nickname candidate fallback chain for OUID lookup (files: 2)
 - 2026-03-12 09:38 | patch | fix(openapi): improve retry backoff and failure diagnostics (files: 1)
 - 2026-03-11 13:54 | patch | docs(readme): 현재 운영 구조/배포/OpenAPI 실행 가이드 갱신 (files: 1)
 - 2026-03-11 13:52 | patch | docs(patch-notes): v3.5.0/v3.6.0 릴리즈 노트 반영 (files: 1)
