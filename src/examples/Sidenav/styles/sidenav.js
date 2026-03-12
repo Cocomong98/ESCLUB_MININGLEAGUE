@@ -20,16 +20,18 @@ export default function sidenavLogoLabel(theme, ownerState) {
   const { fontWeightMedium } = typography;
 
   return {
-    ml: 0.5,
     fontWeight: fontWeightMedium,
     wordSpacing: pxToRem(-1),
-    transition: transitions.create("opacity", {
+    overflow: "hidden",
+    whiteSpace: "nowrap",
+    transition: transitions.create(["opacity", "max-width"], {
       easing: transitions.easing.easeInOut,
       duration: transitions.duration.standard,
     }),
 
     [breakpoints.up("xl")]: {
       opacity: miniSidenav ? 0 : 1,
+      maxWidth: miniSidenav ? 0 : pxToRem(220),
     },
   };
 }

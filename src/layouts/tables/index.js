@@ -29,11 +29,15 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
 import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
+import { useMaterialUIController } from "context";
 import { fetchSeasonsWithData } from "utils/seasonUtils";
+import { uiTypography } from "utils/uiTypography";
 
 function Tables() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [controller] = useMaterialUIController();
+  const { darkMode } = controller;
 
   const [seasons, setSeasons] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState("");
@@ -117,6 +121,13 @@ function Tables() {
     }
 
     return parseNumberValue(text);
+  };
+
+  const getGrowthTone = (value) => {
+    const growth = parseNumberValue(value);
+    if (growth > 0) return { color: "success", bg: "rgba(76,175,80,0.14)", text: `+${growth}` };
+    if (growth < 0) return { color: "error", bg: "rgba(244,67,54,0.14)", text: `${growth}` };
+    return { color: "secondary", bg: "rgba(148,163,184,0.14)", text: "0" };
   };
 
   const formatClubValueLabel = (value) => {
@@ -238,6 +249,18 @@ function Tables() {
     return results;
   }, [newTableData.results, sortConfig]);
 
+  const activeSortLabel = useMemo(() => {
+    const map = {
+      rank: "순위",
+      win_rate: "승률",
+      games: "판수",
+      mining: "채굴 효율",
+      growth: "성장력",
+      value: "구단 가치",
+    };
+    return map[sortConfig.key] || "순위";
+  }, [sortConfig.key]);
+
   const allColumns = [
     { Header: renderSortHeader("순위", "rank"), accessor: "rank", align: "center" },
     { Header: renderStaticHeader("구단주"), accessor: "owner", width: "25%", align: "left" },
@@ -255,47 +278,83 @@ function Tables() {
 
   const rows = sortedResults.map((player) => ({
     rank: (
-      <MDTypography variant="body2" color="text" fontWeight="medium">
+      <MDBox
+        component="span"
+        color={darkMode ? "white" : "dark"}
+        sx={({ palette }) => {
+          const isDarkTheme = darkMode || palette.mode === "dark";
+          const isTopRank = Number(player.순위) <= 3;
+          return {
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            minWidth: 32,
+            px: 1,
+            py: 0.25,
+            borderRadius: "999px",
+            fontSize: "0.75rem",
+            fontWeight: 700,
+            color: isDarkTheme
+              ? `${palette.common.white} !important`
+              : `${palette.dark.main} !important`,
+            border: `1px solid ${isDarkTheme ? "rgba(255,255,255,0.18)" : "rgba(15,23,42,0.08)"}`,
+            backgroundColor: isTopRank
+              ? isDarkTheme
+                ? "rgba(59,130,246,0.34)"
+                : "rgba(59,130,246,0.16)"
+              : isDarkTheme
+              ? "rgba(148,163,184,0.24)"
+              : "rgba(148,163,184,0.12)",
+          };
+        }}
+      >
         {player.순위}
-      </MDTypography>
+      </MDBox>
     ),
     owner: (
       <Link
         to={`/dashboard/${player.player_id}?season=${encodeURIComponent(selectedSeason)}`}
         style={{ color: "inherit", textDecoration: "none" }}
       >
-        <MDTypography variant="body2" color="text" fontWeight="medium" sx={{ cursor: "pointer" }}>
+        <MDTypography {...uiTypography.tableTextStrong} sx={{ cursor: "pointer" }}>
           {player.구단주명}
         </MDTypography>
       </Link>
     ),
     record: (
-      <MDTypography variant="body2" color="text">
+      <MDTypography {...uiTypography.tableText}>
         {player.승}승 {player.무}무 {player.패}패
       </MDTypography>
     ),
-    win_rate: (
-      <MDTypography variant="body2" color="text">
-        {player.승률}
-      </MDTypography>
-    ),
-    games: (
-      <MDTypography variant="body2" color="text">
-        {player.판수}
-      </MDTypography>
-    ),
+    win_rate: <MDTypography {...uiTypography.tableText}>{player.승률}</MDTypography>,
+    games: <MDTypography {...uiTypography.tableText}>{player.판수}</MDTypography>,
     mining: (
-      <MDTypography variant="body2" color="text" fontWeight="bold">
+      <MDTypography {...uiTypography.tableTextStrong} fontWeight="bold">
         {player["채굴 효율"]}
       </MDTypography>
     ),
     growth: (
-      <MDTypography variant="body2" color="text" fontWeight="medium">
-        {Number(player["성장력"]) > 0 ? `+${player["성장력"]}` : player["성장력"] ?? "-"}
-      </MDTypography>
+      <MDBox
+        component="span"
+        sx={{
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          minWidth: 54,
+          px: 1,
+          py: 0.25,
+          borderRadius: "999px",
+          fontSize: "0.75rem",
+          fontWeight: 700,
+          color: ({ palette }) => palette[getGrowthTone(player["성장력"]).color].main,
+          backgroundColor: getGrowthTone(player["성장력"]).bg,
+        }}
+      >
+        {getGrowthTone(player["성장력"]).text}
+      </MDBox>
     ),
     value: (
-      <MDTypography variant="body2" color="text">
+      <MDTypography {...uiTypography.tableText}>
         {formatClubValueLabel(player["구단 가치"] ?? player.구단가치)}
       </MDTypography>
     ),
@@ -305,8 +364,14 @@ function Tables() {
     <DashboardLayout>
       <DashboardNavbar pageTitle="시즌 순위표" />
       <MDBox pt={isMobile ? 4 : 6} pb={isMobile ? 2 : 3}>
-        <MDBox mb={isMobile ? 2 : 4} display="flex" alignItems="center">
-          <MDTypography variant="h6" fontWeight="medium" mr={2}>
+        <MDBox
+          mb={isMobile ? 2 : 4}
+          display="flex"
+          alignItems={{ xs: "flex-start", sm: "center" }}
+          flexDirection={{ xs: "column", sm: "row" }}
+          gap={{ xs: 1, sm: 0 }}
+        >
+          <MDTypography {...uiTypography.sectionTitle} mr={2}>
             시즌 데이터 조회:
           </MDTypography>
           <Select
@@ -320,6 +385,12 @@ function Tables() {
               </MenuItem>
             ))}
           </Select>
+        </MDBox>
+        <MDBox mb={isMobile ? 1.25 : 2}>
+          <MDTypography {...uiTypography.sectionSub}>
+            정렬 기준: <strong>{activeSortLabel}</strong> (
+            {sortConfig.direction === "asc" ? "오름차순" : "내림차순"})
+          </MDTypography>
         </MDBox>
 
         <Grid container spacing={isMobile ? 0.75 : 3}>
@@ -374,7 +445,7 @@ function Tables() {
                 borderRadius="lg"
                 coloredShadow="info"
               >
-                <MDTypography variant="h6" color="white">
+                <MDTypography {...uiTypography.sectionTitle} color="white">
                   {selectedSeason} 시즌 순위
                 </MDTypography>
               </MDBox>
@@ -387,9 +458,10 @@ function Tables() {
                     showTotalEntries={false}
                     showAllEntries={true}
                     noEndBorder
+                    dense={isMobile}
                   />
                 ) : (
-                  <MDTypography variant="h6" color="text" textAlign="center" py={3}>
+                  <MDTypography {...uiTypography.status} textAlign="center" py={3}>
                     데이터를 불러오는 중입니다...
                   </MDTypography>
                 )}

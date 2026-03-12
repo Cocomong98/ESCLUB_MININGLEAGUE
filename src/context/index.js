@@ -18,7 +18,7 @@ Coded by www.creative-tim.com
   you can customize the states for the different components here.
 */
 
-import { createContext, useContext, useReducer, useMemo } from "react";
+import { createContext, useContext, useReducer, useMemo, useEffect } from "react";
 
 // prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
@@ -28,6 +28,64 @@ const MaterialUI = createContext();
 
 // Setting custom name for the context which is visible on react dev tools
 MaterialUI.displayName = "MaterialUIContext";
+
+const CONTROLLER_STORAGE_KEY = "md2-ui-controller";
+
+const INITIAL_STATE = {
+  miniSidenav: false,
+  transparentSidenav: false,
+  whiteSidenav: false,
+  sidenavColor: "info",
+  transparentNavbar: true,
+  fixedNavbar: true,
+  openConfigurator: false,
+  direction: "ltr",
+  layout: "dashboard",
+  darkMode: false,
+};
+
+const CONTROLLER_PERSIST_KEYS = [
+  "miniSidenav",
+  "transparentSidenav",
+  "whiteSidenav",
+  "sidenavColor",
+  "transparentNavbar",
+  "fixedNavbar",
+  "direction",
+  "layout",
+  "darkMode",
+];
+
+function normalizePersistedState(raw) {
+  if (!raw || typeof raw !== "object") return {};
+
+  const next = {};
+
+  if (typeof raw.miniSidenav === "boolean") next.miniSidenav = raw.miniSidenav;
+  if (typeof raw.transparentSidenav === "boolean") next.transparentSidenav = raw.transparentSidenav;
+  if (typeof raw.whiteSidenav === "boolean") next.whiteSidenav = raw.whiteSidenav;
+  if (typeof raw.transparentNavbar === "boolean") next.transparentNavbar = raw.transparentNavbar;
+  if (typeof raw.fixedNavbar === "boolean") next.fixedNavbar = raw.fixedNavbar;
+  if (typeof raw.darkMode === "boolean") next.darkMode = raw.darkMode;
+  if (typeof raw.sidenavColor === "string") next.sidenavColor = raw.sidenavColor;
+  if (typeof raw.direction === "string") next.direction = raw.direction;
+  if (typeof raw.layout === "string") next.layout = raw.layout;
+
+  return next;
+}
+
+function getInitialControllerState() {
+  if (typeof window === "undefined") return INITIAL_STATE;
+
+  try {
+    const stored = window.localStorage.getItem(CONTROLLER_STORAGE_KEY);
+    if (!stored) return INITIAL_STATE;
+    const parsed = JSON.parse(stored);
+    return { ...INITIAL_STATE, ...normalizePersistedState(parsed) };
+  } catch {
+    return INITIAL_STATE;
+  }
+}
 
 // Material Dashboard 2 React reducer
 function reducer(state, action) {
@@ -70,22 +128,23 @@ function reducer(state, action) {
 
 // Material Dashboard 2 React context provider
 function MaterialUIControllerProvider({ children }) {
-  const initialState = {
-    miniSidenav: false,
-    transparentSidenav: false,
-    whiteSidenav: false,
-    sidenavColor: "info",
-    transparentNavbar: true,
-    fixedNavbar: true,
-    openConfigurator: false,
-    direction: "ltr",
-    layout: "dashboard",
-    darkMode: false,
-  };
-
-  const [controller, dispatch] = useReducer(reducer, initialState);
+  const [controller, dispatch] = useReducer(reducer, undefined, getInitialControllerState);
 
   const value = useMemo(() => [controller, dispatch], [controller, dispatch]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    try {
+      const payload = CONTROLLER_PERSIST_KEYS.reduce((acc, key) => {
+        acc[key] = controller[key];
+        return acc;
+      }, {});
+      window.localStorage.setItem(CONTROLLER_STORAGE_KEY, JSON.stringify(payload));
+    } catch {
+      // ignore storage errors (private mode / quota exceeded)
+    }
+  }, [controller]);
 
   return <MaterialUI.Provider value={value}>{children}</MaterialUI.Provider>;
 }

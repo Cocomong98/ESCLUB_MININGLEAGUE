@@ -52,7 +52,11 @@ export default styled(Typography)(({ theme, ownerState }) => {
 
   if (darkMode && (color === "inherit" || !palette[color])) {
     colorValue = "inherit";
-  } else if (darkMode && color === "dark") colorValue = white.main;
+  } else if (darkMode && color === "dark") {
+    colorValue = white.main;
+  } else if (darkMode && (color === "text" || color === "secondary")) {
+    colorValue = white.main;
+  }
 
   return {
     opacity,

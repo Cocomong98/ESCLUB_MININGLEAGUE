@@ -2,13 +2,27 @@
 
 ## Scope
 
-- React dashboard (`src/*`) + Flask server (`app.py`) + admin page (`admin.html`).
+- React dashboard (`src/*`) + Flask server (`app.py`) + admin page (`admin.html`, `admin-panel.js`).
 - Goal: season-based data management/crawling and user dashboard views.
 - Hall of fame page (`/hall-of-fame`): season-level 4 kings aggregation view.
 - Tables page includes `성장력` metric (day-over-day `채굴 효율` delta).
 - Open API manager-mode analytics (`fconline_openapi/*`) + dashboard Open API section.
 - Squad page top section includes `베스트11 포지션 맵` + `지표 한눈에` (team advanced metrics from `last200.json`).
 - Squad table player click navigates to player detail page (`/dashboard/:id/squad/player/:playerKey`).
+- Analysis route (`/dashboard/:id/analysis`) is temporarily disabled; use squad route for Open API insights.
+- Dashboard 상단 메타 블록(`구단주 / 조회 시즌 / 현재 진행 시즌`)은 제거된 상태.
+
+## UI Theme/Persistence
+
+- Material UI controller state is persisted to `localStorage` key: `md2-ui-controller`.
+- Persisted keys include: `darkMode`, `miniSidenav`, `transparentSidenav`, `whiteSidenav`, `sidenavColor`, `transparentNavbar`, `fixedNavbar`, `direction`, `layout`.
+- Dark mode contrast fixes are applied to:
+  - `/tables` rank badge
+  - `/hall-of-fame` king cards (desktop/mobile)
+  - `/dashboard/:id/squad` quick metrics + player modal
+  - `/dashboard/:id/squad/player` summary card/quick metrics
+- Sidenav mini mode logo alignment:
+  - brand icon is centered in collapsed width and brand label is not rendered in mini mode.
 
 ## Deployment Context
 
@@ -98,8 +112,8 @@
   - Row stable key: `playerKey = String(spId)`
   - Row fields include `spId`, `spPosition`, `seasonId`, `playerName`, `positionName` (plus existing stats)
 - Scheduler:
-  - `daily_crawl`: every day `04:00` (run_full_crawl only)
-  - `openapi_analytics`: every 2 hours at `:10` (run_openapi_analytics_all)
+  - `crawl_openapi_chain`: every 2 hours at `:10` (even hours)
+  - execution order: `run_full_crawl` -> `run_openapi_analytics_all`
   - `weekly_report`: every Thursday `05:05`
   - Lock files: `.private/locks/daily_crawl.lock`, `.private/locks/openapi.lock`
 - Throttling:
@@ -125,6 +139,9 @@
 
 - `ADMIN_PASSWORD` must be provided via environment variable.
 - `FLASK_SECRET_KEY` should be set in production.
+- Admin session expiry policy:
+  - `ADMIN_SESSION_TTL_MINUTES` (absolute)
+  - `ADMIN_SESSION_IDLE_MINUTES` (idle timeout)
 - Enable secure cookies in production: `SESSION_COOKIE_SECURE=1`.
 
 ## Deploy Files

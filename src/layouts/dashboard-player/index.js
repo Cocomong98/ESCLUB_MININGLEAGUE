@@ -3,6 +3,8 @@ import { Link, useParams, useSearchParams } from "react-router-dom";
 
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { MenuItem, Select } from "@mui/material";
 
 import MDBox from "components/MDBox";
@@ -13,9 +15,11 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
+import { useMaterialUIController } from "context";
 
 import { fetchSeasonsWithData } from "utils/seasonUtils";
 import { buildPlayerPortraitUrls } from "utils/playerImageUtils";
+import { uiTypography } from "utils/uiTypography";
 
 const navActionSx = ({ palette }) => ({
   color: `${palette.info.main} !important`,
@@ -57,6 +61,10 @@ function formatGeneratedAt(value) {
 function SquadPlayerDetail() {
   const { id, playerKey } = useParams();
   const [searchParams] = useSearchParams();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [controller] = useMaterialUIController();
+  const { darkMode } = controller;
 
   const [seasons, setSeasons] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState("");
@@ -212,18 +220,44 @@ function SquadPlayerDetail() {
         { Header: "값", accessor: "value", align: "center" },
       ],
       rows: rows.map((row) => ({
-        metric: (
-          <MDTypography variant="body2" color="text" fontWeight="medium">
-            {row.label}
-          </MDTypography>
-        ),
-        value: (
-          <MDTypography variant="body2" color="text">
-            {row.value}
-          </MDTypography>
-        ),
+        metric: <MDTypography {...uiTypography.tableTextStrong}>{row.label}</MDTypography>,
+        value: <MDTypography {...uiTypography.tableText}>{row.value}</MDTypography>,
       })),
     };
+  }, [selectedPlayer]);
+
+  const quickMetrics = useMemo(() => {
+    if (!selectedPlayer) return [];
+    const winRateSource =
+      selectedPlayer.playerWinRate !== undefined && selectedPlayer.playerWinRate !== null
+        ? selectedPlayer.playerWinRate
+        : selectedPlayer.winRate;
+    return [
+      {
+        label: "출전",
+        value: `${toNumber(selectedPlayer.appearances, 0)}경`,
+      },
+      {
+        label: "승률",
+        value: formatPercentOrDash(winRateSource, 1),
+      },
+      {
+        label: "공격포인트",
+        value: `${toNumber(selectedPlayer.attackPoint, 0)}`,
+      },
+      {
+        label: "기대득점률",
+        value: formatPercentOrDash(selectedPlayer.expectedGoalRate, 1),
+      },
+      {
+        label: "패스성공률",
+        value: formatPercentOrDash(selectedPlayer.passSuccessRate, 1),
+      },
+      {
+        label: "태클성공률",
+        value: formatPercentOrDash(selectedPlayer.tackleSuccessRate, 1),
+      },
+    ];
   }, [selectedPlayer]);
 
   const title = selectedPlayer?.playerName || selectedPlayer?.name || "선수 상세";
@@ -231,20 +265,19 @@ function SquadPlayerDetail() {
   return (
     <DashboardLayout>
       <DashboardNavbar pageTitle={title} />
-      <MDBox py={3}>
-        <Grid container spacing={3}>
+      <MDBox py={{ xs: 2, md: 3 }}>
+        <Grid container spacing={{ xs: 2, md: 3 }}>
           <Grid item xs={12}>
             <MDBox
               display="flex"
               justifyContent="space-between"
-              alignItems="center"
+              alignItems={{ xs: "stretch", sm: "center" }}
+              flexDirection={{ xs: "column", sm: "row" }}
               gap={1.5}
               mb={2}
             >
-              <MDBox display="flex" alignItems="center" gap={1.5}>
-                <MDTypography variant="button" color="text">
-                  시즌
-                </MDTypography>
+              <MDBox display="flex" alignItems="center" gap={1.5} flexWrap="wrap">
+                <MDTypography {...uiTypography.sectionSub}>시즌</MDTypography>
                 <Select value={selectedSeason} onChange={(e) => setSelectedSeason(e.target.value)}>
                   {seasons.map((season) => (
                     <MenuItem key={season} value={season}>
@@ -253,7 +286,12 @@ function SquadPlayerDetail() {
                   ))}
                 </Select>
               </MDBox>
-              <MDBox display="flex" gap={1}>
+              <MDBox
+                display="flex"
+                gap={1}
+                flexWrap="wrap"
+                justifyContent={{ xs: "flex-end", sm: "flex-start" }}
+              >
                 <MDButton
                   component={Link}
                   to={`/dashboard/${id}/squad${
@@ -285,35 +323,42 @@ function SquadPlayerDetail() {
 
         <Card>
           <MDBox p={2}>
-            <MDTypography variant="h6">{title} - 선수 상세 지표</MDTypography>
-            <MDTypography variant="button" color="text" display="block">
+            <MDTypography {...uiTypography.sectionTitle}>{title} - 선수 상세 지표</MDTypography>
+            <MDTypography {...uiTypography.sectionSub} display="block">
               데이터 생성 시각: {formatGeneratedAt(payload?.generatedAt)}
             </MDTypography>
           </MDBox>
           {status === "ready" && selectedPlayer && (
             <MDBox px={2} pb={1}>
               <MDBox
-                sx={({ palette }) => ({
-                  width: "100%",
-                  minHeight: 158,
-                  borderRadius: "12px",
-                  border: `1px solid ${palette.grey[300]}`,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  px: 2,
-                  py: 1.5,
-                  gap: 2,
-                  background: `linear-gradient(135deg, ${palette.grey[100]} 0%, ${palette.white.main} 100%)`,
-                })}
+                sx={({ palette }) => {
+                  const isDarkTheme = darkMode || palette.mode === "dark";
+                  return {
+                    width: "100%",
+                    minHeight: 158,
+                    borderRadius: "12px",
+                    border: `1px solid ${
+                      isDarkTheme ? "rgba(255,255,255,0.14)" : palette.grey[300]
+                    }`,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    px: 2,
+                    py: 1.5,
+                    gap: 2,
+                    background: isDarkTheme
+                      ? "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)"
+                      : `linear-gradient(135deg, ${palette.grey[100]} 0%, ${palette.white.main} 100%)`,
+                  };
+                }}
               >
                 <MDBox>
-                  <MDTypography variant="h5">{title}</MDTypography>
-                  <MDTypography variant="button" color="text" display="block">
+                  <MDTypography {...uiTypography.sectionTitle}>{title}</MDTypography>
+                  <MDTypography {...uiTypography.sectionSub} display="block">
                     {selectedPlayer.positionName || selectedPlayer.position || "-"} ·{" "}
                     {selectedPlayer.seasonName || selectedPlayer.seasonId || "-"}
                   </MDTypography>
-                  <MDTypography variant="button" color="text" display="block">
+                  <MDTypography {...uiTypography.sectionSub} display="block">
                     출전 {toNumber(selectedPlayer.appearances, 0)}경 · 승률{" "}
                     {formatPercentOrDash(
                       selectedPlayer.playerWinRate !== undefined &&
@@ -325,17 +370,22 @@ function SquadPlayerDetail() {
                   </MDTypography>
                 </MDBox>
                 <MDBox
-                  sx={{
-                    width: 120,
-                    height: 120,
-                    borderRadius: "10px",
-                    border: "1px solid rgba(0,0,0,0.08)",
-                    bgcolor: "white",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    overflow: "hidden",
-                    flexShrink: 0,
+                  sx={({ palette }) => {
+                    const isDarkTheme = darkMode || palette.mode === "dark";
+                    return {
+                      width: 120,
+                      height: 120,
+                      borderRadius: "10px",
+                      border: `1px solid ${
+                        isDarkTheme ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.08)"
+                      }`,
+                      bgcolor: isDarkTheme ? "rgba(255,255,255,0.03)" : "white",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      overflow: "hidden",
+                      flexShrink: 0,
+                    };
                   }}
                 >
                   {portraitUrl ? (
@@ -357,32 +407,60 @@ function SquadPlayerDetail() {
                       }}
                     />
                   ) : (
-                    <MDTypography variant="caption" color="text">
-                      이미지 없음
-                    </MDTypography>
+                    <MDTypography {...uiTypography.metaLabel}>이미지 없음</MDTypography>
                   )}
                 </MDBox>
+              </MDBox>
+              <MDBox
+                mt={1}
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: {
+                    xs: "repeat(2, minmax(0, 1fr))",
+                    md: "repeat(3, minmax(0, 1fr))",
+                  },
+                  gap: 0.8,
+                }}
+              >
+                {quickMetrics.map((item) => (
+                  <MDBox
+                    key={item.label}
+                    sx={({ palette }) => {
+                      const isDarkTheme = darkMode || palette.mode === "dark";
+                      return {
+                        border: `1px solid ${
+                          isDarkTheme ? "rgba(255,255,255,0.12)" : palette.grey[300]
+                        }`,
+                        borderRadius: "10px",
+                        px: 1.1,
+                        py: 0.8,
+                        backgroundColor: isDarkTheme ? "rgba(255,255,255,0.04)" : palette.grey[100],
+                      };
+                    }}
+                  >
+                    <MDTypography {...uiTypography.metaLabel}>{item.label}</MDTypography>
+                    <MDTypography {...uiTypography.metaValue} display="block" mt={0.15}>
+                      {item.value}
+                    </MDTypography>
+                  </MDBox>
+                ))}
               </MDBox>
             </MDBox>
           )}
           <MDBox px={2} pb={2}>
             {status === "loading" && (
-              <MDTypography variant="button" color="text">
+              <MDTypography {...uiTypography.status}>
                 선수 지표 데이터를 불러오는 중...
               </MDTypography>
             )}
             {status === "pending" && (
-              <MDTypography variant="button" color="text">
-                선수 지표 데이터 준비 중
-              </MDTypography>
+              <MDTypography {...uiTypography.status}>선수 지표 데이터 준비 중</MDTypography>
             )}
             {status === "error" && (
-              <MDTypography variant="button" color="text">
-                선수 지표 데이터 로드 실패
-              </MDTypography>
+              <MDTypography {...uiTypography.status}>선수 지표 데이터 로드 실패</MDTypography>
             )}
             {status === "not_found" && (
-              <MDTypography variant="button" color="text">
+              <MDTypography {...uiTypography.status}>
                 해당 선수 키에 매칭되는 데이터가 없습니다.
               </MDTypography>
             )}
@@ -394,6 +472,7 @@ function SquadPlayerDetail() {
                 showTotalEntries={false}
                 showAllEntries
                 noEndBorder
+                dense={isMobile}
               />
             )}
           </MDBox>

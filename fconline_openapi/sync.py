@@ -131,6 +131,59 @@ def _resolve_nickname_from_managers_file(player_id: str, managers_file: str = "m
     return ""
 
 
+def _dedupe_nickname_candidates(candidates: list[str]) -> list[str]:
+    seen: set[str] = set()
+    result: list[str] = []
+    for candidate in candidates:
+        nick = str(candidate or "").strip()
+        if not nick:
+            continue
+        if nick in seen:
+            continue
+        seen.add(nick)
+        result.append(nick)
+    return result
+
+
+def resolve_nickname_candidates(
+    season: str,
+    player_id: str,
+    data_base_dir: str = "data",
+    *,
+    nickname_hint: str | None = None,
+    managers_file: str = "managers.json",
+) -> list[str]:
+    candidates: list[str] = []
+
+    hinted = str(nickname_hint or "").strip()
+    if hinted:
+        candidates.append(hinted)
+
+    from_managers = _resolve_nickname_from_managers_file(str(player_id), managers_file=managers_file)
+    if from_managers:
+        candidates.append(from_managers)
+
+    latest_error: OpenApiSyncError | None = None
+    try:
+        latest_path = _find_latest_daily_file(data_base_dir, season, str(player_id))
+        rows = _extract_rows_from_daily_file(latest_path)
+        first = rows[0]
+        for key in ("구단주명", "구단주", "닉네임", "name"):
+            value = str(first.get(key, "")).strip()
+            if value:
+                candidates.append(value)
+    except OpenApiSyncError as exc:
+        latest_error = exc
+
+    deduped = _dedupe_nickname_candidates(candidates)
+    if deduped:
+        return deduped
+
+    if latest_error is not None:
+        raise latest_error
+    raise OpenApiSyncError(f"nickname 후보를 찾을 수 없습니다: season={season}, id={player_id}")
+
+
 def resolve_nickname_for_player(
     season: str,
     player_id: str,
@@ -139,27 +192,15 @@ def resolve_nickname_for_player(
     nickname_hint: str | None = None,
     managers_file: str = "managers.json",
 ) -> str:
-    """Resolve nickname with priority: explicit hint > managers.json > latest daily file."""
-    hinted = str(nickname_hint or "").strip()
-    if hinted:
-        return hinted
-
-    from_managers = _resolve_nickname_from_managers_file(str(player_id), managers_file=managers_file)
-    if from_managers:
-        return from_managers
-
-    latest_path = _find_latest_daily_file(data_base_dir, season, str(player_id))
-    rows = _extract_rows_from_daily_file(latest_path)
-    first = rows[0]
-
-    for key in ("구단주명", "구단주", "닉네임", "name"):
-        value = str(first.get(key, "")).strip()
-        if value:
-            return value
-
-    raise OpenApiSyncError(
-        f"nickname 추출 실패: 최신 일일 데이터에 구단주명 필드가 없습니다 ({latest_path})"
+    """Resolve the best nickname candidate for a player."""
+    candidates = resolve_nickname_candidates(
+        season=season,
+        player_id=player_id,
+        data_base_dir=data_base_dir,
+        nickname_hint=nickname_hint,
+        managers_file=managers_file,
     )
+    return candidates[0]
 
 
 def _dedupe_preserve_order(items: list[str]) -> list[str]:
@@ -237,31 +278,51 @@ def sync_user_manager_mode(
     if max_matches <= 0:
         raise OpenApiSyncError("max_matches는 1 이상이어야 합니다.")
 
-    nickname = resolve_nickname_for_player(
+    nickname_candidates = resolve_nickname_candidates(
         season,
         str(player_id),
         data_base_dir=data_base_dir,
         nickname_hint=nickname_hint,
     )
+    nickname = nickname_candidates[0]
     cache = cache or JsonFileCache(data_base_dir=data_base_dir)
     api_client = api_client or NexonOpenApiClient()
 
-    ouid = None if refresh_ouid else cache.get_ouid(nickname)
+    ouid = None
+    if not refresh_ouid:
+        for candidate in nickname_candidates:
+            cached = cache.get_ouid(candidate)
+            if cached:
+                ouid = str(cached)
+                nickname = candidate
+                break
+
     if not ouid:
-        try:
-            ouid = api_client.get_ouid(nickname)
-        except Exception as exc:
+        last_exc: Exception | None = None
+        attempted: list[str] = []
+        for candidate in nickname_candidates:
+            attempted.append(candidate)
+            try:
+                ouid = str(api_client.get_ouid(candidate))
+                nickname = candidate
+                cache.set_ouid(candidate, ouid)
+                break
+            except Exception as exc:
+                last_exc = exc
+                continue
+
+        if not ouid:
+            attempted_text = ", ".join(attempted)
             if refresh_ouid:
                 raise OpenApiSyncError(
-                    f"ouid 조회 실패: nickname='{nickname}'. "
-                    f"닉네임 오타/변경 여부를 확인하세요. 원인: {exc}"
-                ) from exc
+                    f"ouid 조회 실패: nickname candidates=[{attempted_text}]. "
+                    f"닉네임 오타/변경 여부를 확인하세요. 원인: {last_exc}"
+                ) from last_exc
             raise OpenApiSyncError(
-                f"ouid 조회 실패: nickname='{nickname}'. "
+                f"ouid 조회 실패: nickname candidates=[{attempted_text}]. "
                 "닉네임 변경/캐시 불일치 가능성이 있습니다. "
                 "--refresh-ouid 옵션으로 재시도하세요."
-            ) from exc
-        cache.set_ouid(nickname, str(ouid))
+            ) from last_exc
 
     existing_index = cache.get_user_match_index(str(ouid), matchtype) or []
     existing_set = set(existing_index)

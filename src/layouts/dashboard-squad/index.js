@@ -20,8 +20,10 @@ import PlayerChip from "components/pitch/PlayerChip";
 import PitchBoard from "components/pitch/PitchBoard";
 import FmMetricPanel from "components/metrics/FmMetricPanel";
 import useElementSize from "hooks/useElementSize";
+import { useMaterialUIController } from "context";
 import { buildPlayerPortraitUrls } from "utils/playerImageUtils";
 import { fetchSeasonsWithData } from "utils/seasonUtils";
+import { uiTypography } from "utils/uiTypography";
 
 const navActionSx = ({ palette }) => ({
   color: `${palette.info.main} !important`,
@@ -33,9 +35,6 @@ const navActionSx = ({ palette }) => ({
     backgroundColor: palette.info.main,
   },
 });
-
-const DEBUG_LAYOUT_BORDERS = false;
-const DEBUG_ALIGNMENT_PROBE = false;
 
 const TOP_ROW_MIN_HEIGHT = 420;
 const TOP_ROW_MAX_HEIGHT = 760;
@@ -523,8 +522,7 @@ function renderHeaderWithTooltip(label, description) {
   return (
     <Tooltip title={description} arrow placement="top">
       <MDTypography
-        variant="body2"
-        color="text"
+        {...uiTypography.tableText}
         sx={{
           textDecoration: "underline dotted",
           textUnderlineOffset: "2px",
@@ -549,14 +547,6 @@ function getNextInsightLayoutMode(current, isDesktopLayout) {
     return order[order.length - 1];
   }
   return order[currentIndex + 1];
-}
-
-function debugOutline(color = "rgba(255, 0, 0, 0.95)", width = "1px") {
-  return DEBUG_LAYOUT_BORDERS ? `${width} solid ${color}` : undefined;
-}
-
-function round2(value) {
-  return Number.isFinite(value) ? Number(value.toFixed(2)) : null;
 }
 
 function clampToPitch(value, margin, fullSize) {
@@ -587,6 +577,8 @@ function SquadAnalysis() {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
   const isDesktopLayout = useMediaQuery("(min-width:1200px)");
+  const [controller] = useMaterialUIController();
+  const { darkMode } = controller;
 
   const [seasons, setSeasons] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState("");
@@ -597,9 +589,6 @@ function SquadAnalysis() {
   const [selectedPlayerDetail, setSelectedPlayerDetail] = useState(null);
   const [playerPortraitIndex, setPlayerPortraitIndex] = useState(0);
   const topRowRef = useRef(null);
-  const topCardsRef = useRef(null);
-  const leftCardRef = useRef(null);
-  const rightCardRef = useRef(null);
   const insightViewportRef = useRef(null);
   const insightContentRef = useRef(null);
   const insightViewportSizeRef = useRef({ width: 0, height: 0 });
@@ -607,9 +596,7 @@ function SquadAnalysis() {
   const lineupOffsetRef = useRef({ x: 0, y: 0 });
   const resizeRafRef = useRef(null);
   const [topRowHeight, setTopRowHeight] = useState(null);
-  const [alignmentProbe, setAlignmentProbe] = useState(null);
   const [lineupVisualOffset, setLineupVisualOffset] = useState({ x: 0, y: 0 });
-  const [lineupVisualBounds, setLineupVisualBounds] = useState(null);
   const [insightLayoutMode, setInsightLayoutMode] = useState("full");
   const [insightViewportSize, setInsightViewportSize] = useState({ width: 0, height: 0 });
   const [insightTabIndex, setInsightTabIndex] = useState(0);
@@ -1013,6 +1000,16 @@ function SquadAnalysis() {
     }
     return [...tabs, ...advancedMetricGroups];
   }, [advancedMetricGroups, insightSummaryGroup]);
+
+  const insightQuickMetrics = useMemo(
+    () =>
+      insightSummaryGroup.items.slice(0, 4).map((item) => ({
+        key: item.key || item.label,
+        label: item.label,
+        value: item.valueText || "-",
+      })),
+    [insightSummaryGroup.items]
+  );
 
   useEffect(() => {
     if (insightTabIndex < insightTabs.length) return;
@@ -1426,7 +1423,6 @@ function SquadAnalysis() {
     if (typeof window === "undefined") return undefined;
 
     if (!pitchPlayers.length) {
-      setLineupVisualBounds(null);
       lineupOffsetRef.current = { x: 0, y: 0 };
       setLineupVisualOffset((prev) => (prev.x === 0 && prev.y === 0 ? prev : { x: 0, y: 0 }));
       return undefined;
@@ -1500,30 +1496,6 @@ function SquadAnalysis() {
             ? prev
             : nextOffset
         );
-
-        const nextBounds = {
-          minX: baseMinX + nextOffset.x - pitchRect.left,
-          maxX: baseMaxX + nextOffset.x - pitchRect.left,
-          minY: baseMinY + nextOffset.y - pitchRect.top,
-          maxY: baseMaxY + nextOffset.y - pitchRect.top,
-        };
-        nextBounds.centerX = (nextBounds.minX + nextBounds.maxX) / 2;
-        nextBounds.centerY = (nextBounds.minY + nextBounds.maxY) / 2;
-
-        setLineupVisualBounds((prev) => {
-          if (!prev) return nextBounds;
-          if (
-            Math.abs(prev.minX - nextBounds.minX) < 0.05 &&
-            Math.abs(prev.maxX - nextBounds.maxX) < 0.05 &&
-            Math.abs(prev.minY - nextBounds.minY) < 0.05 &&
-            Math.abs(prev.maxY - nextBounds.maxY) < 0.05 &&
-            Math.abs(prev.centerX - nextBounds.centerX) < 0.05 &&
-            Math.abs(prev.centerY - nextBounds.centerY) < 0.05
-          ) {
-            return prev;
-          }
-          return nextBounds;
-        });
       });
     };
 
@@ -1545,71 +1517,6 @@ function SquadAnalysis() {
       }
     };
   }, [pitchPlayers, pitchRef]);
-
-  useLayoutEffect(() => {
-    if (!DEBUG_ALIGNMENT_PROBE || typeof window === "undefined") return undefined;
-
-    const measure = () => {
-      const topRowRect = topRowRef.current?.getBoundingClientRect();
-      const topCardsRect = topCardsRef.current?.getBoundingClientRect();
-      const leftCardRect = leftCardRef.current?.getBoundingClientRect();
-      const rightCardRect = rightCardRef.current?.getBoundingClientRect();
-      const pitchRect = pitchRef.current?.getBoundingClientRect();
-      if (!topRowRect || !topCardsRect || !leftCardRect || !rightCardRect || !pitchRect) return;
-
-      const topRowCenterX = topRowRect.left + topRowRect.width / 2;
-      const topCardsCenterX = topCardsRect.left + topCardsRect.width / 2;
-      const leftCardCenterX = leftCardRect.left + leftCardRect.width / 2;
-      const rightCardCenterX = rightCardRect.left + rightCardRect.width / 2;
-      const pitchCenterX = pitchRect.left + pitchRect.width / 2;
-
-      const effectiveBounds = lineupVisualBounds || lineupBounds;
-      const usingVisualBounds = Boolean(lineupVisualBounds);
-      const lineupCenterX = effectiveBounds ? pitchRect.left + effectiveBounds.centerX : null;
-      const leftGap = effectiveBounds
-        ? usingVisualBounds
-          ? effectiveBounds.minX
-          : effectiveBounds.minX - chipSize / 2
-        : null;
-      const rightGap = effectiveBounds
-        ? usingVisualBounds
-          ? pitchRect.width - effectiveBounds.maxX
-          : pitchRect.width - (effectiveBounds.maxX + chipSize / 2)
-        : null;
-
-      const nextProbe = {
-        topRowCenterX: round2(topRowCenterX),
-        topCardsCenterX: round2(topCardsCenterX),
-        leftCardCenterX: round2(leftCardCenterX),
-        rightCardCenterX: round2(rightCardCenterX),
-        pitchCenterX: round2(pitchCenterX),
-        lineupCenterX: round2(lineupCenterX),
-        lineupOffsetX: round2(lineupVisualOffset.x),
-        lineupOffsetY: round2(lineupVisualOffset.y),
-        deltaTopRowVsCards: round2(topCardsCenterX - topRowCenterX),
-        deltaPitchVsLeftCard: round2(pitchCenterX - leftCardCenterX),
-        deltaLineupVsPitch: round2(
-          Number.isFinite(lineupCenterX) ? lineupCenterX - pitchCenterX : Number.NaN
-        ),
-        lineupLeftGap: round2(leftGap),
-        lineupRightGap: round2(rightGap),
-      };
-
-      setAlignmentProbe((prev) => {
-        if (JSON.stringify(prev) === JSON.stringify(nextProbe)) return prev;
-        return nextProbe;
-      });
-    };
-
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, [chipSize, lineupBounds, lineupVisualBounds, lineupVisualOffset, pitchRef, topRowHeight]);
-
-  useEffect(() => {
-    if (!DEBUG_ALIGNMENT_PROBE || !alignmentProbe) return;
-    console.table(alignmentProbe);
-  }, [alignmentProbe]);
 
   useEffect(() => {
     if (!selectedPlayerDetail) return;
@@ -1716,16 +1623,8 @@ function SquadAnalysis() {
         { Header: "값", accessor: "value", align: "center" },
       ],
       rows: detailRows.map((row) => ({
-        metric: (
-          <MDTypography variant="body2" color="text" fontWeight="medium">
-            {row.label}
-          </MDTypography>
-        ),
-        value: (
-          <MDTypography variant="body2" color="text">
-            {row.value}
-          </MDTypography>
-        ),
+        metric: <MDTypography {...uiTypography.tableTextStrong}>{row.label}</MDTypography>,
+        value: <MDTypography {...uiTypography.tableText}>{row.value}</MDTypography>,
       })),
     };
   }, [selectedPlayerDetail]);
@@ -1754,7 +1653,7 @@ function SquadAnalysis() {
       ],
       rows: rows.map((row) => ({
         position: (
-          <MDTypography variant="body2" color="text" fontWeight="medium">
+          <MDTypography {...uiTypography.tableTextStrong}>
             {row.positionName || row.position || "-"}
           </MDTypography>
         ),
@@ -1772,7 +1671,7 @@ function SquadAnalysis() {
                 }}
               />
             ) : (
-              <MDTypography variant="body2" color="text">
+              <MDTypography {...uiTypography.tableText}>
                 {row.seasonName || row.seasonId || "-"}
               </MDTypography>
             )}
@@ -1793,9 +1692,7 @@ function SquadAnalysis() {
             }}
           >
             <MDTypography
-              variant="body2"
-              color="text"
-              fontWeight="medium"
+              {...uiTypography.tableTextStrong}
               sx={({ palette }) => ({
                 textDecoration: "underline",
                 textDecorationColor: palette.grey[500],
@@ -1808,12 +1705,10 @@ function SquadAnalysis() {
           </MDBox>
         ),
         appearances: (
-          <MDTypography variant="body2" color="text">
-            {toNumber(row.appearances, 0)}
-          </MDTypography>
+          <MDTypography {...uiTypography.tableText}>{toNumber(row.appearances, 0)}</MDTypography>
         ),
         winRate: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(
               row.playerWinRate !== undefined && row.playerWinRate !== null
                 ? row.playerWinRate
@@ -1823,67 +1718,57 @@ function SquadAnalysis() {
           </MDTypography>
         ),
         attackPower: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {toNumber(row.attackPower, 0).toFixed(2)}
           </MDTypography>
         ),
         defensePower: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {toNumber(row.defensePower, 0).toFixed(2)}
           </MDTypography>
         ),
         expectedGoalRate: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(row.expectedGoalRate, 1)}
           </MDTypography>
         ),
         attackPoint: (
-          <MDTypography variant="body2" color="text">
-            {toNumber(row.attackPoint, 0)}
-          </MDTypography>
+          <MDTypography {...uiTypography.tableText}>{toNumber(row.attackPoint, 0)}</MDTypography>
         ),
-        goal: (
-          <MDTypography variant="body2" color="text">
-            {toNumber(row.goal, 0)}
-          </MDTypography>
-        ),
-        assist: (
-          <MDTypography variant="body2" color="text">
-            {toNumber(row.assist, 0)}
-          </MDTypography>
-        ),
+        goal: <MDTypography {...uiTypography.tableText}>{toNumber(row.goal, 0)}</MDTypography>,
+        assist: <MDTypography {...uiTypography.tableText}>{toNumber(row.assist, 0)}</MDTypography>,
         passSuccessRate: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(row.passSuccessRate, 1)}
           </MDTypography>
         ),
         dribbleSuccessRate: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(row.dribbleSuccessRate, 1)}
           </MDTypography>
         ),
         interceptPerGame: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(row.interceptPerGame, 1)}
           </MDTypography>
         ),
         aerialSuccessRate: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(row.aerialSuccessRate, 1)}
           </MDTypography>
         ),
         tackleSuccessRate: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(row.tackleSuccessRate, 1)}
           </MDTypography>
         ),
         savePerGame: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(row.savePerGame, 1)}
           </MDTypography>
         ),
         shotDefenseRate: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(row.shotDefenseRate, 1)}
           </MDTypography>
         ),
@@ -1919,32 +1804,30 @@ function SquadAnalysis() {
       ],
       rows: rows.map((row) => ({
         name: (
-          <MDTypography variant="body2" color="text" fontWeight="medium">
+          <MDTypography {...uiTypography.tableTextStrong}>
             {row.name || `SPID ${row.spId}`}
           </MDTypography>
         ),
         position: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {row.positionName || row.position || "-"}
           </MDTypography>
         ),
         appearances: (
-          <MDTypography variant="body2" color="text">
-            {toNumber(row.appearances, 0)}
-          </MDTypography>
+          <MDTypography {...uiTypography.tableText}>{toNumber(row.appearances, 0)}</MDTypography>
         ),
         longShotAttemptRate: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(row.longShotAttemptRate, 1)}
           </MDTypography>
         ),
         longShotSelectionEfficiency: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(row.longShotSelectionEfficiency, 1)}
           </MDTypography>
         ),
         longShotGoalShare: (
-          <MDTypography variant="body2" color="text">
+          <MDTypography {...uiTypography.tableText}>
             {formatPercentOrDash(row.longShotGoalShare, 1)}
           </MDTypography>
         ),
@@ -1956,20 +1839,19 @@ function SquadAnalysis() {
   return (
     <DashboardLayout>
       <DashboardNavbar pageTitle="스쿼드 분석" />
-      <MDBox py={3} sx={{ outline: debugOutline("rgba(255, 0, 0, 0.9)", "2px") }}>
-        <Grid container spacing={3}>
+      <MDBox py={{ xs: 2, md: 3 }}>
+        <Grid container spacing={{ xs: 2, md: 3 }}>
           <Grid item xs={12}>
             <MDBox
               display="flex"
               justifyContent="space-between"
-              alignItems="center"
+              alignItems={{ xs: "stretch", sm: "center" }}
+              flexDirection={{ xs: "column", sm: "row" }}
               gap={1.5}
               mb={2}
             >
-              <MDBox display="flex" alignItems="center" gap={1.5}>
-                <MDTypography variant="button" color="text">
-                  시즌
-                </MDTypography>
+              <MDBox display="flex" alignItems="center" gap={1.5} flexWrap="wrap">
+                <MDTypography {...uiTypography.sectionSub}>시즌</MDTypography>
                 <Select value={selectedSeason} onChange={(e) => setSelectedSeason(e.target.value)}>
                   {seasons.map((season) => (
                     <MenuItem key={season} value={season}>
@@ -1978,7 +1860,12 @@ function SquadAnalysis() {
                   ))}
                 </Select>
               </MDBox>
-              <MDBox display="flex" gap={1}>
+              <MDBox
+                display="flex"
+                gap={1}
+                flexWrap="wrap"
+                justifyContent={{ xs: "flex-end", sm: "flex-start" }}
+              >
                 {/* 감독모드 인사이트 임시 비활성화
                 <MDButton
                   component={Link}
@@ -2017,25 +1904,9 @@ function SquadAnalysis() {
             position: "relative",
             minHeight: { lg: TOP_ROW_MIN_HEIGHT },
             height: { xs: "auto", lg: topRowHeight ? `${topRowHeight}px` : "calc(100vh - 360px)" },
-            outline: debugOutline("rgba(255, 0, 0, 0.95)", "2px"),
           }}
         >
-          {DEBUG_ALIGNMENT_PROBE && (
-            <MDBox
-              sx={{
-                position: "absolute",
-                top: 0,
-                bottom: 0,
-                left: "50%",
-                width: "1px",
-                backgroundColor: "rgba(255, 0, 0, 0.75)",
-                zIndex: 5,
-                pointerEvents: "none",
-              }}
-            />
-          )}
           <MDBox
-            ref={topCardsRef}
             sx={{
               display: "grid",
               gridTemplateColumns: { xs: "1fr", lg: "5fr 7fr" },
@@ -2043,7 +1914,6 @@ function SquadAnalysis() {
               height: "100%",
               minHeight: 0,
               alignItems: "stretch",
-              outline: debugOutline("rgba(255, 64, 64, 0.95)", "2px"),
             }}
           >
             <MDBox
@@ -2051,27 +1921,20 @@ function SquadAnalysis() {
                 height: { xs: "auto", lg: "100%" },
                 minHeight: 0,
                 display: "flex",
-                outline: debugOutline("rgba(255, 96, 96, 0.95)", "2px"),
               }}
             >
               <Card
-                ref={leftCardRef}
                 sx={{
                   height: "100%",
                   width: "100%",
                   display: "flex",
                   flexDirection: "column",
                   minHeight: 0,
-                  outline: debugOutline("rgba(255, 128, 128, 0.95)", "2px"),
                 }}
               >
-                <MDBox
-                  p={1.25}
-                  pb={0.5}
-                  sx={{ outline: debugOutline("rgba(255, 160, 160, 0.95)", "1px") }}
-                >
-                  <MDTypography variant="h6">베스트 11 포지션 맵</MDTypography>
-                  <MDTypography variant="button" color="text">
+                <MDBox p={1.25} pb={0.5}>
+                  <MDTypography {...uiTypography.sectionTitle}>베스트 11 포지션 맵</MDTypography>
+                  <MDTypography {...uiTypography.sectionSub}>
                     출전 기준 상위 11명 (클릭 시 선수 페이지)
                   </MDTypography>
                 </MDBox>
@@ -2086,19 +1949,11 @@ function SquadAnalysis() {
                     justifyContent: "center",
                     alignItems: "center",
                     overflow: "hidden",
-                    outline: debugOutline("rgba(255, 0, 0, 0.95)", "2px"),
                   }}
                 >
                   {status === "ready" && pitchPlayers.length > 0 ? (
-                    <MDBox
-                      sx={{ width: "100%", outline: debugOutline("rgba(255, 120, 120, 0.95)") }}
-                    >
-                      <PitchBoard
-                        ref={pitchRef}
-                        maxWidth={pitchBoardMaxWidth}
-                        aspectRatio="3 / 4"
-                        debugBorders={DEBUG_LAYOUT_BORDERS}
-                      >
+                    <MDBox sx={{ width: "100%" }}>
+                      <PitchBoard ref={pitchRef} maxWidth={pitchBoardMaxWidth} aspectRatio="3 / 4">
                         <MDBox
                           ref={lineupLayerRef}
                           sx={{
@@ -2107,7 +1962,6 @@ function SquadAnalysis() {
                             transform: `translate(${lineupVisualOffset.x}px, ${lineupVisualOffset.y}px)`,
                             transformOrigin: "center center",
                             pointerEvents: "none",
-                            outline: debugOutline("rgba(255, 96, 96, 0.95)", "1px"),
                           }}
                         >
                           {pitchPlayers.map((player) => (
@@ -2125,7 +1979,6 @@ function SquadAnalysis() {
                                 transform: "translate(-50%, -50%)",
                                 zIndex: 2,
                                 pointerEvents: "auto",
-                                outline: debugOutline("rgba(255, 0, 0, 0.95)", "1px"),
                               }}
                             >
                               <PlayerChip
@@ -2138,7 +1991,6 @@ function SquadAnalysis() {
                                   player.spId || player.playerKey || player.id
                                 )}
                                 onClick={() => handleOpenPlayerPage(player)}
-                                debugBorder={DEBUG_LAYOUT_BORDERS}
                               />
                             </MDBox>
                           ))}
@@ -2146,7 +1998,7 @@ function SquadAnalysis() {
                       </PitchBoard>
                     </MDBox>
                   ) : (
-                    <MDTypography variant="button" color="text">
+                    <MDTypography {...uiTypography.status}>
                       {status === "loading" && "스쿼드 데이터 로딩 중..."}
                       {status === "pending" && "스쿼드 데이터 준비 중"}
                       {status === "error" && "스쿼드 데이터 로드 실패"}
@@ -2163,29 +2015,20 @@ function SquadAnalysis() {
                 height: { xs: "auto", lg: "100%" },
                 minHeight: 0,
                 display: "flex",
-                outline: debugOutline("rgba(255, 96, 96, 0.95)", "2px"),
               }}
             >
               <Card
-                ref={rightCardRef}
                 sx={{
                   height: "100%",
                   width: "100%",
                   display: "flex",
                   flexDirection: "column",
                   minHeight: 0,
-                  outline: debugOutline("rgba(255, 128, 128, 0.95)", "2px"),
                 }}
               >
-                <MDBox
-                  p={1.25}
-                  pb={0.5}
-                  sx={{ outline: debugOutline("rgba(255, 160, 160, 0.95)", "1px") }}
-                >
-                  <MDTypography variant="h6">지표 한눈에</MDTypography>
-                  <MDTypography variant="button" color="text">
-                    팀 세부 지표 (시즌 분석)
-                  </MDTypography>
+                <MDBox p={1.25} pb={0.5}>
+                  <MDTypography {...uiTypography.sectionTitle}>지표 한눈에</MDTypography>
+                  <MDTypography {...uiTypography.sectionSub}>팀 세부 지표 (시즌 분석)</MDTypography>
                 </MDBox>
                 <MDBox
                   px={1}
@@ -2196,23 +2039,65 @@ function SquadAnalysis() {
                     overflow: "hidden",
                     display: "flex",
                     flexDirection: "column",
-                    outline: debugOutline("rgba(255, 0, 0, 0.95)", "2px"),
                   }}
                 >
+                  {insightStatus === "ready" && insightQuickMetrics.length > 0 && (
+                    <MDBox
+                      mb={0.8}
+                      sx={{
+                        display: "grid",
+                        gridTemplateColumns: {
+                          xs: "repeat(2, minmax(0, 1fr))",
+                          md: "repeat(4, minmax(0, 1fr))",
+                        },
+                        gap: 0.6,
+                      }}
+                    >
+                      {insightQuickMetrics.map((item) => (
+                        <MDBox
+                          key={item.key}
+                          sx={({ palette }) => {
+                            const isDarkTheme = darkMode || palette.mode === "dark";
+                            return {
+                              border: `1px solid ${
+                                isDarkTheme ? "rgba(255,255,255,0.12)" : palette.grey[300]
+                              }`,
+                              borderRadius: "8px",
+                              px: 0.9,
+                              py: 0.7,
+                              minHeight: 52,
+                              backgroundColor: isDarkTheme
+                                ? "rgba(255,255,255,0.04)"
+                                : palette.grey[100],
+                              color: isDarkTheme ? palette.text.main : palette.dark.main,
+                            };
+                          }}
+                        >
+                          <MDTypography {...uiTypography.metaLabel} color="inherit">
+                            {item.label}
+                          </MDTypography>
+                          <MDTypography
+                            {...uiTypography.metaValue}
+                            color="inherit"
+                            display="block"
+                            mt={0.1}
+                          >
+                            {item.value}
+                          </MDTypography>
+                        </MDBox>
+                      ))}
+                    </MDBox>
+                  )}
                   {insightStatus === "loading" && (
-                    <MDTypography variant="button" color="text">
+                    <MDTypography {...uiTypography.status}>
                       팀 세부지표를 불러오는 중...
                     </MDTypography>
                   )}
                   {insightStatus === "pending" && (
-                    <MDTypography variant="button" color="text">
-                      팀 세부지표 데이터 준비 중
-                    </MDTypography>
+                    <MDTypography {...uiTypography.status}>팀 세부지표 데이터 준비 중</MDTypography>
                   )}
                   {insightStatus === "error" && (
-                    <MDTypography variant="button" color="text">
-                      팀 세부지표 로드 실패
-                    </MDTypography>
+                    <MDTypography {...uiTypography.status}>팀 세부지표 로드 실패</MDTypography>
                   )}
                   {insightStatus === "ready" && (
                     <MDBox
@@ -2223,7 +2108,6 @@ function SquadAnalysis() {
                         overflow: "hidden",
                         display: "flex",
                         flexDirection: "column",
-                        outline: debugOutline("rgba(255, 0, 0, 0.95)", "1px"),
                       }}
                     >
                       {insightLayoutMode === "tabs" ? (
@@ -2274,7 +2158,7 @@ function SquadAnalysis() {
                               columns={insightTabColumns}
                             />
                           ) : (
-                            <MDTypography variant="button" color="text">
+                            <MDTypography {...uiTypography.status}>
                               표시할 지표가 없습니다.
                             </MDTypography>
                           )}
@@ -2288,10 +2172,7 @@ function SquadAnalysis() {
                           }}
                         >
                           {advancedMetricGroups.map((group) => (
-                            <MDBox
-                              key={group.key}
-                              sx={{ outline: debugOutline("rgba(255, 0, 0, 0.95)") }}
-                            >
+                            <MDBox key={group.key}>
                               <FmMetricPanel
                                 title={group.title}
                                 items={group.items}
@@ -2312,51 +2193,42 @@ function SquadAnalysis() {
           </MDBox>
         </MDBox>
 
-        {DEBUG_ALIGNMENT_PROBE && alignmentProbe && (
-          <MDBox
-            mb={2}
-            p={1.25}
-            sx={{
-              border: "1px dashed rgba(255, 0, 0, 0.7)",
-              backgroundColor: "rgba(255, 0, 0, 0.03)",
-            }}
-          >
-            <MDTypography variant="caption" fontWeight="bold" color="text">
-              Alignment Probe
-            </MDTypography>
-            <MDBox mt={0.5} sx={{ display: "grid", rowGap: 0.2 }}>
-              <MDTypography variant="caption" color="text">
-                topRow-cards ΔX: {alignmentProbe.deltaTopRowVsCards}px
-              </MDTypography>
-              <MDTypography variant="caption" color="text">
-                pitch-leftCard ΔX: {alignmentProbe.deltaPitchVsLeftCard}px
-              </MDTypography>
-              <MDTypography variant="caption" color="text">
-                lineup-pitch ΔX: {alignmentProbe.deltaLineupVsPitch}px
-              </MDTypography>
-              <MDTypography variant="caption" color="text">
-                lineup gap L/R: {alignmentProbe.lineupLeftGap}px / {alignmentProbe.lineupRightGap}px
-              </MDTypography>
-              <MDTypography variant="caption" color="text">
-                lineup offset X/Y: {alignmentProbe.lineupOffsetX}px / {alignmentProbe.lineupOffsetY}
-                px
-              </MDTypography>
-            </MDBox>
-          </MDBox>
-        )}
-
         <Dialog
           open={Boolean(selectedPlayerDetail)}
           onClose={handleClosePlayerModal}
           maxWidth="md"
           fullWidth
           scroll="paper"
+          PaperProps={{
+            sx: ({ palette }) => {
+              const isDarkTheme = darkMode || palette.mode === "dark";
+              return {
+                backgroundColor: isDarkTheme ? palette.background.card : palette.background.paper,
+                color: isDarkTheme ? palette.text.main : palette.text.primary,
+                backgroundImage: "none",
+                "& .MuiDialogContent-dividers": {
+                  borderColor: isDarkTheme ? "rgba(255,255,255,0.12)" : palette.grey[300],
+                },
+                "& .MuiTableCell-root": {
+                  borderColor: isDarkTheme ? "rgba(255,255,255,0.08) !important" : undefined,
+                },
+                "& .MuiTableCell-root, & .MuiTableCell-root *": {
+                  color: isDarkTheme ? `${palette.text.main} !important` : undefined,
+                },
+                "& .MuiSvgIcon-root": {
+                  color: isDarkTheme ? `${palette.text.main} !important` : undefined,
+                },
+              };
+            },
+          }}
         >
           {selectedPlayerDetail && (
             <>
               <DialogTitle sx={{ pb: 1 }}>
                 <MDBox display="flex" justifyContent="space-between" alignItems="center" gap={1.5}>
-                  <MDTypography variant="h6">{modalPlayerTitle} - 선수 상세 지표</MDTypography>
+                  <MDTypography {...uiTypography.sectionTitle} color="inherit">
+                    {modalPlayerTitle} - 선수 상세 지표
+                  </MDTypography>
                   <MDButton
                     variant="outlined"
                     color="info"
@@ -2366,33 +2238,56 @@ function SquadAnalysis() {
                     닫기
                   </MDButton>
                 </MDBox>
-                <MDTypography variant="button" color="text" display="block">
+                <MDTypography {...uiTypography.sectionSub} color="inherit" display="block">
                   데이터 생성 시각: {formatGeneratedAt(payload?.generatedAt)}
                 </MDTypography>
               </DialogTitle>
               <DialogContent dividers>
                 <MDBox
-                  sx={({ palette }) => ({
-                    width: "100%",
-                    minHeight: 158,
-                    borderRadius: "12px",
-                    border: `1px solid ${palette.grey[300]}`,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    px: 2,
-                    py: 1.5,
-                    gap: 2,
-                    background: `linear-gradient(135deg, ${palette.grey[100]} 0%, ${palette.white.main} 100%)`,
-                  })}
+                  sx={({ palette }) => {
+                    const isDarkTheme = darkMode || palette.mode === "dark";
+                    return {
+                      width: "100%",
+                      minHeight: 158,
+                      borderRadius: "12px",
+                      border: `1px solid ${
+                        isDarkTheme ? "rgba(255,255,255,0.14)" : palette.grey[300]
+                      }`,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      px: 2,
+                      py: 1.5,
+                      gap: 2,
+                      background: isDarkTheme
+                        ? "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)"
+                        : `linear-gradient(135deg, ${palette.grey[100]} 0%, ${palette.white.main} 100%)`,
+                      color: isDarkTheme ? palette.text.main : palette.dark.main,
+                    };
+                  }}
                 >
-                  <MDBox>
-                    <MDTypography variant="h5">{modalPlayerTitle}</MDTypography>
-                    <MDTypography variant="button" color="text" display="block">
+                  <MDBox
+                    sx={({ palette }) => {
+                      const isDarkTheme = darkMode || palette.mode === "dark";
+                      const forcedColor = isDarkTheme
+                        ? `${palette.common.white} !important`
+                        : `${palette.dark.main} !important`;
+                      return {
+                        color: forcedColor,
+                        "&, & *": {
+                          color: forcedColor,
+                        },
+                      };
+                    }}
+                  >
+                    <MDTypography variant="h5" fontWeight="medium" color="inherit">
+                      {modalPlayerTitle}
+                    </MDTypography>
+                    <MDTypography {...uiTypography.sectionSub} color="inherit" display="block">
                       {selectedPlayerDetail.positionName || selectedPlayerDetail.position || "-"} ·{" "}
                       {selectedPlayerDetail.seasonName || selectedPlayerDetail.seasonId || "-"}
                     </MDTypography>
-                    <MDTypography variant="button" color="text" display="block">
+                    <MDTypography {...uiTypography.sectionSub} color="inherit" display="block">
                       출전 {toNumber(selectedPlayerDetail.appearances, 0)}경 · 승률{" "}
                       {formatPercentOrDash(
                         selectedPlayerDetail.playerWinRate !== undefined &&
@@ -2404,17 +2299,22 @@ function SquadAnalysis() {
                     </MDTypography>
                   </MDBox>
                   <MDBox
-                    sx={{
-                      width: 120,
-                      height: 120,
-                      borderRadius: "10px",
-                      border: "1px solid rgba(0,0,0,0.08)",
-                      bgcolor: "white",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      overflow: "hidden",
-                      flexShrink: 0,
+                    sx={({ palette }) => {
+                      const isDarkTheme = darkMode || palette.mode === "dark";
+                      return {
+                        width: 120,
+                        height: 120,
+                        borderRadius: "10px",
+                        border: `1px solid ${
+                          isDarkTheme ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.08)"
+                        }`,
+                        bgcolor: isDarkTheme ? "rgba(255,255,255,0.03)" : "white",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        overflow: "hidden",
+                        flexShrink: 0,
+                      };
                     }}
                   >
                     {modalPortraitUrl ? (
@@ -2436,9 +2336,7 @@ function SquadAnalysis() {
                         }}
                       />
                     ) : (
-                      <MDTypography variant="caption" color="text">
-                        이미지 없음
-                      </MDTypography>
+                      <MDTypography {...uiTypography.metaLabel}>이미지 없음</MDTypography>
                     )}
                   </MDBox>
                 </MDBox>
@@ -2450,6 +2348,7 @@ function SquadAnalysis() {
                     showTotalEntries={false}
                     showAllEntries
                     noEndBorder
+                    dense={!isDesktopLayout}
                   />
                 </MDBox>
               </DialogContent>
@@ -2459,7 +2358,9 @@ function SquadAnalysis() {
 
         <Card>
           <MDBox p={2}>
-            <MDTypography variant="h6">{nickname} - FC온라인 감독경기 스쿼드 분석</MDTypography>
+            <MDTypography {...uiTypography.pageTitle}>
+              {nickname} - FC온라인 감독경기 스쿼드 분석
+            </MDTypography>
             <MDBox
               mt={1}
               sx={{
@@ -2468,22 +2369,19 @@ function SquadAnalysis() {
               }}
             >
               <MDTypography
-                variant="body2"
-                color="text"
+                {...uiTypography.tableText}
                 sx={{ lineHeight: 1.6, wordBreak: "keep-all", letterSpacing: "0.01em" }}
               >
                 데이터 생성 시각: {formatGeneratedAt(payload?.generatedAt)}
               </MDTypography>
               <MDTypography
-                variant="body2"
-                color="text"
+                {...uiTypography.tableText}
                 sx={{ lineHeight: 1.6, wordBreak: "keep-all", letterSpacing: "0.01em" }}
               >
                 시즌 내 분석 경기 수: {toNumber(scope.actualMatches, 0)}경
               </MDTypography>
               <MDTypography
-                variant="body2"
-                color="text"
+                {...uiTypography.tableText}
                 sx={{ lineHeight: 1.6, wordBreak: "keep-all", letterSpacing: "0.01em" }}
               >
                 집계 선수 수: {toNumber(summary.uniquePlayers, 0)}명
@@ -2493,22 +2391,18 @@ function SquadAnalysis() {
 
           <MDBox px={2} pb={2}>
             {status === "loading" && (
-              <MDTypography variant="button" color="text">
+              <MDTypography {...uiTypography.status}>
                 스쿼드 분석 데이터를 불러오는 중...
               </MDTypography>
             )}
             {status === "pending" && (
-              <MDTypography variant="button" color="text">
-                스쿼드 분석 데이터 준비 중
-              </MDTypography>
+              <MDTypography {...uiTypography.status}>스쿼드 분석 데이터 준비 중</MDTypography>
             )}
             {status === "error" && (
-              <MDTypography variant="button" color="text">
-                스쿼드 분석 데이터 로드 실패
-              </MDTypography>
+              <MDTypography {...uiTypography.status}>스쿼드 분석 데이터 로드 실패</MDTypography>
             )}
             {status === "ready" && rows.length === 0 && (
-              <MDTypography variant="button" color="text">
+              <MDTypography {...uiTypography.status}>
                 표시할 스쿼드 분석 데이터가 없습니다.
               </MDTypography>
             )}
@@ -2520,6 +2414,7 @@ function SquadAnalysis() {
                 showTotalEntries={false}
                 showAllEntries
                 noEndBorder
+                dense={!isDesktopLayout}
               />
             )}
           </MDBox>
@@ -2529,8 +2424,8 @@ function SquadAnalysis() {
           <MDBox mt={3}>
             <Card>
               <MDBox p={2}>
-                <MDTypography variant="h6">중거리 보조 지표</MDTypography>
-                <MDTypography variant="button" color="text" display="block">
+                <MDTypography {...uiTypography.sectionTitle}>중거리 보조 지표</MDTypography>
+                <MDTypography {...uiTypography.sectionSub} display="block">
                   메인 스쿼드 지표와 분리된 보조 통계
                 </MDTypography>
               </MDBox>
@@ -2542,6 +2437,7 @@ function SquadAnalysis() {
                   showTotalEntries={false}
                   showAllEntries
                   noEndBorder
+                  dense={!isDesktopLayout}
                 />
               </MDBox>
             </Card>

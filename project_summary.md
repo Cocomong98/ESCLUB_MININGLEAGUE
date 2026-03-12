@@ -28,10 +28,17 @@
     - 시즌/구단주 검색 및 시즌 정렬(최신/오래된 순)을 지원합니다.
     - 각 왕 항목에서 해당 구단주의 상세 대시보드로 이동할 수 있습니다.
 
-4.  **개인 분석 확장 페이지 (`/dashboard/:id/analysis`, `/dashboard/:id/squad`)**
-    - Open API 분석 JSON(`last200`, `shot_events_last200`, `player_usage_last200`, `squad_analysis_all`) 기반의 세부 분석/스쿼드 분석 페이지를 제공합니다.
+4.  **개인 분석 확장 페이지 (`/dashboard/:id/squad`)**
+
+    - Open API 분석 JSON(`last200`, `shot_events_last200`, `player_usage_last200`, `squad_analysis_all`) 기반의 스쿼드 분석 페이지를 제공합니다.
+    - `/dashboard/:id/analysis` 라우트는 임시 비활성화 상태입니다.
     - 스쿼드 분석 페이지 상단에서 좌측 `베스트11 포지션 맵`과 우측 `지표 한눈에`(팀 세부 지표)를 함께 조회할 수 있습니다.
     - 스쿼드 분석의 선수명을 클릭하면 선수별 상세 페이지(`/dashboard/:id/squad/player/:playerKey`)로 이동해 출전/승률 등 표 데이터를 조회할 수 있습니다.
+
+5.  **UI/테마 동작**
+    - 다크모드/사이드바 상태는 `localStorage(md2-ui-controller)`로 유지되어 새로고침 후에도 유지됩니다.
+    - 다크모드에서 순위 배지, 명예의 전당 카드, 스쿼드/선수 상세 모달의 텍스트 대비가 유지되도록 보정되어 있습니다.
+    - 개인 대시보드 상단의 메타 카드(`구단주`, `조회 시즌`, `현재 진행 시즌`)는 제거된 상태입니다.
 
 #### **3. 기술 스택 (Technology Stack)**
 
@@ -46,6 +53,7 @@
 
 이 프로젝트는 **React 프론트엔드 + Flask 백엔드(`app.py`)** 구조입니다.
 데이터 파일은 정적 JSON으로 관리되지만, 관리자 기능/크롤링/시즌 분할/히스토리 조회는 Flask API가 담당합니다.
+관리자 페이지는 템플릿 `admin.html`과 외부 스크립트 `admin-panel.js`를 통해 동작합니다.
 
 1.  **데이터 소스:**
 
@@ -71,6 +79,7 @@
 
 - **인증 방식:** 관리자 API는 세션 기반 인증(`POST /api/login`)으로 보호됩니다.
 - **비밀번호 관리:** 운영 비밀번호는 코드 하드코딩이 아닌 환경변수 `ADMIN_PASSWORD`로 주입합니다.
+- **세션 만료 정책:** `ADMIN_SESSION_TTL_MINUTES`(절대 만료), `ADMIN_SESSION_IDLE_MINUTES`(유휴 만료) 기준으로 자동 만료됩니다.
 - **쿠키 정책:** `HttpOnly`, `SameSite=Strict` 쿠키를 사용합니다 (`SESSION_COOKIE_SECURE`는 운영 환경에서 `1` 권장).
 - **요청 제한:** 로그인 요청에 IP 기반 간단 Rate Limit이 적용됩니다.
 - **경로 보호:** 시즌명 형식 검증(`YYYY-N`) 및 catch-all 라우팅 제한으로 임의 파일 노출/경로 조작을 방지합니다.
@@ -85,8 +94,8 @@
 
 #### **7. Open API 분석 자동화 (운영 배치)**
 
-- **배치 순서:** 일일 크롤링 잡(`daily_crawl`, `04:00`)과 Open API 분석 잡(`openapi_analytics`, `2시간 간격`)을 분리 운영
-- **스케줄러:** Flask 내부 APScheduler 잡(`daily_crawl`, `openapi_analytics`, `weekly_report`)
+- **배치 순서:** 통합 잡(`crawl_openapi_chain`)에서 전적 크롤링 후 Open API 분석을 순차 실행
+- **스케줄러:** Flask 내부 APScheduler 잡(`crawl_openapi_chain`, `weekly_report`)
 - **락 파일:** `.private/locks/openapi.lock`, `.private/locks/daily_crawl.lock` (중복 실행 방지)
 - **캐시 루트:** `OPENAPI_CACHE_DIR` 환경변수 또는 기본값 `.private/openapi_cache/` (TTL 정책: 29일, `/data/*` 비공개)
 - **닉네임 해석 우선순위:** 관리자 목록(`managers.json`)의 `name`을 우선 사용하고, 없을 때만 최신 일일파일(`data/{season}/user/{id}/{id}_YYMMDD.json`)에서 fallback

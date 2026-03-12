@@ -147,7 +147,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
       variant="permanent"
       ownerState={{ transparentSidenav, whiteSidenav, miniSidenav, darkMode }}
     >
-      <MDBox pt={3} pb={1} px={4} textAlign="center">
+      <MDBox pt={3} pb={1} px={miniSidenav ? 0 : 4} textAlign="center">
         <MDBox
           display={{ xs: "block", xl: "none" }}
           position="absolute"
@@ -161,7 +161,18 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
             <Icon sx={{ fontWeight: "bold" }}>close</Icon>
           </MDTypography>
         </MDBox>
-        <MDBox component={NavLink} to="/" display="flex" alignItems="center">
+        <MDBox
+          component={NavLink}
+          to="/"
+          display="flex"
+          alignItems="center"
+          justifyContent="flex-start"
+          sx={{
+            width: miniSidenav ? "fit-content" : "100%",
+            mx: miniSidenav ? "auto" : 0,
+            textDecoration: "none",
+          }}
+        >
           {brand && (
             <MDBox
               component="img"
@@ -175,15 +186,17 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
               sx={{ width: "3rem", height: "3rem" }}
             />
           )}
-          <MDBox
-            width={!brandName && "100%"}
-            sx={(theme) => sidenavLogoLabel(theme, { miniSidenav })}
-            ml={5}
-          >
-            <MDTypography component="h5" variant="h6" fontWeight="medium" color={textColor}>
-              {brandName}
-            </MDTypography>
-          </MDBox>
+          {!miniSidenav && (
+            <MDBox
+              width={!brandName && "100%"}
+              sx={(theme) => sidenavLogoLabel(theme, { miniSidenav })}
+              ml={5}
+            >
+              <MDTypography component="h5" variant="h6" fontWeight="medium" color={textColor}>
+                {brandName}
+              </MDTypography>
+            </MDBox>
+          )}
         </MDBox>
       </MDBox>
       <Divider

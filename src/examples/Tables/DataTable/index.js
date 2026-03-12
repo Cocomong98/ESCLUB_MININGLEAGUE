@@ -48,6 +48,7 @@ function DataTable({
   pagination,
   isSorted,
   noEndBorder,
+  dense,
 }) {
   const defaultValue =
     typeof entriesPerPage === "object" && entriesPerPage.defaultValue
@@ -159,7 +160,12 @@ function DataTable({
   return (
     <TableContainer sx={{ boxShadow: "none" }}>
       {entriesPerPage || canSearch ? (
-        <MDBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+        <MDBox
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          p={dense ? 1.75 : 3}
+        >
           {entriesPerPage && (
             <MDBox display="flex" alignItems="center">
               <Autocomplete
@@ -194,7 +200,7 @@ function DataTable({
           )}
         </MDBox>
       ) : null}
-      <Table {...getTableProps()}>
+      <Table {...getTableProps()} size={dense ? "small" : "medium"}>
         <MDBox component="thead">
           {headerGroups.map((headerGroup, key) => (
             <TableRow key={key} {...headerGroup.getHeaderGroupProps()}>
@@ -205,6 +211,7 @@ function DataTable({
                   width={column.width ? column.width : "auto"}
                   align={column.align ? column.align : "left"}
                   sorted={setSortedValue(column)}
+                  dense={dense}
                 >
                   {column.render("Header")}
                 </DataTableHeadCell>
@@ -222,6 +229,7 @@ function DataTable({
                     key={idx}
                     noBorder={noEndBorder && rows.length - 1 === key}
                     align={cell.column.align ? cell.column.align : "left"}
+                    dense={dense}
                     {...cell.getCellProps()}
                   >
                     {cell.render("Cell")}
@@ -238,7 +246,7 @@ function DataTable({
         flexDirection={{ xs: "column", sm: "row" }}
         justifyContent="space-between"
         alignItems={{ xs: "flex-start", sm: "center" }}
-        p={!showTotalEntries && pageOptions.length === 1 ? 0 : 3}
+        p={!showTotalEntries && pageOptions.length === 1 ? 0 : dense ? 1.75 : 3}
       >
         {showTotalEntries && (
           <MDBox mb={{ xs: 3, sm: 0 }}>
@@ -289,6 +297,7 @@ DataTable.defaultProps = {
   pagination: { variant: "gradient", color: "info" },
   isSorted: true,
   noEndBorder: false,
+  dense: false,
 };
 
 // Typechecking props for the DataTable
@@ -319,6 +328,7 @@ DataTable.propTypes = {
   }),
   isSorted: PropTypes.bool,
   noEndBorder: PropTypes.bool,
+  dense: PropTypes.bool,
 };
 
 export default DataTable;

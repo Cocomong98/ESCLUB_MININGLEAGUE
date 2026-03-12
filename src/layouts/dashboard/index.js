@@ -14,6 +14,8 @@ import { useParams, useSearchParams, Link } from "react-router-dom";
 
 // @mui material components
 import Grid from "@mui/material/Grid";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { Select, MenuItem } from "@mui/material";
 
 // Material Dashboard 2 React components
@@ -28,7 +30,9 @@ import Footer from "examples/Footer";
 import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
 import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
+import { useMaterialUIController } from "context";
 import { fetchSeasonsWithData } from "utils/seasonUtils";
+import { uiTypography } from "utils/uiTypography";
 
 const navActionSx = ({ palette }) => ({
   color: `${palette.info.main} !important`,
@@ -44,6 +48,10 @@ const navActionSx = ({ palette }) => ({
 function Dashboard() {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [controller] = useMaterialUIController();
+  const { darkMode } = controller;
   const [seasons, setSeasons] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState("");
   const [currentSeason, setCurrentSeason] = useState("");
@@ -255,8 +263,15 @@ function Dashboard() {
   return (
     <DashboardLayout>
       <DashboardNavbar pageTitle={ownerName} />
-      <MDBox py={3}>
-        <MDBox mb={3} display="flex" justifyContent="space-between" alignItems="center" gap={1.5}>
+      <MDBox py={{ xs: 2, md: 3 }}>
+        <MDBox
+          mb={3}
+          display="flex"
+          justifyContent="space-between"
+          alignItems={{ xs: "stretch", sm: "center" }}
+          flexDirection={{ xs: "column", sm: "row" }}
+          gap={1.5}
+        >
           <Select value={selectedSeason} onChange={(e) => setSelectedSeason(e.target.value)}>
             {seasons.map((season) => (
               <MenuItem key={season} value={season}>
@@ -264,7 +279,12 @@ function Dashboard() {
               </MenuItem>
             ))}
           </Select>
-          <MDBox display="flex" gap={1}>
+          <MDBox
+            display="flex"
+            gap={1}
+            flexWrap="wrap"
+            justifyContent={{ xs: "flex-end", sm: "flex-start" }}
+          >
             {/* 감독모드 인사이트 임시 비활성화
             <MDButton
               component={Link}
@@ -293,7 +313,7 @@ function Dashboard() {
             </MDButton>
           </MDBox>
         </MDBox>
-        <Grid container spacing={3}>
+        <Grid container spacing={{ xs: 1.5, md: 3 }}>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
@@ -338,8 +358,8 @@ function Dashboard() {
             </MDBox>
           </Grid>
         </Grid>
-        <MDBox mt={4.5}>
-          <Grid container spacing={{ xs: 4, md: 3 }}>
+        <MDBox mt={isMobile ? 2.5 : 4.5}>
+          <Grid container spacing={{ xs: 2.5, md: 3 }}>
             <Grid item xs={12} md={6} lg={4}>
               <ReportsLineChart
                 color="dark"

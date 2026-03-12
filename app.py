@@ -141,6 +141,10 @@ def env_float(name, default, *, min_value=0.0):
     return value
 
 
+ADMIN_SESSION_TTL_MINUTES = env_int("ADMIN_SESSION_TTL_MINUTES", 720, min_value=5)
+ADMIN_SESSION_IDLE_MINUTES = env_int("ADMIN_SESSION_IDLE_MINUTES", 120, min_value=5)
+
+
 def resolve_batch_window_matches(default=200):
     raw = str(os.environ.get("OPENAPI_BATCH_WINDOW_MATCHES", str(default))).strip().lower()
     if raw in {"", "all", "none", "0"}:
@@ -167,7 +171,9 @@ def openapi_job_lock():
 def add_header(response):
     if 'application/json' in response.content_type:
         response.cache_control.no_cache = True
-    elif 'application/javascript' in response.content_type or 'text/css' in response.content_type:
+    elif (not response.cache_control.no_cache) and (
+        'application/javascript' in response.content_type or 'text/css' in response.content_type
+    ):
         response.cache_control.max_age = 2678400 # 31일
     response.headers.setdefault("X-Content-Type-Options", "nosniff")
     response.headers.setdefault("X-Frame-Options", "DENY")
@@ -203,11 +209,49 @@ def consume_rate_limit(bucket_key, max_requests, window_seconds):
     bucket.append(now)
     return True
 
+
+def parse_iso_datetime_or_none(value):
+    text = str(value or "").strip()
+    if not text:
+        return None
+    try:
+        parsed = datetime.fromisoformat(text)
+    except ValueError:
+        return None
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=KST)
+    return parsed.astimezone(KST)
+
+
+def is_admin_session_active(*, touch=False):
+    if not session.get("is_admin"):
+        return False
+
+    now = datetime.now(KST)
+    login_at = parse_iso_datetime_or_none(session.get("login_at"))
+    if login_at is None:
+        session.clear()
+        return False
+
+    if now - login_at > timedelta(minutes=ADMIN_SESSION_TTL_MINUTES):
+        session.clear()
+        return False
+
+    last_seen = parse_iso_datetime_or_none(session.get("last_seen_at")) or login_at
+    if now - last_seen > timedelta(minutes=ADMIN_SESSION_IDLE_MINUTES):
+        session.clear()
+        return False
+
+    if touch:
+        session["last_seen_at"] = now.isoformat()
+    return True
+
+
 def require_admin_auth(fn):
     @wraps(fn)
     def wrapper(*args, **kwargs):
-        if not session.get("is_admin"):
-            return jsonify({"error": "Unauthorized"}), 401
+        if not is_admin_session_active(touch=True):
+            return jsonify({"error": "Unauthorized", "reason": "session_expired"}), 401
         return fn(*args, **kwargs)
     return wrapper
 
@@ -1479,7 +1523,25 @@ def get_user_history(season, player_id):
 # 3. 관리자 페이지 (이게 있어야 esclub.info/admin 접속 가능)
 @app.route('/admin')
 def admin_page():
-    return render_template('admin.html')
+    res = make_response(render_template('admin.html'))
+    res.cache_control.no_cache = True
+    res.cache_control.no_store = True
+    res.cache_control.must_revalidate = True
+    return res
+
+
+@app.route('/admin-panel.js')
+def admin_panel_script():
+    filename = "admin-panel.js"
+    path = os.path.join(app.root_path, filename)
+    if not os.path.isfile(path):
+        return jsonify({"error": "admin-panel.js not found"}), 404
+    res = make_response(send_from_directory(app.root_path, filename))
+    res.cache_control.no_cache = True
+    res.cache_control.no_store = True
+    res.cache_control.must_revalidate = True
+    return res
+
 
 # 4. 관리자 API
 @app.route('/api/login', methods=['POST'])
@@ -1495,7 +1557,9 @@ def api_login():
 
     session.clear()
     session["is_admin"] = True
-    session["login_at"] = datetime.now(KST).isoformat()
+    now_iso = datetime.now(KST).isoformat()
+    session["login_at"] = now_iso
+    session["last_seen_at"] = now_iso
     return jsonify({"status": "success"})
 
 @app.route('/api/logout', methods=['POST'])
@@ -1505,7 +1569,7 @@ def api_logout():
 
 @app.route('/api/session', methods=['GET'])
 def api_session():
-    return jsonify({"authenticated": bool(session.get("is_admin"))})
+    return jsonify({"authenticated": is_admin_session_active(touch=True)})
 
 @app.route('/api/managers', methods=['GET', 'POST'])
 @require_admin_auth
@@ -1973,21 +2037,13 @@ if __name__ == '__main__':
             "openapi-sync-user | openapi-update-analysis | weekly-report | weekly-backfill"
         )
 
+    # 운영 배치: 짝수시 10분마다 전적 크롤링 -> OpenAPI 분석 순차 실행
     scheduler.add_job(
-        func=run_daily_crawl_only,
-        trigger="cron",
-        hour=4,
-        minute=0,
-        id="daily_crawl",
-        replace_existing=True,
-        coalesce=True,
-    )
-    scheduler.add_job(
-        func=run_openapi_analytics_all,
+        func=run_daily_crawl_then_openapi,
         trigger="cron",
         hour="*/2",
         minute=10,
-        id="openapi_analytics",
+        id="crawl_openapi_chain",
         replace_existing=True,
         coalesce=True,
     )

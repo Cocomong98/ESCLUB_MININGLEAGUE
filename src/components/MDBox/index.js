@@ -20,16 +20,30 @@ import PropTypes from "prop-types";
 
 // Custom styles for MDBox
 import MDBoxRoot from "components/MDBox/MDBoxRoot";
+import { useMaterialUIController } from "context";
 
-const MDBox = forwardRef(
-  ({ variant, bgColor, color, opacity, borderRadius, shadow, coloredShadow, ...rest }, ref) => (
+const MDBox = forwardRef((props, ref) => {
+  const [controller] = useMaterialUIController();
+  const { darkMode } = controller;
+  const { variant, bgColor, color, opacity, borderRadius, shadow, coloredShadow, ...rest } = props;
+
+  return (
     <MDBoxRoot
       {...rest}
       ref={ref}
-      ownerState={{ variant, bgColor, color, opacity, borderRadius, shadow, coloredShadow }}
+      ownerState={{
+        variant,
+        bgColor,
+        color,
+        opacity,
+        borderRadius,
+        shadow,
+        coloredShadow,
+        darkMode,
+      }}
     />
-  )
-);
+  );
+});
 
 // Setting default values for the props of MDBox
 MDBox.defaultProps = {
