@@ -16,6 +16,8 @@
 ## CSP Hardening Rollout
 - For staged CSP migration plan and operational impact, see:
   - `docs/csp_hardening_rollout.md`
+- Runtime toggle:
+  - `CSP_REPORT_ONLY=1` enables report-only header for dry-run verification.
 
 ## 30-Day Refresh Obligation
 - Nexon Open API crawled payloads must be refreshed or removed within 30 days.

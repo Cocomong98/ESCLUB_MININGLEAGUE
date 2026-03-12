@@ -83,6 +83,7 @@
 - **쿠키 정책:** `HttpOnly`, `SameSite=Strict` 쿠키를 사용합니다 (`SESSION_COOKIE_SECURE`는 운영 환경에서 `1` 권장).
 - **요청 제한:** 로그인 요청에 IP 기반 간단 Rate Limit이 적용됩니다.
 - **경로 보호:** 시즌명 형식 검증(`YYYY-N`) 및 catch-all 라우팅 제한으로 임의 파일 노출/경로 조작을 방지합니다.
+- **CSP 운영:** 일반 페이지와 admin 페이지의 CSP를 분리 적용하며, `CSP_REPORT_ONLY=1`로 리포트 전용 검증 모드를 사용할 수 있습니다.
 
 #### **6. 주간 리포트 확정 정책 (Approved Weekly Policy)**
 
@@ -97,10 +98,15 @@
 - **배치 순서:** 통합 잡(`crawl_openapi_chain`)에서 전적 크롤링 후 Open API 분석을 순차 실행
 - **스케줄러:** Flask 내부 APScheduler 잡(`crawl_openapi_chain`, `weekly_report`)
 - **락 파일:** `.private/locks/openapi.lock`, `.private/locks/daily_crawl.lock` (중복 실행 방지)
+- **발행 정책 분리(A안):**
+  - 2시간마다 전적 스냅샷(`_YYMMDD_HHMM`)은 계속 저장
+  - 테이블/개인 대시보드가 참조하는 일별 파일(`_YYMMDD`) + 시즌 요약(`current_crawl_display_data.json`, `manifest.json`)은 하루 1회만 갱신
+  - 기본 발행 시각은 KST `04:10` 이후 첫 체인 실행이며, `.private/locks/daily_publish_marker.json`으로 당일 중복 발행을 방지
 - **캐시 루트:** `OPENAPI_CACHE_DIR` 환경변수 또는 기본값 `.private/openapi_cache/` (TTL 정책: 29일, `/data/*` 비공개)
 - **닉네임 해석 우선순위:** 관리자 목록(`managers.json`)의 `name`을 우선 사용하고, 없을 때만 최신 일일파일(`data/{season}/user/{id}/{id}_YYMMDD.json`)에서 fallback
 - **시즌 범위 fallback:** `season_config.json`의 `season_ranges[season]`가 비어 있으면 `data/{season}/user/*/*_YYMMDD(_HHMM).json`(없으면 `manifest.endDate`)에서 범위를 추정해 분석을 지속
 - **배치 부하 제어(환경변수):** `OPENAPI_BATCH_MAX_MATCHES`(기본 300), `OPENAPI_BATCH_WINDOW_MATCHES`(기본 200, `all` 허용), `OPENAPI_BATCH_DELAY_MIN/MAX`(기본 0.8~1.6초)
+- **발행 시각 튜닝(환경변수):** `DAILY_PUBLISH_HOUR`(기본 4), `DAILY_PUBLISH_MINUTE`(기본 10)
 - **운영 CLI:**
   - `python app.py openapi-selftest`
   - `python app.py openapi-sync-user --season <YYYY-N> --id <PLAYER_ID>`

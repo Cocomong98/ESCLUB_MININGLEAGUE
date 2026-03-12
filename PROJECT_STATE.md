@@ -146,6 +146,8 @@
 
 - `ADMIN_PASSWORD` must be provided via environment variable.
 - `FLASK_SECRET_KEY` should be set in production.
+- CSP는 일반 페이지/관리자 페이지 분리 정책으로 적용됨.
+- `CSP_REPORT_ONLY=1` 설정 시 차단 대신 `Content-Security-Policy-Report-Only`로 검증 가능.
 - Admin session expiry policy:
   - `ADMIN_SESSION_TTL_MINUTES` (absolute)
   - `ADMIN_SESSION_IDLE_MINUTES` (idle timeout)
