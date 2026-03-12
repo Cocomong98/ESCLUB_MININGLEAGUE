@@ -93,6 +93,7 @@
 ## Auto Commit Log
 
 <!-- auto-commit-log:start -->
+- 2026-03-12 20:50 | patch | docs: sync changelog and operation docs with latest ui/theming updates (files: 6)
 - 2026-03-12 20:50 | patch | fix(ui): stabilize dark mode contrast, persist controller state, and clean squad debug code (files: 14)
 - 2026-03-12 16:30 | patch | fix(admin): load panel script before Alpine init (files: 1)
 - 2026-03-12 11:26 | patch | docs(deploy): document admin panel split and session policy (files: 5)
