@@ -93,6 +93,7 @@
 ## Auto Commit Log
 
 <!-- auto-commit-log:start -->
+- 2026-03-13 22:50 | patch | refactor(frontend): remove unused template layouts and dead data modules (files: 33)
 - 2026-03-13 00:41 | patch | security: split CSP by route and add report-only toggle (files: 7)
 - 2026-03-13 00:41 | patch | refactor(frontend): remove unused RTL direction state (files: 3)
 - 2026-03-13 00:30 | patch | docs: reorganize docs structure and migrate legacy notes (files: 13)

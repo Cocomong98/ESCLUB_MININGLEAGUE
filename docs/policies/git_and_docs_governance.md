@@ -25,16 +25,19 @@
 
 ## 3) 문서 정책
 
-핵심 문서(루트 고정):
+핵심 문서:
 
 - `README.md`
-- `project_summary.md`
-- `PROJECT_STATE.md`
+- `docs/status/project_summary.md` (정본)
+- `docs/status/PROJECT_STATE.md` (정본)
 - `CHANGELOG.md`
 
 기타 문서(`docs/`):
 
 - 정책: `docs/policies/`
+- 버전별 기능 기록: `docs/versions/vX.Y.Z/`
+- 운영 절차/서버 구조: `docs/operations/`
+- 설정/데이터 참조: `docs/references/`
 - 운영/보안: `docs/security.md`, `docs/csp_hardening_rollout.md` 등
 - 작업 노트: `docs/reports/YYYY/MM/YYYY-MM-DD_<topic>.md`
 
@@ -60,8 +63,8 @@
 
 우선순위:
 
-1. `project_summary.md`
-2. `PROJECT_STATE.md`
+1. `docs/status/project_summary.md`
+2. `docs/status/PROJECT_STATE.md`
 3. 필요 시 `README.md`/운영 노트
 
 ## 6) 보안/시크릿 규칙

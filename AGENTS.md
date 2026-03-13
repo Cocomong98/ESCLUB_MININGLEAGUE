@@ -8,8 +8,8 @@
 
 ## Startup Checklist (Required)
 
-1. Read `project_summary.md` first.
-2. Then read `PROJECT_STATE.md`.
+1. Read `docs/status/project_summary.md` first.
+2. Then read `docs/status/PROJECT_STATE.md`.
 3. If there is a conflict, prefer the newer file and report the mismatch briefly.
 
 ## Branch And PR Policy
@@ -48,4 +48,4 @@
 
 ## Summary Maintenance
 
-- When architecture, API behavior, deploy flow, or data path changes, update `project_summary.md` in the same task.
+- When architecture, API behavior, deploy flow, or data path changes, update `docs/status/project_summary.md` in the same task.

@@ -6,6 +6,14 @@
 
 - `docs/policies/`
   - 협업 규칙, 브랜치/커밋 규칙, 문서 생성 규칙
+- `docs/versions/`
+  - 릴리스 버전별 기능 단위 변경 문서
+- `docs/operations/`
+  - 서버 런타임 구조, 배포 교체 절차, 운영 체크리스트
+- `docs/references/`
+  - 설정 파일/환경변수 카탈로그, 데이터 파일 정책
+- `docs/status/`
+  - 프로젝트 요약/현재 상태 문서(정본)
 - `docs/security.md`
   - 보안 운영 메모
 - `docs/csp_hardening_rollout.md`
@@ -21,14 +29,14 @@
 - `docs/reports/`
   - 날짜 기반 운영 노트/중간 산출물 저장 위치
 
-## 루트(.)
-
-아래 파일은 레포 루트에 유지하는 핵심 문서입니다.
+## 핵심 문서 위치
 
 - `README.md` (사용/배포 개요)
-- `project_summary.md` (프로젝트 요약)
-- `PROJECT_STATE.md` (현재 상태/운영 정책)
+- `docs/status/project_summary.md` (프로젝트 요약, 정본)
+- `docs/status/PROJECT_STATE.md` (현재 상태/운영 정책, 정본)
 - `CHANGELOG.md` (커밋 로그 자동 반영 구간 포함)
+
+루트의 `project_summary.md`, `PROJECT_STATE.md`는 호환용 안내 파일입니다.
 
 ## 신규 문서 생성 규칙
 
@@ -36,9 +44,11 @@
    - `docs/policies/`에 생성
 2. 일회성 작업 보고/배포 노트:
    - `docs/reports/YYYY/MM/` 하위에 생성
-3. 파일명:
+3. 버전 고정 기능 문서:
+   - `docs/versions/vX.Y.Z/` 하위에 생성
+4. 파일명:
    - `YYYY-MM-DD_<topic>.md` (영문 소문자 + 스네이크 케이스 권장)
-4. 문서 머리말:
+5. 문서 머리말:
    - 작성일(KST), 작성 목적, 적용 범위, 롤백/주의점 포함
 
 ## 마이그레이션 원칙
