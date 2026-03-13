@@ -93,6 +93,10 @@
 ## Auto Commit Log
 
 <!-- auto-commit-log:start -->
+- 2026-03-13 23:21 | patch | docs(changelog): finalize auto-commit log sync (files: 1)
+- 2026-03-13 23:20 | patch | docs(repo): sync references after root-purpose reorganization (files: 14)
+- 2026-03-13 23:18 | patch | refactor(runtime): resolve admin/config paths with compatibility fallback (files: 4)
+- 2026-03-13 23:16 | patch | chore(deploy): relocate helper assets into deploy folder (files: 9)
 - 2026-03-13 22:51 | patch | docs: reorganize status docs and expand governance references (files: 22)
 - 2026-03-13 22:50 | patch | refactor(frontend): remove unused template layouts and dead data modules (files: 33)
 - 2026-03-13 00:41 | patch | security: split CSP by route and add report-only toggle (files: 7)

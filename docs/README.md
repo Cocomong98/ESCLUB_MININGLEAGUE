@@ -35,6 +35,7 @@
 - `docs/status/project_summary.md` (프로젝트 요약, 정본)
 - `docs/status/PROJECT_STATE.md` (현재 상태/운영 정책, 정본)
 - `CHANGELOG.md` (커밋 로그 자동 반영 구간 포함)
+- `deploy/README.md` (배포 보조 파일 인덱스)
 
 루트의 `project_summary.md`, `PROJECT_STATE.md`는 호환용 안내 파일입니다.
 

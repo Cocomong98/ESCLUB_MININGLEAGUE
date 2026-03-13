@@ -10,6 +10,8 @@
 
 - 컨테이너 작업 경로: `/app`
 - 실행 엔트리: `/app/app.py`
+- 관리자 자산: `/app/admin/admin.html`, `/app/admin/admin-panel.js`
+- 운영 설정: `/app/config/season_config.json`, `/app/config/managers.json`
 - 정적 리소스: `/app/build`, `/app/static`(보통 `build/static` 링크)
 - 런타임 데이터: `/app/data`
 - 환경변수 파일: `/app/.env`

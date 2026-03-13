@@ -109,14 +109,21 @@ def _extract_manager_player_id(manager: dict[str, Any]) -> str:
     return ""
 
 
-def _resolve_nickname_from_managers_file(player_id: str, managers_file: str = "managers.json") -> str:
-    path = Path(managers_file)
-    if not path.is_file():
-        return ""
-    try:
-        with path.open("r", encoding="utf-8") as f:
-            managers = json.load(f)
-    except Exception:
+def _resolve_nickname_from_managers_file(
+    player_id: str, managers_file: str = "config/managers.json"
+) -> str:
+    path_candidates = [Path(managers_file), Path("managers.json")]
+    managers = None
+    for path in path_candidates:
+        if not path.is_file():
+            continue
+        try:
+            with path.open("r", encoding="utf-8") as f:
+                managers = json.load(f)
+            break
+        except Exception:
+            continue
+    if managers is None:
         return ""
     if not isinstance(managers, list):
         return ""
@@ -151,7 +158,7 @@ def resolve_nickname_candidates(
     data_base_dir: str = "data",
     *,
     nickname_hint: str | None = None,
-    managers_file: str = "managers.json",
+    managers_file: str = "config/managers.json",
 ) -> list[str]:
     candidates: list[str] = []
 
@@ -190,7 +197,7 @@ def resolve_nickname_for_player(
     data_base_dir: str = "data",
     *,
     nickname_hint: str | None = None,
-    managers_file: str = "managers.json",
+    managers_file: str = "config/managers.json",
 ) -> str:
     """Resolve the best nickname candidate for a player."""
     candidates = resolve_nickname_candidates(

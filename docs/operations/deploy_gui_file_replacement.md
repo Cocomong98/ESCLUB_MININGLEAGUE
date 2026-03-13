@@ -15,13 +15,13 @@
 ## 교체 대상(프론트+백엔드 동시 변경 시)
 
 - `app.py`
-- `admin.html`
-- `admin-panel.js`
+- `admin/admin.html`
+- `admin/admin-panel.js`
 - `fconline_openapi/` (변경 파일)
 - `build/index.html`
 - `build/static/*`
-- `season_config.json` (정책 변경 시)
-- `managers.json` (관리 대상 변경 시)
+- `config/season_config.json` (정책 변경 시)
+- `config/managers.json` (관리 대상 변경 시)
 
 ## 보통 교체하지 않는 대상
 

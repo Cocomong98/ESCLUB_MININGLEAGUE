@@ -2,7 +2,7 @@
 
 ## Scope
 
-- React dashboard (`src/*`) + Flask server (`app.py`) + admin page (`admin.html`, `admin-panel.js`).
+- React dashboard (`src/*`) + Flask server (`app.py`) + admin page (`admin/admin.html`, `admin/admin-panel.js`).
 - Goal: season-based data management/crawling and user dashboard views.
 - 미사용 템플릿 레이아웃 정리 완료:
   - 제거됨: `layouts/authentication`, `layouts/billing`, `layouts/profile`, `layouts/rtl`, `layouts/notifications`
@@ -39,7 +39,7 @@
 1. `docs/status/project_summary.md`
 2. `docs/status/PROJECT_STATE.md`
 3. `app.py`
-4. `admin.html`
+4. `admin/admin.html`
 5. `src/utils/seasonUtils.js`
 6. `src/layouts/tables/index.js`
 7. `src/layouts/dashboard/index.js`
@@ -110,7 +110,7 @@
   - Cache root: `OPENAPI_CACHE_DIR` or default `.private/openapi_cache/` (not publicly served)
   - User analysis: `data/{season}/user/{id}/analysis/`
   - Files: `last200.json`, `shot_events_last200.json`, `player_usage_last200.json`, `squad_analysis_all.json`
-  - Nickname resolution: prefer `managers.json:name` (batch path), fallback to latest daily file nickname fields.
+  - Nickname resolution: prefer `config/managers.json:name` (batch path), fallback to latest daily file nickname fields.
   - Season range fallback: when `season_ranges[season]` is missing, infer start/end from `data/{season}/user/*/*_YYMMDD(_HHMM).json` (or `manifest.endDate`) before filtering matches.
 - Squad analysis row identity/schema:
   - `squad_analysis_all.json` schemaVersion: `0.1.2`
@@ -160,7 +160,7 @@
 ## Deploy Files
 
 - `app.py`
-- `admin.html`
+- `admin/admin.html`
 - `build/index.html`
 - `build/static/*`
 

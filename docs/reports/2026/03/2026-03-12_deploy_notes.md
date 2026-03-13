@@ -2,6 +2,9 @@
 
 작성일: 2026-03-12 (KST)
 
+> 참고: 본 문서는 작성 시점 기준 경로를 포함합니다.  
+> 최신 운영 경로는 `admin/*`, `config/*`, `deploy/*` 기준이며 `docs/operations/deploy_gui_file_replacement.md`를 우선 참조하세요.
+
 ## 이번 패치 범위
 
 - OpenAPI 재시도/오류 메시지 개선 (`fconline_openapi/client.py`)
