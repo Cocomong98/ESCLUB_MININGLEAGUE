@@ -3,7 +3,7 @@
 ## Project SemVer Summary (ESCLUB MINING LEAGUE)
 
 `기존 HTML 기반 페이지 -> React 리뉴얼` 전환 이력을 기준으로 재정의한 프로젝트 버전 요약입니다.
-상세 근거는 `CHANGELOG_SEMVER.md`를 참조하세요.
+상세 근거는 `docs/changelog/changelog_semver.md`를 참조하세요.
 
 ### `v3.4.0` (Unreleased, 후보)
 
@@ -93,6 +93,9 @@
 ## Auto Commit Log
 
 <!-- auto-commit-log:start -->
+- 2026-03-13 00:41 | patch | security: split CSP by route and add report-only toggle (files: 7)
+- 2026-03-13 00:41 | patch | refactor(frontend): remove unused RTL direction state (files: 3)
+- 2026-03-13 00:30 | patch | docs: reorganize docs structure and migrate legacy notes (files: 13)
 - 2026-03-12 21:41 | minor | feat(scheduler): chain crawl and openapi batch at even-hour :10 (files: 5)
 - 2026-03-12 21:14 | patch | fix(admin): stop shift-input cursor jump and harden admin cache invalidation (files: 3)
 - 2026-03-12 20:50 | patch | docs: sync changelog and operation docs with latest ui/theming updates (files: 6)

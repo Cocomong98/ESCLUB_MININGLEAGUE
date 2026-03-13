@@ -39,7 +39,6 @@ const INITIAL_STATE = {
   transparentNavbar: true,
   fixedNavbar: true,
   openConfigurator: false,
-  direction: "ltr",
   layout: "dashboard",
   darkMode: false,
 };
@@ -51,7 +50,6 @@ const CONTROLLER_PERSIST_KEYS = [
   "sidenavColor",
   "transparentNavbar",
   "fixedNavbar",
-  "direction",
   "layout",
   "darkMode",
 ];
@@ -68,7 +66,6 @@ function normalizePersistedState(raw) {
   if (typeof raw.fixedNavbar === "boolean") next.fixedNavbar = raw.fixedNavbar;
   if (typeof raw.darkMode === "boolean") next.darkMode = raw.darkMode;
   if (typeof raw.sidenavColor === "string") next.sidenavColor = raw.sidenavColor;
-  if (typeof raw.direction === "string") next.direction = raw.direction;
   if (typeof raw.layout === "string") next.layout = raw.layout;
 
   return next;
@@ -110,9 +107,6 @@ function reducer(state, action) {
     }
     case "OPEN_CONFIGURATOR": {
       return { ...state, openConfigurator: action.value };
-    }
-    case "DIRECTION": {
-      return { ...state, direction: action.value };
     }
     case "LAYOUT": {
       return { ...state, layout: action.value };
@@ -175,7 +169,6 @@ const setSidenavColor = (dispatch, value) => dispatch({ type: "SIDENAV_COLOR", v
 const setTransparentNavbar = (dispatch, value) => dispatch({ type: "TRANSPARENT_NAVBAR", value });
 const setFixedNavbar = (dispatch, value) => dispatch({ type: "FIXED_NAVBAR", value });
 const setOpenConfigurator = (dispatch, value) => dispatch({ type: "OPEN_CONFIGURATOR", value });
-const setDirection = (dispatch, value) => dispatch({ type: "DIRECTION", value });
 const setLayout = (dispatch, value) => dispatch({ type: "LAYOUT", value });
 const setDarkMode = (dispatch, value) => dispatch({ type: "DARKMODE", value });
 
@@ -189,7 +182,6 @@ export {
   setTransparentNavbar,
   setFixedNavbar,
   setOpenConfigurator,
-  setDirection,
   setLayout,
   setDarkMode,
 };

@@ -13,8 +13,6 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useEffect } from "react";
-
 // @mui material components
 import Grid from "@mui/material/Grid";
 
@@ -37,19 +35,8 @@ import reportsLineChartData from "layouts/rtl/data/reportsLineChartData";
 import Projects from "layouts/rtl/components/Projects";
 import OrdersOverview from "layouts/rtl/components/OrdersOverview";
 
-// Material Dashboard 2 React contexts
-import { useMaterialUIController, setDirection } from "context";
-
 function RTL() {
-  const [, dispatch] = useMaterialUIController();
   const { sales, tasks } = reportsLineChartData;
-
-  // Changing the direction to rtl
-  useEffect(() => {
-    setDirection(dispatch, "rtl");
-
-    return () => setDirection(dispatch, "ltr");
-  }, []);
 
   return (
     <DashboardLayout>

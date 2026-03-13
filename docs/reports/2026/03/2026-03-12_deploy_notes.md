@@ -6,6 +6,7 @@
 
 - OpenAPI 재시도/오류 메시지 개선 (`fconline_openapi/client.py`)
 - OpenAPI 닉네임 후보 fallback 강화 (`fconline_openapi/sync.py`)
+- 스케줄 발행 정책 분리(A안): 2시간 스냅샷 저장 + 하루 1회 대시보드/테이블 발행(`app.py`)
 - 시즌 설정 파일 정합화 (`season_config.json`, `public/season_config.json`)
 - UI 테마/가독성 보정 (다크모드 대비, 스쿼드 선수 모달/지표 카드)
 - UI 상태 유지(localStorage `md2-ui-controller`) 및 사이드바 mini 로고 중앙 정렬 보정
@@ -20,6 +21,9 @@
 3. OpenAPI 동작 점검
    - `python3 app.py openapi-selftest`
    - `python3 app.py openapi-update-analysis --season 2026-1 --id 334024467 --max-matches 100 --window-matches 100 --refresh-ouid`
+4. 일별 발행 게이트 확인(옵션)
+   - 기본값: `DAILY_PUBLISH_HOUR=4`, `DAILY_PUBLISH_MINUTE=10`
+   - 필요 시 서버 `.env`에서만 조정
 
 ## 서버 업로드 시 교체 원칙
 
@@ -43,6 +47,7 @@
 4. `/dashboard/:id/analysis` 라우트는 임시 비활성화 상태이므로 운영 확인은 `/dashboard/:id/squad` 기준으로 진행한다.
 5. 관리자 세션 만료 정책(`ADMIN_SESSION_TTL_MINUTES`, `ADMIN_SESSION_IDLE_MINUTES`)을 운영 환경 `.env`에 설정한다.
 6. 프론트만 배포할 때도 `index.html`과 `static`은 해시 참조 일치 관점에서 함께 교체한다.
+7. A안 적용 후 테이블/개인 대시보드 일별 발행 여부는 `.private/locks/daily_publish_marker.json`으로 판단한다(같은 날 재실행 시 스냅샷만 갱신될 수 있음).
 
 ## 배포 후 확인 체크리스트
 
@@ -55,6 +60,7 @@
    - `[OPENAPI] FAIL player_id=...`가 발생하면 에러 문구에 후보 닉네임이 노출되는지 확인
 3. 스케줄 확인
    - `crawl_openapi_chain` (2시간 간격, 짝수시 `:10`, 전적 -> OpenAPI 순차 실행)
+   - 로그에 `publishDailyOutputs=True/False`가 정책대로 출력되는지 확인
    - `weekly_report` (목 05:05)
 
 ## 롤백 기준

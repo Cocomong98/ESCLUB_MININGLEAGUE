@@ -73,6 +73,7 @@ WEEKLY_DAILY_CRAWL_HOUR = 4
 PRIVATE_LOCK_DIR = os.path.join(app.root_path, ".private", "locks")
 OPENAPI_JOB_LOCK_FILE = os.path.join(PRIVATE_LOCK_DIR, "openapi.lock")
 DAILY_CRAWL_LOCK_FILE = os.path.join(PRIVATE_LOCK_DIR, "daily_crawl.lock")
+DAILY_PUBLISH_MARKER_FILE = os.path.join(PRIVATE_LOCK_DIR, "daily_publish_marker.json")
 
 if not ADMIN_PASSWORD:
     print("[WARN] ADMIN_PASSWORD is not set. Admin login will be unavailable.", flush=True)
@@ -141,8 +142,31 @@ def env_float(name, default, *, min_value=0.0):
     return value
 
 
+def env_flag(name, default=False):
+    raw = str(os.environ.get(name, "")).strip().lower()
+    if not raw:
+        return default
+    return raw in {"1", "true", "yes", "on"}
+
+
+def env_int_in_range(name, default, *, min_value=0, max_value=59):
+    raw = str(os.environ.get(name, "")).strip()
+    if not raw:
+        return default
+    try:
+        value = int(raw)
+    except ValueError:
+        return default
+    if value < min_value or value > max_value:
+        return default
+    return value
+
+
 ADMIN_SESSION_TTL_MINUTES = env_int("ADMIN_SESSION_TTL_MINUTES", 720, min_value=5)
 ADMIN_SESSION_IDLE_MINUTES = env_int("ADMIN_SESSION_IDLE_MINUTES", 120, min_value=5)
+DAILY_PUBLISH_HOUR = env_int_in_range("DAILY_PUBLISH_HOUR", 4, min_value=0, max_value=23)
+DAILY_PUBLISH_MINUTE = env_int_in_range("DAILY_PUBLISH_MINUTE", 10, min_value=0, max_value=59)
+CSP_REPORT_ONLY = env_flag("CSP_REPORT_ONLY", default=False)
 
 
 def resolve_batch_window_matches(default=200):
@@ -166,6 +190,33 @@ def openapi_job_lock():
     finally:
         _release_lock(lock_fp)
 
+
+def resolve_csp_policy(path):
+    normalized = str(path or "")
+    is_admin_surface = normalized == "/admin" or normalized == "/admin-panel.js"
+
+    if is_admin_surface:
+        return (
+            "default-src 'self'; "
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval' "
+            "https://cdn.tailwindcss.com https://unpkg.com; "
+            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; "
+            "img-src 'self' data: https:; "
+            "font-src 'self' https://fonts.gstatic.com data:; "
+            "connect-src 'self'; "
+            "frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+        )
+
+    return (
+        "default-src 'self'; "
+        "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://api.nepcha.com; "
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+        "img-src 'self' data: https:; "
+        "font-src 'self' https://fonts.gstatic.com data:; "
+        "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://api.nepcha.com; "
+        "frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+    )
+
 # 2. 브라우저 캐싱 정책 (Lighthouse 최적화)
 @app.after_request
 def add_header(response):
@@ -179,16 +230,11 @@ def add_header(response):
     response.headers.setdefault("X-Frame-Options", "DENY")
     response.headers.setdefault("Referrer-Policy", "strict-origin-when-cross-origin")
     response.headers.setdefault("Permissions-Policy", "camera=(), microphone=(), geolocation=()")
-    response.headers.setdefault(
-        "Content-Security-Policy",
-        "default-src 'self'; "
-        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://unpkg.com https://www.googletagmanager.com https://api.nepcha.com; "
-        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; "
-        "img-src 'self' data: https:; "
-        "font-src 'self' https://fonts.gstatic.com data:; "
-        "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://api.nepcha.com; "
-        "frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
-    )
+    csp_value = resolve_csp_policy(request.path)
+    if CSP_REPORT_ONLY:
+        response.headers["Content-Security-Policy-Report-Only"] = csp_value
+    else:
+        response.headers["Content-Security-Policy"] = csp_value
     return response
 
 # --- 유틸리티 함수 ---
@@ -642,6 +688,49 @@ def atomic_write_json(path, payload):
     with open(tmp_path, 'w', encoding='utf-8') as f:
         json.dump(payload, f, indent=2, ensure_ascii=False)
     os.replace(tmp_path, path)
+
+
+def _load_daily_publish_marker():
+    if not os.path.exists(DAILY_PUBLISH_MARKER_FILE):
+        return {}
+    try:
+        with open(DAILY_PUBLISH_MARKER_FILE, 'r', encoding='utf-8') as f:
+            payload = json.load(f)
+        if isinstance(payload, dict):
+            return payload
+    except Exception:
+        pass
+    return {}
+
+
+def resolve_daily_publish_policy(now_kst, season):
+    gate_dt = now_kst.replace(
+        hour=DAILY_PUBLISH_HOUR,
+        minute=DAILY_PUBLISH_MINUTE,
+        second=0,
+        microsecond=0,
+    )
+    gate_label = f"{DAILY_PUBLISH_HOUR:02d}:{DAILY_PUBLISH_MINUTE:02d}"
+    if now_kst < gate_dt:
+        return False, f"before_gate({gate_label})"
+
+    marker = _load_daily_publish_marker()
+    today = now_kst.strftime("%Y-%m-%d")
+    marker_date = str(marker.get("date") or "")
+    marker_season = str(marker.get("season") or "")
+    if marker_date == today and marker_season == season:
+        return False, f"already_published({today}, {season})"
+    return True, f"publish_due({today}, {season})"
+
+
+def mark_daily_publish(now_kst, season):
+    payload = {
+        "date": now_kst.strftime("%Y-%m-%d"),
+        "season": season,
+        "publishedAt": now_kst.isoformat(),
+        "gate": f"{DAILY_PUBLISH_HOUR:02d}:{DAILY_PUBLISH_MINUTE:02d}",
+    }
+    atomic_write_json(DAILY_PUBLISH_MARKER_FILE, payload)
 
 def parse_percent_to_float(value):
     if value is None:
@@ -1368,11 +1457,18 @@ def _crawl_single_manager_api(m):
     except Exception as e: res["error"] = str(e)
     return res
 
-def run_full_crawl():
-    now_kst = datetime.now(KST)
-    season = pick_active_season_for_datetime(now_kst) or get_current_season()
+def run_full_crawl(*, now_kst=None, season=None, publish_daily_outputs=True):
+    now_kst = now_kst or datetime.now(KST)
+    season = season or pick_active_season_for_datetime(now_kst) or get_current_season()
     managers = load_managers()
-    if not managers: return
+    if not managers:
+        print("[CRAWL] Skip: no managers configured.", flush=True)
+        return {
+            "status": "skipped",
+            "reason": "no_managers",
+            "season": season,
+            "publishDailyOutputs": publish_daily_outputs,
+        }
     print(f"[{now_kst}] --- 고속 API 갱신 시작 ---", flush=True)
     results = []
     for m in managers:
@@ -1403,25 +1499,44 @@ def run_full_crawl():
         # 시간 단위 스냅샷 파일 (예: 260201_1500)
         with open(os.path.join(p_path, f"{item['player_id']}_{d_str}_{t_str}.json"), 'w', encoding='utf-8') as f:
             json.dump([item], f, indent=4, ensure_ascii=False)
-        # 기존 클라이언트 호환용 일 단위 최신 파일
-        with open(os.path.join(p_path, f"{item['player_id']}_{d_str}.json"), 'w', encoding='utf-8') as f:
-            json.dump([item], f, indent=4, ensure_ascii=False)
-    
-    # 요약 저장
-    empty = {"구단주명": "-", "지난 시즌 채굴 효율": 0, "지난 시즌 승률": "0%", "지난 시즌 판수": 0, "지난 시즌 무": 0}
-    mining_king = max(results, key=lambda x: x.get('지난 시즌 채굴 효율', -1), default=empty)
-    win_king = max(results, key=lambda x: float(str(x.get('지난 시즌 승률', '0%')).replace('%','')), default=empty)
-    game_king = max(results, key=lambda x: x.get('지난 시즌 판수', -1), default=empty)
-    heavy = [r for r in results if r.get('지난 시즌 판수', 0) >= 4000]
-    draw_king = min(heavy, key=lambda x: x.get('지난 시즌 무', 9999), default=empty)
-    
-    summary = {"results": results, "last_updated": now_kst.strftime("%Y-%m-%d %H:%M:%S"),
-               "mining_king": mining_king, "win_rate_king": win_king, "game_count_king": game_king, "draw_king": draw_king}
-    with open(os.path.join(s_dir, "current_crawl_display_data.json"), 'w', encoding='utf-8') as f:
-        json.dump(summary, f, indent=4, ensure_ascii=False)
-    with open(os.path.join(s_dir, "manifest.json"), 'w', encoding='utf-8') as f:
-        json.dump({"endDate": d_str, "endDateTime": f"{d_str}_{t_str}"}, f, ensure_ascii=False)
-    print("--- 갱신 완료 ---", flush=True)
+        if publish_daily_outputs:
+            # 기존 클라이언트 호환용 일 단위 최신 파일
+            with open(os.path.join(p_path, f"{item['player_id']}_{d_str}.json"), 'w', encoding='utf-8') as f:
+                json.dump([item], f, indent=4, ensure_ascii=False)
+
+    if publish_daily_outputs and results:
+        empty = {"구단주명": "-", "지난 시즌 채굴 효율": 0, "지난 시즌 승률": "0%", "지난 시즌 판수": 0, "지난 시즌 무": 0}
+        mining_king = max(results, key=lambda x: x.get('지난 시즌 채굴 효율', -1), default=empty)
+        win_king = max(results, key=lambda x: float(str(x.get('지난 시즌 승률', '0%')).replace('%','')), default=empty)
+        game_king = max(results, key=lambda x: x.get('지난 시즌 판수', -1), default=empty)
+        heavy = [r for r in results if r.get('지난 시즌 판수', 0) >= 4000]
+        draw_king = min(heavy, key=lambda x: x.get('지난 시즌 무', 9999), default=empty)
+        summary = {
+            "results": results,
+            "last_updated": now_kst.strftime("%Y-%m-%d %H:%M:%S"),
+            "mining_king": mining_king,
+            "win_rate_king": win_king,
+            "game_count_king": game_king,
+            "draw_king": draw_king
+        }
+        with open(os.path.join(s_dir, "current_crawl_display_data.json"), 'w', encoding='utf-8') as f:
+            json.dump(summary, f, indent=4, ensure_ascii=False)
+        with open(os.path.join(s_dir, "manifest.json"), 'w', encoding='utf-8') as f:
+            json.dump({"endDate": d_str, "endDateTime": f"{d_str}_{t_str}"}, f, ensure_ascii=False)
+        mark_daily_publish(now_kst, season)
+        print("[CRAWL] 갱신 완료 (daily publish + hourly snapshot).", flush=True)
+    elif publish_daily_outputs:
+        print("[CRAWL] Daily publish skipped: no successful crawl rows.", flush=True)
+    else:
+        print("[CRAWL] 갱신 완료 (hourly snapshot only).", flush=True)
+    return {
+        "status": "success",
+        "season": season,
+        "results": len(results),
+        "publishDailyOutputs": publish_daily_outputs,
+        "date": d_str,
+        "time": t_str,
+    }
 
 
 def run_daily_crawl_then_openapi():
@@ -1430,10 +1545,23 @@ def run_daily_crawl_then_openapi():
         print("[CRAWL] Daily crawl already running. Skip.", flush=True)
         return {"status": "skipped", "reason": "daily_crawl_running"}
     try:
-        run_full_crawl()
+        now_kst = datetime.now(KST)
+        season = pick_active_season_for_datetime(now_kst) or get_current_season()
+        publish_daily_outputs, publish_reason = resolve_daily_publish_policy(now_kst, season)
+        print(
+            "[CRAWL] Chain start. "
+            f"season={season}, publishDailyOutputs={publish_daily_outputs}, reason={publish_reason}",
+            flush=True,
+        )
+        crawl_report = run_full_crawl(
+            now_kst=now_kst,
+            season=season,
+            publish_daily_outputs=publish_daily_outputs,
+        )
     finally:
         _release_lock(crawl_lock)
-    return run_openapi_analytics_all()
+    openapi_report = run_openapi_analytics_all(season=season)
+    return {"crawl": crawl_report, "openapi": openapi_report}
 
 
 def run_daily_crawl_only():
@@ -1442,8 +1570,19 @@ def run_daily_crawl_only():
         print("[CRAWL] Daily crawl already running. Skip.", flush=True)
         return {"status": "skipped", "reason": "daily_crawl_running"}
     try:
-        run_full_crawl()
-        return {"status": "success"}
+        now_kst = datetime.now(KST)
+        season = pick_active_season_for_datetime(now_kst) or get_current_season()
+        publish_daily_outputs, publish_reason = resolve_daily_publish_policy(now_kst, season)
+        print(
+            "[CRAWL] Single run. "
+            f"season={season}, publishDailyOutputs={publish_daily_outputs}, reason={publish_reason}",
+            flush=True,
+        )
+        return run_full_crawl(
+            now_kst=now_kst,
+            season=season,
+            publish_daily_outputs=publish_daily_outputs,
+        )
     finally:
         _release_lock(crawl_lock)
 
