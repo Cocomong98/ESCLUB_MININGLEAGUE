@@ -25,7 +25,7 @@
 - Every commit should be reflected in `CHANGELOG.md`.
 - Automatic updates are handled by:
   - `.githooks/prepare-commit-msg`
-  - `scripts/update_changelog_auto.sh`
+  - `ops/scripts/update_changelog_auto.sh`
 - Do not remove these markers from `CHANGELOG.md`:
   - `<!-- auto-commit-log:start -->`
   - `<!-- auto-commit-log:end -->`
@@ -35,7 +35,7 @@
 - Never commit real secrets.
 - Use `.env` for runtime secrets (`ADMIN_PASSWORD`, `FLASK_SECRET_KEY`, etc.).
 - Keep `docker-compose.yaml` out of git tracking.
-- Keep `docker-compose.example.yaml` as the repository template.
+- Keep `deploy/docker-compose.example.yaml` as the repository template.
 
 ## Data File Policy
 

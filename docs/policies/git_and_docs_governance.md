@@ -71,4 +71,4 @@
 
 1. 실제 시크릿은 Git 커밋 금지
 2. `.env`는 런타임에서만 관리
-3. `docker-compose.yaml`은 추적 제외, 템플릿은 `docker-compose.example.yaml` 유지
+3. `docker-compose.yaml`은 추적 제외, 템플릿은 `deploy/docker-compose.example.yaml` 유지

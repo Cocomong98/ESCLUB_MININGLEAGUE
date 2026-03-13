@@ -8,10 +8,10 @@
 
 ## 파일 기반 설정
 
-1. `season_config.json`
+1. `config/season_config.json`
    - 시즌 범위/현재 시즌/스케줄 기준
    - 수정 주체: 관리자/운영자
-2. `managers.json`
+2. `config/managers.json`
    - 구단주(대상 사용자) 목록
    - 수정 주체: 관리자
 3. `.env` (서버 전용)

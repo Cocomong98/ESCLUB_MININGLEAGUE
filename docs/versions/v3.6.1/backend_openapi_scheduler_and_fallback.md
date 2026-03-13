@@ -8,7 +8,7 @@
 
 - `app.py`
 - `fconline_openapi/*`
-- `season_config.json` 연동 로직
+- `config/season_config.json` 연동 로직
 
 ## 주요 변경
 

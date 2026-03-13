@@ -53,7 +53,7 @@
 
 이 프로젝트는 **React 프론트엔드 + Flask 백엔드(`app.py`)** 구조입니다.
 데이터 파일은 정적 JSON으로 관리되지만, 관리자 기능/크롤링/시즌 분할/히스토리 조회는 Flask API가 담당합니다.
-관리자 페이지는 템플릿 `admin.html`과 외부 스크립트 `admin-panel.js`를 통해 동작합니다.
+관리자 페이지는 템플릿 `admin/admin.html`과 외부 스크립트 `admin/admin-panel.js`를 통해 동작합니다.
 
 1.  **데이터 소스:**
 
@@ -103,8 +103,8 @@
   - 테이블/개인 대시보드가 참조하는 일별 파일(`_YYMMDD`) + 시즌 요약(`current_crawl_display_data.json`, `manifest.json`)은 하루 1회만 갱신
   - 기본 발행 시각은 KST `04:10` 이후 첫 체인 실행이며, `.private/locks/daily_publish_marker.json`으로 당일 중복 발행을 방지
 - **캐시 루트:** `OPENAPI_CACHE_DIR` 환경변수 또는 기본값 `.private/openapi_cache/` (TTL 정책: 29일, `/data/*` 비공개)
-- **닉네임 해석 우선순위:** 관리자 목록(`managers.json`)의 `name`을 우선 사용하고, 없을 때만 최신 일일파일(`data/{season}/user/{id}/{id}_YYMMDD.json`)에서 fallback
-- **시즌 범위 fallback:** `season_config.json`의 `season_ranges[season]`가 비어 있으면 `data/{season}/user/*/*_YYMMDD(_HHMM).json`(없으면 `manifest.endDate`)에서 범위를 추정해 분석을 지속
+- **닉네임 해석 우선순위:** 관리자 목록(`config/managers.json`)의 `name`을 우선 사용하고, 없을 때만 최신 일일파일(`data/{season}/user/{id}/{id}_YYMMDD.json`)에서 fallback
+- **시즌 범위 fallback:** `config/season_config.json`의 `season_ranges[season]`가 비어 있으면 `data/{season}/user/*/*_YYMMDD(_HHMM).json`(없으면 `manifest.endDate`)에서 범위를 추정해 분석을 지속
 - **배치 부하 제어(환경변수):** `OPENAPI_BATCH_MAX_MATCHES`(기본 300), `OPENAPI_BATCH_WINDOW_MATCHES`(기본 200, `all` 허용), `OPENAPI_BATCH_DELAY_MIN/MAX`(기본 0.8~1.6초)
 - **발행 시각 튜닝(환경변수):** `DAILY_PUBLISH_HOUR`(기본 4), `DAILY_PUBLISH_MINUTE`(기본 10)
 - **운영 CLI:**

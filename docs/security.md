@@ -2,7 +2,7 @@
 
 ## Container Runtime
 - Do not run this service with `privileged: true`.
-- Use the provided `docker-compose.example.yaml` as baseline and keep least-privilege defaults.
+- Use the provided `deploy/docker-compose.example.yaml` as baseline and keep least-privilege defaults.
 
 ## Secret Management
 - Never commit `.env` files or API keys.
