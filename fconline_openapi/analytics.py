@@ -590,9 +590,12 @@ def _resolve_season_range_kst(season: str, data_base_dir: str) -> tuple[datetime
 
     base_dir = Path(data_base_dir)
     candidate_paths = [
+        Path("config/season_config.json"),
         Path("season_config.json"),
         base_dir.parent / "season_config.json",
+        base_dir.parent / "config" / "season_config.json",
         base_dir / "season_config.json",
+        base_dir / "config" / "season_config.json",
     ]
 
     seen: set[str] = set()

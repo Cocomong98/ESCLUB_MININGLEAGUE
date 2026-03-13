@@ -2,4 +2,4 @@
 set -euo pipefail
 
 repo_root="$(git rev-parse --show-toplevel)"
-"${repo_root}/scripts/update_changelog_auto.sh" "${1:-}" "${2:-}" "${3:-}"
+"${repo_root}/ops/scripts/update_changelog_auto.sh" "${1:-}" "${2:-}" "${3:-}"

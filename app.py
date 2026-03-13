@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_from_directory, jsonify, request, make_response, session
+from flask import Flask, send_from_directory, jsonify, request, make_response, session
 try:
     from flask_compress import Compress
 except ModuleNotFoundError:
@@ -54,10 +54,27 @@ app.config['COMPRESS_MIMETYPES'] = ['text/html', 'text/css', 'application/json',
 app.config['COMPRESS_LEVEL'] = 6
 app.config['COMPRESS_MIN_SIZE'] = 500
 
+
+def resolve_existing_repo_file(primary: str, legacy: str) -> str:
+    primary_abs = os.path.join(app.root_path, primary)
+    if os.path.isfile(primary_abs):
+        return primary
+    legacy_abs = os.path.join(app.root_path, legacy)
+    if os.path.isfile(legacy_abs):
+        return legacy
+    return primary
+
+
+def repo_path(rel_path: str) -> str:
+    return os.path.join(app.root_path, rel_path)
+
+
 # --- 설정 ---
-MANAGERS_FILE = "managers.json"
+MANAGERS_FILE = resolve_existing_repo_file("config/managers.json", "managers.json")
 DATA_BASE_DIR = "data"
-SEASON_CONFIG_FILE = "season_config.json"
+SEASON_CONFIG_FILE = resolve_existing_repo_file("config/season_config.json", "season_config.json")
+ADMIN_HTML_FILE = resolve_existing_repo_file("admin/admin.html", "admin.html")
+ADMIN_PANEL_JS_FILE = resolve_existing_repo_file("admin/admin-panel.js", "admin-panel.js")
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "").strip()
 KST = timezone(timedelta(hours=9))
 scheduler = BackgroundScheduler(timezone=KST)
@@ -341,10 +358,11 @@ def resolve_frontend_file(filename):
 
 def get_current_season():
     default_season = "2025-5"
-    if not os.path.exists(SEASON_CONFIG_FILE):
+    season_config_path = repo_path(SEASON_CONFIG_FILE)
+    if not os.path.exists(season_config_path):
         return default_season
     try:
-        with open(SEASON_CONFIG_FILE, 'r', encoding='utf-8') as f:
+        with open(season_config_path, 'r', encoding='utf-8') as f:
             config = json.load(f)
         selected = pick_current_season(config)
         if selected:
@@ -354,14 +372,19 @@ def get_current_season():
     return default_season
 
 def load_managers():
-    if not os.path.exists(MANAGERS_FILE): return []
+    managers_path = repo_path(MANAGERS_FILE)
+    if not os.path.exists(managers_path): return []
     try:
-        with open(MANAGERS_FILE, 'r', encoding='utf-8') as f:
+        with open(managers_path, 'r', encoding='utf-8') as f:
             return json.load(f)
     except: return []
 
 def save_managers(data):
-    with open(MANAGERS_FILE, 'w', encoding='utf-8') as f:
+    managers_path = repo_path(MANAGERS_FILE)
+    managers_dir = os.path.dirname(managers_path)
+    if managers_dir:
+        os.makedirs(managers_dir, exist_ok=True)
+    with open(managers_path, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
 def season_sort_key(season):
@@ -377,10 +400,11 @@ def sort_seasons_desc(seasons):
 
 def load_season_config():
     default = {"current_season": "2025-5", "seasons": [], "season_ranges": {}}
-    if not os.path.exists(SEASON_CONFIG_FILE):
+    season_config_path = repo_path(SEASON_CONFIG_FILE)
+    if not os.path.exists(season_config_path):
         return default
     try:
-        with open(SEASON_CONFIG_FILE, 'r', encoding='utf-8') as f:
+        with open(season_config_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
         if "seasons" not in data or not isinstance(data["seasons"], list):
             data["seasons"] = []
@@ -394,7 +418,11 @@ def load_season_config():
 
 def save_season_config(config):
     config["seasons"] = sort_seasons_desc(config.get("seasons", []))
-    with open(SEASON_CONFIG_FILE, 'w', encoding='utf-8') as f:
+    season_config_path = repo_path(SEASON_CONFIG_FILE)
+    season_config_dir = os.path.dirname(season_config_path)
+    if season_config_dir:
+        os.makedirs(season_config_dir, exist_ok=True)
+    with open(season_config_path, 'w', encoding='utf-8') as f:
         json.dump(config, f, indent=2, ensure_ascii=False)
 
 def season_has_data(season):
@@ -1624,15 +1652,17 @@ def serve_data(filename):
 
 @app.route('/season_config.json')
 def serve_season_config():
-    root_dir = app.root_path
+    season_config_abs = repo_path(SEASON_CONFIG_FILE)
     build_dir = os.path.join(app.root_path, "build")
-    if os.path.isfile(os.path.join(root_dir, "season_config.json")):
-        directory = root_dir
+    if os.path.isfile(season_config_abs):
+        directory = os.path.dirname(season_config_abs)
+        filename = os.path.basename(season_config_abs)
     elif os.path.isfile(os.path.join(build_dir, "season_config.json")):
         directory = build_dir
+        filename = "season_config.json"
     else:
         return jsonify({"error": "season_config.json not found"}), 404
-    res = make_response(send_from_directory(directory, "season_config.json"))
+    res = make_response(send_from_directory(directory, filename))
     res.cache_control.no_cache = True
     return res
 
@@ -1662,7 +1692,12 @@ def get_user_history(season, player_id):
 # 3. 관리자 페이지 (이게 있어야 esclub.info/admin 접속 가능)
 @app.route('/admin')
 def admin_page():
-    res = make_response(render_template('admin.html'))
+    admin_html_abs = repo_path(ADMIN_HTML_FILE)
+    if not os.path.isfile(admin_html_abs):
+        return jsonify({"error": "admin.html not found"}), 404
+    directory = os.path.dirname(admin_html_abs)
+    filename = os.path.basename(admin_html_abs)
+    res = make_response(send_from_directory(directory, filename))
     res.cache_control.no_cache = True
     res.cache_control.no_store = True
     res.cache_control.must_revalidate = True
@@ -1671,11 +1706,12 @@ def admin_page():
 
 @app.route('/admin-panel.js')
 def admin_panel_script():
-    filename = "admin-panel.js"
-    path = os.path.join(app.root_path, filename)
-    if not os.path.isfile(path):
+    panel_abs = repo_path(ADMIN_PANEL_JS_FILE)
+    if not os.path.isfile(panel_abs):
         return jsonify({"error": "admin-panel.js not found"}), 404
-    res = make_response(send_from_directory(app.root_path, filename))
+    directory = os.path.dirname(panel_abs)
+    filename = os.path.basename(panel_abs)
+    res = make_response(send_from_directory(directory, filename))
     res.cache_control.no_cache = True
     res.cache_control.no_store = True
     res.cache_control.must_revalidate = True
