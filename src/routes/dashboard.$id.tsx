@@ -337,7 +337,7 @@ function SplitRow({ line, emphasis }: { line: SplitLine; emphasis?: boolean }) {
   );
 }
 
-import type { MatchResult } from "@/lib/mockData";
+
 
 function Th({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
