@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useMemo } from "react";
 import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Minus } from "lucide-react";
 import { useSeason } from "@/lib/season-context";
-import { RANKINGS, toRankingView } from "@/lib/mockData";
+import { RANKINGS, toRankingView, type MatchResult } from "@/lib/mockData";
 import { OWNER_DETAILS, splitToView, type SplitLine } from "@/lib/ownerData";
 import { FormPips } from "@/components/form-pips";
 
