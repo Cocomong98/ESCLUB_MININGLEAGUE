@@ -10,11 +10,26 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TablesRouteImport } from './routes/tables'
+import { Route as HallOfFameRouteImport } from './routes/hall-of-fame'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardIdRouteImport } from './routes/dashboard.$id'
+import { Route as DashboardIdSquadRouteImport } from './routes/dashboard.$id.squad'
+import { Route as DashboardIdMatchMatchKeyRouteImport } from './routes/dashboard.$id.match.$matchKey'
 
 const TablesRoute = TablesRouteImport.update({
   id: '/tables',
   path: '/tables',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HallOfFameRoute = HallOfFameRouteImport.update({
+  id: '/hall-of-fame',
+  path: '/hall-of-fame',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -22,31 +37,87 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardIdRoute = DashboardIdRouteImport.update({
+  id: '/dashboard/$id',
+  path: '/dashboard/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardIdSquadRoute = DashboardIdSquadRouteImport.update({
+  id: '/squad',
+  path: '/squad',
+  getParentRoute: () => DashboardIdRoute,
+} as any)
+const DashboardIdMatchMatchKeyRoute =
+  DashboardIdMatchMatchKeyRouteImport.update({
+    id: '/match/$matchKey',
+    path: '/match/$matchKey',
+    getParentRoute: () => DashboardIdRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/hall-of-fame': typeof HallOfFameRoute
   '/tables': typeof TablesRoute
+  '/dashboard/$id': typeof DashboardIdRouteWithChildren
+  '/dashboard/$id/squad': typeof DashboardIdSquadRoute
+  '/dashboard/$id/match/$matchKey': typeof DashboardIdMatchMatchKeyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/hall-of-fame': typeof HallOfFameRoute
   '/tables': typeof TablesRoute
+  '/dashboard/$id': typeof DashboardIdRouteWithChildren
+  '/dashboard/$id/squad': typeof DashboardIdSquadRoute
+  '/dashboard/$id/match/$matchKey': typeof DashboardIdMatchMatchKeyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/hall-of-fame': typeof HallOfFameRoute
   '/tables': typeof TablesRoute
+  '/dashboard/$id': typeof DashboardIdRouteWithChildren
+  '/dashboard/$id/squad': typeof DashboardIdSquadRoute
+  '/dashboard/$id/match/$matchKey': typeof DashboardIdMatchMatchKeyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/tables'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/hall-of-fame'
+    | '/tables'
+    | '/dashboard/$id'
+    | '/dashboard/$id/squad'
+    | '/dashboard/$id/match/$matchKey'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/tables'
-  id: '__root__' | '/' | '/tables'
+  to:
+    | '/'
+    | '/admin'
+    | '/hall-of-fame'
+    | '/tables'
+    | '/dashboard/$id'
+    | '/dashboard/$id/squad'
+    | '/dashboard/$id/match/$matchKey'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/hall-of-fame'
+    | '/tables'
+    | '/dashboard/$id'
+    | '/dashboard/$id/squad'
+    | '/dashboard/$id/match/$matchKey'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
+  HallOfFameRoute: typeof HallOfFameRoute
   TablesRoute: typeof TablesRoute
+  DashboardIdRoute: typeof DashboardIdRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +129,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TablesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/hall-of-fame': {
+      id: '/hall-of-fame'
+      path: '/hall-of-fame'
+      fullPath: '/hall-of-fame'
+      preLoaderRoute: typeof HallOfFameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -65,12 +150,50 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/$id': {
+      id: '/dashboard/$id'
+      path: '/dashboard/$id'
+      fullPath: '/dashboard/$id'
+      preLoaderRoute: typeof DashboardIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/$id/squad': {
+      id: '/dashboard/$id/squad'
+      path: '/squad'
+      fullPath: '/dashboard/$id/squad'
+      preLoaderRoute: typeof DashboardIdSquadRouteImport
+      parentRoute: typeof DashboardIdRoute
+    }
+    '/dashboard/$id/match/$matchKey': {
+      id: '/dashboard/$id/match/$matchKey'
+      path: '/match/$matchKey'
+      fullPath: '/dashboard/$id/match/$matchKey'
+      preLoaderRoute: typeof DashboardIdMatchMatchKeyRouteImport
+      parentRoute: typeof DashboardIdRoute
+    }
   }
 }
 
+interface DashboardIdRouteChildren {
+  DashboardIdSquadRoute: typeof DashboardIdSquadRoute
+  DashboardIdMatchMatchKeyRoute: typeof DashboardIdMatchMatchKeyRoute
+}
+
+const DashboardIdRouteChildren: DashboardIdRouteChildren = {
+  DashboardIdSquadRoute: DashboardIdSquadRoute,
+  DashboardIdMatchMatchKeyRoute: DashboardIdMatchMatchKeyRoute,
+}
+
+const DashboardIdRouteWithChildren = DashboardIdRoute._addFileChildren(
+  DashboardIdRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
+  HallOfFameRoute: HallOfFameRoute,
   TablesRoute: TablesRoute,
+  DashboardIdRoute: DashboardIdRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
