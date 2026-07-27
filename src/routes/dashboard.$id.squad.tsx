@@ -75,7 +75,7 @@ function SquadPage() {
         <div>
           <SectionTitle>주전 11인</SectionTitle>
           <div className="mt-3 overflow-x-auto">
-            <PlayerTable rows={squad.주전11} />
+            <PlayerTable rows={squad.주전11} ownerId={id} />
           </div>
         </div>
         <div>
@@ -98,7 +98,7 @@ function SquadPage() {
       <section className="px-4 md:px-8 py-6 border-t border-border">
         <SectionTitle>로테이션 · Rotation squad</SectionTitle>
         <div className="mt-3 overflow-x-auto">
-          <PlayerTable rows={squad.로테이션} />
+          <PlayerTable rows={squad.로테이션} ownerId={id} />
         </div>
       </section>
 
@@ -137,7 +137,7 @@ function SquadPage() {
   );
 }
 
-function PlayerTable({ rows }: { rows: SquadPlayerRaw[] }) {
+function PlayerTable({ rows, ownerId }: { rows: SquadPlayerRaw[]; ownerId: string }) {
   return (
     <table className="w-full text-left border-collapse min-w-[720px]">
       <thead>
@@ -162,12 +162,18 @@ function PlayerTable({ rows }: { rows: SquadPlayerRaw[] }) {
               </span>
             </td>
             <td className="py-2.5 px-3">
-              <div className="flex items-baseline gap-2">
-                <span className="text-sm">{p.선수명}</span>
+              <Link
+                to="/dashboard/$id/player/$playerId"
+                params={{ id: ownerId, playerId: p.선수id }}
+                className="flex items-baseline gap-2 group"
+              >
+                <span className="text-sm group-hover:text-accent transition-colors">
+                  {p.선수명}
+                </span>
                 <span className="text-[10px] font-mono text-muted-foreground">
                   {p.국적}
                 </span>
-              </div>
+              </Link>
             </td>
             <td className="py-2.5 px-3 font-mono text-[11px] text-muted-foreground">
               {p.시즌}

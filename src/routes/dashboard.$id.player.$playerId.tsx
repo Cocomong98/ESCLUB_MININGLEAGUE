@@ -1,8 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { OWNER_DETAILS } from "@/lib/ownerData";
-import { getPlayerDetail, type SkillRadarRaw, type MatchRatingRaw } from "@/lib/playerDetail";
-import type { MatchResult } from "@/lib/mockData";
+import { getPlayerDetail } from "@/lib/playerDetail";
 
 export const Route = createFileRoute("/dashboard/$id/player/$playerId")({
   head: ({ params }) => {
