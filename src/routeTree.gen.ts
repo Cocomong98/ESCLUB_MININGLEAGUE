@@ -44,21 +44,21 @@ const DashboardIdIndexRoute = DashboardIdIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardIdSquadRoute = DashboardIdSquadRouteImport.update({
-  id: '/dashboard/$id/squad',
-  path: '/dashboard/$id/squad',
-  getParentRoute: () => rootRouteImport,
+  id: '/squad',
+  path: '/squad',
+  getParentRoute: () => DashboardIdRoute,
 } as any)
 const DashboardIdPlayerPlayerIdRoute =
   DashboardIdPlayerPlayerIdRouteImport.update({
-    id: '/dashboard/$id/player/$playerId',
-    path: '/dashboard/$id/player/$playerId',
-    getParentRoute: () => rootRouteImport,
+    id: '/player/$playerId',
+    path: '/player/$playerId',
+    getParentRoute: () => DashboardIdRoute,
   } as any)
 const DashboardIdMatchMatchKeyRoute =
   DashboardIdMatchMatchKeyRouteImport.update({
-    id: '/dashboard/$id/match/$matchKey',
-    path: '/dashboard/$id/match/$matchKey',
-    getParentRoute: () => rootRouteImport,
+    id: '/match/$matchKey',
+    path: '/match/$matchKey',
+    getParentRoute: () => DashboardIdRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -130,10 +130,7 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   HallOfFameRoute: typeof HallOfFameRoute
   TablesRoute: typeof TablesRoute
-  DashboardIdSquadRoute: typeof DashboardIdSquadRoute
   DashboardIdIndexRoute: typeof DashboardIdIndexRoute
-  DashboardIdMatchMatchKeyRoute: typeof DashboardIdMatchMatchKeyRoute
-  DashboardIdPlayerPlayerIdRoute: typeof DashboardIdPlayerPlayerIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -175,24 +172,24 @@ declare module '@tanstack/react-router' {
     }
     '/dashboard/$id/squad': {
       id: '/dashboard/$id/squad'
-      path: '/dashboard/$id/squad'
+      path: '/squad'
       fullPath: '/dashboard/$id/squad'
       preLoaderRoute: typeof DashboardIdSquadRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof DashboardIdRoute
     }
     '/dashboard/$id/player/$playerId': {
       id: '/dashboard/$id/player/$playerId'
-      path: '/dashboard/$id/player/$playerId'
+      path: '/player/$playerId'
       fullPath: '/dashboard/$id/player/$playerId'
       preLoaderRoute: typeof DashboardIdPlayerPlayerIdRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof DashboardIdRoute
     }
     '/dashboard/$id/match/$matchKey': {
       id: '/dashboard/$id/match/$matchKey'
-      path: '/dashboard/$id/match/$matchKey'
+      path: '/match/$matchKey'
       fullPath: '/dashboard/$id/match/$matchKey'
       preLoaderRoute: typeof DashboardIdMatchMatchKeyRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof DashboardIdRoute
     }
   }
 }
@@ -202,11 +199,18 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRoute,
   HallOfFameRoute: HallOfFameRoute,
   TablesRoute: TablesRoute,
-  DashboardIdSquadRoute: DashboardIdSquadRoute,
   DashboardIdIndexRoute: DashboardIdIndexRoute,
-  DashboardIdMatchMatchKeyRoute: DashboardIdMatchMatchKeyRoute,
-  DashboardIdPlayerPlayerIdRoute: DashboardIdPlayerPlayerIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
