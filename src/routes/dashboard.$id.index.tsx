@@ -6,7 +6,7 @@ import { RANKINGS, toRankingView, type MatchResult } from "@/lib/mockData";
 import { OWNER_DETAILS, splitToView, type SplitLine } from "@/lib/ownerData";
 import { FormPips } from "@/components/form-pips";
 
-export const Route = createFileRoute("/dashboard/$id")({
+export const Route = createFileRoute("/dashboard/$id/")({
   head: ({ params }) => {
     const owner = OWNER_DETAILS[params.id];
     const title = owner ? `${owner.구단주} — 구단주 대시보드` : "구단주 — ESCLUB";

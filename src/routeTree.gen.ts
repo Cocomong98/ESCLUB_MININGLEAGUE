@@ -13,7 +13,7 @@ import { Route as TablesRouteImport } from './routes/tables'
 import { Route as HallOfFameRouteImport } from './routes/hall-of-fame'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as DashboardIdRouteImport } from './routes/dashboard.$id'
+import { Route as DashboardIdIndexRouteImport } from './routes/dashboard.$id.index'
 import { Route as DashboardIdSquadRouteImport } from './routes/dashboard.$id.squad'
 import { Route as DashboardIdPlayerPlayerIdRouteImport } from './routes/dashboard.$id.player.$playerId'
 import { Route as DashboardIdMatchMatchKeyRouteImport } from './routes/dashboard.$id.match.$matchKey'
@@ -38,27 +38,27 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardIdRoute = DashboardIdRouteImport.update({
-  id: '/dashboard/$id',
-  path: '/dashboard/$id',
+const DashboardIdIndexRoute = DashboardIdIndexRouteImport.update({
+  id: '/dashboard/$id/',
+  path: '/dashboard/$id/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardIdSquadRoute = DashboardIdSquadRouteImport.update({
-  id: '/squad',
-  path: '/squad',
-  getParentRoute: () => DashboardIdRoute,
+  id: '/dashboard/$id/squad',
+  path: '/dashboard/$id/squad',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardIdPlayerPlayerIdRoute =
   DashboardIdPlayerPlayerIdRouteImport.update({
-    id: '/player/$playerId',
-    path: '/player/$playerId',
-    getParentRoute: () => DashboardIdRoute,
+    id: '/dashboard/$id/player/$playerId',
+    path: '/dashboard/$id/player/$playerId',
+    getParentRoute: () => rootRouteImport,
   } as any)
 const DashboardIdMatchMatchKeyRoute =
   DashboardIdMatchMatchKeyRouteImport.update({
-    id: '/match/$matchKey',
-    path: '/match/$matchKey',
-    getParentRoute: () => DashboardIdRoute,
+    id: '/dashboard/$id/match/$matchKey',
+    path: '/dashboard/$id/match/$matchKey',
+    getParentRoute: () => rootRouteImport,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -66,8 +66,8 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRoute
   '/hall-of-fame': typeof HallOfFameRoute
   '/tables': typeof TablesRoute
-  '/dashboard/$id': typeof DashboardIdRouteWithChildren
   '/dashboard/$id/squad': typeof DashboardIdSquadRoute
+  '/dashboard/$id/': typeof DashboardIdIndexRoute
   '/dashboard/$id/match/$matchKey': typeof DashboardIdMatchMatchKeyRoute
   '/dashboard/$id/player/$playerId': typeof DashboardIdPlayerPlayerIdRoute
 }
@@ -76,8 +76,8 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminRoute
   '/hall-of-fame': typeof HallOfFameRoute
   '/tables': typeof TablesRoute
-  '/dashboard/$id': typeof DashboardIdRouteWithChildren
   '/dashboard/$id/squad': typeof DashboardIdSquadRoute
+  '/dashboard/$id': typeof DashboardIdIndexRoute
   '/dashboard/$id/match/$matchKey': typeof DashboardIdMatchMatchKeyRoute
   '/dashboard/$id/player/$playerId': typeof DashboardIdPlayerPlayerIdRoute
 }
@@ -87,8 +87,8 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/hall-of-fame': typeof HallOfFameRoute
   '/tables': typeof TablesRoute
-  '/dashboard/$id': typeof DashboardIdRouteWithChildren
   '/dashboard/$id/squad': typeof DashboardIdSquadRoute
+  '/dashboard/$id/': typeof DashboardIdIndexRoute
   '/dashboard/$id/match/$matchKey': typeof DashboardIdMatchMatchKeyRoute
   '/dashboard/$id/player/$playerId': typeof DashboardIdPlayerPlayerIdRoute
 }
@@ -99,8 +99,8 @@ export interface FileRouteTypes {
     | '/admin'
     | '/hall-of-fame'
     | '/tables'
-    | '/dashboard/$id'
     | '/dashboard/$id/squad'
+    | '/dashboard/$id/'
     | '/dashboard/$id/match/$matchKey'
     | '/dashboard/$id/player/$playerId'
   fileRoutesByTo: FileRoutesByTo
@@ -109,8 +109,8 @@ export interface FileRouteTypes {
     | '/admin'
     | '/hall-of-fame'
     | '/tables'
-    | '/dashboard/$id'
     | '/dashboard/$id/squad'
+    | '/dashboard/$id'
     | '/dashboard/$id/match/$matchKey'
     | '/dashboard/$id/player/$playerId'
   id:
@@ -119,8 +119,8 @@ export interface FileRouteTypes {
     | '/admin'
     | '/hall-of-fame'
     | '/tables'
-    | '/dashboard/$id'
     | '/dashboard/$id/squad'
+    | '/dashboard/$id/'
     | '/dashboard/$id/match/$matchKey'
     | '/dashboard/$id/player/$playerId'
   fileRoutesById: FileRoutesById
@@ -130,7 +130,10 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   HallOfFameRoute: typeof HallOfFameRoute
   TablesRoute: typeof TablesRoute
-  DashboardIdRoute: typeof DashboardIdRouteWithChildren
+  DashboardIdSquadRoute: typeof DashboardIdSquadRoute
+  DashboardIdIndexRoute: typeof DashboardIdIndexRoute
+  DashboardIdMatchMatchKeyRoute: typeof DashboardIdMatchMatchKeyRoute
+  DashboardIdPlayerPlayerIdRoute: typeof DashboardIdPlayerPlayerIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -163,59 +166,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dashboard/$id': {
-      id: '/dashboard/$id'
+    '/dashboard/$id/': {
+      id: '/dashboard/$id/'
       path: '/dashboard/$id'
-      fullPath: '/dashboard/$id'
-      preLoaderRoute: typeof DashboardIdRouteImport
+      fullPath: '/dashboard/$id/'
+      preLoaderRoute: typeof DashboardIdIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard/$id/squad': {
       id: '/dashboard/$id/squad'
-      path: '/squad'
+      path: '/dashboard/$id/squad'
       fullPath: '/dashboard/$id/squad'
       preLoaderRoute: typeof DashboardIdSquadRouteImport
-      parentRoute: typeof DashboardIdRoute
+      parentRoute: typeof rootRouteImport
     }
     '/dashboard/$id/player/$playerId': {
       id: '/dashboard/$id/player/$playerId'
-      path: '/player/$playerId'
+      path: '/dashboard/$id/player/$playerId'
       fullPath: '/dashboard/$id/player/$playerId'
       preLoaderRoute: typeof DashboardIdPlayerPlayerIdRouteImport
-      parentRoute: typeof DashboardIdRoute
+      parentRoute: typeof rootRouteImport
     }
     '/dashboard/$id/match/$matchKey': {
       id: '/dashboard/$id/match/$matchKey'
-      path: '/match/$matchKey'
+      path: '/dashboard/$id/match/$matchKey'
       fullPath: '/dashboard/$id/match/$matchKey'
       preLoaderRoute: typeof DashboardIdMatchMatchKeyRouteImport
-      parentRoute: typeof DashboardIdRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
-
-interface DashboardIdRouteChildren {
-  DashboardIdSquadRoute: typeof DashboardIdSquadRoute
-  DashboardIdMatchMatchKeyRoute: typeof DashboardIdMatchMatchKeyRoute
-  DashboardIdPlayerPlayerIdRoute: typeof DashboardIdPlayerPlayerIdRoute
-}
-
-const DashboardIdRouteChildren: DashboardIdRouteChildren = {
-  DashboardIdSquadRoute: DashboardIdSquadRoute,
-  DashboardIdMatchMatchKeyRoute: DashboardIdMatchMatchKeyRoute,
-  DashboardIdPlayerPlayerIdRoute: DashboardIdPlayerPlayerIdRoute,
-}
-
-const DashboardIdRouteWithChildren = DashboardIdRoute._addFileChildren(
-  DashboardIdRouteChildren,
-)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
   HallOfFameRoute: HallOfFameRoute,
   TablesRoute: TablesRoute,
-  DashboardIdRoute: DashboardIdRouteWithChildren,
+  DashboardIdSquadRoute: DashboardIdSquadRoute,
+  DashboardIdIndexRoute: DashboardIdIndexRoute,
+  DashboardIdMatchMatchKeyRoute: DashboardIdMatchMatchKeyRoute,
+  DashboardIdPlayerPlayerIdRoute: DashboardIdPlayerPlayerIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
