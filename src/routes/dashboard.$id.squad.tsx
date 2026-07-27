@@ -9,6 +9,7 @@ import {
   type TacticalStyleRaw,
 } from "@/lib/squadData";
 
+
 export const Route = createFileRoute("/dashboard/$id/squad")({
   head: ({ params }) => ({
     meta: [
