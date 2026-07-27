@@ -345,5 +345,3 @@ function Td({
   );
 }
 
-// Suppress unused-typedef warning when tree-shaking removes types
-export type _KeepTypes = SkillRadarRaw | MatchRatingRaw | MatchResult;

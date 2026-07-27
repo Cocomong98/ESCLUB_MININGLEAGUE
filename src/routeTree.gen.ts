@@ -15,6 +15,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIdRouteImport } from './routes/dashboard.$id'
 import { Route as DashboardIdSquadRouteImport } from './routes/dashboard.$id.squad'
+import { Route as DashboardIdPlayerPlayerIdRouteImport } from './routes/dashboard.$id.player.$playerId'
 import { Route as DashboardIdMatchMatchKeyRouteImport } from './routes/dashboard.$id.match.$matchKey'
 
 const TablesRoute = TablesRouteImport.update({
@@ -47,6 +48,12 @@ const DashboardIdSquadRoute = DashboardIdSquadRouteImport.update({
   path: '/squad',
   getParentRoute: () => DashboardIdRoute,
 } as any)
+const DashboardIdPlayerPlayerIdRoute =
+  DashboardIdPlayerPlayerIdRouteImport.update({
+    id: '/player/$playerId',
+    path: '/player/$playerId',
+    getParentRoute: () => DashboardIdRoute,
+  } as any)
 const DashboardIdMatchMatchKeyRoute =
   DashboardIdMatchMatchKeyRouteImport.update({
     id: '/match/$matchKey',
@@ -62,6 +69,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/$id': typeof DashboardIdRouteWithChildren
   '/dashboard/$id/squad': typeof DashboardIdSquadRoute
   '/dashboard/$id/match/$matchKey': typeof DashboardIdMatchMatchKeyRoute
+  '/dashboard/$id/player/$playerId': typeof DashboardIdPlayerPlayerIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -71,6 +79,7 @@ export interface FileRoutesByTo {
   '/dashboard/$id': typeof DashboardIdRouteWithChildren
   '/dashboard/$id/squad': typeof DashboardIdSquadRoute
   '/dashboard/$id/match/$matchKey': typeof DashboardIdMatchMatchKeyRoute
+  '/dashboard/$id/player/$playerId': typeof DashboardIdPlayerPlayerIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -81,6 +90,7 @@ export interface FileRoutesById {
   '/dashboard/$id': typeof DashboardIdRouteWithChildren
   '/dashboard/$id/squad': typeof DashboardIdSquadRoute
   '/dashboard/$id/match/$matchKey': typeof DashboardIdMatchMatchKeyRoute
+  '/dashboard/$id/player/$playerId': typeof DashboardIdPlayerPlayerIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -92,6 +102,7 @@ export interface FileRouteTypes {
     | '/dashboard/$id'
     | '/dashboard/$id/squad'
     | '/dashboard/$id/match/$matchKey'
+    | '/dashboard/$id/player/$playerId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -101,6 +112,7 @@ export interface FileRouteTypes {
     | '/dashboard/$id'
     | '/dashboard/$id/squad'
     | '/dashboard/$id/match/$matchKey'
+    | '/dashboard/$id/player/$playerId'
   id:
     | '__root__'
     | '/'
@@ -110,6 +122,7 @@ export interface FileRouteTypes {
     | '/dashboard/$id'
     | '/dashboard/$id/squad'
     | '/dashboard/$id/match/$matchKey'
+    | '/dashboard/$id/player/$playerId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -164,6 +177,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIdSquadRouteImport
       parentRoute: typeof DashboardIdRoute
     }
+    '/dashboard/$id/player/$playerId': {
+      id: '/dashboard/$id/player/$playerId'
+      path: '/player/$playerId'
+      fullPath: '/dashboard/$id/player/$playerId'
+      preLoaderRoute: typeof DashboardIdPlayerPlayerIdRouteImport
+      parentRoute: typeof DashboardIdRoute
+    }
     '/dashboard/$id/match/$matchKey': {
       id: '/dashboard/$id/match/$matchKey'
       path: '/match/$matchKey'
@@ -177,11 +197,13 @@ declare module '@tanstack/react-router' {
 interface DashboardIdRouteChildren {
   DashboardIdSquadRoute: typeof DashboardIdSquadRoute
   DashboardIdMatchMatchKeyRoute: typeof DashboardIdMatchMatchKeyRoute
+  DashboardIdPlayerPlayerIdRoute: typeof DashboardIdPlayerPlayerIdRoute
 }
 
 const DashboardIdRouteChildren: DashboardIdRouteChildren = {
   DashboardIdSquadRoute: DashboardIdSquadRoute,
   DashboardIdMatchMatchKeyRoute: DashboardIdMatchMatchKeyRoute,
+  DashboardIdPlayerPlayerIdRoute: DashboardIdPlayerPlayerIdRoute,
 }
 
 const DashboardIdRouteWithChildren = DashboardIdRoute._addFileChildren(

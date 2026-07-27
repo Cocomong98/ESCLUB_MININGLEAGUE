@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ChevronLeft, MapPin, Whistle, ArrowRightLeft } from "lucide-react";
+import { ChevronLeft, MapPin, Flag, ArrowRightLeft } from "lucide-react";
 import { OWNER_DETAILS } from "@/lib/ownerData";
 import { getMatchDetail, type TeamStatsRaw, type GoalEventRaw } from "@/lib/matchDetail";
 import type { MatchResult } from "@/lib/mockData";
@@ -84,7 +84,7 @@ function MatchPage() {
         <div className="mt-6 grid grid-cols-2 md:grid-cols-5 gap-x-8 gap-y-3 border-t border-border/60 pt-4 text-xs">
           <MetaItem icon={<span className="font-mono-num">F</span>} label="포메이션" value={`${md.포메이션} vs ${md.상대포메이션}`} />
           <MetaItem icon={<MapPin className="size-3" />} label="경기장" value={md.경기장} />
-          <MetaItem icon={<Whistle className="size-3" />} label="주심" value={md.주심} />
+          <MetaItem icon={<Flag className="size-3" />} label="주심" value={md.주심} />
           <MetaItem icon={<span className="text-[9px] font-mono">MoM</span>} label="최고평점" value={`${md.최고평점.선수명} · ${md.최고평점.평점.toFixed(1)}`} />
           <MetaItem icon={<ArrowRightLeft className="size-3" />} label="교체" value={`${md.교체기록.length}회`} />
         </div>
