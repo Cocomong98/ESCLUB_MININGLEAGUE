@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * ESCLUB Terminal Precision — dark-first pro analytics tool
- * Semantic tokens only. Never hardcode colors in components.
+ * ESCLUB analytics theme tokens.
+ * :root is light. .dark preserves the existing dark interface.
  */
 
 @theme inline {
@@ -55,14 +55,56 @@
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 }
 
-/* Dark-first: single palette applied at :root */
 :root {
   --radius: 0.5rem;
 
-  --background: oklch(0.145 0.006 285);           /* zinc-950 */
-  --foreground: oklch(0.985 0 0);                 /* zinc-50 */
-  --surface: oklch(0.185 0.006 285);              /* slightly lifted */
-  --surface-2: oklch(0.22 0.006 285);             /* zinc-900 hover */
+  --background: oklch(0.985 0.002 285);
+  --foreground: oklch(0.18 0.01 285);
+  --surface: oklch(0.965 0.004 285);
+  --surface-2: oklch(0.93 0.006 285);
+
+  --card: oklch(0.985 0.002 285);
+  --card-foreground: oklch(0.18 0.01 285);
+  --popover: oklch(0.985 0.002 285);
+  --popover-foreground: oklch(0.18 0.01 285);
+
+  --primary: oklch(0.18 0.01 285);
+  --primary-foreground: oklch(0.985 0.002 285);
+  --secondary: oklch(0.93 0.006 285);
+  --secondary-foreground: oklch(0.18 0.01 285);
+  --muted: oklch(0.93 0.006 285);
+  --muted-foreground: oklch(0.44 0.012 285);
+  --accent: oklch(0.58 0.15 155);
+  --accent-foreground: oklch(0.985 0.002 285);
+
+  --destructive: oklch(0.58 0.22 20);
+  --destructive-foreground: oklch(0.985 0 0);
+
+  --border: oklch(0.82 0.008 285 / 80%);
+  --border-strong: oklch(0.72 0.01 285);
+  --input: oklch(0.82 0.008 285);
+  --ring: oklch(0.58 0.15 155);
+
+  --pos: oklch(0.58 0.15 155);
+  --neg: oklch(0.58 0.22 20);
+  --warn: oklch(0.66 0.15 85);
+
+  --sidebar: oklch(0.965 0.004 285);
+  --sidebar-foreground: oklch(0.18 0.01 285);
+  --sidebar-primary: oklch(0.18 0.01 285);
+  --sidebar-primary-foreground: oklch(0.985 0.002 285);
+  --sidebar-accent: oklch(0.93 0.006 285);
+  --sidebar-accent-foreground: oklch(0.18 0.01 285);
+  --sidebar-border: oklch(0.82 0.008 285 / 80%);
+  --sidebar-ring: oklch(0.58 0.15 155);
+  color-scheme: light;
+}
+
+.dark {
+  --background: oklch(0.145 0.006 285);
+  --foreground: oklch(0.985 0 0);
+  --surface: oklch(0.185 0.006 285);
+  --surface-2: oklch(0.22 0.006 285);
 
   --card: oklch(0.185 0.006 285);
   --card-foreground: oklch(0.985 0 0);
@@ -74,21 +116,21 @@
   --secondary: oklch(0.22 0.006 285);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.22 0.006 285);
-  --muted-foreground: oklch(0.55 0.008 285);      /* zinc-500 */
-  --accent: oklch(0.72 0.16 155);                 /* emerald 10b981 */
+  --muted-foreground: oklch(0.62 0.008 285);
+  --accent: oklch(0.72 0.16 155);
   --accent-foreground: oklch(0.145 0.006 285);
 
   --destructive: oklch(0.65 0.22 20);
   --destructive-foreground: oklch(0.985 0 0);
 
-  --border: oklch(0.27 0.006 285 / 60%);          /* zinc-800/60 */
+  --border: oklch(0.27 0.006 285 / 60%);
   --border-strong: oklch(0.3 0.006 285);
   --input: oklch(0.27 0.006 285);
   --ring: oklch(0.72 0.16 155);
 
-  --pos: oklch(0.72 0.16 155);                    /* win / up — emerald */
-  --neg: oklch(0.68 0.22 20);                     /* loss / down — rose */
-  --warn: oklch(0.82 0.16 85);                    /* draw — amber */
+  --pos: oklch(0.72 0.16 155);
+  --neg: oklch(0.68 0.22 20);
+  --warn: oklch(0.82 0.16 85);
 
   --sidebar: oklch(0.145 0.006 285);
   --sidebar-foreground: oklch(0.985 0 0);
@@ -98,6 +140,7 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.27 0.006 285 / 60%);
   --sidebar-ring: oklch(0.72 0.16 155);
+  color-scheme: dark;
 }
 
 @layer base {
@@ -111,6 +154,14 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
+  html {
+    font-size: 16px;
+  }
+  @media (min-width: 1024px) {
+    html {
+      font-size: 16.75px;
+    }
+  }
   ::selection {
     background-color: color-mix(in oklab, var(--accent) 30%, transparent);
     color: var(--foreground);
@@ -120,5 +171,5 @@
 @utility font-mono-num {
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }

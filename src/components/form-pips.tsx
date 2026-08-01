@@ -10,10 +10,7 @@ export function FormPips({ form, size = "md" }: { form: MatchResult[]; size?: "s
   if (!form || form.length === 0) {
     return <span className="text-[11px] text-muted-foreground italic">데이터 없음</span>;
   }
-  const box =
-    size === "sm"
-      ? "size-3 text-[8px] rounded-[2px]"
-      : "size-4 text-[9px] rounded-[3px]";
+  const box = size === "sm" ? "size-3 text-[8px] rounded-[2px]" : "size-4 text-[9px] rounded-[3px]";
   return (
     <div className="flex gap-1" aria-label="최근 5경기">
       {form.map((r, i) => (
@@ -30,7 +27,8 @@ export function FormPips({ form, size = "md" }: { form: MatchResult[]; size?: "s
 }
 
 export function FormDots({ form }: { form: MatchResult[] }) {
-  if (!form || form.length === 0) return <span className="text-[10px] text-muted-foreground">—</span>;
+  if (!form || form.length === 0)
+    return <span className="text-[10px] text-muted-foreground">—</span>;
   const map: Record<MatchResult, string> = {
     W: "bg-pos",
     D: "bg-warn",

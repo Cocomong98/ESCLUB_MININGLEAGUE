@@ -1,8 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { type ReactNode } from "react";
-import { Trophy, Table2, Settings, Circle } from "lucide-react";
+import { useEffect, useState, type ReactNode } from "react";
+import { Trophy, Table2, Settings, Circle, Moon, Sun } from "lucide-react";
 import { useSeason } from "@/lib/season-context";
-import { SEASONS } from "@/lib/mockData";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,8 +27,7 @@ function Sidebar() {
       </div>
       <nav className="flex-1 space-y-1 p-4">
         {NAV.map((item) => {
-          const active =
-            pathname === item.to || pathname.startsWith(item.to + "/");
+          const active = pathname === item.to || pathname.startsWith(item.to + "/");
           const Icon = item.icon;
           return (
             <Link
@@ -38,7 +36,7 @@ function Sidebar() {
               className={
                 "flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md transition-colors " +
                 (active
-                  ? "bg-surface-2 text-foreground ring-1 ring-white/5"
+                  ? "bg-surface-2 text-foreground ring-1 ring-border"
                   : "text-muted-foreground hover:text-foreground")
               }
             >
@@ -48,24 +46,13 @@ function Sidebar() {
           );
         })}
       </nav>
-      <div className="p-4 border-t border-border">
-        <div className="flex items-center gap-3 px-3">
-          <div className="size-8 rounded-full bg-surface-2 outline-1 -outline-offset-1 outline-white/10" />
-          <div className="flex flex-col">
-            <span className="text-xs font-medium">Guest</span>
-            <span className="text-[10px] text-muted-foreground tracking-wider">
-              PUBLIC VIEW
-            </span>
-          </div>
-        </div>
-      </div>
     </aside>
   );
 }
 
 function SeasonSelector() {
-  const { season, setSeason } = useSeason();
-  const current = SEASONS.find((s) => s.id === season) ?? SEASONS[0];
+  const { season, setSeason, seasons } = useSeason();
+  const current = seasons.find((s) => s.id === season) ?? seasons[0];
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="flex items-center gap-2 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors">
@@ -75,7 +62,7 @@ function SeasonSelector() {
         </svg>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="min-w-40">
-        {SEASONS.map((s) => (
+        {seasons.map((s) => (
           <DropdownMenuItem
             key={s.id}
             onSelect={() => setSeason(s.id)}
@@ -96,15 +83,14 @@ function MobileNav() {
     <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-30 border-t border-border bg-background/95 backdrop-blur-md">
       <div className="grid grid-cols-3">
         {NAV.map((item) => {
-          const active =
-            pathname === item.to || pathname.startsWith(item.to + "/");
+          const active = pathname === item.to || pathname.startsWith(item.to + "/");
           const Icon = item.icon;
           return (
             <Link
               key={item.to}
               to={item.to}
               className={
-                "flex flex-col items-center gap-1 py-2.5 text-[10px] uppercase tracking-wider " +
+                "flex flex-col items-center gap-1 py-2.5 text-[11px] uppercase tracking-wider " +
                 (active ? "text-accent" : "text-muted-foreground")
               }
             >
@@ -118,9 +104,36 @@ function MobileNav() {
   );
 }
 
+function ThemeToggle() {
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    setDark(document.documentElement.classList.contains("dark"));
+  }, []);
+
+  function toggleTheme() {
+    const next = !dark;
+    document.documentElement.classList.toggle("dark", next);
+    localStorage.setItem("esclub-theme", next ? "dark" : "light");
+    setDark(next);
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={toggleTheme}
+      className="inline-flex size-8 items-center justify-center rounded-md border border-border bg-surface/60 text-muted-foreground transition-colors hover:border-accent hover:text-foreground"
+      aria-label={dark ? "라이트 모드로 전환" : "다크 모드로 전환"}
+      title={dark ? "라이트 모드" : "다크 모드"}
+    >
+      {dark ? <Sun className="size-4" /> : <Moon className="size-4" />}
+    </button>
+  );
+}
+
 export function AppShell({ children }: { children: ReactNode }) {
-  const { season } = useSeason();
-  const current = SEASONS.find((s) => s.id === season) ?? SEASONS[0];
+  const { season, seasons } = useSeason();
+  const current = seasons.find((s) => s.id === season) ?? seasons[0];
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Sidebar />
@@ -132,6 +145,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             <SeasonSelector />
           </div>
           <div className="flex items-center gap-3">
+            <ThemeToggle />
             <span className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
               <Circle className="size-1.5 fill-accent text-accent animate-pulse" />
               LIVE DATA
