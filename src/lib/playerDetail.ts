@@ -58,25 +58,67 @@ function skillFor(p: SquadPlayerRaw, seed: number): SkillRadarRaw {
   const j = (n: number) => (seed >> n) & 0x7;
   switch (pos) {
     case "GK":
-      return { 페이스: bump(-30 + j(0)), 슈팅: bump(-40 + j(1)), 패스: bump(-15 + j(2)), 드리블: bump(-30 + j(3)), 수비: bump(4 + j(4)), 피지컬: bump(-2 + j(5)) };
+      return {
+        페이스: bump(-30 + j(0)),
+        슈팅: bump(-40 + j(1)),
+        패스: bump(-15 + j(2)),
+        드리블: bump(-30 + j(3)),
+        수비: bump(4 + j(4)),
+        피지컬: bump(-2 + j(5)),
+      };
     case "CB":
     case "LB":
     case "RB":
     case "SW":
-      return { 페이스: bump(-2 + j(0)), 슈팅: bump(-25 + j(1)), 패스: bump(-8 + j(2)), 드리블: bump(-15 + j(3)), 수비: bump(6 + j(4)), 피지컬: bump(4 + j(5)) };
+      return {
+        페이스: bump(-2 + j(0)),
+        슈팅: bump(-25 + j(1)),
+        패스: bump(-8 + j(2)),
+        드리블: bump(-15 + j(3)),
+        수비: bump(6 + j(4)),
+        피지컬: bump(4 + j(5)),
+      };
     case "DM":
     case "CM":
-      return { 페이스: bump(-4 + j(0)), 슈팅: bump(-6 + j(1)), 패스: bump(6 + j(2)), 드리블: bump(-2 + j(3)), 수비: bump(2 + j(4)), 피지컬: bump(0 + j(5)) };
+      return {
+        페이스: bump(-4 + j(0)),
+        슈팅: bump(-6 + j(1)),
+        패스: bump(6 + j(2)),
+        드리블: bump(-2 + j(3)),
+        수비: bump(2 + j(4)),
+        피지컬: bump(0 + j(5)),
+      };
     case "AM":
     case "LM":
     case "RM":
-      return { 페이스: bump(2 + j(0)), 슈팅: bump(2 + j(1)), 패스: bump(4 + j(2)), 드리블: bump(6 + j(3)), 수비: bump(-8 + j(4)), 피지컬: bump(-4 + j(5)) };
+      return {
+        페이스: bump(2 + j(0)),
+        슈팅: bump(2 + j(1)),
+        패스: bump(4 + j(2)),
+        드리블: bump(6 + j(3)),
+        수비: bump(-8 + j(4)),
+        피지컬: bump(-4 + j(5)),
+      };
     case "LW":
     case "RW":
-      return { 페이스: bump(8 + j(0)), 슈팅: bump(2 + j(1)), 패스: bump(-2 + j(2)), 드리블: bump(8 + j(3)), 수비: bump(-18 + j(4)), 피지컬: bump(-8 + j(5)) };
+      return {
+        페이스: bump(8 + j(0)),
+        슈팅: bump(2 + j(1)),
+        패스: bump(-2 + j(2)),
+        드리블: bump(8 + j(3)),
+        수비: bump(-18 + j(4)),
+        피지컬: bump(-8 + j(5)),
+      };
     case "ST":
     case "CF":
-      return { 페이스: bump(4 + j(0)), 슈팅: bump(10 + j(1)), 패스: bump(-6 + j(2)), 드리블: bump(2 + j(3)), 수비: bump(-25 + j(4)), 피지컬: bump(4 + j(5)) };
+      return {
+        페이스: bump(4 + j(0)),
+        슈팅: bump(10 + j(1)),
+        패스: bump(-6 + j(2)),
+        드리블: bump(2 + j(3)),
+        수비: bump(-25 + j(4)),
+        피지컬: bump(4 + j(5)),
+      };
   }
 }
 
@@ -90,8 +132,8 @@ function ratingHistory(ownerId: string, p: SquadPlayerRaw): MatchRatingRaw[] {
     const swing = (((seed >> i) & 0xf) / 15 - 0.5) * 1.2; // ±0.6
     const bonus = m.결과 === "W" ? 0.25 : m.결과 === "L" ? -0.35 : 0;
     const rating = Math.max(5.0, Math.min(10, base + swing + bonus));
-    const scored = ((seed + i) % 5 === 0) && p.득점 > 3 ? 1 : 0;
-    const assisted = ((seed + i * 3) % 6 === 0) && p.도움 > 3 ? 1 : 0;
+    const scored = (seed + i) % 5 === 0 && p.득점 > 3 ? 1 : 0;
+    const assisted = (seed + i * 3) % 6 === 0 && p.도움 > 3 ? 1 : 0;
     return {
       matchKey: m.matchKey,
       일자: m.일자,

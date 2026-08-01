@@ -105,15 +105,13 @@ function goalEvents(
   seed: number,
 ): GoalEventRaw[] {
   const kinds: GoalEventRaw["종류"][] = ["오픈플레이", "역습", "세트피스", "패널티"];
-  const attackers = players.filter((p) =>
-    ["ST", "CF", "LW", "RW", "AM", "CM"].includes(p.포지션),
-  );
+  const attackers = players.filter((p) => ["ST", "CF", "LW", "RW", "AM", "CM"].includes(p.포지션));
   const events: GoalEventRaw[] = [];
   for (let i = 0; i < count; i++) {
     const scorer = attackers[(seed + i * 3) % attackers.length];
     const assist = attackers[(seed + i * 5 + 1) % attackers.length];
     events.push({
-      분: 8 + Math.floor(((seed + i * 17) % 80)),
+      분: 8 + Math.floor((seed + i * 17) % 80),
       선수id: scorer.선수id,
       선수명: scorer.선수명,
       어시스트id: scorer.선수id === assist.선수id ? undefined : assist.선수id,
@@ -126,13 +124,18 @@ function goalEvents(
 }
 
 /** Fake opponent goals — use scorer names from opponent id, keyed by seed. */
-function opponentGoals(count: number, opp: string, side: "홈" | "원정", seed: number): GoalEventRaw[] {
+function opponentGoals(
+  count: number,
+  opp: string,
+  side: "홈" | "원정",
+  seed: number,
+): GoalEventRaw[] {
   const kinds: GoalEventRaw["종류"][] = ["오픈플레이", "역습", "세트피스", "패널티"];
   const names = [`${opp} #9`, `${opp} #10`, `${opp} #7`, `${opp} #11`];
   const events: GoalEventRaw[] = [];
   for (let i = 0; i < count; i++) {
     events.push({
-      분: 12 + Math.floor(((seed + i * 23) % 78)),
+      분: 12 + Math.floor((seed + i * 23) % 78),
       선수id: `opp-${seed}-${i}`,
       선수명: names[(seed + i) % names.length],
       종류: kinds[(seed + i + 1) % kinds.length],
@@ -180,10 +183,14 @@ export function getMatchDetail(ownerId: string, matchKey: string): MatchDetailRa
   const oppGoals = opponentGoals(log.실점, log.상대, oppSide, seed + 3);
 
   const topScorer = myGoals[0]
-    ? squad.주전11.find((p) => p.선수id === myGoals[0].선수id) ?? squad.주전11[10]
+    ? (squad.주전11.find((p) => p.선수id === myGoals[0].선수id) ?? squad.주전11[10])
     : squad.주전11[10];
   const topRating =
-    log.결과 === "W" ? 8.2 + ((seed % 6) / 10) : log.결과 === "D" ? 7.4 + ((seed % 5) / 10) : 6.9 + ((seed % 4) / 10);
+    log.결과 === "W"
+      ? 8.2 + (seed % 6) / 10
+      : log.결과 === "D"
+        ? 7.4 + (seed % 5) / 10
+        : 6.9 + (seed % 4) / 10;
 
   return {
     matchKey,

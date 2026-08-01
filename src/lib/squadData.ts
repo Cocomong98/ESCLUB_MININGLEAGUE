@@ -7,7 +7,8 @@
 
 import { RANKINGS } from "./mockData";
 
-export type Position = "GK" | "SW" | "CB" | "LB" | "RB" | "DM" | "CM" | "LM" | "RM" | "AM" | "LW" | "RW" | "CF" | "ST";
+export type Position =
+  "GK" | "SW" | "CB" | "LB" | "RB" | "DM" | "CM" | "LM" | "RM" | "AM" | "LW" | "RW" | "CF" | "ST";
 
 export interface SquadPlayerRaw {
   선수id: string;
@@ -60,12 +61,64 @@ export interface ManagerModeAnalysisRaw {
   교체시점평균: number; // 분
 }
 
-const FIRST_NAMES = ["김","이","박","최","정","강","조","윤","장","임","한","오","서","신","권","황","안","송","전","홍"];
-const GIVEN = ["민준","서준","도윤","예준","시우","주원","하준","지호","지훈","건우","우진","선우","서진","민재","현우","도현","지후","준서","준우","연우"];
-const NATIONS = ["KOR","BRA","ARG","ESP","FRA","GER","ENG","POR","ITA","NED"];
-const SEASONS_LABEL = ["TT","23UCL","22TB","20KH","19KH","21NG","VTR","BTB","LN","HR"];
+const FIRST_NAMES = [
+  "김",
+  "이",
+  "박",
+  "최",
+  "정",
+  "강",
+  "조",
+  "윤",
+  "장",
+  "임",
+  "한",
+  "오",
+  "서",
+  "신",
+  "권",
+  "황",
+  "안",
+  "송",
+  "전",
+  "홍",
+];
+const GIVEN = [
+  "민준",
+  "서준",
+  "도윤",
+  "예준",
+  "시우",
+  "주원",
+  "하준",
+  "지호",
+  "지훈",
+  "건우",
+  "우진",
+  "선우",
+  "서진",
+  "민재",
+  "현우",
+  "도현",
+  "지후",
+  "준서",
+  "준우",
+  "연우",
+];
+const NATIONS = ["KOR", "BRA", "ARG", "ESP", "FRA", "GER", "ENG", "POR", "ITA", "NED"];
+const SEASONS_LABEL = ["TT", "23UCL", "22TB", "20KH", "19KH", "21NG", "VTR", "BTB", "LN", "HR"];
 
-function player(seed: number, pos: Position, ovr: number, apps: number, starts: number, g: number, a: number, rating: number, val: number): SquadPlayerRaw {
+function player(
+  seed: number,
+  pos: Position,
+  ovr: number,
+  apps: number,
+  starts: number,
+  g: number,
+  a: number,
+  rating: number,
+  val: number,
+): SquadPlayerRaw {
   const s = seed;
   return {
     선수id: `p${String(s).padStart(4, "0")}`,

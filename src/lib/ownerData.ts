@@ -31,16 +31,28 @@ export interface OwnerDetailRaw {
 /** Deterministic helper — generate a plausible 20-match log per owner. */
 function buildLog(seed: string, form: MatchResult[]): MatchLogRaw[] {
   const opponents = [
-    "강남 스트라이커즈","해운대 타이탄즈","판교 데이터즈","송도 유나이티드","역삼 FC",
-    "성수 워리어스","잠실 로얄스","용산 다이너스","홍대 리버스","여의도 캐피탈",
-    "종로 헤리티지","동대문 나이츠","마포 콜렉티브","노원 파일럿츠","구로 스파크스",
+    "강남 스트라이커즈",
+    "해운대 타이탄즈",
+    "판교 데이터즈",
+    "송도 유나이티드",
+    "역삼 FC",
+    "성수 워리어스",
+    "잠실 로얄스",
+    "용산 다이너스",
+    "홍대 리버스",
+    "여의도 캐피탈",
+    "종로 헤리티지",
+    "동대문 나이츠",
+    "마포 콜렉티브",
+    "노원 파일럿츠",
+    "구로 스파크스",
   ].filter((n) => n !== seed);
   const results: MatchResult[] = [];
   // pad last-20 with a repeating pattern from form
   for (let i = 0; i < 20; i++) results.push(form[i % form.length]);
   return results.map((r, i) => {
-    const gf = r === "W" ? 2 + (i % 2) : r === "D" ? 1 : (i % 2);
-    const ga = r === "L" ? 2 + (i % 2) : r === "D" ? 1 : (i % 2);
+    const gf = r === "W" ? 2 + (i % 2) : r === "D" ? 1 : i % 2;
+    const ga = r === "L" ? 2 + (i % 2) : r === "D" ? 1 : i % 2;
     return {
       matchKey: `m${seed}-${String(i + 1).padStart(2, "0")}`,
       일자: `2024-05-${String(20 - i).padStart(2, "0")}`,
@@ -97,10 +109,7 @@ export interface SplitLine {
   winRate: number | null;
 }
 
-export function splitToView(
-  label: string,
-  s: OwnerDetailRaw["홈성적"],
-): SplitLine {
+export function splitToView(label: string, s: OwnerDetailRaw["홈성적"]): SplitLine {
   const gp = s.승 + s.무 + s.패;
   return {
     label,
