@@ -9,23 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TablesRouteImport } from './routes/tables'
-import { Route as HallOfFameRouteImport } from './routes/hall-of-fame'
-import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as HallOfFameRouteImport } from './routes/hall-of-fame'
+import { Route as TablesRouteImport } from './routes/tables'
 import { Route as DashboardIdIndexRouteImport } from './routes/dashboard.$id.index'
 import { Route as DashboardIdSquadRouteImport } from './routes/dashboard.$id.squad'
-import { Route as DashboardIdPlayerPlayerIdRouteImport } from './routes/dashboard.$id.player.$playerId'
 import { Route as DashboardIdMatchMatchKeyRouteImport } from './routes/dashboard.$id.match.$matchKey'
+import { Route as DashboardIdPlayerPlayerIdRouteImport } from './routes/dashboard.$id.player.$playerId'
 
-const TablesRoute = TablesRouteImport.update({
-  id: '/tables',
-  path: '/tables',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HallOfFameRoute = HallOfFameRouteImport.update({
-  id: '/hall-of-fame',
-  path: '/hall-of-fame',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -33,9 +28,14 @@ const AdminRoute = AdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const HallOfFameRoute = HallOfFameRouteImport.update({
+  id: '/hall-of-fame',
+  path: '/hall-of-fame',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TablesRoute = TablesRouteImport.update({
+  id: '/tables',
+  path: '/tables',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardIdIndexRoute = DashboardIdIndexRouteImport.update({
@@ -48,16 +48,16 @@ const DashboardIdSquadRoute = DashboardIdSquadRouteImport.update({
   path: '/dashboard/$id/squad',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardIdPlayerPlayerIdRoute =
-  DashboardIdPlayerPlayerIdRouteImport.update({
-    id: '/dashboard/$id/player/$playerId',
-    path: '/dashboard/$id/player/$playerId',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 const DashboardIdMatchMatchKeyRoute =
   DashboardIdMatchMatchKeyRouteImport.update({
     id: '/dashboard/$id/match/$matchKey',
     path: '/dashboard/$id/match/$matchKey',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DashboardIdPlayerPlayerIdRoute =
+  DashboardIdPlayerPlayerIdRouteImport.update({
+    id: '/dashboard/$id/player/$playerId',
+    path: '/dashboard/$id/player/$playerId',
     getParentRoute: () => rootRouteImport,
   } as any)
 
@@ -138,18 +138,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/tables': {
-      id: '/tables'
-      path: '/tables'
-      fullPath: '/tables'
-      preLoaderRoute: typeof TablesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/hall-of-fame': {
-      id: '/hall-of-fame'
-      path: '/hall-of-fame'
-      fullPath: '/hall-of-fame'
-      preLoaderRoute: typeof HallOfFameRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -159,11 +152,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/hall-of-fame': {
+      id: '/hall-of-fame'
+      path: '/hall-of-fame'
+      fullPath: '/hall-of-fame'
+      preLoaderRoute: typeof HallOfFameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tables': {
+      id: '/tables'
+      path: '/tables'
+      fullPath: '/tables'
+      preLoaderRoute: typeof TablesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard/$id/': {
@@ -180,18 +180,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIdSquadRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dashboard/$id/player/$playerId': {
-      id: '/dashboard/$id/player/$playerId'
-      path: '/dashboard/$id/player/$playerId'
-      fullPath: '/dashboard/$id/player/$playerId'
-      preLoaderRoute: typeof DashboardIdPlayerPlayerIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/dashboard/$id/match/$matchKey': {
       id: '/dashboard/$id/match/$matchKey'
       path: '/dashboard/$id/match/$matchKey'
       fullPath: '/dashboard/$id/match/$matchKey'
       preLoaderRoute: typeof DashboardIdMatchMatchKeyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/$id/player/$playerId': {
+      id: '/dashboard/$id/player/$playerId'
+      path: '/dashboard/$id/player/$playerId'
+      fullPath: '/dashboard/$id/player/$playerId'
+      preLoaderRoute: typeof DashboardIdPlayerPlayerIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
