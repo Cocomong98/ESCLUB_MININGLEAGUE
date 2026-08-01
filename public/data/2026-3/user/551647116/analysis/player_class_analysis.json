@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:16:31.728020+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "551647116",
+    "nickname": "ES차오"
+  },
+  "classRows": [
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 22,
+      "appearances": 13079,
+      "goals": 2003,
+      "assists": 1797,
+      "attackPoints": 3800,
+      "avgRating": 6.37
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

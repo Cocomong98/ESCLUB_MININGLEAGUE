@@ -1,0 +1,38 @@
+[
+    {
+        "name": "ES차발",
+        "player_id": "1793437746",
+        "stat_url": "https://fconline.nexon.com/profile/stat/popup/1793437746",
+        "squad_url": "https://fconline.nexon.com/profile/squad/popup/1793437746",
+        "구단주명": "ES차발",
+        "승": 541,
+        "무": 57,
+        "패": 558,
+        "판수": 1156,
+        "채굴 효율": 3058,
+        "승률": "46.8%",
+        "현재 티어": "월드클래스 3",
+        "현재 티어 코드": "8",
+        "현재 티어 이미지": "https://ssl.nexon.com/s2/game/fo4/obt/rank/large/update_2026/ico_rank8_m.png",
+        "구단 가치": "6경 6,292조",
+        "비고": "-",
+        "지난 시즌 승": 0,
+        "지난 시즌 무": 0,
+        "지난 시즌 패": 0,
+        "지난 시즌 판수": 0,
+        "지난 시즌 채굴 효율": 0,
+        "지난 시즌 승률": "0.0%",
+        "crawl_time": "2026-07-30",
+        "record_source": "nexon_open_api",
+        "openapi_sync": {
+            "ouid": "817e46baa05cfc405f73313e724d2f9c",
+            "newMatchCount": 1067,
+            "totalIndexCount": 1200,
+            "maxMatches": 1200
+        },
+        "순위": 14,
+        "성장력": -11942,
+        "crawl_time_detail": "2026-07-30 오후 1시",
+        "crawl_time_hhmm": "13:40"
+    }
+]

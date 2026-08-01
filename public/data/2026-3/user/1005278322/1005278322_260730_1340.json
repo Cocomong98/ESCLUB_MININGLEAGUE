@@ -1,0 +1,38 @@
+[
+    {
+        "name": "ES빌바오",
+        "player_id": "1005278322",
+        "stat_url": "https://fconline.nexon.com/profile/stat/popup/1005278322",
+        "squad_url": "https://fconline.nexon.com/profile/squad/popup/1005278322",
+        "구단주명": "ES빌바오",
+        "승": 574,
+        "무": 66,
+        "패": 558,
+        "판수": 1198,
+        "채굴 효율": 3262,
+        "승률": "47.9%",
+        "현재 티어": "",
+        "현재 티어 코드": "",
+        "현재 티어 이미지": "https://ssl.nexon.com/s2/game/fo4/obt/rank/large/ico_rank_default.png",
+        "구단 가치": "1경 7,025조",
+        "비고": "-",
+        "지난 시즌 승": 0,
+        "지난 시즌 무": 0,
+        "지난 시즌 패": 0,
+        "지난 시즌 판수": 0,
+        "지난 시즌 채굴 효율": 0,
+        "지난 시즌 승률": "0.0%",
+        "crawl_time": "2026-07-30",
+        "record_source": "nexon_open_api",
+        "openapi_sync": {
+            "ouid": "75935f090dfb5b0c682fa31ec4dc06ae",
+            "newMatchCount": 1080,
+            "totalIndexCount": 1200,
+            "maxMatches": 1200
+        },
+        "순위": 9,
+        "성장력": -8633,
+        "crawl_time_detail": "2026-07-30 오후 1시",
+        "crawl_time_hhmm": "13:40"
+    }
+]

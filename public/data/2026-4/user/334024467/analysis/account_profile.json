@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "0.1.0",
+  "status": "SUCCESS",
+  "generatedAt": "2026-08-01T16:35:32.256160+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "334024467",
+    "nickname": "ES동천"
+  },
+  "account": {
+    "ouidHash": "c77e0cdc71d2",
+    "nickname": "ES동천",
+    "level": 1789,
+    "managerModeBestDivision": {
+      "matchType": 52,
+      "division": 800,
+      "achievementDate": "2025-12-17T04:25:28",
+      "divisionName": "슈퍼챔피언스"
+    },
+    "divisionRows": [
+      {
+        "matchType": 50,
+        "division": 2100,
+        "achievementDate": "2025-12-30T11:52:19",
+        "divisionName": "월드클래스2"
+      },
+      {
+        "matchType": 52,
+        "division": 800,
+        "achievementDate": "2025-12-17T04:25:28",
+        "divisionName": "슈퍼챔피언스"
+      }
+    ]
+  }
+}

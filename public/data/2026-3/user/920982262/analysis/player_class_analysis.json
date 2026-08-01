@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:16:24.009527+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "920982262",
+    "nickname": "ES진"
+  },
+  "classRows": [
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 2,
+      "appearances": 2308,
+      "goals": 302,
+      "assists": 335,
+      "attackPoints": 637,
+      "avgRating": 6.54
+    },
+    {
+      "seasonId": 846,
+      "seasonName": "DCB (Dramatic Comebacks)",
+      "players": 2,
+      "appearances": 2308,
+      "goals": 412,
+      "assists": 391,
+      "attackPoints": 803,
+      "avgRating": 6.55
+    },
+    {
+      "seasonId": 840,
+      "seasonName": "LE (Legend of Europa)",
+      "players": 2,
+      "appearances": 2308,
+      "goals": 203,
+      "assists": 253,
+      "attackPoints": 456,
+      "avgRating": 6.48
+    },
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 2,
+      "appearances": 1658,
+      "goals": 5,
+      "assists": 14,
+      "attackPoints": 19,
+      "avgRating": 6.39
+    },
+    {
+      "seasonId": 850,
+      "seasonName": "25FSL (25 FCO Superchampions League)",
+      "players": 1,
+      "appearances": 1154,
+      "goals": 506,
+      "assists": 299,
+      "attackPoints": 805,
+      "avgRating": 6.72
+    },
+    {
+      "seasonId": 852,
+      "seasonName": "FAC (Football Association Champions)",
+      "players": 2,
+      "appearances": 1064,
+      "goals": 347,
+      "assists": 280,
+      "attackPoints": 627,
+      "avgRating": 6.52
+    },
+    {
+      "seasonId": 835,
+      "seasonName": "25HR (25 Heroes)",
+      "players": 2,
+      "appearances": 1055,
+      "goals": 61,
+      "assists": 91,
+      "attackPoints": 152,
+      "avgRating": 6.32
+    },
+    {
+      "seasonId": 826,
+      "seasonName": "24EP (2024 Energetic Player)",
+      "players": 1,
+      "appearances": 658,
+      "goals": 228,
+      "assists": 194,
+      "attackPoints": 422,
+      "avgRating": 6.51
+    },
+    {
+      "seasonId": 251,
+      "seasonName": "EBS (European Best Stars)",
+      "players": 1,
+      "appearances": 181,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.3
+    }
+  ],
+  "samePlayerCardComparisons": [
+    {
+      "basePlayerId": "190053",
+      "name": "페터 슈마이켈",
+      "cards": [
+        {
+          "spId": 845190053,
+          "seasonId": 845,
+          "seasonName": "CH (Continental Heroes)",
+          "appearances": 504,
+          "attackPoint": 0,
+          "avgRating": 6.41,
+          "playerWinRate": 50.99
+        },
+        {
+          "spId": 251190053,
+          "seasonId": 251,
+          "seasonName": "EBS (European Best Stars)",
+          "appearances": 181,
+          "attackPoint": 0,
+          "avgRating": 6.3,
+          "playerWinRate": 52.49
+        }
+      ]
+    }
+  ]
+}

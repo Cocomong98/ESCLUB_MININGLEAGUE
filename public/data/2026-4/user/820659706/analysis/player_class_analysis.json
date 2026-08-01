@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:36:47.178618+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "820659706",
+    "nickname": "ES타이슨"
+  },
+  "classRows": [
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 11,
+      "appearances": 154,
+      "goals": 22,
+      "assists": 16,
+      "attackPoints": 38,
+      "avgRating": 6.48
+    },
+    {
+      "seasonId": 866,
+      "seasonName": "26 TOTS (26 Team Of The Season)",
+      "players": 10,
+      "appearances": 110,
+      "goals": 18,
+      "assists": 15,
+      "attackPoints": 33,
+      "avgRating": 6.72
+    },
+    {
+      "seasonId": 300,
+      "seasonName": "25 LIVE (25 LIVE)",
+      "players": 1,
+      "appearances": 11,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.18
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

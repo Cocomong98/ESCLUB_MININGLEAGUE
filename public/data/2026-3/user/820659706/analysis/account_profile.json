@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "0.1.0",
+  "status": "SUCCESS",
+  "generatedAt": "2026-07-31T10:15:59.698507+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "820659706",
+    "nickname": "ES타이슨"
+  },
+  "account": {
+    "ouidHash": "3045c2638742",
+    "nickname": "ES타이슨",
+    "level": 832,
+    "managerModeBestDivision": {
+      "matchType": 52,
+      "division": 900,
+      "achievementDate": "2026-07-29T14:51:14",
+      "divisionName": "챔피언스"
+    },
+    "divisionRows": [
+      {
+        "matchType": 50,
+        "division": 1100,
+        "achievementDate": "2025-10-03T01:47:42",
+        "divisionName": "챌린지1"
+      },
+      {
+        "matchType": 52,
+        "division": 900,
+        "achievementDate": "2026-07-29T14:51:14",
+        "divisionName": "챔피언스"
+      }
+    ]
+  }
+}

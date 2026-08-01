@@ -1,0 +1,38 @@
+[
+    {
+        "name": "로니",
+        "player_id": "887426261",
+        "stat_url": "https://fconline.nexon.com/profile/stat/popup/887426261",
+        "squad_url": "https://fconline.nexon.com/profile/squad/popup/887426261",
+        "구단주명": "로니",
+        "승": 170,
+        "무": 83,
+        "패": 168,
+        "판수": 421,
+        "채굴 효율": 773,
+        "승률": "40.4%",
+        "현재 티어": "챌린저 2",
+        "현재 티어 코드": "4",
+        "현재 티어 이미지": "https://ssl.nexon.com/s2/game/fo4/obt/rank/large/update_2026/ico_rank4_m.png",
+        "구단 가치": "9경 5,420조",
+        "비고": "-",
+        "지난 시즌 승": 0,
+        "지난 시즌 무": 0,
+        "지난 시즌 패": 0,
+        "지난 시즌 판수": 0,
+        "지난 시즌 채굴 효율": 0,
+        "지난 시즌 승률": "0.0%",
+        "crawl_time": "2026-07-31",
+        "record_source": "nexon_open_api",
+        "openapi_sync": {
+            "ouid": "58b4bc7a654668e4e462103c17435316",
+            "newMatchCount": 0,
+            "totalIndexCount": 421,
+            "maxMatches": 1200
+        },
+        "순위": 28,
+        "성장력": 0,
+        "crawl_time_detail": "2026-07-31 오전 10시",
+        "crawl_time_hhmm": "10:03"
+    }
+]

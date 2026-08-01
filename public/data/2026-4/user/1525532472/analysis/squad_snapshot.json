@@ -1,0 +1,198 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:35:53.317893+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "status": "metadata_ready"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1525532472",
+    "nickname": "ES메가꿀아"
+  },
+  "season": "2026-4",
+  "status": "READY",
+  "squad": {
+    "formation": "4-6-0",
+    "clubValue": null,
+    "clubValueText": "-",
+    "salary": {
+      "current": 284,
+      "cap": 310
+    },
+    "playerCount": 11
+  },
+  "players": [
+    {
+      "spId": 852004231,
+      "name": "히바우두",
+      "role": "cam",
+      "position": "cam",
+      "spPosition": 18,
+      "spGrade": 10,
+      "pay": 31,
+      "price": 0,
+      "priceText": "-",
+      "order": 0,
+      "starter": true
+    },
+    {
+      "spId": 863232580,
+      "name": "가브리엘 마갈량이스",
+      "role": "lcb",
+      "position": "lcb",
+      "spPosition": 6,
+      "spGrade": 10,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 1,
+      "starter": true
+    },
+    {
+      "spId": 856257265,
+      "name": "마테우스 시우바",
+      "role": "rb",
+      "position": "rb",
+      "spPosition": 3,
+      "spGrade": 10,
+      "pay": 0,
+      "price": 0,
+      "priceText": "-",
+      "order": 2,
+      "starter": true
+    },
+    {
+      "spId": 848232805,
+      "name": "베르나르두",
+      "role": "lb",
+      "position": "lb",
+      "spPosition": 7,
+      "spGrade": 9,
+      "pay": 27,
+      "price": 0,
+      "priceText": "-",
+      "order": 3,
+      "starter": true
+    },
+    {
+      "spId": 866239580,
+      "name": "브레메르",
+      "role": "rcb",
+      "position": "rcb",
+      "spPosition": 4,
+      "spGrade": 8,
+      "pay": 31,
+      "price": 0,
+      "priceText": "-",
+      "order": 4,
+      "starter": true
+    },
+    {
+      "spId": 852233419,
+      "name": "하피냐",
+      "role": "rm",
+      "position": "rm",
+      "spPosition": 12,
+      "spGrade": 9,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 5,
+      "starter": true
+    },
+    {
+      "spId": 851247851,
+      "name": "브루누 기마랑이스",
+      "role": "lcm",
+      "position": "lcm",
+      "spPosition": 15,
+      "spGrade": 9,
+      "pay": 29,
+      "price": 0,
+      "priceText": "-",
+      "order": 6,
+      "starter": true
+    },
+    {
+      "spId": 814200145,
+      "name": "카제미루",
+      "role": "cdm",
+      "position": "cdm",
+      "spPosition": 10,
+      "spGrade": 11,
+      "pay": 26,
+      "price": 0,
+      "priceText": "-",
+      "order": 7,
+      "starter": true
+    },
+    {
+      "spId": 848210257,
+      "name": "에데르송",
+      "role": "gk",
+      "position": "gk",
+      "spPosition": 0,
+      "spGrade": 10,
+      "pay": 26,
+      "price": 0,
+      "priceText": "-",
+      "order": 8,
+      "starter": true
+    },
+    {
+      "spId": 851223334,
+      "name": "조엘린통",
+      "role": "rcm",
+      "position": "rcm",
+      "spPosition": 13,
+      "spGrade": 9,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 9,
+      "starter": true
+    },
+    {
+      "spId": 848238794,
+      "name": "비니시우스",
+      "role": "lm",
+      "position": "lm",
+      "spPosition": 16,
+      "spGrade": 8,
+      "pay": 30,
+      "price": 0,
+      "priceText": "-",
+      "order": 10,
+      "starter": true
+    }
+  ],
+  "teamColors": [
+    {
+      "id": "10001",
+      "group": "enhance",
+      "groupLabel": "강화",
+      "level": 2,
+      "name": "금빛 물결",
+      "playerCount": 11,
+      "activationPlayerCount": 11,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 4,
+          "label": "전체 능력치 +4"
+        }
+      ],
+      "image": "https://ssl.nexon.com/s2/game/fc/online/obt/datacenter/teamcolor/tc_u_g.png"
+    }
+  ],
+  "summary": {
+    "teamColorCount": 1,
+    "affiliationCount": 0,
+    "enhanceCount": 1,
+    "featureCount": 0
+  }
+}

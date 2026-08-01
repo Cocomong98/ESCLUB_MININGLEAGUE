@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:36:44.387497+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1155593160",
+    "nickname": "ES코코몽"
+  },
+  "classRows": [
+    {
+      "seasonId": 840,
+      "seasonName": "LE (Legend of Europa)",
+      "players": 3,
+      "appearances": 546,
+      "goals": 16,
+      "assists": 55,
+      "attackPoints": 71,
+      "avgRating": 6.43
+    },
+    {
+      "seasonId": 866,
+      "seasonName": "26 TOTS (26 Team Of The Season)",
+      "players": 2,
+      "appearances": 364,
+      "goals": 83,
+      "assists": 67,
+      "attackPoints": 150,
+      "avgRating": 6.54
+    },
+    {
+      "seasonId": 855,
+      "seasonName": "26 TOTY-N (26 Team Of The Nominated)",
+      "players": 2,
+      "appearances": 364,
+      "goals": 91,
+      "assists": 71,
+      "attackPoints": 162,
+      "avgRating": 6.58
+    },
+    {
+      "seasonId": 826,
+      "seasonName": "24EP (2024 Energetic Player)",
+      "players": 1,
+      "appearances": 182,
+      "goals": 9,
+      "assists": 1,
+      "attackPoints": 10,
+      "avgRating": 6.49
+    },
+    {
+      "seasonId": 825,
+      "seasonName": "CU (Champions of Europe)",
+      "players": 1,
+      "appearances": 182,
+      "goals": 60,
+      "assists": 48,
+      "attackPoints": 108,
+      "avgRating": 6.63
+    },
+    {
+      "seasonId": 863,
+      "seasonName": "PTG (Path to Glory)",
+      "players": 1,
+      "appearances": 182,
+      "goals": 66,
+      "assists": 49,
+      "attackPoints": 115,
+      "avgRating": 6.58
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 1,
+      "appearances": 182,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.42
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

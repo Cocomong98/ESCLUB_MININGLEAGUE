@@ -1,0 +1,115 @@
+{
+  "schemaVersion": "0.1.0",
+  "status": "INSUFFICIENT_DATA",
+  "generatedAt": "2026-08-01T16:35:32.256160+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52,
+    "matchtypeName": "감독모드"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "334024467",
+    "nickname": "ES동천"
+  },
+  "sample": {
+    "requested": 100,
+    "valid": 0,
+    "excluded": 100,
+    "minimumForInsights": 20
+  },
+  "period": {
+    "from": null,
+    "to": null
+  },
+  "summary": {
+    "sampleSize": 0,
+    "w": 0,
+    "d": 0,
+    "l": 0,
+    "winRate": 0.0,
+    "goalsPerMatch": 0.0,
+    "goalsConcededPerMatch": 0.0,
+    "goalDifferencePerMatch": 0.0,
+    "shotsPerMatch": 0.0,
+    "shotsOnTargetPerMatch": 0.0,
+    "shotAccuracy": 0.0,
+    "goalConversion": 0.0,
+    "shotOnTargetConversion": 0.0,
+    "averagePossession": 0.0,
+    "passSuccessRate": 0.0,
+    "tackleSuccessRate": 0.0,
+    "cleanSheetRate": 0.0,
+    "concedeTwoPlusRate": 0.0
+  },
+  "recentForm": [],
+  "expanded": {
+    "schemaVersion": "0.1.0",
+    "styleProfile": {
+      "primary": "수비형",
+      "scores": {
+        "점유형": 0.0,
+        "다득점형": 0.0,
+        "수비형": 70.0,
+        "고효율형": 0.0,
+        "다슈팅형": 0.0,
+        "안정형": 0.0
+      }
+    },
+    "formationPerformance": [],
+    "timeSlotPerformance": [],
+    "weekdayPerformance": [],
+    "opponentHeadToHead": [],
+    "matchFlowTypes": [],
+    "playerCombinations": {
+      "pairs": [],
+      "trios": []
+    },
+    "positionGroupPerformance": []
+  },
+  "comparisons": {
+    "recent20VsPrevious20": {
+      "recent": {
+        "period": 20,
+        "sampleSize": 0,
+        "w": 0,
+        "d": 0,
+        "l": 0,
+        "winRate": 0.0,
+        "goalsPerMatch": 0.0,
+        "goalsConcededPerMatch": 0.0,
+        "goalDifferencePerMatch": 0.0,
+        "shotsPerMatch": 0.0,
+        "shotsOnTargetPerMatch": 0.0,
+        "shotAccuracy": 0.0,
+        "goalConversion": 0.0,
+        "averagePossession": 0.0,
+        "passSuccessRate": 0.0
+      },
+      "previous": {
+        "period": 20,
+        "sampleSize": 0,
+        "w": 0,
+        "d": 0,
+        "l": 0,
+        "winRate": 0.0,
+        "goalsPerMatch": 0.0,
+        "goalsConcededPerMatch": 0.0,
+        "goalDifferencePerMatch": 0.0,
+        "shotsPerMatch": 0.0,
+        "shotsOnTargetPerMatch": 0.0,
+        "shotAccuracy": 0.0,
+        "goalConversion": 0.0,
+        "averagePossession": 0.0,
+        "passSuccessRate": 0.0
+      },
+      "winRateDifference": 0.0,
+      "goalsPerMatchChangePercent": null,
+      "goalsConcededPerMatchChangePercent": null
+    }
+  },
+  "insights": []
+}

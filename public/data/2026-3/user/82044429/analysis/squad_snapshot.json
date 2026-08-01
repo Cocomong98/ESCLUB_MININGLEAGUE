@@ -1,0 +1,326 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:15:15.068037+09:00",
+  "source": {
+    "provider": "FCOnlineProfileSquad",
+    "url": "https://fconline.nexon.com/profile/squad/popup/82044429"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "82044429",
+    "nickname": "ES라울"
+  },
+  "season": "2026-3",
+  "status": "READY",
+  "squad": {
+    "name": "스쿼드_20260731101517",
+    "formation": "",
+    "clubValue": 350480000000000000,
+    "clubValueText": "35경 480조",
+    "salary": {
+      "current": 299,
+      "cap": 310
+    },
+    "playerCount": 18
+  },
+  "players": [
+    {
+      "spId": 863185427,
+      "name": "외리안 뉠란",
+      "role": "gk",
+      "position": "gk",
+      "pay": 25,
+      "price": 9960000000000000,
+      "priceText": "9,960조",
+      "order": 0,
+      "starter": true
+    },
+    {
+      "spId": 863228092,
+      "name": "산데르 베르게",
+      "role": "cdm",
+      "position": "cdm",
+      "pay": 28,
+      "price": 27600000000000000,
+      "priceText": "2경 7,600조",
+      "order": 1,
+      "starter": true
+    },
+    {
+      "spId": 856222227,
+      "name": "P. 베르그",
+      "role": "rcm",
+      "position": "cdm",
+      "pay": 26,
+      "price": 3300000000000000,
+      "priceText": "3,300조",
+      "order": 2,
+      "starter": true
+    },
+    {
+      "spId": 852274967,
+      "name": "욘 아르네 리세",
+      "role": "lcm",
+      "position": "lb",
+      "pay": 28,
+      "price": 14400000000000000,
+      "priceText": "1경 4,400조",
+      "order": 3,
+      "starter": true
+    },
+    {
+      "spId": 863222665,
+      "name": "마르틴 외데고르",
+      "role": "ram",
+      "position": "cam",
+      "pay": 29,
+      "price": 56700000000000000,
+      "priceText": "5경 6,700조",
+      "order": 4,
+      "starter": true
+    },
+    {
+      "spId": 863239085,
+      "name": "엘링 홀란",
+      "role": "cam",
+      "position": "st",
+      "pay": 31,
+      "price": 155000000000000000,
+      "priceText": "15경 5,000조",
+      "order": 5,
+      "starter": true
+    },
+    {
+      "spId": 863262863,
+      "name": "안토니오 누사",
+      "role": "lam",
+      "position": "lw",
+      "pay": 28,
+      "price": 38600000000000000,
+      "priceText": "3경 8,600조",
+      "order": 6,
+      "starter": true
+    },
+    {
+      "spId": 863229891,
+      "name": "J. 리에르손",
+      "role": "rb",
+      "position": "rb",
+      "pay": 27,
+      "price": 11800000000000000,
+      "priceText": "1경 1,800조",
+      "order": 7,
+      "starter": true
+    },
+    {
+      "spId": 863248342,
+      "name": "T. 헤겜",
+      "role": "rcb",
+      "position": "cb",
+      "pay": 25,
+      "price": 9920000000000000,
+      "priceText": "9,920조",
+      "order": 8,
+      "starter": true
+    },
+    {
+      "spId": 863224258,
+      "name": "K. 아예르",
+      "role": "lcb",
+      "position": "cb",
+      "pay": 27,
+      "price": 10800000000000000,
+      "priceText": "1경 800조",
+      "order": 9,
+      "starter": true
+    },
+    {
+      "spId": 863262135,
+      "name": "D. 볼페",
+      "role": "lb",
+      "position": "lb",
+      "pay": 25,
+      "price": 12400000000000000,
+      "priceText": "1경 2,400조",
+      "order": 10,
+      "starter": true
+    },
+    {
+      "spId": 206189117,
+      "name": "로만 뷔어키",
+      "role": "GK",
+      "position": "gk",
+      "pay": 9,
+      "price": 33900000000,
+      "priceText": "1조 미만",
+      "order": 11,
+      "starter": false
+    },
+    {
+      "spId": 217224656,
+      "name": "올라 에이나",
+      "role": "LB",
+      "position": "lb",
+      "pay": 12,
+      "price": 249000000000,
+      "priceText": "1조 미만",
+      "order": 12,
+      "starter": false
+    },
+    {
+      "spId": 206199987,
+      "name": "야스퍼르 실러선",
+      "role": "GK",
+      "position": "gk",
+      "pay": 10,
+      "price": 1080000000000,
+      "priceText": "1조",
+      "order": 13,
+      "starter": false
+    },
+    {
+      "spId": 300192397,
+      "name": "하파엘",
+      "role": "GK",
+      "position": "gk",
+      "pay": 5,
+      "price": 1120000,
+      "priceText": "1조 미만",
+      "order": 14,
+      "starter": false
+    },
+    {
+      "spId": 291244675,
+      "name": "산세트",
+      "role": "CAM",
+      "position": "cam",
+      "pay": 24,
+      "price": 93900000000000,
+      "priceText": "93조",
+      "order": 15,
+      "starter": false
+    },
+    {
+      "spId": 291223952,
+      "name": "다비드 소리아",
+      "role": "GK",
+      "position": "gk",
+      "pay": 21,
+      "price": 80800000000000,
+      "priceText": "80조",
+      "order": 16,
+      "starter": false
+    },
+    {
+      "spId": 291146947,
+      "name": "베스가",
+      "role": "CDM",
+      "position": "cdm",
+      "pay": 23,
+      "price": 85300000000000,
+      "priceText": "85조",
+      "order": 17,
+      "starter": false
+    }
+  ],
+  "teamColors": [
+    {
+      "id": "2058",
+      "group": "affiliation",
+      "groupLabel": "소속",
+      "level": 4,
+      "name": "노르웨이",
+      "playerCount": 11,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 4,
+          "label": "전체 능력치 +4"
+        },
+        {
+          "name": "골 결정력",
+          "amount": 3,
+          "label": "골 결정력 +3"
+        },
+        {
+          "name": "시야",
+          "amount": 3,
+          "label": "시야 +3"
+        }
+      ],
+      "image": "https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/countries/largeflags/f_36.png"
+    },
+    {
+      "id": "10004",
+      "group": "enhance",
+      "groupLabel": "강화",
+      "level": 2,
+      "name": "백금빛 물결",
+      "playerCount": 10,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 5,
+          "label": "전체 능력치 +5"
+        }
+      ],
+      "image": "https://ssl.nexon.com/s2/game/fc/online/obt/datacenter/teamcolor/tc_u_p.png"
+    },
+    {
+      "id": "10001",
+      "group": "enhance",
+      "groupLabel": "강화",
+      "level": 2,
+      "name": "금빛 물결",
+      "playerCount": 1,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 4,
+          "label": "전체 능력치 +4"
+        }
+      ],
+      "image": "https://ssl.nexon.com/s2/game/fc/online/obt/datacenter/teamcolor/tc_u_g.png"
+    },
+    {
+      "id": "40689",
+      "group": "feature",
+      "groupLabel": "특성",
+      "level": 1,
+      "name": "2026 노르웨이",
+      "playerCount": 10,
+      "skills": [
+        {
+          "name": "골 결정력",
+          "amount": 3,
+          "label": "골 결정력 +3"
+        },
+        {
+          "name": "위치 선정",
+          "amount": 3,
+          "label": "위치 선정 +3"
+        },
+        {
+          "name": "속력",
+          "amount": 2,
+          "label": "속력 +2"
+        },
+        {
+          "name": "드리블",
+          "amount": 2,
+          "label": "드리블 +2"
+        }
+      ],
+      "image": "https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/teamcolorboost/icon/medium/4_l3036.png"
+    }
+  ],
+  "summary": {
+    "teamColorCount": 4,
+    "affiliationCount": 1,
+    "enhanceCount": 2,
+    "featureCount": 1
+  }
+}

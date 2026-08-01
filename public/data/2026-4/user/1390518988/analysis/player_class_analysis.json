@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:36:38.800932+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1390518988",
+    "nickname": "ES칼텍스"
+  },
+  "classRows": [
+    {
+      "seasonId": 866,
+      "seasonName": "26 TOTS (26 Team Of The Season)",
+      "players": 3,
+      "appearances": 588,
+      "goals": 8,
+      "assists": 21,
+      "attackPoints": 29,
+      "avgRating": 6.42
+    },
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 2,
+      "appearances": 392,
+      "goals": 86,
+      "assists": 76,
+      "attackPoints": 162,
+      "avgRating": 6.64
+    },
+    {
+      "seasonId": 844,
+      "seasonName": "25 TOTS (25 Team Of The Season)",
+      "players": 1,
+      "appearances": 196,
+      "goals": 46,
+      "assists": 49,
+      "attackPoints": 95,
+      "avgRating": 6.58
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 1,
+      "appearances": 196,
+      "goals": 14,
+      "assists": 36,
+      "attackPoints": 50,
+      "avgRating": 6.48
+    },
+    {
+      "seasonId": 855,
+      "seasonName": "26 TOTY-N (26 Team Of The Nominated)",
+      "players": 1,
+      "appearances": 196,
+      "goals": 73,
+      "assists": 68,
+      "attackPoints": 141,
+      "avgRating": 6.92
+    },
+    {
+      "seasonId": 206,
+      "seasonName": "TB (Tournament Best)",
+      "players": 1,
+      "appearances": 196,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.4
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 1,
+      "appearances": 196,
+      "goals": 3,
+      "assists": 2,
+      "attackPoints": 5,
+      "avgRating": 6.44
+    },
+    {
+      "seasonId": 863,
+      "seasonName": "PTG (Path to Glory)",
+      "players": 1,
+      "appearances": 180,
+      "goals": 97,
+      "assists": 37,
+      "attackPoints": 134,
+      "avgRating": 7.06
+    },
+    {
+      "seasonId": 861,
+      "seasonName": "WG (Warriors of Glory)",
+      "players": 1,
+      "appearances": 16,
+      "goals": 7,
+      "assists": 5,
+      "attackPoints": 12,
+      "avgRating": 7.16
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

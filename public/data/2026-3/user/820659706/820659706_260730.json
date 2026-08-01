@@ -1,0 +1,38 @@
+[
+    {
+        "name": "ES타이슨",
+        "player_id": "820659706",
+        "stat_url": "https://fconline.nexon.com/profile/stat/popup/820659706",
+        "squad_url": "https://fconline.nexon.com/profile/squad/popup/820659706",
+        "구단주명": "ES타이슨",
+        "승": 307,
+        "무": 144,
+        "패": 263,
+        "판수": 714,
+        "채굴 효율": 1454,
+        "승률": "43.0%",
+        "현재 티어": "월드클래스 3",
+        "현재 티어 코드": "8",
+        "현재 티어 이미지": "https://ssl.nexon.com/s2/game/fo4/obt/rank/large/update_2026/ico_rank8_m.png",
+        "구단 가치": "4경 3,080조",
+        "비고": "-",
+        "지난 시즌 승": 0,
+        "지난 시즌 무": 0,
+        "지난 시즌 패": 0,
+        "지난 시즌 판수": 0,
+        "지난 시즌 채굴 효율": 0,
+        "지난 시즌 승률": "0.0%",
+        "crawl_time": "2026-07-30",
+        "record_source": "nexon_open_api",
+        "openapi_sync": {
+            "ouid": "8396903ff641522111d0b674d91d931a",
+            "newMatchCount": 593,
+            "totalIndexCount": 726,
+            "maxMatches": 1200
+        },
+        "순위": 25,
+        "성장력": 259,
+        "crawl_time_detail": "2026-07-30 오후 1시",
+        "crawl_time_hhmm": "13:40"
+    }
+]

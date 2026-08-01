@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "0.1.0",
+  "status": "SUCCESS",
+  "generatedAt": "2026-07-31T10:15:52.276765+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "603181627",
+    "nickname": "ES비야"
+  },
+  "account": {
+    "ouidHash": "53407138eb38",
+    "nickname": "ES비야",
+    "level": 1552,
+    "managerModeBestDivision": {
+      "matchType": 52,
+      "division": 900,
+      "achievementDate": "2026-07-29T08:40:32",
+      "divisionName": "챔피언스"
+    },
+    "divisionRows": [
+      {
+        "matchType": 52,
+        "division": 900,
+        "achievementDate": "2026-07-29T08:40:32",
+        "divisionName": "챔피언스"
+      }
+    ]
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:36:17.728707+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1038218816",
+    "nickname": "ES스페인"
+  },
+  "classRows": [
+    {
+      "seasonId": 826,
+      "seasonName": "24EP (2024 Energetic Player)",
+      "players": 2,
+      "appearances": 490,
+      "goals": 3,
+      "assists": 14,
+      "attackPoints": 17,
+      "avgRating": 6.38
+    },
+    {
+      "seasonId": 855,
+      "seasonName": "26 TOTY-N (26 Team Of The Nominated)",
+      "players": 2,
+      "appearances": 490,
+      "goals": 148,
+      "assists": 106,
+      "attackPoints": 254,
+      "avgRating": 6.52
+    },
+    {
+      "seasonId": 861,
+      "seasonName": "WG (Warriors of Glory)",
+      "players": 2,
+      "appearances": 484,
+      "goals": 3,
+      "assists": 2,
+      "attackPoints": 5,
+      "avgRating": 6.45
+    },
+    {
+      "seasonId": 866,
+      "seasonName": "26 TOTS (26 Team Of The Season)",
+      "players": 2,
+      "appearances": 321,
+      "goals": 11,
+      "assists": 19,
+      "attackPoints": 30,
+      "avgRating": 6.44
+    },
+    {
+      "seasonId": 840,
+      "seasonName": "LE (Legend of Europa)",
+      "players": 1,
+      "appearances": 245,
+      "goals": 51,
+      "assists": 80,
+      "attackPoints": 131,
+      "avgRating": 6.6
+    },
+    {
+      "seasonId": 863,
+      "seasonName": "PTG (Path to Glory)",
+      "players": 1,
+      "appearances": 245,
+      "goals": 108,
+      "assists": 70,
+      "attackPoints": 178,
+      "avgRating": 6.74
+    },
+    {
+      "seasonId": 836,
+      "seasonName": "WB (Wonderboys)",
+      "players": 1,
+      "appearances": 245,
+      "goals": 29,
+      "assists": 30,
+      "attackPoints": 59,
+      "avgRating": 6.46
+    },
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 2,
+      "appearances": 169,
+      "goals": 43,
+      "assists": 35,
+      "attackPoints": 78,
+      "avgRating": 6.76
+    },
+    {
+      "seasonId": 867,
+      "seasonName": "SPT (Spartan)",
+      "players": 1,
+      "appearances": 6,
+      "goals": 2,
+      "assists": 0,
+      "attackPoints": 2,
+      "avgRating": 6.62
+    }
+  ],
+  "samePlayerCardComparisons": [
+    {
+      "basePlayerId": "5479",
+      "name": "카시야스",
+      "cards": [
+        {
+          "spId": 861005479,
+          "seasonId": 861,
+          "seasonName": "WG (Warriors of Glory)",
+          "appearances": 239,
+          "attackPoint": 0,
+          "avgRating": 6.44,
+          "playerWinRate": 35.15
+        },
+        {
+          "spId": 845005479,
+          "seasonId": 845,
+          "seasonName": "CH (Continental Heroes)",
+          "appearances": 6,
+          "attackPoint": 0,
+          "avgRating": 7.1,
+          "playerWinRate": 33.33
+        }
+      ]
+    }
+  ]
+}

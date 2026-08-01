@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:35:53.317893+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1525532472",
+    "nickname": "ES메가꿀아"
+  },
+  "classRows": [
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 3,
+      "appearances": 654,
+      "goals": 46,
+      "assists": 77,
+      "attackPoints": 123,
+      "avgRating": 6.48
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 2,
+      "appearances": 436,
+      "goals": 130,
+      "assists": 91,
+      "attackPoints": 221,
+      "avgRating": 6.67
+    },
+    {
+      "seasonId": 852,
+      "seasonName": "FAC (Football Association Champions)",
+      "players": 2,
+      "appearances": 436,
+      "goals": 153,
+      "assists": 137,
+      "attackPoints": 290,
+      "avgRating": 6.7
+    },
+    {
+      "seasonId": 856,
+      "seasonName": "25 UCL (25 UEFA Champions League)",
+      "players": 1,
+      "appearances": 218,
+      "goals": 3,
+      "assists": 3,
+      "attackPoints": 6,
+      "avgRating": 6.33
+    },
+    {
+      "seasonId": 866,
+      "seasonName": "26 TOTS (26 Team Of The Season)",
+      "players": 1,
+      "appearances": 218,
+      "goals": 16,
+      "assists": 3,
+      "attackPoints": 19,
+      "avgRating": 6.43
+    },
+    {
+      "seasonId": 863,
+      "seasonName": "PTG (Path to Glory)",
+      "players": 1,
+      "appearances": 218,
+      "goals": 6,
+      "assists": 2,
+      "attackPoints": 8,
+      "avgRating": 6.51
+    },
+    {
+      "seasonId": 814,
+      "seasonName": "UT (Unexpected Transfer)",
+      "players": 1,
+      "appearances": 218,
+      "goals": 26,
+      "assists": 34,
+      "attackPoints": 60,
+      "avgRating": 6.49
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

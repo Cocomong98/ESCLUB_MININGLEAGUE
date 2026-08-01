@@ -1,0 +1,38 @@
+[
+    {
+        "name": "ES비야",
+        "player_id": "603181627",
+        "stat_url": "https://fconline.nexon.com/profile/stat/popup/603181627",
+        "squad_url": "https://fconline.nexon.com/profile/squad/popup/603181627",
+        "구단주명": "ES비야",
+        "승": 499,
+        "무": 94,
+        "패": 606,
+        "판수": 1199,
+        "채굴 효율": 2605,
+        "승률": "41.6%",
+        "현재 티어": "월드클래스 1",
+        "현재 티어 코드": "6",
+        "현재 티어 이미지": "https://ssl.nexon.com/s2/game/fo4/obt/rank/large/update_2026/ico_rank6_m.png",
+        "구단 가치": "2경 7,449조",
+        "비고": "-",
+        "지난 시즌 승": 0,
+        "지난 시즌 무": 0,
+        "지난 시즌 패": 0,
+        "지난 시즌 판수": 0,
+        "지난 시즌 채굴 효율": 0,
+        "지난 시즌 승률": "0.0%",
+        "crawl_time": "2026-07-31",
+        "record_source": "nexon_open_api",
+        "openapi_sync": {
+            "ouid": "686bad8629878d66c22b7a72038d72b6",
+            "newMatchCount": 47,
+            "totalIndexCount": 1248,
+            "maxMatches": 1200
+        },
+        "순위": 23,
+        "성장력": 0,
+        "crawl_time_detail": "2026-07-31 오전 10시",
+        "crawl_time_hhmm": "10:03"
+    }
+]

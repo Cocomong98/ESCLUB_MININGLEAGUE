@@ -1,0 +1,148 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:15:38.284255+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1525532472",
+    "nickname": "ES메가꿀아"
+  },
+  "classRows": [
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 4,
+      "appearances": 810,
+      "goals": 77,
+      "assists": 76,
+      "attackPoints": 153,
+      "avgRating": 6.37
+    },
+    {
+      "seasonId": 852,
+      "seasonName": "FAC (Football Association Champions)",
+      "players": 2,
+      "appearances": 538,
+      "goals": 192,
+      "assists": 172,
+      "attackPoints": 364,
+      "avgRating": 6.77
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 2,
+      "appearances": 535,
+      "goals": 158,
+      "assists": 119,
+      "attackPoints": 277,
+      "avgRating": 6.68
+    },
+    {
+      "seasonId": 856,
+      "seasonName": "25 UCL (25 UEFA Champions League)",
+      "players": 2,
+      "appearances": 272,
+      "goals": 2,
+      "assists": 11,
+      "attackPoints": 13,
+      "avgRating": 6.65
+    },
+    {
+      "seasonId": 863,
+      "seasonName": "PTG (Path to Glory)",
+      "players": 1,
+      "appearances": 269,
+      "goals": 5,
+      "assists": 12,
+      "attackPoints": 17,
+      "avgRating": 6.55
+    },
+    {
+      "seasonId": 866,
+      "seasonName": "26 TOTS (26 Team Of The Season)",
+      "players": 1,
+      "appearances": 266,
+      "goals": 23,
+      "assists": 9,
+      "attackPoints": 32,
+      "avgRating": 6.58
+    },
+    {
+      "seasonId": 814,
+      "seasonName": "UT (Unexpected Transfer)",
+      "players": 1,
+      "appearances": 266,
+      "goals": 27,
+      "assists": 28,
+      "attackPoints": 55,
+      "avgRating": 6.43
+    },
+    {
+      "seasonId": 855,
+      "seasonName": "26 TOTY-N (26 Team Of The Nominated)",
+      "players": 1,
+      "appearances": 3,
+      "goals": 2,
+      "assists": 0,
+      "attackPoints": 2,
+      "avgRating": 7.03
+    }
+  ],
+  "samePlayerCardComparisons": [
+    {
+      "basePlayerId": "247851",
+      "name": "브루누 기마랑이스",
+      "cards": [
+        {
+          "spId": 851247851,
+          "seasonId": 851,
+          "seasonName": "25DP (25 Devoted Player)",
+          "appearances": 266,
+          "attackPoint": 145,
+          "avgRating": 6.67,
+          "playerWinRate": 55.64
+        },
+        {
+          "spId": 855247851,
+          "seasonId": 855,
+          "seasonName": "26 TOTY-N (26 Team Of The Nominated)",
+          "appearances": 3,
+          "attackPoint": 2,
+          "avgRating": 7.03,
+          "playerWinRate": 66.67
+        }
+      ]
+    },
+    {
+      "basePlayerId": "200145",
+      "name": "카제미루",
+      "cards": [
+        {
+          "spId": 814200145,
+          "seasonId": 814,
+          "seasonName": "UT (Unexpected Transfer)",
+          "appearances": 266,
+          "attackPoint": 55,
+          "avgRating": 6.43,
+          "playerWinRate": 55.64
+        },
+        {
+          "spId": 848200145,
+          "seasonId": 848,
+          "seasonName": "WS (Winning Streak)",
+          "appearances": 3,
+          "attackPoint": 0,
+          "avgRating": 6.27,
+          "playerWinRate": 66.67
+        }
+      ]
+    }
+  ]
+}

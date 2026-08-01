@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:15:00.159099+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1877051658",
+    "nickname": "ES누고"
+  },
+  "classRows": [
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 3,
+      "appearances": 3597,
+      "goals": 637,
+      "assists": 651,
+      "attackPoints": 1288,
+      "avgRating": 6.46
+    },
+    {
+      "seasonId": 826,
+      "seasonName": "24EP (2024 Energetic Player)",
+      "players": 2,
+      "appearances": 2398,
+      "goals": 624,
+      "assists": 405,
+      "attackPoints": 1029,
+      "avgRating": 6.58
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 2,
+      "appearances": 2398,
+      "goals": 347,
+      "assists": 382,
+      "attackPoints": 729,
+      "avgRating": 6.52
+    },
+    {
+      "seasonId": 834,
+      "seasonName": "24 UCL (24 UEFA Champions League)",
+      "players": 1,
+      "appearances": 1199,
+      "goals": 158,
+      "assists": 207,
+      "attackPoints": 365,
+      "avgRating": 6.48
+    },
+    {
+      "seasonId": 825,
+      "seasonName": "CU (Champions of Europe)",
+      "players": 1,
+      "appearances": 1199,
+      "goals": 44,
+      "assists": 15,
+      "attackPoints": 59,
+      "avgRating": 6.38
+    },
+    {
+      "seasonId": 283,
+      "seasonName": "HG (Home Grown)",
+      "players": 1,
+      "appearances": 1199,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.28
+    },
+    {
+      "seasonId": 814,
+      "seasonName": "UT (Unexpected Transfer)",
+      "players": 1,
+      "appearances": 1199,
+      "goals": 391,
+      "assists": 319,
+      "attackPoints": 710,
+      "avgRating": 6.66
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

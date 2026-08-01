@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:35:22.369391+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1759662886",
+    "nickname": "ES꼬마"
+  },
+  "classRows": [
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 3,
+      "appearances": 408,
+      "goals": 130,
+      "assists": 109,
+      "attackPoints": 239,
+      "avgRating": 6.67
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 2,
+      "appearances": 272,
+      "goals": 34,
+      "assists": 47,
+      "attackPoints": 81,
+      "avgRating": 6.51
+    },
+    {
+      "seasonId": 844,
+      "seasonName": "25 TOTS (25 Team Of The Season)",
+      "players": 1,
+      "appearances": 136,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.32
+    },
+    {
+      "seasonId": 856,
+      "seasonName": "25 UCL (25 UEFA Champions League)",
+      "players": 1,
+      "appearances": 136,
+      "goals": 50,
+      "assists": 32,
+      "attackPoints": 82,
+      "avgRating": 6.8
+    },
+    {
+      "seasonId": 866,
+      "seasonName": "26 TOTS (26 Team Of The Season)",
+      "players": 1,
+      "appearances": 136,
+      "goals": 0,
+      "assists": 6,
+      "attackPoints": 6,
+      "avgRating": 6.33
+    },
+    {
+      "seasonId": 846,
+      "seasonName": "DCB (Dramatic Comebacks)",
+      "players": 1,
+      "appearances": 136,
+      "goals": 0,
+      "assists": 3,
+      "attackPoints": 3,
+      "avgRating": 6.42
+    },
+    {
+      "seasonId": 852,
+      "seasonName": "FAC (Football Association Champions)",
+      "players": 1,
+      "appearances": 136,
+      "goals": 14,
+      "assists": 9,
+      "attackPoints": 23,
+      "avgRating": 6.42
+    },
+    {
+      "seasonId": 829,
+      "seasonName": "GRU (Greatest Runner-Ups)",
+      "players": 1,
+      "appearances": 136,
+      "goals": 1,
+      "assists": 1,
+      "attackPoints": 2,
+      "avgRating": 6.5
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

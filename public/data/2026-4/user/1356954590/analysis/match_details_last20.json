@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T14:15:27.816761+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52,
+    "matchtypeName": "감독모드"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1356954590",
+    "nickname": "ES올인"
+  },
+  "scope": {
+    "recentMatches": 0
+  },
+  "rows": []
+}

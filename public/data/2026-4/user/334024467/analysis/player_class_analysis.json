@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:35:32.256160+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "334024467",
+    "nickname": "ES동천"
+  },
+  "classRows": [],
+  "samePlayerCardComparisons": []
+}

@@ -1,0 +1,488 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:16:18.227356+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "618683725",
+    "nickname": "ES아스널"
+  },
+  "classRows": [
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 11,
+      "appearances": 3894,
+      "goals": 726,
+      "assists": 664,
+      "attackPoints": 1390,
+      "avgRating": 6.55
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 18,
+      "appearances": 2912,
+      "goals": 311,
+      "assists": 301,
+      "attackPoints": 612,
+      "avgRating": 6.52
+    },
+    {
+      "seasonId": 856,
+      "seasonName": "25 UCL (25 UEFA Champions League)",
+      "players": 3,
+      "appearances": 1162,
+      "goals": 10,
+      "assists": 2,
+      "attackPoints": 12,
+      "avgRating": 6.44
+    },
+    {
+      "seasonId": 852,
+      "seasonName": "FAC (Football Association Champions)",
+      "players": 6,
+      "appearances": 1023,
+      "goals": 293,
+      "assists": 232,
+      "attackPoints": 525,
+      "avgRating": 6.54
+    },
+    {
+      "seasonId": 836,
+      "seasonName": "WB (Wonderboys)",
+      "players": 1,
+      "appearances": 714,
+      "goals": 41,
+      "assists": 137,
+      "attackPoints": 178,
+      "avgRating": 6.45
+    },
+    {
+      "seasonId": 814,
+      "seasonName": "UT (Unexpected Transfer)",
+      "players": 2,
+      "appearances": 704,
+      "goals": 227,
+      "assists": 134,
+      "attackPoints": 361,
+      "avgRating": 6.58
+    },
+    {
+      "seasonId": 863,
+      "seasonName": "PTG (Path to Glory)",
+      "players": 4,
+      "appearances": 554,
+      "goals": 104,
+      "assists": 100,
+      "attackPoints": 204,
+      "avgRating": 6.5
+    },
+    {
+      "seasonId": 825,
+      "seasonName": "CU (Champions of Europe)",
+      "players": 7,
+      "appearances": 465,
+      "goals": 94,
+      "assists": 70,
+      "attackPoints": 164,
+      "avgRating": 6.42
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 5,
+      "appearances": 396,
+      "goals": 75,
+      "assists": 35,
+      "attackPoints": 110,
+      "avgRating": 6.56
+    },
+    {
+      "seasonId": 826,
+      "seasonName": "24EP (2024 Energetic Player)",
+      "players": 3,
+      "appearances": 218,
+      "goals": 62,
+      "assists": 53,
+      "attackPoints": 115,
+      "avgRating": 6.67
+    },
+    {
+      "seasonId": 840,
+      "seasonName": "LE (Legend of Europa)",
+      "players": 1,
+      "appearances": 140,
+      "goals": 48,
+      "assists": 35,
+      "attackPoints": 83,
+      "avgRating": 6.51
+    },
+    {
+      "seasonId": 206,
+      "seasonName": "TB (Tournament Best)",
+      "players": 1,
+      "appearances": 124,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.44
+    },
+    {
+      "seasonId": 827,
+      "seasonName": "BDO (Ballon d'Or)",
+      "players": 2,
+      "appearances": 110,
+      "goals": 28,
+      "assists": 22,
+      "attackPoints": 50,
+      "avgRating": 6.53
+    },
+    {
+      "seasonId": 829,
+      "seasonName": "GRU (Greatest Runner-Ups)",
+      "players": 1,
+      "appearances": 104,
+      "goals": 14,
+      "assists": 20,
+      "attackPoints": 34,
+      "avgRating": 6.53
+    },
+    {
+      "seasonId": 850,
+      "seasonName": "25FSL (25 FCO Superchampions League)",
+      "players": 2,
+      "appearances": 83,
+      "goals": 28,
+      "assists": 29,
+      "attackPoints": 57,
+      "avgRating": 6.38
+    },
+    {
+      "seasonId": 846,
+      "seasonName": "DCB (Dramatic Comebacks)",
+      "players": 2,
+      "appearances": 78,
+      "goals": 7,
+      "assists": 3,
+      "attackPoints": 10,
+      "avgRating": 6.64
+    },
+    {
+      "seasonId": 861,
+      "seasonName": "WG (Warriors of Glory)",
+      "players": 1,
+      "appearances": 76,
+      "goals": 2,
+      "assists": 4,
+      "attackPoints": 6,
+      "avgRating": 6.36
+    },
+    {
+      "seasonId": 866,
+      "seasonName": "26 TOTS (26 Team Of The Season)",
+      "players": 1,
+      "appearances": 45,
+      "goals": 2,
+      "assists": 1,
+      "attackPoints": 3,
+      "avgRating": 6.41
+    },
+    {
+      "seasonId": 291,
+      "seasonName": "23HW (23 Hard Worker)",
+      "players": 1,
+      "appearances": 4,
+      "goals": 1,
+      "assists": 1,
+      "attackPoints": 2,
+      "avgRating": 6.4
+    },
+    {
+      "seasonId": 101,
+      "seasonName": "ICON (ICON)",
+      "players": 1,
+      "appearances": 3,
+      "goals": 1,
+      "assists": 0,
+      "attackPoints": 1,
+      "avgRating": 6.3
+    },
+    {
+      "seasonId": 289,
+      "seasonName": "CC (CenturyClub)",
+      "players": 1,
+      "appearances": 1,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 5.2
+    }
+  ],
+  "samePlayerCardComparisons": [
+    {
+      "basePlayerId": "226161",
+      "name": "마르코스 요렌테",
+      "cards": [
+        {
+          "spId": 814226161,
+          "seasonId": 814,
+          "seasonName": "UT (Unexpected Transfer)",
+          "appearances": 564,
+          "attackPoint": 358,
+          "avgRating": 6.77,
+          "playerWinRate": 49.11
+        },
+        {
+          "spId": 848226161,
+          "seasonId": 848,
+          "seasonName": "WS (Winning Streak)",
+          "appearances": 148,
+          "attackPoint": 99,
+          "avgRating": 6.64,
+          "playerWinRate": 45.95
+        }
+      ]
+    },
+    {
+      "basePlayerId": "45197",
+      "name": "샤비 알론소",
+      "cards": [
+        {
+          "spId": 845045197,
+          "seasonId": 845,
+          "seasonName": "CH (Continental Heroes)",
+          "appearances": 394,
+          "attackPoint": 239,
+          "avgRating": 6.76,
+          "playerWinRate": 48.73
+        },
+        {
+          "spId": 825045197,
+          "seasonId": 825,
+          "seasonName": "CU (Champions of Europe)",
+          "appearances": 113,
+          "attackPoint": 57,
+          "avgRating": 6.66,
+          "playerWinRate": 58.41
+        }
+      ]
+    },
+    {
+      "basePlayerId": "225193",
+      "name": "미켈 메리노",
+      "cards": [
+        {
+          "spId": 863225193,
+          "seasonId": 863,
+          "seasonName": "PTG (Path to Glory)",
+          "appearances": 300,
+          "attackPoint": 157,
+          "avgRating": 6.61,
+          "playerWinRate": 44.0
+        },
+        {
+          "spId": 826225193,
+          "seasonId": 826,
+          "seasonName": "24EP (2024 Energetic Player)",
+          "appearances": 149,
+          "attackPoint": 76,
+          "avgRating": 6.63,
+          "playerWinRate": 46.98
+        }
+      ]
+    },
+    {
+      "basePlayerId": "4231",
+      "name": "히바우두",
+      "cards": [
+        {
+          "spId": 845004231,
+          "seasonId": 845,
+          "seasonName": "CH (Continental Heroes)",
+          "appearances": 118,
+          "attackPoint": 85,
+          "avgRating": 6.76,
+          "playerWinRate": 50.85
+        },
+        {
+          "spId": 852004231,
+          "seasonId": 852,
+          "seasonName": "FAC (Football Association Champions)",
+          "appearances": 30,
+          "attackPoint": 19,
+          "avgRating": 6.7,
+          "playerWinRate": 40.0
+        },
+        {
+          "spId": 101004231,
+          "seasonId": 101,
+          "seasonName": "ICON (ICON)",
+          "appearances": 3,
+          "attackPoint": 1,
+          "avgRating": 6.3,
+          "playerWinRate": 33.33
+        }
+      ]
+    },
+    {
+      "basePlayerId": "210257",
+      "name": "에데르송",
+      "cards": [
+        {
+          "spId": 206210257,
+          "seasonId": 206,
+          "seasonName": "TB (Tournament Best)",
+          "appearances": 124,
+          "attackPoint": 0,
+          "avgRating": 6.44,
+          "playerWinRate": 48.39
+        },
+        {
+          "spId": 825210257,
+          "seasonId": 825,
+          "seasonName": "CU (Champions of Europe)",
+          "appearances": 24,
+          "attackPoint": 0,
+          "avgRating": 6.38,
+          "playerWinRate": 50.0
+        }
+      ]
+    },
+    {
+      "basePlayerId": "197031",
+      "name": "마르빈 두크슈",
+      "cards": [
+        {
+          "spId": 851197031,
+          "seasonId": 851,
+          "seasonName": "25DP (25 Devoted Player)",
+          "appearances": 120,
+          "attackPoint": 94,
+          "avgRating": 6.82,
+          "playerWinRate": 46.67
+        },
+        {
+          "spId": 826197031,
+          "seasonId": 826,
+          "seasonName": "24EP (2024 Energetic Player)",
+          "appearances": 3,
+          "attackPoint": 1,
+          "avgRating": 6.83,
+          "playerWinRate": 66.67
+        }
+      ]
+    },
+    {
+      "basePlayerId": "1040",
+      "name": "호베르투 카를루스",
+      "cards": [
+        {
+          "spId": 845001040,
+          "seasonId": 845,
+          "seasonName": "CH (Continental Heroes)",
+          "appearances": 76,
+          "attackPoint": 11,
+          "avgRating": 6.47,
+          "playerWinRate": 48.68
+        },
+        {
+          "spId": 827001040,
+          "seasonId": 827,
+          "seasonName": "BDO (Ballon d'Or)",
+          "appearances": 21,
+          "attackPoint": 1,
+          "avgRating": 6.5,
+          "playerWinRate": 47.62
+        },
+        {
+          "spId": 825001040,
+          "seasonId": 825,
+          "seasonName": "CU (Champions of Europe)",
+          "appearances": 2,
+          "attackPoint": 0,
+          "avgRating": 6.8,
+          "playerWinRate": 100.0
+        }
+      ]
+    },
+    {
+      "basePlayerId": "28130",
+      "name": "호나우지뉴",
+      "cards": [
+        {
+          "spId": 827028130,
+          "seasonId": 827,
+          "seasonName": "BDO (Ballon d'Or)",
+          "appearances": 89,
+          "attackPoint": 49,
+          "avgRating": 6.55,
+          "playerWinRate": 48.31
+        },
+        {
+          "spId": 825028130,
+          "seasonId": 825,
+          "seasonName": "CU (Champions of Europe)",
+          "appearances": 2,
+          "attackPoint": 0,
+          "avgRating": 5.45,
+          "playerWinRate": 0.0
+        }
+      ]
+    },
+    {
+      "basePlayerId": "5003",
+      "name": "카푸",
+      "cards": [
+        {
+          "spId": 861005003,
+          "seasonId": 861,
+          "seasonName": "WG (Warriors of Glory)",
+          "appearances": 76,
+          "attackPoint": 6,
+          "avgRating": 6.36,
+          "playerWinRate": 48.68
+        },
+        {
+          "spId": 850005003,
+          "seasonId": 850,
+          "seasonName": "25FSL (25 FCO Superchampions League)",
+          "appearances": 2,
+          "attackPoint": 0,
+          "avgRating": 6.15,
+          "playerWinRate": 100.0
+        }
+      ]
+    },
+    {
+      "basePlayerId": "230666",
+      "name": "가브리엘 제주스",
+      "cards": [
+        {
+          "spId": 845230666,
+          "seasonId": 845,
+          "seasonName": "CH (Continental Heroes)",
+          "appearances": 56,
+          "attackPoint": 31,
+          "avgRating": 6.53,
+          "playerWinRate": 50.0
+        },
+        {
+          "spId": 291230666,
+          "seasonId": 291,
+          "seasonName": "23HW (23 Hard Worker)",
+          "appearances": 4,
+          "attackPoint": 2,
+          "avgRating": 6.4,
+          "playerWinRate": 25.0
+        }
+      ]
+    }
+  ]
+}

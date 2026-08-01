@@ -1,0 +1,38 @@
+[
+    {
+        "name": "ES사카",
+        "player_id": "317123047",
+        "stat_url": "https://fconline.nexon.com/profile/stat/popup/317123047",
+        "squad_url": "https://fconline.nexon.com/profile/squad/popup/317123047",
+        "구단주명": "ES사카",
+        "승": 514,
+        "무": 124,
+        "패": 558,
+        "판수": 1196,
+        "채굴 효율": 2668,
+        "승률": "43.0%",
+        "현재 티어": "챌린저 1",
+        "현재 티어 코드": "3",
+        "현재 티어 이미지": "https://ssl.nexon.com/s2/game/fo4/obt/rank/large/update_2026/ico_rank3_m.png",
+        "구단 가치": "4경 1,101조",
+        "비고": "-",
+        "지난 시즌 승": 0,
+        "지난 시즌 무": 0,
+        "지난 시즌 패": 0,
+        "지난 시즌 판수": 0,
+        "지난 시즌 채굴 효율": 0,
+        "지난 시즌 승률": "0.0%",
+        "crawl_time": "2026-07-31",
+        "record_source": "nexon_open_api",
+        "openapi_sync": {
+            "ouid": "3d0123ed413f4dc38ee507bd3738c054",
+            "newMatchCount": 50,
+            "totalIndexCount": 1252,
+            "maxMatches": 1200
+        },
+        "순위": 22,
+        "성장력": 0,
+        "crawl_time_detail": "2026-07-31 오전 10시",
+        "crawl_time_hhmm": "10:03"
+    }
+]

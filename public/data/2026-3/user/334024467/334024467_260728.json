@@ -1,0 +1,31 @@
+[
+    {
+        "name": "ES동천",
+        "player_id": "334024467",
+        "stat_url": "https://fconline.nexon.com/profile/stat/popup/334024467",
+        "squad_url": "https://fconline.nexon.com/profile/squad/popup/334024467",
+        "구단주명": "ES동천",
+        "승": 23,
+        "무": 23,
+        "패": 23,
+        "판수": 69,
+        "채굴 효율": 69,
+        "승률": "33.3%",
+        "현재 티어": "월드클래스 2",
+        "현재 티어 코드": "7",
+        "현재 티어 이미지": "https://ssl.nexon.com/s2/game/fo4/obt/rank/large/update_2009/ico_rank7_m.png",
+        "구단 가치": "38978조",
+        "비고": "-",
+        "지난 시즌 승": 607,
+        "지난 시즌 무": 488,
+        "지난 시즌 패": 600,
+        "지난 시즌 판수": 1695,
+        "지난 시즌 채굴 효율": 2185,
+        "지난 시즌 승률": "35.8%",
+        "crawl_time": "2026-07-28",
+        "순위": 34,
+        "성장력": 0,
+        "crawl_time_detail": "2026-07-28 오후 4시",
+        "crawl_time_hhmm": "16:14"
+    }
+]

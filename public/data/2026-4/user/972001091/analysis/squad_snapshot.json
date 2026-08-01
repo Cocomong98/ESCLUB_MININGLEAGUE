@@ -1,0 +1,230 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:36:14.023415+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "status": "metadata_ready"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "972001091",
+    "nickname": "ES소보"
+  },
+  "season": "2026-4",
+  "status": "READY",
+  "squad": {
+    "formation": "4-6-0",
+    "clubValue": null,
+    "clubValueText": "-",
+    "salary": {
+      "current": 310,
+      "cap": 310
+    },
+    "playerCount": 11
+  },
+  "players": [
+    {
+      "spId": 861005467,
+      "name": "제이미 캐러거",
+      "role": "rcb",
+      "position": "rcb",
+      "spPosition": 4,
+      "spGrade": 11,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 0,
+      "starter": true
+    },
+    {
+      "spId": 856212831,
+      "name": "알리송",
+      "role": "gk",
+      "position": "gk",
+      "spPosition": 0,
+      "spGrade": 8,
+      "pay": 25,
+      "price": 0,
+      "priceText": "-",
+      "order": 1,
+      "starter": true
+    },
+    {
+      "spId": 846203376,
+      "name": "버질 반다이크",
+      "role": "lcb",
+      "position": "lcb",
+      "spPosition": 6,
+      "spGrade": 10,
+      "pay": 30,
+      "price": 0,
+      "priceText": "-",
+      "order": 2,
+      "starter": true
+    },
+    {
+      "spId": 866236772,
+      "name": "D. 소보슬러이",
+      "role": "rcm",
+      "position": "rcm",
+      "spPosition": 13,
+      "spGrade": 9,
+      "pay": 31,
+      "price": 0,
+      "priceText": "-",
+      "order": 3,
+      "starter": true
+    },
+    {
+      "spId": 834239837,
+      "name": "A. 마칼리스테르",
+      "role": "lcm",
+      "position": "lcm",
+      "spPosition": 15,
+      "spGrade": 10,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 4,
+      "starter": true
+    },
+    {
+      "spId": 848253149,
+      "name": "제레미 프림퐁",
+      "role": "rb",
+      "position": "rb",
+      "spPosition": 3,
+      "spGrade": 10,
+      "pay": 29,
+      "price": 0,
+      "priceText": "-",
+      "order": 5,
+      "starter": true
+    },
+    {
+      "spId": 863256630,
+      "name": "플로리안 비르츠",
+      "role": "rm",
+      "position": "rm",
+      "spPosition": 12,
+      "spGrade": 10,
+      "pay": 29,
+      "price": 0,
+      "priceText": "-",
+      "order": 6,
+      "starter": true
+    },
+    {
+      "spId": 856257289,
+      "name": "위고 에키티케",
+      "role": "cam",
+      "position": "cam",
+      "spPosition": 18,
+      "spGrade": 10,
+      "pay": 26,
+      "price": 0,
+      "priceText": "-",
+      "order": 7,
+      "starter": true
+    },
+    {
+      "spId": 844260908,
+      "name": "M. 케르케즈",
+      "role": "lb",
+      "position": "lb",
+      "spPosition": 7,
+      "spGrade": 8,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 8,
+      "starter": true
+    },
+    {
+      "spId": 863242516,
+      "name": "코디 각포",
+      "role": "lm",
+      "position": "lm",
+      "spPosition": 16,
+      "spGrade": 10,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 9,
+      "starter": true
+    },
+    {
+      "spId": 863246104,
+      "name": "R. 흐라벤베르흐",
+      "role": "cdm",
+      "position": "cdm",
+      "spPosition": 10,
+      "spGrade": 10,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 10,
+      "starter": true
+    }
+  ],
+  "teamColors": [
+    {
+      "id": "40739",
+      "group": "feature",
+      "groupLabel": "특성",
+      "level": 1,
+      "name": "25-26 리버풀",
+      "playerCount": 10,
+      "activationPlayerCount": 10,
+      "skills": [
+        {
+          "name": "위치 선정",
+          "amount": 2,
+          "label": "위치 선정 +2"
+        },
+        {
+          "name": "짧은 패스",
+          "amount": 3,
+          "label": "짧은 패스 +3"
+        },
+        {
+          "name": "슛 파워",
+          "amount": 2,
+          "label": "슛 파워 +2"
+        },
+        {
+          "name": "시야",
+          "amount": 3,
+          "label": "시야 +3"
+        }
+      ],
+      "image": "https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/teamcolorboost/icon/medium/4_l9.png"
+    },
+    {
+      "id": "10001",
+      "group": "enhance",
+      "groupLabel": "강화",
+      "level": 2,
+      "name": "금빛 물결",
+      "playerCount": 11,
+      "activationPlayerCount": 11,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 4,
+          "label": "전체 능력치 +4"
+        }
+      ],
+      "image": "https://ssl.nexon.com/s2/game/fc/online/obt/datacenter/teamcolor/tc_u_g.png"
+    }
+  ],
+  "summary": {
+    "teamColorCount": 2,
+    "affiliationCount": 0,
+    "enhanceCount": 1,
+    "featureCount": 1
+  }
+}

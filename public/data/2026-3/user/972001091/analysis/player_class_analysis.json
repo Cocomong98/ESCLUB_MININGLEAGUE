@@ -1,0 +1,212 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:16:08.467423+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "972001091",
+    "nickname": "ES소보"
+  },
+  "classRows": [
+    {
+      "seasonId": 863,
+      "seasonName": "PTG (Path to Glory)",
+      "players": 4,
+      "appearances": 3615,
+      "goals": 959,
+      "assists": 752,
+      "attackPoints": 1711,
+      "avgRating": 6.5
+    },
+    {
+      "seasonId": 846,
+      "seasonName": "DCB (Dramatic Comebacks)",
+      "players": 2,
+      "appearances": 1777,
+      "goals": 46,
+      "assists": 56,
+      "attackPoints": 102,
+      "avgRating": 6.39
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 2,
+      "appearances": 1708,
+      "goals": 142,
+      "assists": 309,
+      "attackPoints": 451,
+      "avgRating": 6.47
+    },
+    {
+      "seasonId": 856,
+      "seasonName": "25 UCL (25 UEFA Champions League)",
+      "players": 2,
+      "appearances": 1543,
+      "goals": 1,
+      "assists": 17,
+      "attackPoints": 18,
+      "avgRating": 6.28
+    },
+    {
+      "seasonId": 834,
+      "seasonName": "24 UCL (24 UEFA Champions League)",
+      "players": 1,
+      "appearances": 1158,
+      "goals": 351,
+      "assists": 248,
+      "attackPoints": 599,
+      "avgRating": 6.58
+    },
+    {
+      "seasonId": 866,
+      "seasonName": "26 TOTS (26 Team Of The Season)",
+      "players": 1,
+      "appearances": 1158,
+      "goals": 435,
+      "assists": 264,
+      "attackPoints": 699,
+      "avgRating": 6.69
+    },
+    {
+      "seasonId": 844,
+      "seasonName": "25 TOTS (25 Team Of The Season)",
+      "players": 1,
+      "appearances": 539,
+      "goals": 0,
+      "assists": 24,
+      "attackPoints": 24,
+      "avgRating": 6.31
+    },
+    {
+      "seasonId": 861,
+      "seasonName": "WG (Warriors of Glory)",
+      "players": 2,
+      "appearances": 460,
+      "goals": 98,
+      "assists": 134,
+      "attackPoints": 232,
+      "avgRating": 6.48
+    },
+    {
+      "seasonId": 852,
+      "seasonName": "FAC (Football Association Champions)",
+      "players": 1,
+      "appearances": 344,
+      "goals": 3,
+      "assists": 21,
+      "attackPoints": 24,
+      "avgRating": 6.29
+    },
+    {
+      "seasonId": 836,
+      "seasonName": "WB (Wonderboys)",
+      "players": 1,
+      "appearances": 264,
+      "goals": 17,
+      "assists": 6,
+      "attackPoints": 23,
+      "avgRating": 6.43
+    },
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 1,
+      "appearances": 155,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.36
+    },
+    {
+      "seasonId": 826,
+      "seasonName": "24EP (2024 Energetic Player)",
+      "players": 1,
+      "appearances": 17,
+      "goals": 5,
+      "assists": 4,
+      "attackPoints": 9,
+      "avgRating": 6.28
+    }
+  ],
+  "samePlayerCardComparisons": [
+    {
+      "basePlayerId": "212831",
+      "name": "알리송",
+      "cards": [
+        {
+          "spId": 856212831,
+          "seasonId": 856,
+          "seasonName": "25 UCL (25 UEFA Champions League)",
+          "appearances": 1003,
+          "attackPoint": 0,
+          "avgRating": 6.23,
+          "playerWinRate": 42.67
+        },
+        {
+          "spId": 845212831,
+          "seasonId": 845,
+          "seasonName": "CH (Continental Heroes)",
+          "appearances": 155,
+          "attackPoint": 0,
+          "avgRating": 6.36,
+          "playerWinRate": 45.16
+        }
+      ]
+    },
+    {
+      "basePlayerId": "253149",
+      "name": "제레미 프림퐁",
+      "cards": [
+        {
+          "spId": 848253149,
+          "seasonId": 848,
+          "seasonName": "WS (Winning Streak)",
+          "appearances": 711,
+          "attackPoint": 411,
+          "avgRating": 6.59,
+          "playerWinRate": 42.76
+        },
+        {
+          "spId": 852253149,
+          "seasonId": 852,
+          "seasonName": "FAC (Football Association Champions)",
+          "appearances": 344,
+          "attackPoint": 24,
+          "avgRating": 6.29,
+          "playerWinRate": 43.02
+        }
+      ]
+    },
+    {
+      "basePlayerId": "237678",
+      "name": "이브라히마 코나테",
+      "cards": [
+        {
+          "spId": 836237678,
+          "seasonId": 836,
+          "seasonName": "WB (Wonderboys)",
+          "appearances": 264,
+          "attackPoint": 23,
+          "avgRating": 6.43,
+          "playerWinRate": 44.7
+        },
+        {
+          "spId": 863237678,
+          "seasonId": 863,
+          "seasonName": "PTG (Path to Glory)",
+          "appearances": 171,
+          "attackPoint": 9,
+          "avgRating": 6.44,
+          "playerWinRate": 45.61
+        }
+      ]
+    }
+  ]
+}

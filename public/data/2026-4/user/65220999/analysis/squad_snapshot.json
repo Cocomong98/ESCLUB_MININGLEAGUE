@@ -1,0 +1,215 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:35:42.012612+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "status": "metadata_ready"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "65220999",
+    "nickname": "ES로운"
+  },
+  "season": "2026-4",
+  "status": "READY",
+  "squad": {
+    "formation": "4-6-0",
+    "clubValue": null,
+    "clubValueText": "-",
+    "salary": {
+      "current": 306,
+      "cap": 310
+    },
+    "playerCount": 11
+  },
+  "players": [
+    {
+      "spId": 851232711,
+      "name": "옌센 스타에",
+      "role": "lcm",
+      "position": "lcm",
+      "spPosition": 15,
+      "spGrade": 8,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 0,
+      "starter": true
+    },
+    {
+      "spId": 851245336,
+      "name": "맥스 킬먼",
+      "role": "lcb",
+      "position": "lcb",
+      "spPosition": 6,
+      "spGrade": 8,
+      "pay": 27,
+      "price": 0,
+      "priceText": "-",
+      "order": 1,
+      "starter": true
+    },
+    {
+      "spId": 851247851,
+      "name": "브루누 기마랑이스",
+      "role": "rcm",
+      "position": "rcm",
+      "spPosition": 13,
+      "spGrade": 8,
+      "pay": 29,
+      "price": 0,
+      "priceText": "-",
+      "order": 2,
+      "starter": true
+    },
+    {
+      "spId": 851262402,
+      "name": "세르지 카르도나",
+      "role": "lb",
+      "position": "lb",
+      "spPosition": 7,
+      "spGrade": 8,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 3,
+      "starter": true
+    },
+    {
+      "spId": 851220901,
+      "name": "다비드 라야",
+      "role": "gk",
+      "position": "gk",
+      "spPosition": 0,
+      "spGrade": 8,
+      "pay": 25,
+      "price": 0,
+      "priceText": "-",
+      "order": 4,
+      "starter": true
+    },
+    {
+      "spId": 851197031,
+      "name": "마르빈 두크슈",
+      "role": "cam",
+      "position": "cam",
+      "spPosition": 18,
+      "spGrade": 8,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 5,
+      "starter": true
+    },
+    {
+      "spId": 851233301,
+      "name": "R. 크리스텐센",
+      "role": "rcb",
+      "position": "rcb",
+      "spPosition": 4,
+      "spGrade": 8,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 6,
+      "starter": true
+    },
+    {
+      "spId": 851237646,
+      "name": "다니엘 무뇨스",
+      "role": "rb",
+      "position": "rb",
+      "spPosition": 3,
+      "spGrade": 8,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 7,
+      "starter": true
+    },
+    {
+      "spId": 851231416,
+      "name": "도디 루케바키오",
+      "role": "lm",
+      "position": "lm",
+      "spPosition": 16,
+      "spGrade": 8,
+      "pay": 29,
+      "price": 0,
+      "priceText": "-",
+      "order": 8,
+      "starter": true
+    },
+    {
+      "spId": 851257191,
+      "name": "안톤 슈타흐",
+      "role": "cdm",
+      "position": "cdm",
+      "spPosition": 10,
+      "spGrade": 8,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 9,
+      "starter": true
+    },
+    {
+      "spId": 851216201,
+      "name": "이냐키 윌리암스",
+      "role": "rm",
+      "position": "rm",
+      "spPosition": 12,
+      "spGrade": 8,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 10,
+      "starter": true
+    }
+  ],
+  "teamColors": [
+    {
+      "id": "40665",
+      "group": "affiliation",
+      "groupLabel": "소속",
+      "level": 3,
+      "name": "25 Devoted Player",
+      "playerCount": 9,
+      "activationPlayerCount": 9,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 3,
+          "label": "전체 능력치 +3"
+        }
+      ],
+      "image": "https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/teamcolorboost/icon/medium/4_l999851.png"
+    },
+    {
+      "id": "10001",
+      "group": "enhance",
+      "groupLabel": "강화",
+      "level": 2,
+      "name": "금빛 물결",
+      "playerCount": 11,
+      "activationPlayerCount": 11,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 4,
+          "label": "전체 능력치 +4"
+        }
+      ],
+      "image": "https://ssl.nexon.com/s2/game/fc/online/obt/datacenter/teamcolor/tc_u_g.png"
+    }
+  ],
+  "summary": {
+    "teamColorCount": 2,
+    "affiliationCount": 1,
+    "enhanceCount": 1,
+    "featureCount": 0
+  }
+}

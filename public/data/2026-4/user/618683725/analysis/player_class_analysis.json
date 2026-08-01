@@ -1,0 +1,159 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:36:26.047433+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "618683725",
+    "nickname": "ES아스널"
+  },
+  "classRows": [
+    {
+      "seasonId": 856,
+      "seasonName": "25 UCL (25 UEFA Champions League)",
+      "players": 5,
+      "appearances": 149,
+      "goals": 19,
+      "assists": 11,
+      "attackPoints": 30,
+      "avgRating": 6.46
+    },
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 3,
+      "appearances": 115,
+      "goals": 15,
+      "assists": 15,
+      "attackPoints": 30,
+      "avgRating": 6.55
+    },
+    {
+      "seasonId": 852,
+      "seasonName": "FAC (Football Association Champions)",
+      "players": 4,
+      "appearances": 102,
+      "goals": 25,
+      "assists": 22,
+      "attackPoints": 47,
+      "avgRating": 6.47
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 3,
+      "appearances": 47,
+      "goals": 2,
+      "assists": 1,
+      "attackPoints": 3,
+      "avgRating": 6.32
+    },
+    {
+      "seasonId": 206,
+      "seasonName": "TB (Tournament Best)",
+      "players": 1,
+      "appearances": 39,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.4
+    },
+    {
+      "seasonId": 861,
+      "seasonName": "WG (Warriors of Glory)",
+      "players": 1,
+      "appearances": 39,
+      "goals": 0,
+      "assists": 2,
+      "attackPoints": 2,
+      "avgRating": 6.41
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 1,
+      "appearances": 36,
+      "goals": 2,
+      "assists": 0,
+      "attackPoints": 2,
+      "avgRating": 6.49
+    },
+    {
+      "seasonId": 850,
+      "seasonName": "25FSL (25 FCO Superchampions League)",
+      "players": 1,
+      "appearances": 34,
+      "goals": 4,
+      "assists": 9,
+      "attackPoints": 13,
+      "avgRating": 6.37
+    },
+    {
+      "seasonId": 827,
+      "seasonName": "BDO (Ballon d'Or)",
+      "players": 1,
+      "appearances": 34,
+      "goals": 7,
+      "assists": 3,
+      "attackPoints": 10,
+      "avgRating": 6.23
+    },
+    {
+      "seasonId": 829,
+      "seasonName": "GRU (Greatest Runner-Ups)",
+      "players": 1,
+      "appearances": 21,
+      "goals": 5,
+      "assists": 6,
+      "attackPoints": 11,
+      "avgRating": 6.65
+    },
+    {
+      "seasonId": 839,
+      "seasonName": "NO7 (NUMBER 7)",
+      "players": 1,
+      "appearances": 21,
+      "goals": 5,
+      "assists": 7,
+      "attackPoints": 12,
+      "avgRating": 6.53
+    },
+    {
+      "seasonId": 289,
+      "seasonName": "CC (CenturyClub)",
+      "players": 1,
+      "appearances": 20,
+      "goals": 10,
+      "assists": 6,
+      "attackPoints": 16,
+      "avgRating": 6.87
+    },
+    {
+      "seasonId": 863,
+      "seasonName": "PTG (Path to Glory)",
+      "players": 1,
+      "appearances": 2,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.65
+    },
+    {
+      "seasonId": 825,
+      "seasonName": "CU (Champions of Europe)",
+      "players": 1,
+      "appearances": 1,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 5.2
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:35:10.556078+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1306797262",
+    "nickname": "ES가몸지"
+  },
+  "classRows": [
+    {
+      "seasonId": 863,
+      "seasonName": "PTG (Path to Glory)",
+      "players": 5,
+      "appearances": 1355,
+      "goals": 160,
+      "assists": 135,
+      "attackPoints": 295,
+      "avgRating": 6.48
+    },
+    {
+      "seasonId": 856,
+      "seasonName": "25 UCL (25 UEFA Champions League)",
+      "players": 3,
+      "appearances": 813,
+      "goals": 116,
+      "assists": 109,
+      "attackPoints": 225,
+      "avgRating": 6.5
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 1,
+      "appearances": 271,
+      "goals": 0,
+      "assists": 7,
+      "attackPoints": 7,
+      "avgRating": 6.33
+    },
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 1,
+      "appearances": 271,
+      "goals": 98,
+      "assists": 63,
+      "attackPoints": 161,
+      "avgRating": 6.64
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 1,
+      "appearances": 271,
+      "goals": 77,
+      "assists": 83,
+      "attackPoints": 160,
+      "avgRating": 6.45
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:35:19.332930+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1776675411",
+    "nickname": "ES구마적"
+  },
+  "classRows": [
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 3,
+      "appearances": 594,
+      "goals": 62,
+      "assists": 81,
+      "attackPoints": 143,
+      "avgRating": 6.58
+    },
+    {
+      "seasonId": 866,
+      "seasonName": "26 TOTS (26 Team Of The Season)",
+      "players": 2,
+      "appearances": 396,
+      "goals": 1,
+      "assists": 4,
+      "attackPoints": 5,
+      "avgRating": 6.43
+    },
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 2,
+      "appearances": 396,
+      "goals": 43,
+      "assists": 44,
+      "attackPoints": 87,
+      "avgRating": 6.43
+    },
+    {
+      "seasonId": 834,
+      "seasonName": "24 UCL (24 UEFA Champions League)",
+      "players": 1,
+      "appearances": 198,
+      "goals": 39,
+      "assists": 46,
+      "attackPoints": 85,
+      "avgRating": 6.54
+    },
+    {
+      "seasonId": 826,
+      "seasonName": "24EP (2024 Energetic Player)",
+      "players": 1,
+      "appearances": 198,
+      "goals": 70,
+      "assists": 33,
+      "attackPoints": 103,
+      "avgRating": 6.67
+    },
+    {
+      "seasonId": 825,
+      "seasonName": "CU (Champions of Europe)",
+      "players": 1,
+      "appearances": 198,
+      "goals": 14,
+      "assists": 29,
+      "attackPoints": 43,
+      "avgRating": 6.44
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 1,
+      "appearances": 198,
+      "goals": 97,
+      "assists": 54,
+      "attackPoints": 151,
+      "avgRating": 6.84
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

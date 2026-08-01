@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:14:41.310921+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1139108503",
+    "nickname": "ES갤럭시"
+  },
+  "classRows": [
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 12,
+      "appearances": 12679,
+      "goals": 2046,
+      "assists": 1840,
+      "attackPoints": 3886,
+      "avgRating": 6.49
+    },
+    {
+      "seasonId": 856,
+      "seasonName": "25 UCL (25 UEFA Champions League)",
+      "players": 1,
+      "appearances": 149,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.3
+    },
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 4,
+      "appearances": 144,
+      "goals": 22,
+      "assists": 23,
+      "attackPoints": 45,
+      "avgRating": 6.49
+    },
+    {
+      "seasonId": 834,
+      "seasonName": "24 UCL (24 UEFA Champions League)",
+      "players": 1,
+      "appearances": 36,
+      "goals": 9,
+      "assists": 10,
+      "attackPoints": 19,
+      "avgRating": 6.41
+    },
+    {
+      "seasonId": 826,
+      "seasonName": "24EP (2024 Energetic Player)",
+      "players": 1,
+      "appearances": 36,
+      "goals": 6,
+      "assists": 5,
+      "attackPoints": 11,
+      "avgRating": 6.29
+    },
+    {
+      "seasonId": 825,
+      "seasonName": "CU (Champions of Europe)",
+      "players": 1,
+      "appearances": 36,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.32
+    },
+    {
+      "seasonId": 863,
+      "seasonName": "PTG (Path to Glory)",
+      "players": 1,
+      "appearances": 36,
+      "goals": 10,
+      "assists": 7,
+      "attackPoints": 17,
+      "avgRating": 6.54
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 1,
+      "appearances": 36,
+      "goals": 16,
+      "assists": 11,
+      "attackPoints": 27,
+      "avgRating": 6.57
+    },
+    {
+      "seasonId": 861,
+      "seasonName": "WG (Warriors of Glory)",
+      "players": 1,
+      "appearances": 4,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 4.75
+    }
+  ],
+  "samePlayerCardComparisons": [
+    {
+      "basePlayerId": "220901",
+      "name": "다비드 라야",
+      "cards": [
+        {
+          "spId": 851220901,
+          "seasonId": 851,
+          "seasonName": "25DP (25 Devoted Player)",
+          "appearances": 1043,
+          "attackPoint": 1,
+          "avgRating": 6.35,
+          "playerWinRate": 48.8
+        },
+        {
+          "spId": 856220901,
+          "seasonId": 856,
+          "seasonName": "25 UCL (25 UEFA Champions League)",
+          "appearances": 149,
+          "attackPoint": 0,
+          "avgRating": 6.3,
+          "playerWinRate": 45.64
+        }
+      ]
+    }
+  ]
+}

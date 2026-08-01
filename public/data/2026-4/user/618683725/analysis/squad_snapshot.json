@@ -1,0 +1,262 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:36:26.047433+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "status": "metadata_ready"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "618683725",
+    "nickname": "ES아스널"
+  },
+  "season": "2026-4",
+  "status": "READY",
+  "squad": {
+    "formation": "4-6-0",
+    "clubValue": null,
+    "clubValueText": "-",
+    "salary": {
+      "current": 307,
+      "cap": 310
+    },
+    "playerCount": 11
+  },
+  "players": [
+    {
+      "spId": 829234378,
+      "name": "데클런 라이스",
+      "role": "rcm",
+      "position": "rcm",
+      "spPosition": 13,
+      "spGrade": 8,
+      "pay": 27,
+      "price": 0,
+      "priceText": "-",
+      "order": 0,
+      "starter": true
+    },
+    {
+      "spId": 839246669,
+      "name": "부카요 사카",
+      "role": "ram",
+      "position": "ram",
+      "spPosition": 17,
+      "spGrade": 8,
+      "pay": 29,
+      "price": 0,
+      "priceText": "-",
+      "order": 1,
+      "starter": true
+    },
+    {
+      "spId": 856257711,
+      "name": "R. 칼라피오리",
+      "role": "lb",
+      "position": "lb",
+      "spPosition": 7,
+      "spGrade": 8,
+      "pay": 26,
+      "price": 0,
+      "priceText": "-",
+      "order": 2,
+      "starter": true
+    },
+    {
+      "spId": 289001625,
+      "name": "티에리 앙리",
+      "role": "cam",
+      "position": "cam",
+      "spPosition": 18,
+      "spGrade": 8,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 3,
+      "starter": true
+    },
+    {
+      "spId": 851251805,
+      "name": "위리엔 팀버",
+      "role": "rb",
+      "position": "rb",
+      "spPosition": 3,
+      "spGrade": 8,
+      "pay": 27,
+      "price": 0,
+      "priceText": "-",
+      "order": 4,
+      "starter": true
+    },
+    {
+      "spId": 851210697,
+      "name": "C. 뇌르고르",
+      "role": "rcb",
+      "position": "rcb",
+      "spPosition": 4,
+      "spGrade": 8,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 5,
+      "starter": true
+    },
+    {
+      "spId": 856220901,
+      "name": "다비드 라야",
+      "role": "gk",
+      "position": "gk",
+      "spPosition": 0,
+      "spGrade": 8,
+      "pay": 26,
+      "price": 0,
+      "priceText": "-",
+      "order": 6,
+      "starter": true
+    },
+    {
+      "spId": 856225193,
+      "name": "미켈 메리노",
+      "role": "lcm",
+      "position": "lcm",
+      "spPosition": 15,
+      "spGrade": 8,
+      "pay": 27,
+      "price": 0,
+      "priceText": "-",
+      "order": 7,
+      "starter": true
+    },
+    {
+      "spId": 856232580,
+      "name": "가브리엘 마갈량이스",
+      "role": "lcb",
+      "position": "lcb",
+      "spPosition": 6,
+      "spGrade": 8,
+      "pay": 29,
+      "price": 0,
+      "priceText": "-",
+      "order": 8,
+      "starter": true
+    },
+    {
+      "spId": 856251566,
+      "name": "가브리엘 마르티넬리",
+      "role": "lam",
+      "position": "lam",
+      "spPosition": 19,
+      "spGrade": 8,
+      "pay": 30,
+      "price": 0,
+      "priceText": "-",
+      "order": 9,
+      "starter": true
+    },
+    {
+      "spId": 852001419,
+      "name": "파트리크 비에이라",
+      "role": "cdm",
+      "position": "cdm",
+      "spPosition": 10,
+      "spGrade": 8,
+      "pay": 30,
+      "price": 0,
+      "priceText": "-",
+      "order": 10,
+      "starter": true
+    }
+  ],
+  "teamColors": [
+    {
+      "id": "40735",
+      "group": "feature",
+      "groupLabel": "특성",
+      "level": 1,
+      "name": "25-26 아스널",
+      "playerCount": 9,
+      "activationPlayerCount": 9,
+      "skills": [
+        {
+          "name": "크로스",
+          "amount": 2,
+          "label": "크로스 +2"
+        },
+        {
+          "name": "헤더",
+          "amount": 3,
+          "label": "헤더 +3"
+        },
+        {
+          "name": "점프",
+          "amount": 2,
+          "label": "점프 +2"
+        },
+        {
+          "name": "몸싸움",
+          "amount": 3,
+          "label": "몸싸움 +3"
+        }
+      ],
+      "image": "https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/teamcolorboost/icon/medium/4_l1.png"
+    },
+    {
+      "id": "40620",
+      "group": "feature",
+      "groupLabel": "특성",
+      "level": 1,
+      "name": "24-25 아스널",
+      "playerCount": 8,
+      "activationPlayerCount": 8,
+      "skills": [
+        {
+          "name": "크로스",
+          "amount": 3,
+          "label": "크로스 +3"
+        },
+        {
+          "name": "헤더",
+          "amount": 2,
+          "label": "헤더 +2"
+        },
+        {
+          "name": "위치 선정",
+          "amount": 3,
+          "label": "위치 선정 +3"
+        },
+        {
+          "name": "짧은 패스",
+          "amount": 2,
+          "label": "짧은 패스 +2"
+        }
+      ],
+      "image": "https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/teamcolorboost/icon/medium/4_l1.png"
+    },
+    {
+      "id": "10001",
+      "group": "enhance",
+      "groupLabel": "강화",
+      "level": 2,
+      "name": "금빛 물결",
+      "playerCount": 11,
+      "activationPlayerCount": 11,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 4,
+          "label": "전체 능력치 +4"
+        }
+      ],
+      "image": "https://ssl.nexon.com/s2/game/fc/online/obt/datacenter/teamcolor/tc_u_g.png"
+    }
+  ],
+  "summary": {
+    "teamColorCount": 3,
+    "affiliationCount": 0,
+    "enhanceCount": 1,
+    "featureCount": 2
+  }
+}

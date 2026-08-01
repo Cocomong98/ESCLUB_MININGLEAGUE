@@ -1,0 +1,178 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:16:12.671800+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1038218816",
+    "nickname": "ES스페인"
+  },
+  "classRows": [
+    {
+      "seasonId": 861,
+      "seasonName": "WG (Warriors of Glory)",
+      "players": 2,
+      "appearances": 2336,
+      "goals": 11,
+      "assists": 20,
+      "attackPoints": 31,
+      "avgRating": 6.41
+    },
+    {
+      "seasonId": 826,
+      "seasonName": "24EP (2024 Energetic Player)",
+      "players": 2,
+      "appearances": 2301,
+      "goals": 20,
+      "assists": 100,
+      "attackPoints": 120,
+      "avgRating": 6.37
+    },
+    {
+      "seasonId": 855,
+      "seasonName": "26 TOTY-N (26 Team Of The Nominated)",
+      "players": 2,
+      "appearances": 2222,
+      "goals": 617,
+      "assists": 532,
+      "attackPoints": 1149,
+      "avgRating": 6.47
+    },
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 2,
+      "appearances": 1225,
+      "goals": 371,
+      "assists": 307,
+      "attackPoints": 678,
+      "avgRating": 6.39
+    },
+    {
+      "seasonId": 866,
+      "seasonName": "26 TOTS (26 Team Of The Season)",
+      "players": 1,
+      "appearances": 1168,
+      "goals": 8,
+      "assists": 13,
+      "attackPoints": 21,
+      "avgRating": 6.41
+    },
+    {
+      "seasonId": 863,
+      "seasonName": "PTG (Path to Glory)",
+      "players": 1,
+      "appearances": 1168,
+      "goals": 565,
+      "assists": 340,
+      "attackPoints": 905,
+      "avgRating": 6.76
+    },
+    {
+      "seasonId": 836,
+      "seasonName": "WB (Wonderboys)",
+      "players": 1,
+      "appearances": 1168,
+      "goals": 156,
+      "assists": 162,
+      "attackPoints": 318,
+      "avgRating": 6.42
+    },
+    {
+      "seasonId": 840,
+      "seasonName": "LE (Legend of Europa)",
+      "players": 1,
+      "appearances": 1111,
+      "goals": 249,
+      "assists": 314,
+      "attackPoints": 563,
+      "avgRating": 6.57
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 1,
+      "appearances": 57,
+      "goals": 7,
+      "assists": 10,
+      "attackPoints": 17,
+      "avgRating": 6.59
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 1,
+      "appearances": 57,
+      "goals": 13,
+      "assists": 18,
+      "attackPoints": 31,
+      "avgRating": 6.55
+    },
+    {
+      "seasonId": 856,
+      "seasonName": "25 UCL (25 UEFA Champions League)",
+      "players": 1,
+      "appearances": 35,
+      "goals": 1,
+      "assists": 1,
+      "attackPoints": 2,
+      "avgRating": 6.27
+    }
+  ],
+  "samePlayerCardComparisons": [
+    {
+      "basePlayerId": "256516",
+      "name": "니코 윌리암스",
+      "cards": [
+        {
+          "spId": 855256516,
+          "seasonId": 855,
+          "seasonName": "26 TOTY-N (26 Team Of The Nominated)",
+          "appearances": 1111,
+          "attackPoint": 610,
+          "avgRating": 6.38,
+          "playerWinRate": 47.43
+        },
+        {
+          "spId": 845256516,
+          "seasonId": 845,
+          "seasonName": "CH (Continental Heroes)",
+          "appearances": 57,
+          "attackPoint": 23,
+          "avgRating": 6.36,
+          "playerWinRate": 40.35
+        }
+      ]
+    },
+    {
+      "basePlayerId": "189513",
+      "name": "파레호",
+      "cards": [
+        {
+          "spId": 840189513,
+          "seasonId": 840,
+          "seasonName": "LE (Legend of Europa)",
+          "appearances": 1111,
+          "attackPoint": 563,
+          "avgRating": 6.57,
+          "playerWinRate": 47.43
+        },
+        {
+          "spId": 848189513,
+          "seasonId": 848,
+          "seasonName": "WS (Winning Streak)",
+          "appearances": 57,
+          "attackPoint": 31,
+          "avgRating": 6.55,
+          "playerWinRate": 40.35
+        }
+      ]
+    }
+  ]
+}

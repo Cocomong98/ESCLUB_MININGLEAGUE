@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:36:29.025151+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "920982262",
+    "nickname": "ES진"
+  },
+  "classRows": [
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 2,
+      "appearances": 524,
+      "goals": 60,
+      "assists": 61,
+      "attackPoints": 121,
+      "avgRating": 6.52
+    },
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 2,
+      "appearances": 524,
+      "goals": 0,
+      "assists": 4,
+      "attackPoints": 4,
+      "avgRating": 6.28
+    },
+    {
+      "seasonId": 846,
+      "seasonName": "DCB (Dramatic Comebacks)",
+      "players": 2,
+      "appearances": 524,
+      "goals": 77,
+      "assists": 74,
+      "attackPoints": 151,
+      "avgRating": 6.52
+    },
+    {
+      "seasonId": 840,
+      "seasonName": "LE (Legend of Europa)",
+      "players": 2,
+      "appearances": 524,
+      "goals": 33,
+      "assists": 38,
+      "attackPoints": 71,
+      "avgRating": 6.43
+    },
+    {
+      "seasonId": 826,
+      "seasonName": "24EP (2024 Energetic Player)",
+      "players": 1,
+      "appearances": 262,
+      "goals": 81,
+      "assists": 66,
+      "attackPoints": 147,
+      "avgRating": 6.49
+    },
+    {
+      "seasonId": 850,
+      "seasonName": "25FSL (25 FCO Superchampions League)",
+      "players": 1,
+      "appearances": 262,
+      "goals": 105,
+      "assists": 72,
+      "attackPoints": 177,
+      "avgRating": 6.72
+    },
+    {
+      "seasonId": 852,
+      "seasonName": "FAC (Football Association Champions)",
+      "players": 1,
+      "appearances": 262,
+      "goals": 70,
+      "assists": 59,
+      "attackPoints": 129,
+      "avgRating": 6.57
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

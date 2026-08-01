@@ -1,0 +1,290 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:16:51.691066+09:00",
+  "source": {
+    "provider": "FCOnlineProfileSquad",
+    "url": "https://fconline.nexon.com/profile/squad/popup/887426261"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "887426261",
+    "nickname": "로니"
+  },
+  "season": "2026-3",
+  "status": "READY",
+  "squad": {
+    "name": "스쿼드_20260731101653",
+    "formation": "",
+    "clubValue": 92230018842005056,
+    "clubValueText": "9경 2,230조",
+    "salary": {
+      "current": 168,
+      "cap": 310
+    },
+    "playerCount": 18
+  },
+  "players": [
+    {
+      "spId": 201167948,
+      "name": "위고 요리스",
+      "role": "gk",
+      "position": "gk",
+      "pay": 12,
+      "price": 18600000000,
+      "priceText": "1조 미만",
+      "order": 0,
+      "starter": true
+    },
+    {
+      "spId": 300073317,
+      "name": "B. 시펭가",
+      "role": "cdm",
+      "position": "lm",
+      "pay": 5,
+      "price": 1000,
+      "priceText": "1조 미만",
+      "order": 1,
+      "starter": true
+    },
+    {
+      "spId": 300212523,
+      "name": "안데르송 탈리스카",
+      "role": "rcm",
+      "position": "cam",
+      "pay": 8,
+      "price": 1060,
+      "priceText": "1조 미만",
+      "order": 2,
+      "starter": true
+    },
+    {
+      "spId": 300237329,
+      "name": "조지프 윌록",
+      "role": "lcm",
+      "position": "cm",
+      "pay": 7,
+      "price": 1000,
+      "priceText": "1조 미만",
+      "order": 3,
+      "starter": true
+    },
+    {
+      "spId": 861001238,
+      "name": "프란체스코 토티",
+      "role": "ram",
+      "position": "cf",
+      "pay": 32,
+      "price": 61500000000000000,
+      "priceText": "6경 1,500조",
+      "order": 4,
+      "starter": true
+    },
+    {
+      "spId": 300257980,
+      "name": "단 은도이",
+      "role": "cam",
+      "position": "lm",
+      "pay": 7,
+      "price": 1000,
+      "priceText": "1조 미만",
+      "order": 5,
+      "starter": true
+    },
+    {
+      "spId": 300197781,
+      "name": "이스코",
+      "role": "lam",
+      "position": "cam",
+      "pay": 9,
+      "price": 242000000,
+      "priceText": "1조 미만",
+      "order": 6,
+      "starter": true
+    },
+    {
+      "spId": 300194146,
+      "name": "케빈 롱",
+      "role": "rb",
+      "position": "cb",
+      "pay": 5,
+      "price": 1000,
+      "priceText": "1조 미만",
+      "order": 7,
+      "starter": true
+    },
+    {
+      "spId": 851220651,
+      "name": "앙헬리뇨",
+      "role": "rcb",
+      "position": "lwb",
+      "pay": 28,
+      "price": 7430000000000000,
+      "priceText": "7,430조",
+      "order": 8,
+      "starter": true
+    },
+    {
+      "spId": 861053302,
+      "name": "다니엘레 데로시",
+      "role": "lcb",
+      "position": "cdm",
+      "pay": 29,
+      "price": 16300000000000000,
+      "priceText": "1경 6,300조",
+      "order": 9,
+      "starter": true
+    },
+    {
+      "spId": 848224490,
+      "name": "제키 첼리크",
+      "role": "lb",
+      "position": "rwb",
+      "pay": 26,
+      "price": 7000000000000000,
+      "priceText": "7,000조",
+      "order": 10,
+      "starter": true
+    },
+    {
+      "spId": 253168435,
+      "name": "살바토레 시리구",
+      "role": "GK",
+      "position": "gk",
+      "pay": 13,
+      "price": 12000000000,
+      "priceText": "1조 미만",
+      "order": 11,
+      "starter": false
+    },
+    {
+      "spId": 217177683,
+      "name": "얀 조머",
+      "role": "GK",
+      "position": "gk",
+      "pay": 12,
+      "price": 120000000000,
+      "priceText": "1조 미만",
+      "order": 12,
+      "starter": false
+    },
+    {
+      "spId": 300259883,
+      "name": "M. 멘데스",
+      "role": "ST",
+      "position": "st",
+      "pay": 5,
+      "price": 1000,
+      "priceText": "1조 미만",
+      "order": 13,
+      "starter": false
+    },
+    {
+      "spId": 300262668,
+      "name": "J. 마켕고",
+      "role": "LB",
+      "position": "lb",
+      "pay": 5,
+      "price": 1010,
+      "priceText": "1조 미만",
+      "order": 14,
+      "starter": false
+    },
+    {
+      "spId": 845236403,
+      "name": "에반 은디카",
+      "role": "CB",
+      "position": "cb",
+      "pay": 27,
+      "price": 3580000000000000,
+      "priceText": "3,580조",
+      "order": 15,
+      "starter": false
+    },
+    {
+      "spId": 840228251,
+      "name": "로렌초 펠레그리니",
+      "role": "CAM",
+      "position": "cam",
+      "pay": 28,
+      "price": 11100000000000000,
+      "priceText": "1경 1,100조",
+      "order": 16,
+      "starter": false
+    },
+    {
+      "spId": 845207439,
+      "name": "레안드로 파레데스",
+      "role": "CDM",
+      "position": "cdm",
+      "pay": 29,
+      "price": 4920000000000000,
+      "priceText": "4,920조",
+      "order": 17,
+      "starter": false
+    }
+  ],
+  "teamColors": [
+    {
+      "id": "1024",
+      "group": "affiliation",
+      "groupLabel": "소속",
+      "level": 1,
+      "name": "AS 로마",
+      "playerCount": 4,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 1,
+          "label": "전체 능력치 +1"
+        }
+      ],
+      "image": "https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/crests/light/medium/l52.png"
+    },
+    {
+      "id": "10001",
+      "group": "enhance",
+      "groupLabel": "강화",
+      "level": 1,
+      "name": "금빛 물결",
+      "playerCount": 5,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 3,
+          "label": "전체 능력치 +3"
+        }
+      ],
+      "image": "https://ssl.nexon.com/s2/game/fc/online/obt/datacenter/teamcolor/tc_u_g.png"
+    },
+    {
+      "id": "40671",
+      "group": "feature",
+      "groupLabel": "특성",
+      "level": 1,
+      "name": "AS로마 듀오",
+      "playerCount": 2,
+      "skills": [
+        {
+          "name": "짧은 패스",
+          "amount": 1,
+          "label": "짧은 패스 +1"
+        },
+        {
+          "name": "긴 패스",
+          "amount": 1,
+          "label": "긴 패스 +1"
+        }
+      ],
+      "image": "https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/teamcolorboost/icon/medium/4_l52.png"
+    }
+  ],
+  "summary": {
+    "teamColorCount": 3,
+    "affiliationCount": 1,
+    "enhanceCount": 1,
+    "featureCount": 1
+  }
+}

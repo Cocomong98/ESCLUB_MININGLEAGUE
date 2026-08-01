@@ -1,0 +1,317 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:14:41.310921+09:00",
+  "source": {
+    "provider": "FCOnlineProfileSquad",
+    "url": "https://fconline.nexon.com/profile/squad/popup/1139108503"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1139108503",
+    "nickname": "ES갤럭시"
+  },
+  "season": "2026-3",
+  "status": "READY",
+  "squad": {
+    "name": "스쿼드_20260731101444",
+    "formation": "",
+    "clubValue": 51692969800000000,
+    "clubValueText": "5경 1,692조",
+    "salary": {
+      "current": 245,
+      "cap": 310
+    },
+    "playerCount": 18
+  },
+  "players": [
+    {
+      "spId": 300225116,
+      "name": "알렉스 메레트",
+      "role": "gk",
+      "position": "gk",
+      "pay": 5,
+      "price": 90000000000000,
+      "priceText": "90조",
+      "order": 0,
+      "starter": true
+    },
+    {
+      "spId": 848227236,
+      "name": "A. 잠보 앙기사",
+      "role": "cdm",
+      "position": "cm",
+      "pay": 28,
+      "price": 24500000000000000,
+      "priceText": "2경 4,500조",
+      "order": 1,
+      "starter": true
+    },
+    {
+      "spId": 265226161,
+      "name": "마르코스 요렌테",
+      "role": "rcm",
+      "position": "cm",
+      "pay": 23,
+      "price": 49200000000000,
+      "priceText": "49조",
+      "order": 2,
+      "starter": true
+    },
+    {
+      "spId": 835171877,
+      "name": "마레크 함시크",
+      "role": "lcm",
+      "position": "cam",
+      "pay": 29,
+      "price": 6980000000000000,
+      "priceText": "6,980조",
+      "order": 3,
+      "starter": true
+    },
+    {
+      "spId": 840190042,
+      "name": "마라도나",
+      "role": "ram",
+      "position": "cam",
+      "pay": 30,
+      "price": 19900000000000000,
+      "priceText": "1경 9,900조",
+      "order": 4,
+      "starter": true
+    },
+    {
+      "spId": 270230666,
+      "name": "가브리엘 제주스",
+      "role": "cam",
+      "position": "rw",
+      "pay": 22,
+      "price": 32200000000000,
+      "priceText": "32조",
+      "order": 5,
+      "starter": true
+    },
+    {
+      "spId": 270251566,
+      "name": "가브리엘 마르티넬리",
+      "role": "lam",
+      "position": "lm",
+      "pay": 21,
+      "price": 3650000000000,
+      "priceText": "3조",
+      "order": 6,
+      "starter": true
+    },
+    {
+      "spId": 801199304,
+      "name": "다닐루",
+      "role": "rb",
+      "position": "rb",
+      "pay": 25,
+      "price": 85100000000000,
+      "priceText": "85조",
+      "order": 7,
+      "starter": true
+    },
+    {
+      "spId": 246225850,
+      "name": "프레스넬 킴펨베",
+      "role": "rcb",
+      "position": "cb",
+      "pay": 18,
+      "price": 19800000000,
+      "priceText": "1조 미만",
+      "order": 8,
+      "starter": true
+    },
+    {
+      "spId": 283212218,
+      "name": "에므리크 라포르트",
+      "role": "lcb",
+      "position": "cb",
+      "pay": 23,
+      "price": 48500000000000,
+      "priceText": "48조",
+      "order": 9,
+      "starter": true
+    },
+    {
+      "spId": 280240716,
+      "name": "M. 올리베라",
+      "role": "lb",
+      "position": "lb",
+      "pay": 21,
+      "price": 4300000000000,
+      "priceText": "4조",
+      "order": 10,
+      "starter": true
+    },
+    {
+      "spId": 812243780,
+      "name": "이강인",
+      "role": "CAM",
+      "position": "cam",
+      "pay": 19,
+      "price": 68600000000,
+      "priceText": "1조 미만",
+      "order": 11,
+      "starter": false
+    },
+    {
+      "spId": 280231866,
+      "name": "로드리",
+      "role": "CDM",
+      "position": "cdm",
+      "pay": 23,
+      "price": 33100000000000,
+      "priceText": "33조",
+      "order": 12,
+      "starter": false
+    },
+    {
+      "spId": 237005003,
+      "name": "카푸",
+      "role": "RB",
+      "position": "rb",
+      "pay": 19,
+      "price": 24700000000,
+      "priceText": "1조 미만",
+      "order": 13,
+      "starter": false
+    },
+    {
+      "spId": 283209989,
+      "name": "토머스 파티",
+      "role": "CDM",
+      "position": "cdm",
+      "pay": 23,
+      "price": 17900000000000,
+      "priceText": "17조",
+      "order": 14,
+      "starter": false
+    },
+    {
+      "spId": 517241651,
+      "name": "빅토르 요케레스",
+      "role": "ST",
+      "position": "st",
+      "pay": 21,
+      "price": 47200000000000,
+      "priceText": "47조",
+      "order": 15,
+      "starter": false
+    },
+    {
+      "spId": 265222665,
+      "name": "마르틴 외데고르",
+      "role": "CAM",
+      "position": "cam",
+      "pay": 23,
+      "price": 48900000000000,
+      "priceText": "48조",
+      "order": 16,
+      "starter": false
+    },
+    {
+      "spId": 293191655,
+      "name": "김승규",
+      "role": "GK",
+      "position": "gk",
+      "pay": 16,
+      "price": 1580000000000,
+      "priceText": "1조",
+      "order": 17,
+      "starter": false
+    }
+  ],
+  "teamColors": [
+    {
+      "id": "1022",
+      "group": "affiliation",
+      "groupLabel": "소속",
+      "level": 1,
+      "name": "SSC 나폴리",
+      "playerCount": 5,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 1,
+          "label": "전체 능력치 +1"
+        }
+      ],
+      "image": "https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/crests/light/medium/l48.png"
+    },
+    {
+      "id": "1000",
+      "group": "affiliation",
+      "groupLabel": "소속",
+      "level": 1,
+      "name": "맨체스터 시티",
+      "playerCount": 3,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 1,
+          "label": "전체 능력치 +1"
+        }
+      ],
+      "image": "https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/crests/light/medium/l10.png"
+    },
+    {
+      "id": "2003",
+      "group": "affiliation",
+      "groupLabel": "소속",
+      "level": 1,
+      "name": "브라질",
+      "playerCount": 1,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 1,
+          "label": "전체 능력치 +1"
+        }
+      ],
+      "image": "https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/countries/largeflags/f_54.png"
+    },
+    {
+      "id": "10004",
+      "group": "enhance",
+      "groupLabel": "강화",
+      "level": 2,
+      "name": "백금빛 물결",
+      "playerCount": 8,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 5,
+          "label": "전체 능력치 +5"
+        }
+      ],
+      "image": "https://ssl.nexon.com/s2/game/fc/online/obt/datacenter/teamcolor/tc_u_p.png"
+    },
+    {
+      "id": "10001",
+      "group": "enhance",
+      "groupLabel": "강화",
+      "level": 2,
+      "name": "금빛 물결",
+      "playerCount": 2,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 4,
+          "label": "전체 능력치 +4"
+        }
+      ],
+      "image": "https://ssl.nexon.com/s2/game/fc/online/obt/datacenter/teamcolor/tc_u_g.png"
+    }
+  ],
+  "summary": {
+    "teamColorCount": 5,
+    "affiliationCount": 3,
+    "enhanceCount": 2,
+    "featureCount": 0
+  }
+}

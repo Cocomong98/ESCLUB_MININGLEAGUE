@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:35:38.999896+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "82044429",
+    "nickname": "ES라울"
+  },
+  "classRows": [
+    {
+      "seasonId": 863,
+      "seasonName": "PTG (Path to Glory)",
+      "players": 9,
+      "appearances": 1377,
+      "goals": 211,
+      "assists": 207,
+      "attackPoints": 418,
+      "avgRating": 6.59
+    },
+    {
+      "seasonId": 856,
+      "seasonName": "25 UCL (25 UEFA Champions League)",
+      "players": 1,
+      "appearances": 153,
+      "goals": 33,
+      "assists": 24,
+      "attackPoints": 57,
+      "avgRating": 6.53
+    },
+    {
+      "seasonId": 852,
+      "seasonName": "FAC (Football Association Champions)",
+      "players": 1,
+      "appearances": 153,
+      "goals": 35,
+      "assists": 27,
+      "attackPoints": 62,
+      "avgRating": 6.58
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

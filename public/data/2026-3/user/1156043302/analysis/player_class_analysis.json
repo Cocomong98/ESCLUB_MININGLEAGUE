@@ -1,0 +1,148 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:14:46.531988+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1156043302",
+    "nickname": "ES골팝"
+  },
+  "classRows": [
+    {
+      "seasonId": 826,
+      "seasonName": "24EP (2024 Energetic Player)",
+      "players": 3,
+      "appearances": 3585,
+      "goals": 1418,
+      "assists": 968,
+      "attackPoints": 2386,
+      "avgRating": 6.74
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 3,
+      "appearances": 2577,
+      "goals": 351,
+      "assists": 422,
+      "attackPoints": 773,
+      "avgRating": 6.47
+    },
+    {
+      "seasonId": 852,
+      "seasonName": "FAC (Football Association Champions)",
+      "players": 2,
+      "appearances": 2390,
+      "goals": 334,
+      "assists": 342,
+      "attackPoints": 676,
+      "avgRating": 6.47
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 2,
+      "appearances": 1216,
+      "goals": 2,
+      "assists": 53,
+      "attackPoints": 55,
+      "avgRating": 6.36
+    },
+    {
+      "seasonId": 861,
+      "seasonName": "WG (Warriors of Glory)",
+      "players": 1,
+      "appearances": 1174,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.4
+    },
+    {
+      "seasonId": 863,
+      "seasonName": "PTG (Path to Glory)",
+      "players": 1,
+      "appearances": 1008,
+      "goals": 133,
+      "assists": 183,
+      "attackPoints": 316,
+      "avgRating": 6.52
+    },
+    {
+      "seasonId": 856,
+      "seasonName": "25 UCL (25 UEFA Champions League)",
+      "players": 1,
+      "appearances": 732,
+      "goals": 0,
+      "assists": 15,
+      "attackPoints": 15,
+      "avgRating": 6.42
+    },
+    {
+      "seasonId": 834,
+      "seasonName": "24 UCL (24 UEFA Champions League)",
+      "players": 1,
+      "appearances": 463,
+      "goals": 5,
+      "assists": 8,
+      "attackPoints": 13,
+      "avgRating": 6.5
+    }
+  ],
+  "samePlayerCardComparisons": [
+    {
+      "basePlayerId": "488",
+      "name": "올리버 칸",
+      "cards": [
+        {
+          "spId": 861000488,
+          "seasonId": 861,
+          "seasonName": "WG (Warriors of Glory)",
+          "appearances": 1174,
+          "attackPoint": 0,
+          "avgRating": 6.4,
+          "playerWinRate": 51.19
+        },
+        {
+          "spId": 848000488,
+          "seasonId": 848,
+          "seasonName": "WS (Winning Streak)",
+          "appearances": 21,
+          "attackPoint": 0,
+          "avgRating": 6.35,
+          "playerWinRate": 42.86
+        }
+      ]
+    },
+    {
+      "basePlayerId": "247819",
+      "name": "N. 슐로터베크",
+      "cards": [
+        {
+          "spId": 856247819,
+          "seasonId": 856,
+          "seasonName": "25 UCL (25 UEFA Champions League)",
+          "appearances": 732,
+          "attackPoint": 15,
+          "avgRating": 6.42,
+          "playerWinRate": 50.14
+        },
+        {
+          "spId": 834247819,
+          "seasonId": 834,
+          "seasonName": "24 UCL (24 UEFA Champions League)",
+          "appearances": 463,
+          "attackPoint": 13,
+          "avgRating": 6.5,
+          "playerWinRate": 52.48
+        }
+      ]
+    }
+  ]
+}

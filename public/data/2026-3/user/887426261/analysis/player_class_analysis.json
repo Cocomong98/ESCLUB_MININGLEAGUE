@@ -1,0 +1,271 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:16:51.691066+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "887426261",
+    "nickname": "로니"
+  },
+  "classRows": [
+    {
+      "seasonId": 852,
+      "seasonName": "FAC (Football Association Champions)",
+      "players": 4,
+      "appearances": 1177,
+      "goals": 114,
+      "assists": 158,
+      "attackPoints": 272,
+      "avgRating": 6.53
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 4,
+      "appearances": 659,
+      "goals": 296,
+      "assists": 170,
+      "attackPoints": 466,
+      "avgRating": 6.72
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 2,
+      "appearances": 440,
+      "goals": 32,
+      "assists": 40,
+      "attackPoints": 72,
+      "avgRating": 6.56
+    },
+    {
+      "seasonId": 802,
+      "seasonName": "DC (Decade)",
+      "players": 1,
+      "appearances": 414,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.3
+    },
+    {
+      "seasonId": 856,
+      "seasonName": "25 UCL (25 UEFA Champions League)",
+      "players": 2,
+      "appearances": 394,
+      "goals": 45,
+      "assists": 55,
+      "attackPoints": 100,
+      "avgRating": 6.71
+    },
+    {
+      "seasonId": 840,
+      "seasonName": "LE (Legend of Europa)",
+      "players": 2,
+      "appearances": 360,
+      "goals": 22,
+      "assists": 29,
+      "attackPoints": 51,
+      "avgRating": 6.28
+    },
+    {
+      "seasonId": 858,
+      "seasonName": "26HR (26 Heroes)",
+      "players": 2,
+      "appearances": 345,
+      "goals": 82,
+      "assists": 91,
+      "attackPoints": 173,
+      "avgRating": 6.79
+    },
+    {
+      "seasonId": 846,
+      "seasonName": "DCB (Dramatic Comebacks)",
+      "players": 1,
+      "appearances": 305,
+      "goals": 32,
+      "assists": 50,
+      "attackPoints": 82,
+      "avgRating": 6.75
+    },
+    {
+      "seasonId": 814,
+      "seasonName": "UT (Unexpected Transfer)",
+      "players": 1,
+      "appearances": 161,
+      "goals": 61,
+      "assists": 33,
+      "attackPoints": 94,
+      "avgRating": 6.8
+    },
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 1,
+      "appearances": 109,
+      "goals": 1,
+      "assists": 4,
+      "attackPoints": 5,
+      "avgRating": 6.31
+    },
+    {
+      "seasonId": 861,
+      "seasonName": "WG (Warriors of Glory)",
+      "players": 1,
+      "appearances": 95,
+      "goals": 25,
+      "assists": 23,
+      "attackPoints": 48,
+      "avgRating": 6.43
+    },
+    {
+      "seasonId": 825,
+      "seasonName": "CU (Champions of Europe)",
+      "players": 1,
+      "appearances": 75,
+      "goals": 0,
+      "assists": 3,
+      "attackPoints": 3,
+      "avgRating": 6.43
+    },
+    {
+      "seasonId": 850,
+      "seasonName": "25FSL (25 FCO Superchampions League)",
+      "players": 1,
+      "appearances": 20,
+      "goals": 1,
+      "assists": 0,
+      "attackPoints": 1,
+      "avgRating": 6.26
+    },
+    {
+      "seasonId": 827,
+      "seasonName": "BDO (Ballon d'Or)",
+      "players": 1,
+      "appearances": 20,
+      "goals": 14,
+      "assists": 4,
+      "attackPoints": 18,
+      "avgRating": 7.27
+    },
+    {
+      "seasonId": 818,
+      "seasonName": "LD (Last Dance)",
+      "players": 1,
+      "appearances": 20,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.1
+    },
+    {
+      "seasonId": 863,
+      "seasonName": "PTG (Path to Glory)",
+      "players": 1,
+      "appearances": 20,
+      "goals": 1,
+      "assists": 1,
+      "attackPoints": 2,
+      "avgRating": 6.63
+    },
+    {
+      "seasonId": 101,
+      "seasonName": "ICON (ICON)",
+      "players": 1,
+      "appearances": 6,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.32
+    }
+  ],
+  "samePlayerCardComparisons": [
+    {
+      "basePlayerId": "48940",
+      "name": "페트르 체흐",
+      "cards": [
+        {
+          "spId": 802048940,
+          "seasonId": 802,
+          "seasonName": "DC (Decade)",
+          "appearances": 414,
+          "attackPoint": 0,
+          "avgRating": 6.3,
+          "playerWinRate": 40.82
+        },
+        {
+          "spId": 101048940,
+          "seasonId": 101,
+          "seasonName": "ICON (ICON)",
+          "appearances": 6,
+          "attackPoint": 0,
+          "avgRating": 6.32,
+          "playerWinRate": 16.67
+        }
+      ]
+    },
+    {
+      "basePlayerId": "184943",
+      "name": "하미레스",
+      "cards": [
+        {
+          "spId": 846184943,
+          "seasonId": 846,
+          "seasonName": "DCB (Dramatic Comebacks)",
+          "appearances": 305,
+          "attackPoint": 82,
+          "avgRating": 6.75,
+          "playerWinRate": 37.05
+        },
+        {
+          "spId": 825184943,
+          "seasonId": 825,
+          "seasonName": "CU (Champions of Europe)",
+          "appearances": 75,
+          "attackPoint": 3,
+          "avgRating": 6.43,
+          "playerWinRate": 52.0
+        }
+      ]
+    },
+    {
+      "basePlayerId": "5471",
+      "name": "프랭크 램파드",
+      "cards": [
+        {
+          "spId": 814005471,
+          "seasonId": 814,
+          "seasonName": "UT (Unexpected Transfer)",
+          "appearances": 161,
+          "attackPoint": 94,
+          "avgRating": 6.8,
+          "playerWinRate": 37.27
+        },
+        {
+          "spId": 848005471,
+          "seasonId": 848,
+          "seasonName": "WS (Winning Streak)",
+          "appearances": 130,
+          "attackPoint": 115,
+          "avgRating": 7.02,
+          "playerWinRate": 44.62
+        },
+        {
+          "spId": 827005471,
+          "seasonId": 827,
+          "seasonName": "BDO (Ballon d'Or)",
+          "appearances": 20,
+          "attackPoint": 18,
+          "avgRating": 7.27,
+          "playerWinRate": 40.0
+        }
+      ]
+    }
+  ]
+}

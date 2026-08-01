@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:15:28.743645+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1374062161",
+    "nickname": "ES맨유"
+  },
+  "classRows": [
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 13,
+      "appearances": 11695,
+      "goals": 1847,
+      "assists": 1654,
+      "attackPoints": 3501,
+      "avgRating": 6.47
+    },
+    {
+      "seasonId": 852,
+      "seasonName": "FAC (Football Association Champions)",
+      "players": 2,
+      "appearances": 324,
+      "goals": 126,
+      "assists": 113,
+      "attackPoints": 239,
+      "avgRating": 6.65
+    },
+    {
+      "seasonId": 814,
+      "seasonName": "UT (Unexpected Transfer)",
+      "players": 2,
+      "appearances": 324,
+      "goals": 34,
+      "assists": 28,
+      "attackPoints": 62,
+      "avgRating": 6.48
+    },
+    {
+      "seasonId": 834,
+      "seasonName": "24 UCL (24 UEFA Champions League)",
+      "players": 1,
+      "appearances": 162,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.45
+    },
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 1,
+      "appearances": 162,
+      "goals": 1,
+      "assists": 3,
+      "attackPoints": 4,
+      "avgRating": 6.37
+    },
+    {
+      "seasonId": 836,
+      "seasonName": "WB (Wonderboys)",
+      "players": 1,
+      "appearances": 162,
+      "goals": 22,
+      "assists": 20,
+      "attackPoints": 42,
+      "avgRating": 6.46
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 1,
+      "appearances": 162,
+      "goals": 70,
+      "assists": 45,
+      "attackPoints": 115,
+      "avgRating": 6.61
+    },
+    {
+      "seasonId": 283,
+      "seasonName": "HG (Home Grown)",
+      "players": 1,
+      "appearances": 1,
+      "goals": 0,
+      "assists": 1,
+      "attackPoints": 1,
+      "avgRating": 7.1
+    },
+    {
+      "seasonId": 218,
+      "seasonName": "OTW (Ones To Watch)",
+      "players": 1,
+      "appearances": 1,
+      "goals": 1,
+      "assists": 0,
+      "attackPoints": 1,
+      "avgRating": 7.4
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

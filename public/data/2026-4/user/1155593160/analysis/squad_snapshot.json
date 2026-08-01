@@ -1,0 +1,225 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:36:44.387497+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "status": "metadata_ready"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1155593160",
+    "nickname": "ES코코몽"
+  },
+  "season": "2026-4",
+  "status": "READY",
+  "squad": {
+    "formation": "4-6-0",
+    "clubValue": null,
+    "clubValueText": "-",
+    "salary": {
+      "current": 310,
+      "cap": 310
+    },
+    "playerCount": 11
+  },
+  "players": [
+    {
+      "spId": 848167948,
+      "name": "위고 요리스",
+      "role": "gk",
+      "position": "gk",
+      "spPosition": 0,
+      "spGrade": 8,
+      "pay": 25,
+      "price": 0,
+      "priceText": "-",
+      "order": 0,
+      "starter": true
+    },
+    {
+      "spId": 863202556,
+      "name": "멤피스 데파이",
+      "role": "ram",
+      "position": "ram",
+      "spPosition": 17,
+      "spGrade": 8,
+      "pay": 31,
+      "price": 0,
+      "priceText": "-",
+      "order": 1,
+      "starter": true
+    },
+    {
+      "spId": 866225859,
+      "name": "무사 니아카테",
+      "role": "lcb",
+      "position": "lcb",
+      "spPosition": 6,
+      "spGrade": 10,
+      "pay": 29,
+      "price": 0,
+      "priceText": "-",
+      "order": 2,
+      "starter": true
+    },
+    {
+      "spId": 840210736,
+      "name": "에메르손",
+      "role": "lb",
+      "position": "lb",
+      "spPosition": 7,
+      "spGrade": 8,
+      "pay": 27,
+      "price": 0,
+      "priceText": "-",
+      "order": 3,
+      "starter": true
+    },
+    {
+      "spId": 855219683,
+      "name": "코랑탕 톨리소",
+      "role": "lcm",
+      "position": "lcm",
+      "spPosition": 15,
+      "spGrade": 10,
+      "pay": 29,
+      "price": 0,
+      "priceText": "-",
+      "order": 4,
+      "starter": true
+    },
+    {
+      "spId": 840225782,
+      "name": "A. 메이틀랜드-나일스",
+      "role": "rb",
+      "position": "rb",
+      "spPosition": 3,
+      "spGrade": 8,
+      "pay": 27,
+      "price": 0,
+      "priceText": "-",
+      "order": 5,
+      "starter": true
+    },
+    {
+      "spId": 866247050,
+      "name": "P. 슐츠",
+      "role": "lam",
+      "position": "lam",
+      "spPosition": 19,
+      "spGrade": 10,
+      "pay": 30,
+      "price": 0,
+      "priceText": "-",
+      "order": 6,
+      "starter": true
+    },
+    {
+      "spId": 855247851,
+      "name": "브루누 기마랑이스",
+      "role": "rcm",
+      "position": "rcm",
+      "spPosition": 13,
+      "spGrade": 10,
+      "pay": 30,
+      "price": 0,
+      "priceText": "-",
+      "order": 7,
+      "starter": true
+    },
+    {
+      "spId": 825165153,
+      "name": "카림 벤제마",
+      "role": "cam",
+      "position": "cam",
+      "spPosition": 18,
+      "spGrade": 10,
+      "pay": 30,
+      "price": 0,
+      "priceText": "-",
+      "order": 8,
+      "starter": true
+    },
+    {
+      "spId": 840191202,
+      "name": "네마냐 마티치",
+      "role": "cdm",
+      "position": "cdm",
+      "spPosition": 10,
+      "spGrade": 8,
+      "pay": 27,
+      "price": 0,
+      "priceText": "-",
+      "order": 9,
+      "starter": true
+    },
+    {
+      "spId": 826224221,
+      "name": "요아힘 아네르센",
+      "role": "rcb",
+      "position": "rcb",
+      "spPosition": 4,
+      "spGrade": 12,
+      "pay": 25,
+      "price": 0,
+      "priceText": "-",
+      "order": 10,
+      "starter": true
+    }
+  ],
+  "teamColors": [
+    {
+      "id": "1029",
+      "group": "affiliation",
+      "groupLabel": "소속",
+      "level": 4,
+      "name": "올랭피크 리옹",
+      "playerCount": 11,
+      "activationPlayerCount": 11,
+      "skills": [
+        {
+          "name": "민첩성",
+          "amount": 3,
+          "label": "민첩성 +3"
+        },
+        {
+          "name": "전체 능력치",
+          "amount": 4,
+          "label": "전체 능력치 +4"
+        },
+        {
+          "name": "시야",
+          "amount": 3,
+          "label": "시야 +3"
+        }
+      ],
+      "image": "https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/crests/light/medium/l66.png"
+    },
+    {
+      "id": "10001",
+      "group": "enhance",
+      "groupLabel": "강화",
+      "level": 2,
+      "name": "금빛 물결",
+      "playerCount": 11,
+      "activationPlayerCount": 11,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 4,
+          "label": "전체 능력치 +4"
+        }
+      ],
+      "image": "https://ssl.nexon.com/s2/game/fc/online/obt/datacenter/teamcolor/tc_u_g.png"
+    }
+  ],
+  "summary": {
+    "teamColorCount": 2,
+    "affiliationCount": 1,
+    "enhanceCount": 1,
+    "featureCount": 0
+  }
+}

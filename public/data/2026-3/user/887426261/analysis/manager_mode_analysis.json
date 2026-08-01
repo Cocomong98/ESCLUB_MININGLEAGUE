@@ -1,0 +1,1028 @@
+{
+  "schemaVersion": "0.1.0",
+  "status": "SUCCESS",
+  "generatedAt": "2026-07-31T10:16:51.691066+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52,
+    "matchtypeName": "감독모드"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "887426261",
+    "nickname": "로니"
+  },
+  "sample": {
+    "requested": 100,
+    "valid": 100,
+    "excluded": 0,
+    "minimumForInsights": 20
+  },
+  "period": {
+    "from": "2026-07-22T09:36:26+09:00",
+    "to": "2026-07-30T03:50:02+09:00"
+  },
+  "summary": {
+    "sampleSize": 100,
+    "w": 51,
+    "d": 12,
+    "l": 37,
+    "winRate": 51.0,
+    "goalsPerMatch": 1.98,
+    "goalsConcededPerMatch": 1.54,
+    "goalDifferencePerMatch": 0.44,
+    "shotsPerMatch": 4.78,
+    "shotsOnTargetPerMatch": 3.88,
+    "shotAccuracy": 81.17,
+    "goalConversion": 41.42,
+    "shotOnTargetConversion": 51.03,
+    "averagePossession": 0.0,
+    "passSuccessRate": 87.43,
+    "tackleSuccessRate": 67.69,
+    "cleanSheetRate": 23.0,
+    "concedeTwoPlusRate": 44.0
+  },
+  "recentForm": [
+    {
+      "period": 20,
+      "sampleSize": 20,
+      "w": 6,
+      "d": 2,
+      "l": 12,
+      "winRate": 30.0,
+      "goalsPerMatch": 1.2,
+      "goalsConcededPerMatch": 1.7,
+      "goalDifferencePerMatch": -0.5,
+      "shotsPerMatch": 3.3,
+      "shotsOnTargetPerMatch": 2.65,
+      "shotAccuracy": 80.3,
+      "goalConversion": 36.36,
+      "averagePossession": 0.0,
+      "passSuccessRate": 86.48
+    }
+  ],
+  "expanded": {
+    "schemaVersion": "0.1.0",
+    "styleProfile": {
+      "primary": "안정형",
+      "scores": {
+        "점유형": 0.0,
+        "다득점형": 49.5,
+        "수비형": 39.55,
+        "고효율형": 59.27,
+        "다슈팅형": 47.8,
+        "안정형": 59.97
+      }
+    },
+    "formationPerformance": [
+      {
+        "key": "4-5-1",
+        "label": "4-5-1",
+        "matches": 100,
+        "w": 51,
+        "d": 12,
+        "l": 37,
+        "winRate": 51.0,
+        "goalsPerMatch": 1.98,
+        "goalsConcededPerMatch": 1.54,
+        "goalDifferencePerMatch": 0.44,
+        "shotAccuracy": 81.17,
+        "goalConversion": 41.42,
+        "averagePossession": 0.0,
+        "passSuccessRate": 87.43,
+        "cleanSheetRate": 23.0,
+        "concedeTwoPlusRate": 44.0,
+        "lastMatchDateKst": "2026-07-30T03:50:02+09:00"
+      }
+    ],
+    "timeSlotPerformance": [
+      {
+        "key": "새벽",
+        "label": "새벽",
+        "matches": 59,
+        "w": 28,
+        "d": 6,
+        "l": 25,
+        "winRate": 47.46,
+        "goalsPerMatch": 1.661,
+        "goalsConcededPerMatch": 1.644,
+        "goalDifferencePerMatch": 0.017,
+        "shotAccuracy": 82.14,
+        "goalConversion": 38.89,
+        "averagePossession": 0.0,
+        "passSuccessRate": 86.51,
+        "cleanSheetRate": 18.64,
+        "concedeTwoPlusRate": 44.07,
+        "lastMatchDateKst": "2026-07-30T03:50:02+09:00"
+      },
+      {
+        "key": "오전",
+        "label": "오전",
+        "matches": 5,
+        "w": 1,
+        "d": 1,
+        "l": 3,
+        "winRate": 20.0,
+        "goalsPerMatch": 1.2,
+        "goalsConcededPerMatch": 2.2,
+        "goalDifferencePerMatch": -1.0,
+        "shotAccuracy": 70.37,
+        "goalConversion": 22.22,
+        "averagePossession": 0.0,
+        "passSuccessRate": 90.3,
+        "cleanSheetRate": 0.0,
+        "concedeTwoPlusRate": 60.0,
+        "lastMatchDateKst": "2026-07-22T10:22:49+09:00"
+      },
+      {
+        "key": "오후",
+        "label": "오후",
+        "matches": 2,
+        "w": 2,
+        "d": 0,
+        "l": 0,
+        "winRate": 100.0,
+        "goalsPerMatch": 2.5,
+        "goalsConcededPerMatch": 0.5,
+        "goalDifferencePerMatch": 2.0,
+        "shotAccuracy": 100.0,
+        "goalConversion": 83.33,
+        "averagePossession": 0.0,
+        "passSuccessRate": 85.44,
+        "cleanSheetRate": 50.0,
+        "concedeTwoPlusRate": 0.0,
+        "lastMatchDateKst": "2026-07-24T17:52:38+09:00"
+      },
+      {
+        "key": "야간",
+        "label": "야간",
+        "matches": 34,
+        "w": 20,
+        "d": 5,
+        "l": 9,
+        "winRate": 58.82,
+        "goalsPerMatch": 2.618,
+        "goalsConcededPerMatch": 1.324,
+        "goalDifferencePerMatch": 1.294,
+        "shotAccuracy": 80.83,
+        "goalConversion": 46.11,
+        "averagePossession": 0.0,
+        "passSuccessRate": 88.48,
+        "cleanSheetRate": 32.35,
+        "concedeTwoPlusRate": 44.12,
+        "lastMatchDateKst": "2026-07-27T23:53:08+09:00"
+      }
+    ],
+    "weekdayPerformance": [
+      {
+        "key": "0",
+        "label": "월",
+        "matches": 16,
+        "w": 11,
+        "d": 2,
+        "l": 3,
+        "winRate": 68.75,
+        "goalsPerMatch": 2.75,
+        "goalsConcededPerMatch": 1.188,
+        "goalDifferencePerMatch": 1.562,
+        "shotAccuracy": 78.16,
+        "goalConversion": 50.57,
+        "averagePossession": 0.0,
+        "passSuccessRate": 86.4,
+        "cleanSheetRate": 25.0,
+        "concedeTwoPlusRate": 43.75,
+        "lastMatchDateKst": "2026-07-27T23:53:08+09:00"
+      },
+      {
+        "key": "1",
+        "label": "화",
+        "matches": 21,
+        "w": 12,
+        "d": 0,
+        "l": 9,
+        "winRate": 57.14,
+        "goalsPerMatch": 1.81,
+        "goalsConcededPerMatch": 1.619,
+        "goalDifferencePerMatch": 0.19,
+        "shotAccuracy": 75.79,
+        "goalConversion": 40.0,
+        "averagePossession": 0.0,
+        "passSuccessRate": 86.71,
+        "cleanSheetRate": 19.05,
+        "concedeTwoPlusRate": 42.86,
+        "lastMatchDateKst": "2026-07-28T04:05:00+09:00"
+      },
+      {
+        "key": "2",
+        "label": "수",
+        "matches": 5,
+        "w": 1,
+        "d": 1,
+        "l": 3,
+        "winRate": 20.0,
+        "goalsPerMatch": 1.2,
+        "goalsConcededPerMatch": 2.2,
+        "goalDifferencePerMatch": -1.0,
+        "shotAccuracy": 70.37,
+        "goalConversion": 22.22,
+        "averagePossession": 0.0,
+        "passSuccessRate": 90.3,
+        "cleanSheetRate": 0.0,
+        "concedeTwoPlusRate": 60.0,
+        "lastMatchDateKst": "2026-07-22T10:22:49+09:00"
+      },
+      {
+        "key": "3",
+        "label": "목",
+        "matches": 18,
+        "w": 5,
+        "d": 2,
+        "l": 11,
+        "winRate": 27.78,
+        "goalsPerMatch": 1.167,
+        "goalsConcededPerMatch": 1.722,
+        "goalDifferencePerMatch": -0.556,
+        "shotAccuracy": 78.95,
+        "goalConversion": 36.84,
+        "averagePossession": 0.0,
+        "passSuccessRate": 86.46,
+        "cleanSheetRate": 22.22,
+        "concedeTwoPlusRate": 55.56,
+        "lastMatchDateKst": "2026-07-30T03:50:02+09:00"
+      },
+      {
+        "key": "4",
+        "label": "금",
+        "matches": 20,
+        "w": 11,
+        "d": 3,
+        "l": 6,
+        "winRate": 55.0,
+        "goalsPerMatch": 2.5,
+        "goalsConcededPerMatch": 1.35,
+        "goalDifferencePerMatch": 1.15,
+        "shotAccuracy": 83.93,
+        "goalConversion": 44.64,
+        "averagePossession": 0.0,
+        "passSuccessRate": 89.73,
+        "cleanSheetRate": 40.0,
+        "concedeTwoPlusRate": 40.0,
+        "lastMatchDateKst": "2026-07-24T21:29:47+09:00"
+      },
+      {
+        "key": "5",
+        "label": "토",
+        "matches": 20,
+        "w": 11,
+        "d": 4,
+        "l": 5,
+        "winRate": 55.0,
+        "goalsPerMatch": 1.95,
+        "goalsConcededPerMatch": 1.6,
+        "goalDifferencePerMatch": 0.35,
+        "shotAccuracy": 90.0,
+        "goalConversion": 39.0,
+        "averagePossession": 0.0,
+        "passSuccessRate": 86.35,
+        "cleanSheetRate": 15.0,
+        "concedeTwoPlusRate": 35.0,
+        "lastMatchDateKst": "2026-07-25T05:07:12+09:00"
+      }
+    ],
+    "opponentHeadToHead": [],
+    "matchFlowTypes": [
+      {
+        "type": "역습형 승리",
+        "count": 25,
+        "share": 25.0
+      },
+      {
+        "type": "수비 불안",
+        "count": 17,
+        "share": 17.0
+      },
+      {
+        "type": "균형형 경기",
+        "count": 17,
+        "share": 17.0
+      },
+      {
+        "type": "압도적 승리",
+        "count": 12,
+        "share": 12.0
+      },
+      {
+        "type": "저득점 접전",
+        "count": 11,
+        "share": 11.0
+      },
+      {
+        "type": "난타전",
+        "count": 10,
+        "share": 10.0
+      },
+      {
+        "type": "슈팅 우세 패배",
+        "count": 8,
+        "share": 8.0
+      }
+    ],
+    "playerCombinations": {
+      "pairs": [
+        {
+          "key": "802048940|863259307",
+          "label": "802048940|863259307",
+          "matches": 20,
+          "w": 11,
+          "d": 3,
+          "l": 6,
+          "winRate": 55.0,
+          "goalsPerMatch": 2.5,
+          "goalsConcededPerMatch": 1.35,
+          "goalDifferencePerMatch": 1.15,
+          "shotAccuracy": 83.93,
+          "goalConversion": 44.64,
+          "averagePossession": 0.0,
+          "passSuccessRate": 89.73,
+          "cleanSheetRate": 40.0,
+          "concedeTwoPlusRate": 40.0,
+          "lastMatchDateKst": "2026-07-24T21:29:47+09:00",
+          "players": [
+            {
+              "spId": 802048940,
+              "name": "페트르 체흐"
+            },
+            {
+              "spId": 863259307,
+              "name": "말로 귀스토"
+            }
+          ]
+        },
+        {
+          "key": "840003622|863259307",
+          "label": "840003622|863259307",
+          "matches": 20,
+          "w": 11,
+          "d": 3,
+          "l": 6,
+          "winRate": 55.0,
+          "goalsPerMatch": 2.5,
+          "goalsConcededPerMatch": 1.35,
+          "goalDifferencePerMatch": 1.15,
+          "shotAccuracy": 83.93,
+          "goalConversion": 44.64,
+          "averagePossession": 0.0,
+          "passSuccessRate": 89.73,
+          "cleanSheetRate": 40.0,
+          "concedeTwoPlusRate": 40.0,
+          "lastMatchDateKst": "2026-07-24T21:29:47+09:00",
+          "players": [
+            {
+              "spId": 840003622,
+              "name": "히카르두 카르발류"
+            },
+            {
+              "spId": 863259307,
+              "name": "말로 귀스토"
+            }
+          ]
+        },
+        {
+          "key": "848005471|863259307",
+          "label": "848005471|863259307",
+          "matches": 20,
+          "w": 11,
+          "d": 3,
+          "l": 6,
+          "winRate": 55.0,
+          "goalsPerMatch": 2.5,
+          "goalsConcededPerMatch": 1.35,
+          "goalDifferencePerMatch": 1.15,
+          "shotAccuracy": 83.93,
+          "goalConversion": 44.64,
+          "averagePossession": 0.0,
+          "passSuccessRate": 89.73,
+          "cleanSheetRate": 40.0,
+          "concedeTwoPlusRate": 40.0,
+          "lastMatchDateKst": "2026-07-24T21:29:47+09:00",
+          "players": [
+            {
+              "spId": 848005471,
+              "name": "프랭크 램파드"
+            },
+            {
+              "spId": 863259307,
+              "name": "말로 귀스토"
+            }
+          ]
+        },
+        {
+          "key": "848007512|863259307",
+          "label": "848007512|863259307",
+          "matches": 20,
+          "w": 11,
+          "d": 3,
+          "l": 6,
+          "winRate": 55.0,
+          "goalsPerMatch": 2.5,
+          "goalsConcededPerMatch": 1.35,
+          "goalDifferencePerMatch": 1.15,
+          "shotAccuracy": 83.93,
+          "goalConversion": 44.64,
+          "averagePossession": 0.0,
+          "passSuccessRate": 89.73,
+          "cleanSheetRate": 40.0,
+          "concedeTwoPlusRate": 40.0,
+          "lastMatchDateKst": "2026-07-24T21:29:47+09:00",
+          "players": [
+            {
+              "spId": 848007512,
+              "name": "에르난 크레스포"
+            },
+            {
+              "spId": 863259307,
+              "name": "말로 귀스토"
+            }
+          ]
+        },
+        {
+          "key": "851224656|863259307",
+          "label": "851224656|863259307",
+          "matches": 20,
+          "w": 11,
+          "d": 3,
+          "l": 6,
+          "winRate": 55.0,
+          "goalsPerMatch": 2.5,
+          "goalsConcededPerMatch": 1.35,
+          "goalDifferencePerMatch": 1.15,
+          "shotAccuracy": 83.93,
+          "goalConversion": 44.64,
+          "averagePossession": 0.0,
+          "passSuccessRate": 89.73,
+          "cleanSheetRate": 40.0,
+          "concedeTwoPlusRate": 40.0,
+          "lastMatchDateKst": "2026-07-24T21:29:47+09:00",
+          "players": [
+            {
+              "spId": 851224656,
+              "name": "올라 에이나"
+            },
+            {
+              "spId": 863259307,
+              "name": "말로 귀스토"
+            }
+          ]
+        },
+        {
+          "key": "852034079|863259307",
+          "label": "852034079|863259307",
+          "matches": 20,
+          "w": 11,
+          "d": 3,
+          "l": 6,
+          "winRate": 55.0,
+          "goalsPerMatch": 2.5,
+          "goalsConcededPerMatch": 1.35,
+          "goalDifferencePerMatch": 1.15,
+          "shotAccuracy": 83.93,
+          "goalConversion": 44.64,
+          "averagePossession": 0.0,
+          "passSuccessRate": 89.73,
+          "cleanSheetRate": 40.0,
+          "concedeTwoPlusRate": 40.0,
+          "lastMatchDateKst": "2026-07-24T21:29:47+09:00",
+          "players": [
+            {
+              "spId": 852034079,
+              "name": "애슐리 콜"
+            },
+            {
+              "spId": 863259307,
+              "name": "말로 귀스토"
+            }
+          ]
+        },
+        {
+          "key": "852232411|863259307",
+          "label": "852232411|863259307",
+          "matches": 20,
+          "w": 11,
+          "d": 3,
+          "l": 6,
+          "winRate": 55.0,
+          "goalsPerMatch": 2.5,
+          "goalsConcededPerMatch": 1.35,
+          "goalDifferencePerMatch": 1.15,
+          "shotAccuracy": 83.93,
+          "goalConversion": 44.64,
+          "averagePossession": 0.0,
+          "passSuccessRate": 89.73,
+          "cleanSheetRate": 40.0,
+          "concedeTwoPlusRate": 40.0,
+          "lastMatchDateKst": "2026-07-24T21:29:47+09:00",
+          "players": [
+            {
+              "spId": 852232411,
+              "name": "C. 은쿤쿠"
+            },
+            {
+              "spId": 863259307,
+              "name": "말로 귀스토"
+            }
+          ]
+        },
+        {
+          "key": "852244067|863259307",
+          "label": "852244067|863259307",
+          "matches": 20,
+          "w": 11,
+          "d": 3,
+          "l": 6,
+          "winRate": 55.0,
+          "goalsPerMatch": 2.5,
+          "goalsConcededPerMatch": 1.35,
+          "goalDifferencePerMatch": 1.15,
+          "shotAccuracy": 83.93,
+          "goalConversion": 44.64,
+          "averagePossession": 0.0,
+          "passSuccessRate": 89.73,
+          "cleanSheetRate": 40.0,
+          "concedeTwoPlusRate": 40.0,
+          "lastMatchDateKst": "2026-07-24T21:29:47+09:00",
+          "players": [
+            {
+              "spId": 852244067,
+              "name": "막상스 라크루아"
+            },
+            {
+              "spId": 863259307,
+              "name": "말로 귀스토"
+            }
+          ]
+        },
+        {
+          "key": "856256079|863259307",
+          "label": "856256079|863259307",
+          "matches": 20,
+          "w": 11,
+          "d": 3,
+          "l": 6,
+          "winRate": 55.0,
+          "goalsPerMatch": 2.5,
+          "goalsConcededPerMatch": 1.35,
+          "goalDifferencePerMatch": 1.15,
+          "shotAccuracy": 83.93,
+          "goalConversion": 44.64,
+          "averagePossession": 0.0,
+          "passSuccessRate": 89.73,
+          "cleanSheetRate": 40.0,
+          "concedeTwoPlusRate": 40.0,
+          "lastMatchDateKst": "2026-07-24T21:29:47+09:00",
+          "players": [
+            {
+              "spId": 856256079,
+              "name": "M. 카이세도"
+            },
+            {
+              "spId": 863259307,
+              "name": "말로 귀스토"
+            }
+          ]
+        },
+        {
+          "key": "861000027|863259307",
+          "label": "861000027|863259307",
+          "matches": 20,
+          "w": 11,
+          "d": 3,
+          "l": 6,
+          "winRate": 55.0,
+          "goalsPerMatch": 2.5,
+          "goalsConcededPerMatch": 1.35,
+          "goalDifferencePerMatch": 1.15,
+          "shotAccuracy": 83.93,
+          "goalConversion": 44.64,
+          "averagePossession": 0.0,
+          "passSuccessRate": 89.73,
+          "cleanSheetRate": 40.0,
+          "concedeTwoPlusRate": 40.0,
+          "lastMatchDateKst": "2026-07-24T21:29:47+09:00",
+          "players": [
+            {
+              "spId": 861000027,
+              "name": "조 콜"
+            },
+            {
+              "spId": 863259307,
+              "name": "말로 귀스토"
+            }
+          ]
+        }
+      ],
+      "trios": [
+        {
+          "key": "802048940|840003622|863259307",
+          "label": "802048940|840003622|863259307",
+          "matches": 20,
+          "w": 11,
+          "d": 3,
+          "l": 6,
+          "winRate": 55.0,
+          "goalsPerMatch": 2.5,
+          "goalsConcededPerMatch": 1.35,
+          "goalDifferencePerMatch": 1.15,
+          "shotAccuracy": 83.93,
+          "goalConversion": 44.64,
+          "averagePossession": 0.0,
+          "passSuccessRate": 89.73,
+          "cleanSheetRate": 40.0,
+          "concedeTwoPlusRate": 40.0,
+          "lastMatchDateKst": "2026-07-24T21:29:47+09:00",
+          "players": [
+            {
+              "spId": 802048940,
+              "name": "페트르 체흐"
+            },
+            {
+              "spId": 840003622,
+              "name": "히카르두 카르발류"
+            },
+            {
+              "spId": 863259307,
+              "name": "말로 귀스토"
+            }
+          ]
+        },
+        {
+          "key": "802048940|848005471|863259307",
+          "label": "802048940|848005471|863259307",
+          "matches": 20,
+          "w": 11,
+          "d": 3,
+          "l": 6,
+          "winRate": 55.0,
+          "goalsPerMatch": 2.5,
+          "goalsConcededPerMatch": 1.35,
+          "goalDifferencePerMatch": 1.15,
+          "shotAccuracy": 83.93,
+          "goalConversion": 44.64,
+          "averagePossession": 0.0,
+          "passSuccessRate": 89.73,
+          "cleanSheetRate": 40.0,
+          "concedeTwoPlusRate": 40.0,
+          "lastMatchDateKst": "2026-07-24T21:29:47+09:00",
+          "players": [
+            {
+              "spId": 802048940,
+              "name": "페트르 체흐"
+            },
+            {
+              "spId": 848005471,
+              "name": "프랭크 램파드"
+            },
+            {
+              "spId": 863259307,
+              "name": "말로 귀스토"
+            }
+          ]
+        },
+        {
+          "key": "802048940|848007512|863259307",
+          "label": "802048940|848007512|863259307",
+          "matches": 20,
+          "w": 11,
+          "d": 3,
+          "l": 6,
+          "winRate": 55.0,
+          "goalsPerMatch": 2.5,
+          "goalsConcededPerMatch": 1.35,
+          "goalDifferencePerMatch": 1.15,
+          "shotAccuracy": 83.93,
+          "goalConversion": 44.64,
+          "averagePossession": 0.0,
+          "passSuccessRate": 89.73,
+          "cleanSheetRate": 40.0,
+          "concedeTwoPlusRate": 40.0,
+          "lastMatchDateKst": "2026-07-24T21:29:47+09:00",
+          "players": [
+            {
+              "spId": 802048940,
+              "name": "페트르 체흐"
+            },
+            {
+              "spId": 848007512,
+              "name": "에르난 크레스포"
+            },
+            {
+              "spId": 863259307,
+              "name": "말로 귀스토"
+            }
+          ]
+        },
+        {
+          "key": "802048940|851224656|863259307",
+          "label": "802048940|851224656|863259307",
+          "matches": 20,
+          "w": 11,
+          "d": 3,
+          "l": 6,
+          "winRate": 55.0,
+          "goalsPerMatch": 2.5,
+          "goalsConcededPerMatch": 1.35,
+          "goalDifferencePerMatch": 1.15,
+          "shotAccuracy": 83.93,
+          "goalConversion": 44.64,
+          "averagePossession": 0.0,
+          "passSuccessRate": 89.73,
+          "cleanSheetRate": 40.0,
+          "concedeTwoPlusRate": 40.0,
+          "lastMatchDateKst": "2026-07-24T21:29:47+09:00",
+          "players": [
+            {
+              "spId": 802048940,
+              "name": "페트르 체흐"
+            },
+            {
+              "spId": 851224656,
+              "name": "올라 에이나"
+            },
+            {
+              "spId": 863259307,
+              "name": "말로 귀스토"
+            }
+          ]
+        },
+        {
+          "key": "802048940|852034079|863259307",
+          "label": "802048940|852034079|863259307",
+          "matches": 20,
+          "w": 11,
+          "d": 3,
+          "l": 6,
+          "winRate": 55.0,
+          "goalsPerMatch": 2.5,
+          "goalsConcededPerMatch": 1.35,
+          "goalDifferencePerMatch": 1.15,
+          "shotAccuracy": 83.93,
+          "goalConversion": 44.64,
+          "averagePossession": 0.0,
+          "passSuccessRate": 89.73,
+          "cleanSheetRate": 40.0,
+          "concedeTwoPlusRate": 40.0,
+          "lastMatchDateKst": "2026-07-24T21:29:47+09:00",
+          "players": [
+            {
+              "spId": 802048940,
+              "name": "페트르 체흐"
+            },
+            {
+              "spId": 852034079,
+              "name": "애슐리 콜"
+            },
+            {
+              "spId": 863259307,
+              "name": "말로 귀스토"
+            }
+          ]
+        },
+        {
+          "key": "802048940|852232411|863259307",
+          "label": "802048940|852232411|863259307",
+          "matches": 20,
+          "w": 11,
+          "d": 3,
+          "l": 6,
+          "winRate": 55.0,
+          "goalsPerMatch": 2.5,
+          "goalsConcededPerMatch": 1.35,
+          "goalDifferencePerMatch": 1.15,
+          "shotAccuracy": 83.93,
+          "goalConversion": 44.64,
+          "averagePossession": 0.0,
+          "passSuccessRate": 89.73,
+          "cleanSheetRate": 40.0,
+          "concedeTwoPlusRate": 40.0,
+          "lastMatchDateKst": "2026-07-24T21:29:47+09:00",
+          "players": [
+            {
+              "spId": 802048940,
+              "name": "페트르 체흐"
+            },
+            {
+              "spId": 852232411,
+              "name": "C. 은쿤쿠"
+            },
+            {
+              "spId": 863259307,
+              "name": "말로 귀스토"
+            }
+          ]
+        },
+        {
+          "key": "802048940|852244067|863259307",
+          "label": "802048940|852244067|863259307",
+          "matches": 20,
+          "w": 11,
+          "d": 3,
+          "l": 6,
+          "winRate": 55.0,
+          "goalsPerMatch": 2.5,
+          "goalsConcededPerMatch": 1.35,
+          "goalDifferencePerMatch": 1.15,
+          "shotAccuracy": 83.93,
+          "goalConversion": 44.64,
+          "averagePossession": 0.0,
+          "passSuccessRate": 89.73,
+          "cleanSheetRate": 40.0,
+          "concedeTwoPlusRate": 40.0,
+          "lastMatchDateKst": "2026-07-24T21:29:47+09:00",
+          "players": [
+            {
+              "spId": 802048940,
+              "name": "페트르 체흐"
+            },
+            {
+              "spId": 852244067,
+              "name": "막상스 라크루아"
+            },
+            {
+              "spId": 863259307,
+              "name": "말로 귀스토"
+            }
+          ]
+        },
+        {
+          "key": "802048940|856256079|863259307",
+          "label": "802048940|856256079|863259307",
+          "matches": 20,
+          "w": 11,
+          "d": 3,
+          "l": 6,
+          "winRate": 55.0,
+          "goalsPerMatch": 2.5,
+          "goalsConcededPerMatch": 1.35,
+          "goalDifferencePerMatch": 1.15,
+          "shotAccuracy": 83.93,
+          "goalConversion": 44.64,
+          "averagePossession": 0.0,
+          "passSuccessRate": 89.73,
+          "cleanSheetRate": 40.0,
+          "concedeTwoPlusRate": 40.0,
+          "lastMatchDateKst": "2026-07-24T21:29:47+09:00",
+          "players": [
+            {
+              "spId": 802048940,
+              "name": "페트르 체흐"
+            },
+            {
+              "spId": 856256079,
+              "name": "M. 카이세도"
+            },
+            {
+              "spId": 863259307,
+              "name": "말로 귀스토"
+            }
+          ]
+        }
+      ]
+    },
+    "positionGroupPerformance": [
+      {
+        "key": "공격진",
+        "label": "공격진",
+        "matches": 100,
+        "w": 51,
+        "d": 12,
+        "l": 37,
+        "winRate": 51.0,
+        "goalsPerMatch": 1.98,
+        "goalsConcededPerMatch": 1.54,
+        "goalDifferencePerMatch": 0.44,
+        "shotAccuracy": 81.17,
+        "goalConversion": 41.42,
+        "averagePossession": 0.0,
+        "passSuccessRate": 87.43,
+        "cleanSheetRate": 23.0,
+        "concedeTwoPlusRate": 44.0,
+        "lastMatchDateKst": "2026-07-30T03:50:02+09:00"
+      },
+      {
+        "key": "미드필더진",
+        "label": "미드필더진",
+        "matches": 100,
+        "w": 51,
+        "d": 12,
+        "l": 37,
+        "winRate": 51.0,
+        "goalsPerMatch": 1.98,
+        "goalsConcededPerMatch": 1.54,
+        "goalDifferencePerMatch": 0.44,
+        "shotAccuracy": 81.17,
+        "goalConversion": 41.42,
+        "averagePossession": 0.0,
+        "passSuccessRate": 87.43,
+        "cleanSheetRate": 23.0,
+        "concedeTwoPlusRate": 44.0,
+        "lastMatchDateKst": "2026-07-30T03:50:02+09:00"
+      },
+      {
+        "key": "수비진",
+        "label": "수비진",
+        "matches": 100,
+        "w": 51,
+        "d": 12,
+        "l": 37,
+        "winRate": 51.0,
+        "goalsPerMatch": 1.98,
+        "goalsConcededPerMatch": 1.54,
+        "goalDifferencePerMatch": 0.44,
+        "shotAccuracy": 81.17,
+        "goalConversion": 41.42,
+        "averagePossession": 0.0,
+        "passSuccessRate": 87.43,
+        "cleanSheetRate": 23.0,
+        "concedeTwoPlusRate": 44.0,
+        "lastMatchDateKst": "2026-07-30T03:50:02+09:00"
+      }
+    ]
+  },
+  "comparisons": {
+    "recent20VsPrevious20": {
+      "recent": {
+        "period": 20,
+        "sampleSize": 20,
+        "w": 6,
+        "d": 2,
+        "l": 12,
+        "winRate": 30.0,
+        "goalsPerMatch": 1.2,
+        "goalsConcededPerMatch": 1.7,
+        "goalDifferencePerMatch": -0.5,
+        "shotsPerMatch": 3.3,
+        "shotsOnTargetPerMatch": 2.65,
+        "shotAccuracy": 80.3,
+        "goalConversion": 36.36,
+        "averagePossession": 0.0,
+        "passSuccessRate": 86.48
+      },
+      "previous": {
+        "period": 20,
+        "sampleSize": 20,
+        "w": 11,
+        "d": 0,
+        "l": 9,
+        "winRate": 55.0,
+        "goalsPerMatch": 1.8,
+        "goalsConcededPerMatch": 1.65,
+        "goalDifferencePerMatch": 0.15,
+        "shotsPerMatch": 4.4,
+        "shotsOnTargetPerMatch": 3.25,
+        "shotAccuracy": 73.86,
+        "goalConversion": 40.91,
+        "averagePossession": 0.0,
+        "passSuccessRate": 86.25
+      },
+      "winRateDifference": -25.0,
+      "goalsPerMatchChangePercent": -33.33,
+      "goalsConcededPerMatchChangePercent": 3.03
+    }
+  },
+  "insights": [
+    {
+      "code": "LOW_POSSESSION_HIGH_EFFICIENCY",
+      "category": "CONTROL",
+      "severity": "positive",
+      "title": "낮은 점유율 고효율",
+      "description": "낮은 점유 비중에서도 평균 이상의 득점 전환과 승률이 관찰되었습니다.",
+      "sampleSize": 100,
+      "evidence": {
+        "averagePossession": 0.0,
+        "goalConversion": 41.42,
+        "winRate": 51.0
+      }
+    },
+    {
+      "code": "STYLE_PROFILE_DETECTED",
+      "category": "STYLE",
+      "severity": "info",
+      "title": "안정형 프로필",
+      "description": "최근 감독모드 경기 지표에서 가장 강하게 관찰된 운영 성향입니다.",
+      "sampleSize": 100,
+      "evidence": {
+        "primary": "안정형",
+        "scores": {
+          "점유형": 0.0,
+          "다득점형": 49.5,
+          "수비형": 39.55,
+          "고효율형": 59.27,
+          "다슈팅형": 47.8,
+          "안정형": 59.97
+        }
+      }
+    }
+  ]
+}

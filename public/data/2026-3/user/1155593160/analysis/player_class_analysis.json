@@ -1,0 +1,218 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:16:42.446948+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1155593160",
+    "nickname": "ES코코몽"
+  },
+  "classRows": [
+    {
+      "seasonId": 840,
+      "seasonName": "LE (Legend of Europa)",
+      "players": 6,
+      "appearances": 2571,
+      "goals": 122,
+      "assists": 255,
+      "attackPoints": 377,
+      "avgRating": 6.46
+    },
+    {
+      "seasonId": 866,
+      "seasonName": "26 TOTS (26 Team Of The Season)",
+      "players": 4,
+      "appearances": 2296,
+      "goals": 295,
+      "assists": 332,
+      "attackPoints": 627,
+      "avgRating": 6.51
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 4,
+      "appearances": 1691,
+      "goals": 42,
+      "assists": 46,
+      "attackPoints": 88,
+      "avgRating": 6.43
+    },
+    {
+      "seasonId": 855,
+      "seasonName": "26 TOTY-N (26 Team Of The Nominated)",
+      "players": 2,
+      "appearances": 1416,
+      "goals": 411,
+      "assists": 293,
+      "attackPoints": 704,
+      "avgRating": 6.65
+    },
+    {
+      "seasonId": 863,
+      "seasonName": "PTG (Path to Glory)",
+      "players": 2,
+      "appearances": 1094,
+      "goals": 179,
+      "assists": 163,
+      "attackPoints": 342,
+      "avgRating": 6.44
+    },
+    {
+      "seasonId": 826,
+      "seasonName": "24EP (2024 Energetic Player)",
+      "players": 2,
+      "appearances": 1038,
+      "goals": 136,
+      "assists": 86,
+      "attackPoints": 222,
+      "avgRating": 6.58
+    },
+    {
+      "seasonId": 834,
+      "seasonName": "24 UCL (24 UEFA Champions League)",
+      "players": 3,
+      "appearances": 883,
+      "goals": 196,
+      "assists": 92,
+      "attackPoints": 288,
+      "avgRating": 6.58
+    },
+    {
+      "seasonId": 825,
+      "seasonName": "CU (Champions of Europe)",
+      "players": 1,
+      "appearances": 704,
+      "goals": 314,
+      "assists": 201,
+      "attackPoints": 515,
+      "avgRating": 6.76
+    },
+    {
+      "seasonId": 856,
+      "seasonName": "25 UCL (25 UEFA Champions League)",
+      "players": 1,
+      "appearances": 487,
+      "goals": 165,
+      "assists": 116,
+      "attackPoints": 281,
+      "avgRating": 6.73
+    },
+    {
+      "seasonId": 829,
+      "seasonName": "GRU (Greatest Runner-Ups)",
+      "players": 1,
+      "appearances": 487,
+      "goals": 113,
+      "assists": 135,
+      "attackPoints": 248,
+      "avgRating": 6.55
+    },
+    {
+      "seasonId": 852,
+      "seasonName": "FAC (Football Association Champions)",
+      "players": 2,
+      "appearances": 374,
+      "goals": 71,
+      "assists": 90,
+      "attackPoints": 161,
+      "avgRating": 6.36
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 1,
+      "appearances": 93,
+      "goals": 0,
+      "assists": 4,
+      "attackPoints": 4,
+      "avgRating": 6.45
+    },
+    {
+      "seasonId": 864,
+      "seasonName": "TK (Team Korea)",
+      "players": 1,
+      "appearances": 5,
+      "goals": 0,
+      "assists": 1,
+      "attackPoints": 1,
+      "avgRating": 6.44
+    },
+    {
+      "seasonId": 836,
+      "seasonName": "WB (Wonderboys)",
+      "players": 1,
+      "appearances": 4,
+      "goals": 2,
+      "assists": 1,
+      "attackPoints": 3,
+      "avgRating": 6.88
+    },
+    {
+      "seasonId": 802,
+      "seasonName": "DC (Decade)",
+      "players": 1,
+      "appearances": 2,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 5.55
+    }
+  ],
+  "samePlayerCardComparisons": [
+    {
+      "basePlayerId": "165153",
+      "name": "카림 벤제마",
+      "cards": [
+        {
+          "spId": 825165153,
+          "seasonId": 825,
+          "seasonName": "CU (Champions of Europe)",
+          "appearances": 704,
+          "attackPoint": 515,
+          "avgRating": 6.76,
+          "playerWinRate": 45.31
+        },
+        {
+          "spId": 836165153,
+          "seasonId": 836,
+          "seasonName": "WB (Wonderboys)",
+          "appearances": 4,
+          "attackPoint": 3,
+          "avgRating": 6.88,
+          "playerWinRate": 25.0
+        }
+      ]
+    },
+    {
+      "basePlayerId": "229891",
+      "name": "J. 리에르손",
+      "cards": [
+        {
+          "spId": 866229891,
+          "seasonId": 866,
+          "seasonName": "26 TOTS (26 Team Of The Season)",
+          "appearances": 394,
+          "attackPoint": 185,
+          "avgRating": 6.67,
+          "playerWinRate": 37.06
+        },
+        {
+          "spId": 851229891,
+          "seasonId": 851,
+          "seasonName": "25DP (25 Devoted Player)",
+          "appearances": 93,
+          "attackPoint": 4,
+          "avgRating": 6.45,
+          "playerWinRate": 44.09
+        }
+      ]
+    }
+  ]
+}

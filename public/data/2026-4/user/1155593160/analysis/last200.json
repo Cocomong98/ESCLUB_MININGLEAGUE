@@ -1,0 +1,1479 @@
+{
+  "schemaVersion": "0.1.5",
+  "generatedAt": "2026-08-01T16:36:44.387497+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52,
+    "matchtypeName": "감독모드"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1155593160",
+    "nickname": "ES코코몽"
+  },
+  "window": {
+    "mode": "season_filtered_last_n",
+    "n": 100,
+    "actual": 100
+  },
+  "period": {
+    "from": "2026-07-31T18:36:18+09:00",
+    "to": "2026-08-01T14:52:11+09:00"
+  },
+  "kpi": {
+    "w": 36,
+    "d": 31,
+    "l": 33,
+    "winRate": 36.0,
+    "avgGoalsFor": 1.72,
+    "avgGoalsAgainst": 1.72,
+    "avgShots": 4.17,
+    "avgShotsOnTarget": 3.44,
+    "avgPossession": 0.0,
+    "avgPassAcc": 0.8611,
+    "avgTackleAcc": 0.7059
+  },
+  "behavior": {
+    "firstGoalRate": 0.4896,
+    "concedeFirstRate": 0.5104,
+    "comebackWinRate": 0.2245,
+    "leadAtHalfRate": 0.35,
+    "leadAtHalfWinRate": 0.6,
+    "concedeLateRate": 0.3
+  },
+  "advanced": {
+    "firstGoalWinRate": 0.5319,
+    "comebackWinRate": 0.2245,
+    "concedeWhileLeadingRate": 0.6774,
+    "late75PlusGoalDiff": {
+      "for": 34,
+      "against": 30,
+      "diff": 4
+    },
+    "setPieceGoalRate": 0.1512,
+    "cleanSheetRate": 0.14,
+    "concedeTwoPlusRate": 0.52,
+    "strongOppWinRate": {
+      "value": 0.0,
+      "wins": 0,
+      "matches": 20,
+      "oppAvgRatingThreshold": 4.1156
+    },
+    "highPerformanceIndex": {
+      "value": 0.0167,
+      "points": 1,
+      "maxPoints": 60,
+      "matches": 20,
+      "oppAvgRatingThreshold": 4.1156
+    },
+    "shootoutRecord": {
+      "w": 0,
+      "l": 0,
+      "total": 0
+    },
+    "tempo": {
+      "passesPerMinute": 1.0824,
+      "passesPerMatch": 97.42,
+      "shotsPerMatch": 4.17
+    },
+    "buildUpBreakRate": 0.1389,
+    "flankRelianceShots": 0.0024,
+    "flankRelianceAssistOrigin": 0.2403,
+    "conversionRate": {
+      "value": 0.63,
+      "goals": 172,
+      "xg": 273.0108,
+      "shots": 417
+    },
+    "centralPenetrationEfficiency": 0.516,
+    "recoveryIntensity": {
+      "value": 0.1185,
+      "recoveries": 1110,
+      "oppPassTry": 9367
+    },
+    "secondBallRecoveryRate": 0.496,
+    "lateFocusCoefficient": {
+      "value": 0.3,
+      "lateConcedeShare": 0.1744,
+      "lateConcede": 30,
+      "concedeTotal": 172,
+      "avgConcedePerMatch": 1.72
+    },
+    "gkDependencyRate": 0.5196,
+    "scoringRouteConcentration": 0.5233
+  },
+  "advancedStandard": {
+    "openingGoalConversion": {
+      "value": 0.5319,
+      "method": "exact",
+      "wins": 25,
+      "matches": 47
+    },
+    "resilienceFactor": {
+      "value": 0.3197,
+      "method": "exact",
+      "points": 47,
+      "maxPoints": 147,
+      "matches": 49
+    },
+    "leadErosionRate": {
+      "value": 0.6774,
+      "method": "proxy",
+      "events": 42,
+      "leadMatches": 62
+    },
+    "eliteOpponentEfficiency": {
+      "value": 0.0167,
+      "method": "proxy",
+      "points": 1,
+      "maxPoints": 60,
+      "matches": 20,
+      "oppAvgRatingThreshold": 4.1156
+    },
+    "transitionVelocity": {
+      "value": 0.4203,
+      "method": "proxy",
+      "forwardPassRatio": 0.3883,
+      "passesPerMinute": 1.0824,
+      "forwardPassTry": 3783,
+      "passTry": 9742
+    },
+    "phase1TurnoverRate": {
+      "value": 0.1389,
+      "method": "proxy",
+      "failures": 1353,
+      "passTry": 9742
+    },
+    "flankReliance": {
+      "shotsBased": 0.0024,
+      "assistOriginBased": 0.2403,
+      "method": "proxy",
+      "flankShots": 1,
+      "totalShots": 417,
+      "flankAssistOriginGoals": 37,
+      "knownAssistOriginGoals": 154
+    },
+    "verticalPenetrationYield": {
+      "value": 0.516,
+      "method": "proxy",
+      "goals": 161,
+      "attempts": 312
+    },
+    "scoringRouteConcentration": {
+      "value": 0.5233,
+      "method": "exact",
+      "maxRouteShare": 0.5233
+    },
+    "looseBallDominance": {
+      "value": 0.1185,
+      "method": "proxy",
+      "recoveries": 1110,
+      "oppPassTry": 9367
+    },
+    "lateConcessionShare": {
+      "value": 0.1395,
+      "method": "exact",
+      "lateConcede80": 24,
+      "concedeTotal": 172
+    },
+    "shotStoppingImpact": {
+      "value": 0.5196,
+      "method": "exact",
+      "saves": 186,
+      "oppShotsOnTarget": 358
+    },
+    "highLeakageFrequency": {
+      "value": 0.52,
+      "method": "exact",
+      "matches2PlusConcede": 52,
+      "matches": 100
+    }
+  },
+  "distributions": {
+    "goalTimeFor": [
+      {
+        "bin": "0-15",
+        "count": 21
+      },
+      {
+        "bin": "16-30",
+        "count": 29
+      },
+      {
+        "bin": "31-45",
+        "count": 30
+      },
+      {
+        "bin": "46-60",
+        "count": 30
+      },
+      {
+        "bin": "61-75",
+        "count": 28
+      },
+      {
+        "bin": "76-90",
+        "count": 27
+      },
+      {
+        "bin": "91-105",
+        "count": 7
+      },
+      {
+        "bin": "106-120",
+        "count": 0
+      },
+      {
+        "bin": "120+",
+        "count": 0
+      }
+    ],
+    "goalTimeAgainst": [
+      {
+        "bin": "0-15",
+        "count": 23
+      },
+      {
+        "bin": "16-30",
+        "count": 26
+      },
+      {
+        "bin": "31-45",
+        "count": 25
+      },
+      {
+        "bin": "46-60",
+        "count": 34
+      },
+      {
+        "bin": "61-75",
+        "count": 34
+      },
+      {
+        "bin": "76-90",
+        "count": 23
+      },
+      {
+        "bin": "91-105",
+        "count": 7
+      },
+      {
+        "bin": "106-120",
+        "count": 0
+      },
+      {
+        "bin": "120+",
+        "count": 0
+      }
+    ],
+    "shotType": [
+      {
+        "type": 1,
+        "name": "normal",
+        "count": 206
+      },
+      {
+        "type": 3,
+        "name": "header",
+        "count": 75
+      },
+      {
+        "type": 2,
+        "name": "finesse",
+        "count": 64
+      },
+      {
+        "type": 7,
+        "name": "type_7",
+        "count": 46
+      },
+      {
+        "type": 8,
+        "name": "type_8",
+        "count": 11
+      },
+      {
+        "type": 14,
+        "name": "type_14",
+        "count": 7
+      },
+      {
+        "type": 10,
+        "name": "type_10",
+        "count": 4
+      },
+      {
+        "type": 6,
+        "name": "penalty",
+        "count": 3
+      },
+      {
+        "type": 9,
+        "name": "type_9",
+        "count": 1
+      }
+    ],
+    "inPenalty": {
+      "in": 267,
+      "out": 150,
+      "rate": 0.6403
+    },
+    "scorelinesTop": [
+      {
+        "gf": 2,
+        "ga": 1,
+        "count": 13
+      },
+      {
+        "gf": 1,
+        "ga": 1,
+        "count": 12
+      },
+      {
+        "gf": 1,
+        "ga": 2,
+        "count": 11
+      },
+      {
+        "gf": 2,
+        "ga": 2,
+        "count": 9
+      },
+      {
+        "gf": 3,
+        "ga": 3,
+        "count": 8
+      },
+      {
+        "gf": 3,
+        "ga": 1,
+        "count": 7
+      },
+      {
+        "gf": 1,
+        "ga": 0,
+        "count": 5
+      },
+      {
+        "gf": 1,
+        "ga": 3,
+        "count": 4
+      },
+      {
+        "gf": 0,
+        "ga": 0,
+        "count": 4
+      },
+      {
+        "gf": 3,
+        "ga": 4,
+        "count": 3
+      }
+    ]
+  },
+  "recentMatches": [
+    {
+      "matchKey": "66c1d84df516",
+      "dateKst": "2026-08-01T14:52:11+09:00",
+      "result": "패",
+      "gf": 0,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.8321,
+      "shots": 3,
+      "sot": 2
+    },
+    {
+      "matchKey": "e608b8261a88",
+      "dateKst": "2026-08-01T14:40:27+09:00",
+      "result": "무",
+      "gf": 3,
+      "ga": 3,
+      "possession": 0.0,
+      "passAcc": 0.9254,
+      "shots": 10,
+      "sot": 9
+    },
+    {
+      "matchKey": "8eb6c6dd24df",
+      "dateKst": "2026-08-01T14:28:08+09:00",
+      "result": "패",
+      "gf": 3,
+      "ga": 4,
+      "possession": 0.0,
+      "passAcc": 0.837,
+      "shots": 4,
+      "sot": 4
+    },
+    {
+      "matchKey": "750c194fd810",
+      "dateKst": "2026-08-01T14:13:22+09:00",
+      "result": "무",
+      "gf": 1,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.8911,
+      "shots": 4,
+      "sot": 2
+    },
+    {
+      "matchKey": "5365156a72ec",
+      "dateKst": "2026-08-01T14:02:12+09:00",
+      "result": "승",
+      "gf": 2,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.8469,
+      "shots": 5,
+      "sot": 4
+    },
+    {
+      "matchKey": "0f99c40e467b",
+      "dateKst": "2026-08-01T13:50:02+09:00",
+      "result": "패",
+      "gf": 0,
+      "ga": 3,
+      "possession": 0.0,
+      "passAcc": 0.8772,
+      "shots": 2,
+      "sot": 2
+    },
+    {
+      "matchKey": "00c1011e4ecf",
+      "dateKst": "2026-08-01T13:37:54+09:00",
+      "result": "무",
+      "gf": 3,
+      "ga": 3,
+      "possession": 0.0,
+      "passAcc": 0.7706,
+      "shots": 5,
+      "sot": 4
+    },
+    {
+      "matchKey": "58e5fceda3b2",
+      "dateKst": "2026-08-01T13:24:48+09:00",
+      "result": "무",
+      "gf": 3,
+      "ga": 3,
+      "possession": 0.0,
+      "passAcc": 0.9239,
+      "shots": 9,
+      "sot": 7
+    },
+    {
+      "matchKey": "92807dd326c4",
+      "dateKst": "2026-08-01T13:10:49+09:00",
+      "result": "패",
+      "gf": 1,
+      "ga": 3,
+      "possession": 0.0,
+      "passAcc": 0.8364,
+      "shots": 4,
+      "sot": 4
+    },
+    {
+      "matchKey": "bf08782ce18b",
+      "dateKst": "2026-08-01T12:56:41+09:00",
+      "result": "승",
+      "gf": 3,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.8283,
+      "shots": 6,
+      "sot": 5
+    },
+    {
+      "matchKey": "5be57296afd6",
+      "dateKst": "2026-08-01T12:42:42+09:00",
+      "result": "승",
+      "gf": 2,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.7792,
+      "shots": 3,
+      "sot": 3
+    },
+    {
+      "matchKey": "ad8232973ae0",
+      "dateKst": "2026-08-01T12:30:10+09:00",
+      "result": "승",
+      "gf": 2,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.7952,
+      "shots": 4,
+      "sot": 3
+    },
+    {
+      "matchKey": "5564cf33bec2",
+      "dateKst": "2026-08-01T12:18:03+09:00",
+      "result": "승",
+      "gf": 1,
+      "ga": 0,
+      "possession": 0.0,
+      "passAcc": 0.8421,
+      "shots": 4,
+      "sot": 3
+    },
+    {
+      "matchKey": "c7da5db0cdc0",
+      "dateKst": "2026-08-01T12:06:13+09:00",
+      "result": "승",
+      "gf": 1,
+      "ga": 0,
+      "possession": 0.0,
+      "passAcc": 0.8152,
+      "shots": 1,
+      "sot": 1
+    },
+    {
+      "matchKey": "2934c34b0351",
+      "dateKst": "2026-08-01T11:54:48+09:00",
+      "result": "무",
+      "gf": 3,
+      "ga": 3,
+      "possession": 0.0,
+      "passAcc": 0.8953,
+      "shots": 6,
+      "sot": 5
+    },
+    {
+      "matchKey": "b07eea8dec1f",
+      "dateKst": "2026-08-01T11:41:11+09:00",
+      "result": "승",
+      "gf": 3,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.8716,
+      "shots": 5,
+      "sot": 4
+    },
+    {
+      "matchKey": "be4e8714e53c",
+      "dateKst": "2026-08-01T11:28:13+09:00",
+      "result": "무",
+      "gf": 1,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.8778,
+      "shots": 5,
+      "sot": 5
+    },
+    {
+      "matchKey": "bf7f99dd3009",
+      "dateKst": "2026-08-01T11:15:51+09:00",
+      "result": "승",
+      "gf": 1,
+      "ga": 0,
+      "possession": 0.0,
+      "passAcc": 0.8713,
+      "shots": 2,
+      "sot": 1
+    },
+    {
+      "matchKey": "ad36e36664c6",
+      "dateKst": "2026-08-01T11:04:19+09:00",
+      "result": "승",
+      "gf": 3,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.8816,
+      "shots": 5,
+      "sot": 4
+    },
+    {
+      "matchKey": "76751fca5e11",
+      "dateKst": "2026-08-01T10:52:04+09:00",
+      "result": "승",
+      "gf": 3,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.825,
+      "shots": 4,
+      "sot": 4
+    },
+    {
+      "matchKey": "32a4350c5cc8",
+      "dateKst": "2026-08-01T10:39:51+09:00",
+      "result": "패",
+      "gf": 0,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.8155,
+      "shots": 4,
+      "sot": 2
+    },
+    {
+      "matchKey": "a4dc55dec133",
+      "dateKst": "2026-08-01T10:28:36+09:00",
+      "result": "승",
+      "gf": 3,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.8904,
+      "shots": 5,
+      "sot": 5
+    },
+    {
+      "matchKey": "ace740158edb",
+      "dateKst": "2026-08-01T10:27:09+09:00",
+      "result": "승",
+      "gf": 2,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.8194,
+      "shots": 3,
+      "sot": 3
+    },
+    {
+      "matchKey": "ed118b40cf76",
+      "dateKst": "2026-08-01T10:04:27+09:00",
+      "result": "무",
+      "gf": 3,
+      "ga": 3,
+      "possession": 0.0,
+      "passAcc": 0.8932,
+      "shots": 3,
+      "sot": 3
+    },
+    {
+      "matchKey": "62eecd22c691",
+      "dateKst": "2026-08-01T09:51:10+09:00",
+      "result": "승",
+      "gf": 2,
+      "ga": 0,
+      "possession": 0.0,
+      "passAcc": 0.8354,
+      "shots": 3,
+      "sot": 3
+    },
+    {
+      "matchKey": "ff19f25f124f",
+      "dateKst": "2026-08-01T09:39:51+09:00",
+      "result": "승",
+      "gf": 4,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.8515,
+      "shots": 5,
+      "sot": 5
+    },
+    {
+      "matchKey": "388ab368e2c1",
+      "dateKst": "2026-08-01T09:26:59+09:00",
+      "result": "승",
+      "gf": 5,
+      "ga": 3,
+      "possession": 0.0,
+      "passAcc": 0.8495,
+      "shots": 5,
+      "sot": 5
+    },
+    {
+      "matchKey": "95d5d7150ead",
+      "dateKst": "2026-08-01T09:12:48+09:00",
+      "result": "무",
+      "gf": 2,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.8558,
+      "shots": 6,
+      "sot": 4
+    },
+    {
+      "matchKey": "a86ec18b2774",
+      "dateKst": "2026-08-01T08:59:24+09:00",
+      "result": "패",
+      "gf": 2,
+      "ga": 3,
+      "possession": 0.0,
+      "passAcc": 0.8485,
+      "shots": 5,
+      "sot": 4
+    },
+    {
+      "matchKey": "cdb9191cf2e4",
+      "dateKst": "2026-08-01T08:47:01+09:00",
+      "result": "무",
+      "gf": 2,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.8125,
+      "shots": 3,
+      "sot": 2
+    },
+    {
+      "matchKey": "3b7d4e7bc170",
+      "dateKst": "2026-08-01T08:33:43+09:00",
+      "result": "무",
+      "gf": 1,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.8667,
+      "shots": 7,
+      "sot": 6
+    },
+    {
+      "matchKey": "aa2008730426",
+      "dateKst": "2026-08-01T08:21:40+09:00",
+      "result": "무",
+      "gf": 2,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.925,
+      "shots": 3,
+      "sot": 2
+    },
+    {
+      "matchKey": "2faf7fe5522e",
+      "dateKst": "2026-08-01T08:08:32+09:00",
+      "result": "패",
+      "gf": 1,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.8506,
+      "shots": 6,
+      "sot": 5
+    },
+    {
+      "matchKey": "c80d091ccc47",
+      "dateKst": "2026-08-01T07:56:19+09:00",
+      "result": "패",
+      "gf": 0,
+      "ga": 5,
+      "possession": 0.0,
+      "passAcc": 0.8976,
+      "shots": 3,
+      "sot": 2
+    },
+    {
+      "matchKey": "33ebcfd2baaa",
+      "dateKst": "2026-08-01T07:43:54+09:00",
+      "result": "패",
+      "gf": 1,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.9403,
+      "shots": 1,
+      "sot": 1
+    },
+    {
+      "matchKey": "97e23deb2c41",
+      "dateKst": "2026-08-01T07:32:03+09:00",
+      "result": "무",
+      "gf": 0,
+      "ga": 0,
+      "possession": 0.0,
+      "passAcc": 0.8072,
+      "shots": 6,
+      "sot": 5
+    },
+    {
+      "matchKey": "a6bb490a596b",
+      "dateKst": "2026-08-01T07:19:39+09:00",
+      "result": "승",
+      "gf": 2,
+      "ga": 0,
+      "possession": 0.0,
+      "passAcc": 0.7867,
+      "shots": 2,
+      "sot": 2
+    },
+    {
+      "matchKey": "888211d7e89e",
+      "dateKst": "2026-08-01T07:07:41+09:00",
+      "result": "승",
+      "gf": 2,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.828,
+      "shots": 5,
+      "sot": 3
+    },
+    {
+      "matchKey": "a4e0e8f95834",
+      "dateKst": "2026-08-01T06:55:34+09:00",
+      "result": "승",
+      "gf": 3,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.8495,
+      "shots": 5,
+      "sot": 5
+    },
+    {
+      "matchKey": "6e4891192659",
+      "dateKst": "2026-08-01T06:44:26+09:00",
+      "result": "패",
+      "gf": 1,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.8511,
+      "shots": 4,
+      "sot": 2
+    },
+    {
+      "matchKey": "4b8d7e68d603",
+      "dateKst": "2026-08-01T06:32:30+09:00",
+      "result": "승",
+      "gf": 2,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.844,
+      "shots": 6,
+      "sot": 4
+    },
+    {
+      "matchKey": "566f0fb1baaf",
+      "dateKst": "2026-08-01T06:24:29+09:00",
+      "result": "무",
+      "gf": 2,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.9111,
+      "shots": 5,
+      "sot": 5
+    },
+    {
+      "matchKey": "773aa06e72a3",
+      "dateKst": "2026-08-01T06:07:59+09:00",
+      "result": "무",
+      "gf": 2,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.8958,
+      "shots": 5,
+      "sot": 5
+    },
+    {
+      "matchKey": "4a61375a2d90",
+      "dateKst": "2026-08-01T05:55:41+09:00",
+      "result": "패",
+      "gf": 1,
+      "ga": 3,
+      "possession": 0.0,
+      "passAcc": 0.9048,
+      "shots": 2,
+      "sot": 2
+    },
+    {
+      "matchKey": "a86f2d4f9109",
+      "dateKst": "2026-08-01T05:43:57+09:00",
+      "result": "승",
+      "gf": 2,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.8587,
+      "shots": 4,
+      "sot": 2
+    },
+    {
+      "matchKey": "f0d6428e12a9",
+      "dateKst": "2026-08-01T05:31:50+09:00",
+      "result": "패",
+      "gf": 1,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.8704,
+      "shots": 2,
+      "sot": 1
+    },
+    {
+      "matchKey": "efc6f097301d",
+      "dateKst": "2026-08-01T05:20:27+09:00",
+      "result": "패",
+      "gf": 1,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.9213,
+      "shots": 2,
+      "sot": 1
+    },
+    {
+      "matchKey": "9f1d1b712cf2",
+      "dateKst": "2026-08-01T05:09:00+09:00",
+      "result": "무",
+      "gf": 0,
+      "ga": 0,
+      "possession": 0.0,
+      "passAcc": 0.9158,
+      "shots": 3,
+      "sot": 2
+    },
+    {
+      "matchKey": "fb4fbfa1d6c1",
+      "dateKst": "2026-08-01T04:57:11+09:00",
+      "result": "패",
+      "gf": 0,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.8819,
+      "shots": 1,
+      "sot": 1
+    },
+    {
+      "matchKey": "6d7c9494d4f2",
+      "dateKst": "2026-08-01T04:46:20+09:00",
+      "result": "무",
+      "gf": 1,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.8033,
+      "shots": 3,
+      "sot": 2
+    },
+    {
+      "matchKey": "eacf9756fa73",
+      "dateKst": "2026-08-01T04:34:08+09:00",
+      "result": "승",
+      "gf": 3,
+      "ga": 0,
+      "possession": 0.0,
+      "passAcc": 0.7636,
+      "shots": 5,
+      "sot": 5
+    },
+    {
+      "matchKey": "654625edf2d7",
+      "dateKst": "2026-08-01T04:21:20+09:00",
+      "result": "패",
+      "gf": 1,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.8716,
+      "shots": 2,
+      "sot": 2
+    },
+    {
+      "matchKey": "68ff278bd921",
+      "dateKst": "2026-08-01T04:09:03+09:00",
+      "result": "무",
+      "gf": 2,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.8734,
+      "shots": 5,
+      "sot": 4
+    },
+    {
+      "matchKey": "91be156b8bc1",
+      "dateKst": "2026-08-01T03:57:04+09:00",
+      "result": "패",
+      "gf": 2,
+      "ga": 5,
+      "possession": 0.0,
+      "passAcc": 0.8137,
+      "shots": 7,
+      "sot": 7
+    },
+    {
+      "matchKey": "997df859d81a",
+      "dateKst": "2026-08-01T03:43:43+09:00",
+      "result": "승",
+      "gf": 1,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.93,
+      "shots": 4,
+      "sot": 2
+    },
+    {
+      "matchKey": "53a8e2306011",
+      "dateKst": "2026-08-01T03:32:23+09:00",
+      "result": "무",
+      "gf": 1,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.8962,
+      "shots": 2,
+      "sot": 2
+    },
+    {
+      "matchKey": "c55189eeef18",
+      "dateKst": "2026-08-01T03:20:36+09:00",
+      "result": "패",
+      "gf": 1,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.887,
+      "shots": 6,
+      "sot": 5
+    },
+    {
+      "matchKey": "917ab64839a3",
+      "dateKst": "2026-08-01T03:08:45+09:00",
+      "result": "패",
+      "gf": 2,
+      "ga": 3,
+      "possession": 0.0,
+      "passAcc": 0.8898,
+      "shots": 2,
+      "sot": 2
+    },
+    {
+      "matchKey": "3a4adae5288e",
+      "dateKst": "2026-08-01T02:56:38+09:00",
+      "result": "승",
+      "gf": 2,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.8667,
+      "shots": 11,
+      "sot": 9
+    },
+    {
+      "matchKey": "fc80b37e84e1",
+      "dateKst": "2026-08-01T02:43:57+09:00",
+      "result": "무",
+      "gf": 3,
+      "ga": 3,
+      "possession": 0.0,
+      "passAcc": 0.9391,
+      "shots": 9,
+      "sot": 7
+    },
+    {
+      "matchKey": "130c0e18aacf",
+      "dateKst": "2026-08-01T02:31:23+09:00",
+      "result": "무",
+      "gf": 3,
+      "ga": 3,
+      "possession": 0.0,
+      "passAcc": 0.8906,
+      "shots": 3,
+      "sot": 3
+    },
+    {
+      "matchKey": "e1660412eada",
+      "dateKst": "2026-08-01T02:18:47+09:00",
+      "result": "무",
+      "gf": 3,
+      "ga": 3,
+      "possession": 0.0,
+      "passAcc": 0.8509,
+      "shots": 7,
+      "sot": 6
+    },
+    {
+      "matchKey": "d5e0328f07f0",
+      "dateKst": "2026-08-01T02:05:56+09:00",
+      "result": "무",
+      "gf": 1,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.9175,
+      "shots": 4,
+      "sot": 3
+    },
+    {
+      "matchKey": "367bb984e0ca",
+      "dateKst": "2026-08-01T01:54:31+09:00",
+      "result": "승",
+      "gf": 3,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.859,
+      "shots": 6,
+      "sot": 6
+    },
+    {
+      "matchKey": "5ac440bca590",
+      "dateKst": "2026-08-01T01:41:39+09:00",
+      "result": "승",
+      "gf": 2,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.8571,
+      "shots": 3,
+      "sot": 3
+    },
+    {
+      "matchKey": "557b5d77a92e",
+      "dateKst": "2026-08-01T01:29:32+09:00",
+      "result": "무",
+      "gf": 0,
+      "ga": 0,
+      "possession": 0.0,
+      "passAcc": 0.8812,
+      "shots": 6,
+      "sot": 3
+    },
+    {
+      "matchKey": "55550bb65765",
+      "dateKst": "2026-08-01T01:18:40+09:00",
+      "result": "패",
+      "gf": 0,
+      "ga": 3,
+      "possession": 0.0,
+      "passAcc": 0.8913,
+      "shots": 2,
+      "sot": 1
+    },
+    {
+      "matchKey": "6fc42171d35c",
+      "dateKst": "2026-08-01T01:07:13+09:00",
+      "result": "패",
+      "gf": 0,
+      "ga": 0,
+      "possession": 0.0,
+      "passAcc": 0.0,
+      "shots": 0,
+      "sot": 0
+    },
+    {
+      "matchKey": "51fe5bf978b1",
+      "dateKst": "2026-08-01T01:03:37+09:00",
+      "result": "패",
+      "gf": 0,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.8295,
+      "shots": 0,
+      "sot": 0
+    },
+    {
+      "matchKey": "1c2183df48cc",
+      "dateKst": "2026-08-01T00:51:38+09:00",
+      "result": "패",
+      "gf": 3,
+      "ga": 4,
+      "possession": 0.0,
+      "passAcc": 0.8571,
+      "shots": 4,
+      "sot": 4
+    },
+    {
+      "matchKey": "1441faee0122",
+      "dateKst": "2026-08-01T00:39:09+09:00",
+      "result": "승",
+      "gf": 2,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.8095,
+      "shots": 4,
+      "sot": 4
+    },
+    {
+      "matchKey": "fb726ddb297c",
+      "dateKst": "2026-08-01T00:27:31+09:00",
+      "result": "승",
+      "gf": 4,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.8684,
+      "shots": 7,
+      "sot": 5
+    },
+    {
+      "matchKey": "d6923c1cbff4",
+      "dateKst": "2026-08-01T00:19:43+09:00",
+      "result": "승",
+      "gf": 3,
+      "ga": 0,
+      "possession": 0.0,
+      "passAcc": 0.8202,
+      "shots": 9,
+      "sot": 7
+    },
+    {
+      "matchKey": "aee8b2d88cab",
+      "dateKst": "2026-08-01T00:02:32+09:00",
+      "result": "승",
+      "gf": 1,
+      "ga": 0,
+      "possession": 0.0,
+      "passAcc": 0.807,
+      "shots": 4,
+      "sot": 3
+    },
+    {
+      "matchKey": "a57a87c40a32",
+      "dateKst": "2026-07-31T23:50:48+09:00",
+      "result": "무",
+      "gf": 1,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.7925,
+      "shots": 4,
+      "sot": 4
+    },
+    {
+      "matchKey": "c9c30a5dfcbf",
+      "dateKst": "2026-07-31T23:37:28+09:00",
+      "result": "패",
+      "gf": 0,
+      "ga": 3,
+      "possession": 0.0,
+      "passAcc": 0.876,
+      "shots": 2,
+      "sot": 2
+    },
+    {
+      "matchKey": "4dd46cff1064",
+      "dateKst": "2026-07-31T23:25:18+09:00",
+      "result": "패",
+      "gf": 3,
+      "ga": 5,
+      "possession": 0.0,
+      "passAcc": 0.8835,
+      "shots": 5,
+      "sot": 4
+    },
+    {
+      "matchKey": "2256a7e7a2d9",
+      "dateKst": "2026-07-31T23:09:47+09:00",
+      "result": "무",
+      "gf": 1,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.8812,
+      "shots": 3,
+      "sot": 3
+    },
+    {
+      "matchKey": "c3c4cec254de",
+      "dateKst": "2026-07-31T22:57:36+09:00",
+      "result": "무",
+      "gf": 2,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.9167,
+      "shots": 7,
+      "sot": 7
+    },
+    {
+      "matchKey": "836358902cd8",
+      "dateKst": "2026-07-31T22:45:59+09:00",
+      "result": "패",
+      "gf": 1,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.844,
+      "shots": 6,
+      "sot": 4
+    },
+    {
+      "matchKey": "e4c7b41d44bf",
+      "dateKst": "2026-07-31T22:34:20+09:00",
+      "result": "승",
+      "gf": 3,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.7424,
+      "shots": 6,
+      "sot": 5
+    },
+    {
+      "matchKey": "31ab140a8a02",
+      "dateKst": "2026-07-31T22:21:55+09:00",
+      "result": "패",
+      "gf": 1,
+      "ga": 3,
+      "possession": 0.0,
+      "passAcc": 0.8305,
+      "shots": 4,
+      "sot": 3
+    },
+    {
+      "matchKey": "746435c1ae6e",
+      "dateKst": "2026-07-31T22:07:53+09:00",
+      "result": "패",
+      "gf": 2,
+      "ga": 3,
+      "possession": 0.0,
+      "passAcc": 0.8849,
+      "shots": 3,
+      "sot": 2
+    },
+    {
+      "matchKey": "79551fbf2b9f",
+      "dateKst": "2026-07-31T21:54:04+09:00",
+      "result": "무",
+      "gf": 1,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.8682,
+      "shots": 6,
+      "sot": 5
+    },
+    {
+      "matchKey": "db1d694fe0e0",
+      "dateKst": "2026-07-31T21:41:34+09:00",
+      "result": "패",
+      "gf": 3,
+      "ga": 4,
+      "possession": 0.0,
+      "passAcc": 0.8621,
+      "shots": 5,
+      "sot": 4
+    },
+    {
+      "matchKey": "d332a78265ca",
+      "dateKst": "2026-07-31T21:33:33+09:00",
+      "result": "승",
+      "gf": 2,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.8333,
+      "shots": 2,
+      "sot": 2
+    },
+    {
+      "matchKey": "eec0f659b49f",
+      "dateKst": "2026-07-31T21:17:12+09:00",
+      "result": "패",
+      "gf": 0,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.9412,
+      "shots": 2,
+      "sot": 1
+    },
+    {
+      "matchKey": "7d5a077a891e",
+      "dateKst": "2026-07-31T21:05:33+09:00",
+      "result": "무",
+      "gf": 1,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.8667,
+      "shots": 4,
+      "sot": 2
+    },
+    {
+      "matchKey": "3df4163a4962",
+      "dateKst": "2026-07-31T20:54:23+09:00",
+      "result": "패",
+      "gf": 1,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.8404,
+      "shots": 6,
+      "sot": 5
+    },
+    {
+      "matchKey": "b8c6ac65fa68",
+      "dateKst": "2026-07-31T20:42:17+09:00",
+      "result": "무",
+      "gf": 1,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.8088,
+      "shots": 3,
+      "sot": 2
+    },
+    {
+      "matchKey": "02f88638ebf2",
+      "dateKst": "2026-07-31T20:30:19+09:00",
+      "result": "승",
+      "gf": 1,
+      "ga": 0,
+      "possession": 0.0,
+      "passAcc": 0.8725,
+      "shots": 2,
+      "sot": 1
+    },
+    {
+      "matchKey": "279f792898f5",
+      "dateKst": "2026-07-31T20:17:36+09:00",
+      "result": "승",
+      "gf": 2,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.7561,
+      "shots": 2,
+      "sot": 2
+    },
+    {
+      "matchKey": "2f56372c3bb7",
+      "dateKst": "2026-07-31T20:05:23+09:00",
+      "result": "승",
+      "gf": 2,
+      "ga": 0,
+      "possession": 0.0,
+      "passAcc": 0.8257,
+      "shots": 5,
+      "sot": 5
+    },
+    {
+      "matchKey": "6b4ff6e05bd9",
+      "dateKst": "2026-07-31T19:53:30+09:00",
+      "result": "승",
+      "gf": 3,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.8118,
+      "shots": 3,
+      "sot": 3
+    },
+    {
+      "matchKey": "f54db43ecc97",
+      "dateKst": "2026-07-31T19:39:10+09:00",
+      "result": "패",
+      "gf": 1,
+      "ga": 3,
+      "possession": 0.0,
+      "passAcc": 0.8534,
+      "shots": 2,
+      "sot": 1
+    },
+    {
+      "matchKey": "2b41e28c0e51",
+      "dateKst": "2026-07-31T19:26:15+09:00",
+      "result": "승",
+      "gf": 2,
+      "ga": 1,
+      "possession": 0.0,
+      "passAcc": 0.9027,
+      "shots": 3,
+      "sot": 3
+    },
+    {
+      "matchKey": "f86fce1750bf",
+      "dateKst": "2026-07-31T19:14:28+09:00",
+      "result": "패",
+      "gf": 1,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.8209,
+      "shots": 1,
+      "sot": 1
+    },
+    {
+      "matchKey": "c829fa4d1448",
+      "dateKst": "2026-07-31T19:01:25+09:00",
+      "result": "무",
+      "gf": 2,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.8372,
+      "shots": 2,
+      "sot": 2
+    },
+    {
+      "matchKey": "b4566e0e22b3",
+      "dateKst": "2026-07-31T18:52:26+09:00",
+      "result": "패",
+      "gf": 1,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.848,
+      "shots": 4,
+      "sot": 4
+    },
+    {
+      "matchKey": "82fbc9e765aa",
+      "dateKst": "2026-07-31T18:36:18+09:00",
+      "result": "무",
+      "gf": 2,
+      "ga": 2,
+      "possession": 0.0,
+      "passAcc": 0.7761,
+      "shots": 5,
+      "sot": 4
+    }
+  ]
+}

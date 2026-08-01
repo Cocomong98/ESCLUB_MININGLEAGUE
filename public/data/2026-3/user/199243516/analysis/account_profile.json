@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "0.1.0",
+  "status": "SUCCESS",
+  "generatedAt": "2026-07-31T10:15:48.682939+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "199243516",
+    "nickname": "ES봄날"
+  },
+  "account": {
+    "ouidHash": "9e4154f734b7",
+    "nickname": "ES봄날",
+    "level": 5039,
+    "managerModeBestDivision": {
+      "matchType": 52,
+      "division": 800,
+      "achievementDate": "2026-02-01T10:21:50",
+      "divisionName": "슈퍼챔피언스"
+    },
+    "divisionRows": [
+      {
+        "matchType": 50,
+        "division": 1300,
+        "achievementDate": "2021-09-14T16:57:29",
+        "divisionName": "챌린지3"
+      },
+      {
+        "matchType": 52,
+        "division": 800,
+        "achievementDate": "2026-02-01T10:21:50",
+        "divisionName": "슈퍼챔피언스"
+      },
+      {
+        "matchType": 214,
+        "division": 2200,
+        "achievementDate": "2020-07-12T14:02:48",
+        "divisionName": "월드클래스3"
+      }
+    ]
+  }
+}

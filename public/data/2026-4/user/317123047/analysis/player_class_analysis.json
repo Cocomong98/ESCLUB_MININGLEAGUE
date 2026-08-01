@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:36:10.564111+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "317123047",
+    "nickname": "ES사카"
+  },
+  "classRows": [
+    {
+      "seasonId": 863,
+      "seasonName": "PTG (Path to Glory)",
+      "players": 4,
+      "appearances": 824,
+      "goals": 112,
+      "assists": 92,
+      "attackPoints": 204,
+      "avgRating": 6.52
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 3,
+      "appearances": 618,
+      "goals": 79,
+      "assists": 98,
+      "attackPoints": 177,
+      "avgRating": 6.45
+    },
+    {
+      "seasonId": 836,
+      "seasonName": "WB (Wonderboys)",
+      "players": 2,
+      "appearances": 412,
+      "goals": 143,
+      "assists": 114,
+      "attackPoints": 257,
+      "avgRating": 6.61
+    },
+    {
+      "seasonId": 856,
+      "seasonName": "25 UCL (25 UEFA Champions League)",
+      "players": 1,
+      "appearances": 206,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.45
+    },
+    {
+      "seasonId": 855,
+      "seasonName": "26 TOTY-N (26 Team Of The Nominated)",
+      "players": 1,
+      "appearances": 206,
+      "goals": 6,
+      "assists": 0,
+      "attackPoints": 6,
+      "avgRating": 6.42
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

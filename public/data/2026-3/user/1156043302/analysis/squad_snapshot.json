@@ -1,0 +1,310 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:14:46.531988+09:00",
+  "source": {
+    "provider": "FCOnlineProfileSquad",
+    "url": "https://fconline.nexon.com/profile/squad/popup/1156043302"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1156043302",
+    "nickname": "ES골팝"
+  },
+  "season": "2026-3",
+  "status": "READY",
+  "squad": {
+    "name": "스쿼드_20260731101449",
+    "formation": "",
+    "clubValue": 103700000000000000,
+    "clubValueText": "10경 3,700조",
+    "salary": {
+      "current": 301,
+      "cap": 310
+    },
+    "playerCount": 18
+  },
+  "players": [
+    {
+      "spId": 861000488,
+      "name": "올리버 칸",
+      "role": "gk",
+      "position": "gk",
+      "pay": 29,
+      "price": 4910000000000000,
+      "priceText": "4,910조",
+      "order": 0,
+      "starter": true
+    },
+    {
+      "spId": 863275298,
+      "name": "A. 파블로비치",
+      "role": "cdm",
+      "position": "cdm",
+      "pay": 26,
+      "price": 6390000000000000,
+      "priceText": "6,390조",
+      "order": 1,
+      "starter": true
+    },
+    {
+      "spId": 826212622,
+      "name": "요주아 키미히",
+      "role": "rm",
+      "position": "cdm",
+      "pay": 28,
+      "price": 13700000000000000,
+      "priceText": "1경 3,700조",
+      "order": 2,
+      "starter": true
+    },
+    {
+      "spId": 826235790,
+      "name": "카이 하베르츠",
+      "role": "rcm",
+      "position": "cf",
+      "pay": 28,
+      "price": 15000000000000000,
+      "priceText": "1경 5,000조",
+      "order": 3,
+      "starter": true
+    },
+    {
+      "spId": 826209658,
+      "name": "레온 고레츠카",
+      "role": "lcm",
+      "position": "cm",
+      "pay": 28,
+      "price": 9750000000000000,
+      "priceText": "9,750조",
+      "order": 4,
+      "starter": true
+    },
+    {
+      "spId": 852222492,
+      "name": "리로이 사네",
+      "role": "lm",
+      "position": "lw",
+      "pay": 28,
+      "price": 5880000000000000,
+      "priceText": "5,880조",
+      "order": 5,
+      "starter": true
+    },
+    {
+      "spId": 851260926,
+      "name": "케빈 샤데",
+      "role": "cam",
+      "position": "lw",
+      "pay": 28,
+      "price": 20000000000000000,
+      "priceText": "2경",
+      "order": 6,
+      "starter": true
+    },
+    {
+      "spId": 852213331,
+      "name": "요나탄 타",
+      "role": "rb",
+      "position": "cb",
+      "pay": 27,
+      "price": 7290000000000000,
+      "priceText": "7,290조",
+      "order": 7,
+      "starter": true
+    },
+    {
+      "spId": 848224425,
+      "name": "마리우스 볼프",
+      "role": "rcb",
+      "position": "rb",
+      "pay": 26,
+      "price": 6410000000000000,
+      "priceText": "6,410조",
+      "order": 8,
+      "starter": true
+    },
+    {
+      "spId": 834247819,
+      "name": "N. 슐로터베크",
+      "role": "lcb",
+      "position": "cb",
+      "pay": 26,
+      "price": 9780000000000000,
+      "priceText": "9,780조",
+      "order": 9,
+      "starter": true
+    },
+    {
+      "spId": 851250959,
+      "name": "안젤로 슈틸러",
+      "role": "lb",
+      "position": "cdm",
+      "pay": 27,
+      "price": 4590000000000000,
+      "priceText": "4,590조",
+      "order": 10,
+      "starter": true
+    },
+    {
+      "spId": 810178603,
+      "name": "마츠 후멜스",
+      "role": "CB",
+      "position": "cb",
+      "pay": 26,
+      "price": 337000000000000,
+      "priceText": "337조",
+      "order": 11,
+      "starter": false
+    },
+    {
+      "spId": 206203841,
+      "name": "닉 포프",
+      "role": "GK",
+      "position": "gk",
+      "pay": 7,
+      "price": 30000000000,
+      "priceText": "1조 미만",
+      "order": 12,
+      "starter": false
+    },
+    {
+      "spId": 201051539,
+      "name": "에드윈 반데르사르",
+      "role": "GK",
+      "position": "gk",
+      "pay": 12,
+      "price": 8680000000000,
+      "priceText": "8조",
+      "order": 13,
+      "starter": false
+    },
+    {
+      "spId": 862243780,
+      "name": "이강인",
+      "role": "CAM",
+      "position": "cam",
+      "pay": 26,
+      "price": 325000000000000,
+      "priceText": "325조",
+      "order": 14,
+      "starter": false
+    },
+    {
+      "spId": 101182521,
+      "name": "토니 크로스",
+      "role": "CM",
+      "position": "cm",
+      "pay": 26,
+      "price": 45000000000000,
+      "priceText": "45조",
+      "order": 15,
+      "starter": false
+    },
+    {
+      "spId": 291193698,
+      "name": "올리버 바우만",
+      "role": "GK",
+      "position": "gk",
+      "pay": 21,
+      "price": 71800000000000,
+      "priceText": "71조",
+      "order": 16,
+      "starter": false
+    },
+    {
+      "spId": 862140057,
+      "name": "차두리",
+      "role": "RW",
+      "position": "rw",
+      "pay": 27,
+      "price": 1400000000000000,
+      "priceText": "1,400조",
+      "order": 17,
+      "starter": false
+    }
+  ],
+  "teamColors": [
+    {
+      "id": "2004",
+      "group": "affiliation",
+      "groupLabel": "소속",
+      "level": 4,
+      "name": "독일",
+      "playerCount": 11,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 4,
+          "label": "전체 능력치 +4"
+        },
+        {
+          "name": "짧은 패스",
+          "amount": 3,
+          "label": "짧은 패스 +3"
+        },
+        {
+          "name": "크로스",
+          "amount": 3,
+          "label": "크로스 +3"
+        }
+      ],
+      "image": "https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/countries/largeflags/f_21.png"
+    },
+    {
+      "id": "10004",
+      "group": "enhance",
+      "groupLabel": "강화",
+      "level": 2,
+      "name": "백금빛 물결",
+      "playerCount": 11,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 5,
+          "label": "전체 능력치 +5"
+        }
+      ],
+      "image": "https://ssl.nexon.com/s2/game/fc/online/obt/datacenter/teamcolor/tc_u_p.png"
+    },
+    {
+      "id": "40687",
+      "group": "feature",
+      "groupLabel": "특성",
+      "level": 1,
+      "name": "2026 독일",
+      "playerCount": 9,
+      "skills": [
+        {
+          "name": "짧은 패스",
+          "amount": 3,
+          "label": "짧은 패스 +3"
+        },
+        {
+          "name": "시야",
+          "amount": 3,
+          "label": "시야 +3"
+        },
+        {
+          "name": "위치 선정",
+          "amount": 2,
+          "label": "위치 선정 +2"
+        },
+        {
+          "name": "침착성",
+          "amount": 2,
+          "label": "침착성 +2"
+        }
+      ],
+      "image": "https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/teamcolorboost/icon/medium/4_l3021.png"
+    }
+  ],
+  "summary": {
+    "teamColorCount": 3,
+    "affiliationCount": 1,
+    "enhanceCount": 1,
+    "featureCount": 1
+  }
+}

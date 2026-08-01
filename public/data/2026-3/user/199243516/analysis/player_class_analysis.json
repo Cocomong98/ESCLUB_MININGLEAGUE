@@ -1,0 +1,129 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:15:48.682939+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "199243516",
+    "nickname": "ES봄날"
+  },
+  "classRows": [
+    {
+      "seasonId": 861,
+      "seasonName": "WG (Warriors of Glory)",
+      "players": 12,
+      "appearances": 8024,
+      "goals": 1513,
+      "assists": 1301,
+      "attackPoints": 2814,
+      "avgRating": 6.51
+    },
+    {
+      "seasonId": 852,
+      "seasonName": "FAC (Football Association Champions)",
+      "players": 2,
+      "appearances": 1050,
+      "goals": 185,
+      "assists": 203,
+      "attackPoints": 388,
+      "avgRating": 6.53
+    },
+    {
+      "seasonId": 517,
+      "seasonName": "25 PL (25 Premium Live)",
+      "players": 1,
+      "appearances": 651,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.2
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 1,
+      "appearances": 525,
+      "goals": 1,
+      "assists": 25,
+      "attackPoints": 26,
+      "avgRating": 6.41
+    },
+    {
+      "seasonId": 850,
+      "seasonName": "25FSL (25 FCO Superchampions League)",
+      "players": 1,
+      "appearances": 525,
+      "goals": 1,
+      "assists": 5,
+      "attackPoints": 6,
+      "avgRating": 6.39
+    },
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 1,
+      "appearances": 525,
+      "goals": 42,
+      "assists": 76,
+      "attackPoints": 118,
+      "avgRating": 6.41
+    },
+    {
+      "seasonId": 839,
+      "seasonName": "NO7 (NUMBER 7)",
+      "players": 1,
+      "appearances": 525,
+      "goals": 236,
+      "assists": 138,
+      "attackPoints": 374,
+      "avgRating": 6.71
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 1,
+      "appearances": 525,
+      "goals": 182,
+      "assists": 155,
+      "attackPoints": 337,
+      "avgRating": 6.5
+    },
+    {
+      "seasonId": 251,
+      "seasonName": "EBS (European Best Stars)",
+      "players": 1,
+      "appearances": 464,
+      "goals": 0,
+      "assists": 2,
+      "attackPoints": 2,
+      "avgRating": 6.18
+    },
+    {
+      "seasonId": 855,
+      "seasonName": "26 TOTY-N (26 Team Of The Nominated)",
+      "players": 1,
+      "appearances": 61,
+      "goals": 15,
+      "assists": 22,
+      "attackPoints": 37,
+      "avgRating": 6.74
+    },
+    {
+      "seasonId": 265,
+      "seasonName": "LOL (LEGEND OF THE LOAN)",
+      "players": 1,
+      "appearances": 61,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.43
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

@@ -1,0 +1,31 @@
+[
+    {
+        "name": "ES데이비드베컴",
+        "player_id": "250869514",
+        "stat_url": "https://fconline.nexon.com/profile/stat/popup/250869514",
+        "squad_url": "https://fconline.nexon.com/profile/squad/popup/250869514",
+        "구단주명": "ES데이비드베컴",
+        "승": 0,
+        "무": 0,
+        "패": 0,
+        "판수": 0,
+        "채굴 효율": 0,
+        "승률": "0.0%",
+        "현재 티어": "",
+        "현재 티어 코드": "",
+        "현재 티어 이미지": "https://ssl.nexon.com/s2/game/fo4/obt/rank/large/ico_rank_default.png",
+        "구단 가치": "42조",
+        "비고": "-",
+        "지난 시즌 승": 31,
+        "지난 시즌 무": 30,
+        "지난 시즌 패": 26,
+        "지난 시즌 판수": 87,
+        "지난 시즌 채굴 효율": 101,
+        "지난 시즌 승률": "35.6%",
+        "crawl_time": "2026-07-28",
+        "순위": 37,
+        "성장력": 0,
+        "crawl_time_detail": "2026-07-28 오후 4시",
+        "crawl_time_hhmm": "16:14"
+    }
+]

@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:15:55.667855+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1005278322",
+    "nickname": "ES빌바오"
+  },
+  "classRows": [
+    {
+      "seasonId": 856,
+      "seasonName": "25 UCL (25 UEFA Champions League)",
+      "players": 5,
+      "appearances": 5985,
+      "goals": 954,
+      "assists": 682,
+      "attackPoints": 1636,
+      "avgRating": 6.44
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 2,
+      "appearances": 2394,
+      "goals": 50,
+      "assists": 189,
+      "attackPoints": 239,
+      "avgRating": 6.33
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 2,
+      "appearances": 2394,
+      "goals": 305,
+      "assists": 371,
+      "attackPoints": 676,
+      "avgRating": 6.56
+    },
+    {
+      "seasonId": 855,
+      "seasonName": "26 TOTY-N (26 Team Of The Nominated)",
+      "players": 1,
+      "appearances": 1197,
+      "goals": 265,
+      "assists": 273,
+      "attackPoints": 538,
+      "avgRating": 6.52
+    },
+    {
+      "seasonId": 863,
+      "seasonName": "PTG (Path to Glory)",
+      "players": 1,
+      "appearances": 1197,
+      "goals": 539,
+      "assists": 351,
+      "attackPoints": 890,
+      "avgRating": 6.77
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

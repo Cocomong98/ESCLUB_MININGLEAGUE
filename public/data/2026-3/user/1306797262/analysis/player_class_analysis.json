@@ -1,0 +1,114 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:14:37.714626+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1306797262",
+    "nickname": "ES가몸지"
+  },
+  "classRows": [
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 13,
+      "appearances": 4965,
+      "goals": 608,
+      "assists": 597,
+      "attackPoints": 1205,
+      "avgRating": 6.5
+    },
+    {
+      "seasonId": 863,
+      "seasonName": "PTG (Path to Glory)",
+      "players": 5,
+      "appearances": 4052,
+      "goals": 427,
+      "assists": 417,
+      "attackPoints": 844,
+      "avgRating": 6.54
+    },
+    {
+      "seasonId": 856,
+      "seasonName": "25 UCL (25 UEFA Champions League)",
+      "players": 3,
+      "appearances": 2084,
+      "goals": 357,
+      "assists": 296,
+      "attackPoints": 653,
+      "avgRating": 6.39
+    },
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 1,
+      "appearances": 874,
+      "goals": 360,
+      "assists": 233,
+      "attackPoints": 593,
+      "avgRating": 6.75
+    },
+    {
+      "seasonId": 834,
+      "seasonName": "24 UCL (24 UEFA Champions League)",
+      "players": 1,
+      "appearances": 821,
+      "goals": 242,
+      "assists": 216,
+      "attackPoints": 458,
+      "avgRating": 6.43
+    },
+    {
+      "seasonId": 866,
+      "seasonName": "26 TOTS (26 Team Of The Season)",
+      "players": 1,
+      "appearances": 318,
+      "goals": 62,
+      "assists": 86,
+      "attackPoints": 148,
+      "avgRating": 6.57
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 1,
+      "appearances": 53,
+      "goals": 17,
+      "assists": 16,
+      "attackPoints": 33,
+      "avgRating": 6.59
+    }
+  ],
+  "samePlayerCardComparisons": [
+    {
+      "basePlayerId": "220901",
+      "name": "다비드 라야",
+      "cards": [
+        {
+          "spId": 851220901,
+          "seasonId": 851,
+          "seasonName": "25DP (25 Devoted Player)",
+          "appearances": 641,
+          "attackPoint": 0,
+          "avgRating": 6.31,
+          "playerWinRate": 45.71
+        },
+        {
+          "spId": 856220901,
+          "seasonId": 856,
+          "seasonName": "25 UCL (25 UEFA Champions League)",
+          "appearances": 556,
+          "attackPoint": 0,
+          "avgRating": 6.34,
+          "playerWinRate": 47.12
+        }
+      ]
+    }
+  ]
+}

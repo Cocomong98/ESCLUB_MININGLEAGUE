@@ -1,0 +1,38 @@
+[
+    {
+        "name": "ES메가꿀아",
+        "player_id": "1525532472",
+        "stat_url": "https://fconline.nexon.com/profile/stat/popup/1525532472",
+        "squad_url": "https://fconline.nexon.com/profile/squad/popup/1525532472",
+        "구단주명": "ES메가꿀아",
+        "승": 150,
+        "무": 14,
+        "패": 106,
+        "판수": 270,
+        "채굴 효율": 902,
+        "승률": "55.6%",
+        "현재 티어": "월드클래스 1",
+        "현재 티어 코드": "6",
+        "현재 티어 이미지": "https://ssl.nexon.com/s2/game/fo4/obt/rank/large/update_2026/ico_rank6_m.png",
+        "구단 가치": "6경 200조",
+        "비고": "-",
+        "지난 시즌 승": 0,
+        "지난 시즌 무": 0,
+        "지난 시즌 패": 0,
+        "지난 시즌 판수": 0,
+        "지난 시즌 채굴 효율": 0,
+        "지난 시즌 승률": "0.0%",
+        "crawl_time": "2026-07-31",
+        "record_source": "nexon_open_api",
+        "openapi_sync": {
+            "ouid": "985b13f088871e9ae573f8551acf2135",
+            "newMatchCount": 45,
+            "totalIndexCount": 1284,
+            "maxMatches": 1200
+        },
+        "순위": 27,
+        "성장력": 28,
+        "crawl_time_detail": "2026-07-31 오전 10시",
+        "crawl_time_hhmm": "10:03"
+    }
+]

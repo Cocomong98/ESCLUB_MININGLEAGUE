@@ -1,0 +1,972 @@
+{
+  "schemaVersion": "0.1.0",
+  "status": "SUCCESS",
+  "generatedAt": "2026-07-31T10:15:38.284255+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52,
+    "matchtypeName": "감독모드"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1525532472",
+    "nickname": "ES메가꿀아"
+  },
+  "sample": {
+    "requested": 100,
+    "valid": 100,
+    "excluded": 0,
+    "minimumForInsights": 20
+  },
+  "period": {
+    "from": "2026-07-28T23:48:57+09:00",
+    "to": "2026-07-30T03:50:24+09:00"
+  },
+  "summary": {
+    "sampleSize": 100,
+    "w": 54,
+    "d": 6,
+    "l": 40,
+    "winRate": 54.0,
+    "goalsPerMatch": 1.89,
+    "goalsConcededPerMatch": 1.74,
+    "goalDifferencePerMatch": 0.15,
+    "shotsPerMatch": 4.88,
+    "shotsOnTargetPerMatch": 3.99,
+    "shotAccuracy": 81.76,
+    "goalConversion": 38.73,
+    "shotOnTargetConversion": 47.37,
+    "averagePossession": 0.0,
+    "passSuccessRate": 85.47,
+    "tackleSuccessRate": 67.25,
+    "cleanSheetRate": 12.0,
+    "concedeTwoPlusRate": 59.0
+  },
+  "recentForm": [
+    {
+      "period": 20,
+      "sampleSize": 20,
+      "w": 12,
+      "d": 1,
+      "l": 7,
+      "winRate": 60.0,
+      "goalsPerMatch": 2.25,
+      "goalsConcededPerMatch": 1.85,
+      "goalDifferencePerMatch": 0.4,
+      "shotsPerMatch": 5.3,
+      "shotsOnTargetPerMatch": 4.55,
+      "shotAccuracy": 85.85,
+      "goalConversion": 42.45,
+      "averagePossession": 0.0,
+      "passSuccessRate": 84.27
+    }
+  ],
+  "expanded": {
+    "schemaVersion": "0.1.0",
+    "styleProfile": {
+      "primary": "안정형",
+      "scores": {
+        "점유형": 0.0,
+        "다득점형": 47.25,
+        "수비형": 30.7,
+        "고효율형": 57.63,
+        "다슈팅형": 48.8,
+        "안정형": 58.19
+      }
+    },
+    "formationPerformance": [
+      {
+        "key": "4-6-0",
+        "label": "4-6-0",
+        "matches": 100,
+        "w": 54,
+        "d": 6,
+        "l": 40,
+        "winRate": 54.0,
+        "goalsPerMatch": 1.89,
+        "goalsConcededPerMatch": 1.74,
+        "goalDifferencePerMatch": 0.15,
+        "shotAccuracy": 81.76,
+        "goalConversion": 38.73,
+        "averagePossession": 0.0,
+        "passSuccessRate": 85.47,
+        "cleanSheetRate": 12.0,
+        "concedeTwoPlusRate": 59.0,
+        "lastMatchDateKst": "2026-07-30T03:50:24+09:00"
+      }
+    ],
+    "timeSlotPerformance": [
+      {
+        "key": "새벽",
+        "label": "새벽",
+        "matches": 24,
+        "w": 13,
+        "d": 1,
+        "l": 10,
+        "winRate": 54.17,
+        "goalsPerMatch": 2.167,
+        "goalsConcededPerMatch": 1.833,
+        "goalDifferencePerMatch": 0.333,
+        "shotAccuracy": 85.48,
+        "goalConversion": 41.94,
+        "averagePossession": 0.0,
+        "passSuccessRate": 84.85,
+        "cleanSheetRate": 12.5,
+        "concedeTwoPlusRate": 54.17,
+        "lastMatchDateKst": "2026-07-30T03:50:24+09:00"
+      },
+      {
+        "key": "오전",
+        "label": "오전",
+        "matches": 30,
+        "w": 14,
+        "d": 5,
+        "l": 11,
+        "winRate": 46.67,
+        "goalsPerMatch": 1.833,
+        "goalsConcededPerMatch": 1.8,
+        "goalDifferencePerMatch": 0.033,
+        "shotAccuracy": 82.99,
+        "goalConversion": 37.41,
+        "averagePossession": 0.0,
+        "passSuccessRate": 85.16,
+        "cleanSheetRate": 10.0,
+        "concedeTwoPlusRate": 66.67,
+        "lastMatchDateKst": "2026-07-29T11:49:53+09:00"
+      },
+      {
+        "key": "오후",
+        "label": "오후",
+        "matches": 27,
+        "w": 15,
+        "d": 0,
+        "l": 12,
+        "winRate": 55.56,
+        "goalsPerMatch": 1.704,
+        "goalsConcededPerMatch": 1.741,
+        "goalDifferencePerMatch": -0.037,
+        "shotAccuracy": 80.92,
+        "goalConversion": 35.11,
+        "averagePossession": 0.0,
+        "passSuccessRate": 85.48,
+        "cleanSheetRate": 11.11,
+        "concedeTwoPlusRate": 59.26,
+        "lastMatchDateKst": "2026-07-29T17:49:47+09:00"
+      },
+      {
+        "key": "야간",
+        "label": "야간",
+        "matches": 19,
+        "w": 12,
+        "d": 0,
+        "l": 7,
+        "winRate": 63.16,
+        "goalsPerMatch": 1.895,
+        "goalsConcededPerMatch": 1.526,
+        "goalDifferencePerMatch": 0.368,
+        "shotAccuracy": 75.58,
+        "goalConversion": 41.86,
+        "averagePossession": 0.0,
+        "passSuccessRate": 86.72,
+        "cleanSheetRate": 15.79,
+        "concedeTwoPlusRate": 52.63,
+        "lastMatchDateKst": "2026-07-29T23:49:16+09:00"
+      }
+    ],
+    "weekdayPerformance": [
+      {
+        "key": "1",
+        "label": "화",
+        "matches": 1,
+        "w": 1,
+        "d": 0,
+        "l": 0,
+        "winRate": 100.0,
+        "goalsPerMatch": 1.0,
+        "goalsConcededPerMatch": 0.0,
+        "goalDifferencePerMatch": 1.0,
+        "shotAccuracy": 100.0,
+        "goalConversion": 50.0,
+        "averagePossession": 0.0,
+        "passSuccessRate": 91.67,
+        "cleanSheetRate": 100.0,
+        "concedeTwoPlusRate": 0.0,
+        "lastMatchDateKst": "2026-07-28T23:48:57+09:00"
+      },
+      {
+        "key": "2",
+        "label": "수",
+        "matches": 81,
+        "w": 42,
+        "d": 5,
+        "l": 34,
+        "winRate": 51.85,
+        "goalsPerMatch": 1.79,
+        "goalsConcededPerMatch": 1.716,
+        "goalDifferencePerMatch": 0.074,
+        "shotAccuracy": 80.47,
+        "goalConversion": 37.76,
+        "averagePossession": 0.0,
+        "passSuccessRate": 85.45,
+        "cleanSheetRate": 9.88,
+        "concedeTwoPlusRate": 60.49,
+        "lastMatchDateKst": "2026-07-29T23:49:16+09:00"
+      },
+      {
+        "key": "3",
+        "label": "목",
+        "matches": 18,
+        "w": 11,
+        "d": 1,
+        "l": 6,
+        "winRate": 61.11,
+        "goalsPerMatch": 2.389,
+        "goalsConcededPerMatch": 1.944,
+        "goalDifferencePerMatch": 0.444,
+        "shotAccuracy": 86.27,
+        "goalConversion": 42.16,
+        "averagePossession": 0.0,
+        "passSuccessRate": 85.25,
+        "cleanSheetRate": 16.67,
+        "concedeTwoPlusRate": 55.56,
+        "lastMatchDateKst": "2026-07-30T03:50:24+09:00"
+      }
+    ],
+    "opponentHeadToHead": [
+      {
+        "key": "e1cb523c5e26447357f8e8f85511642d",
+        "label": "닼닼",
+        "matches": 2,
+        "w": 2,
+        "d": 0,
+        "l": 0,
+        "winRate": 100.0,
+        "goalsPerMatch": 2.5,
+        "goalsConcededPerMatch": 0.5,
+        "goalDifferencePerMatch": 2.0,
+        "shotAccuracy": 100.0,
+        "goalConversion": 55.56,
+        "averagePossession": 0.0,
+        "passSuccessRate": 91.62,
+        "cleanSheetRate": 50.0,
+        "concedeTwoPlusRate": 0.0,
+        "lastMatchDateKst": "2026-07-29T22:35:21+09:00"
+      }
+    ],
+    "matchFlowTypes": [
+      {
+        "type": "역습형 승리",
+        "count": 26,
+        "share": 26.0
+      },
+      {
+        "type": "수비 불안",
+        "count": 17,
+        "share": 17.0
+      },
+      {
+        "type": "난타전",
+        "count": 17,
+        "share": 17.0
+      },
+      {
+        "type": "저득점 접전",
+        "count": 15,
+        "share": 15.0
+      },
+      {
+        "type": "균형형 경기",
+        "count": 13,
+        "share": 13.0
+      },
+      {
+        "type": "슈팅 우세 패배",
+        "count": 8,
+        "share": 8.0
+      },
+      {
+        "type": "압도적 승리",
+        "count": 4,
+        "share": 4.0
+      }
+    ],
+    "playerCombinations": {
+      "pairs": [
+        {
+          "key": "814200145|848210257",
+          "label": "814200145|848210257",
+          "matches": 100,
+          "w": 54,
+          "d": 6,
+          "l": 40,
+          "winRate": 54.0,
+          "goalsPerMatch": 1.89,
+          "goalsConcededPerMatch": 1.74,
+          "goalDifferencePerMatch": 0.15,
+          "shotAccuracy": 81.76,
+          "goalConversion": 38.73,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.47,
+          "cleanSheetRate": 12.0,
+          "concedeTwoPlusRate": 59.0,
+          "lastMatchDateKst": "2026-07-30T03:50:24+09:00",
+          "players": [
+            {
+              "spId": 814200145,
+              "name": "카제미루"
+            },
+            {
+              "spId": 848210257,
+              "name": "에데르송"
+            }
+          ]
+        },
+        {
+          "key": "814200145|848232805",
+          "label": "814200145|848232805",
+          "matches": 100,
+          "w": 54,
+          "d": 6,
+          "l": 40,
+          "winRate": 54.0,
+          "goalsPerMatch": 1.89,
+          "goalsConcededPerMatch": 1.74,
+          "goalDifferencePerMatch": 0.15,
+          "shotAccuracy": 81.76,
+          "goalConversion": 38.73,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.47,
+          "cleanSheetRate": 12.0,
+          "concedeTwoPlusRate": 59.0,
+          "lastMatchDateKst": "2026-07-30T03:50:24+09:00",
+          "players": [
+            {
+              "spId": 814200145,
+              "name": "카제미루"
+            },
+            {
+              "spId": 848232805,
+              "name": "베르나르두"
+            }
+          ]
+        },
+        {
+          "key": "814200145|848238794",
+          "label": "814200145|848238794",
+          "matches": 100,
+          "w": 54,
+          "d": 6,
+          "l": 40,
+          "winRate": 54.0,
+          "goalsPerMatch": 1.89,
+          "goalsConcededPerMatch": 1.74,
+          "goalDifferencePerMatch": 0.15,
+          "shotAccuracy": 81.76,
+          "goalConversion": 38.73,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.47,
+          "cleanSheetRate": 12.0,
+          "concedeTwoPlusRate": 59.0,
+          "lastMatchDateKst": "2026-07-30T03:50:24+09:00",
+          "players": [
+            {
+              "spId": 814200145,
+              "name": "카제미루"
+            },
+            {
+              "spId": 848238794,
+              "name": "비니시우스"
+            }
+          ]
+        },
+        {
+          "key": "814200145|851223334",
+          "label": "814200145|851223334",
+          "matches": 100,
+          "w": 54,
+          "d": 6,
+          "l": 40,
+          "winRate": 54.0,
+          "goalsPerMatch": 1.89,
+          "goalsConcededPerMatch": 1.74,
+          "goalDifferencePerMatch": 0.15,
+          "shotAccuracy": 81.76,
+          "goalConversion": 38.73,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.47,
+          "cleanSheetRate": 12.0,
+          "concedeTwoPlusRate": 59.0,
+          "lastMatchDateKst": "2026-07-30T03:50:24+09:00",
+          "players": [
+            {
+              "spId": 814200145,
+              "name": "카제미루"
+            },
+            {
+              "spId": 851223334,
+              "name": "조엘린통"
+            }
+          ]
+        },
+        {
+          "key": "814200145|851247851",
+          "label": "814200145|851247851",
+          "matches": 100,
+          "w": 54,
+          "d": 6,
+          "l": 40,
+          "winRate": 54.0,
+          "goalsPerMatch": 1.89,
+          "goalsConcededPerMatch": 1.74,
+          "goalDifferencePerMatch": 0.15,
+          "shotAccuracy": 81.76,
+          "goalConversion": 38.73,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.47,
+          "cleanSheetRate": 12.0,
+          "concedeTwoPlusRate": 59.0,
+          "lastMatchDateKst": "2026-07-30T03:50:24+09:00",
+          "players": [
+            {
+              "spId": 814200145,
+              "name": "카제미루"
+            },
+            {
+              "spId": 851247851,
+              "name": "브루누 기마랑이스"
+            }
+          ]
+        },
+        {
+          "key": "814200145|852004231",
+          "label": "814200145|852004231",
+          "matches": 100,
+          "w": 54,
+          "d": 6,
+          "l": 40,
+          "winRate": 54.0,
+          "goalsPerMatch": 1.89,
+          "goalsConcededPerMatch": 1.74,
+          "goalDifferencePerMatch": 0.15,
+          "shotAccuracy": 81.76,
+          "goalConversion": 38.73,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.47,
+          "cleanSheetRate": 12.0,
+          "concedeTwoPlusRate": 59.0,
+          "lastMatchDateKst": "2026-07-30T03:50:24+09:00",
+          "players": [
+            {
+              "spId": 814200145,
+              "name": "카제미루"
+            },
+            {
+              "spId": 852004231,
+              "name": "히바우두"
+            }
+          ]
+        },
+        {
+          "key": "814200145|852233419",
+          "label": "814200145|852233419",
+          "matches": 100,
+          "w": 54,
+          "d": 6,
+          "l": 40,
+          "winRate": 54.0,
+          "goalsPerMatch": 1.89,
+          "goalsConcededPerMatch": 1.74,
+          "goalDifferencePerMatch": 0.15,
+          "shotAccuracy": 81.76,
+          "goalConversion": 38.73,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.47,
+          "cleanSheetRate": 12.0,
+          "concedeTwoPlusRate": 59.0,
+          "lastMatchDateKst": "2026-07-30T03:50:24+09:00",
+          "players": [
+            {
+              "spId": 814200145,
+              "name": "카제미루"
+            },
+            {
+              "spId": 852233419,
+              "name": "하피냐"
+            }
+          ]
+        },
+        {
+          "key": "814200145|856257265",
+          "label": "814200145|856257265",
+          "matches": 100,
+          "w": 54,
+          "d": 6,
+          "l": 40,
+          "winRate": 54.0,
+          "goalsPerMatch": 1.89,
+          "goalsConcededPerMatch": 1.74,
+          "goalDifferencePerMatch": 0.15,
+          "shotAccuracy": 81.76,
+          "goalConversion": 38.73,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.47,
+          "cleanSheetRate": 12.0,
+          "concedeTwoPlusRate": 59.0,
+          "lastMatchDateKst": "2026-07-30T03:50:24+09:00",
+          "players": [
+            {
+              "spId": 814200145,
+              "name": "카제미루"
+            },
+            {
+              "spId": 856257265,
+              "name": "마테우스 시우바"
+            }
+          ]
+        },
+        {
+          "key": "814200145|863232580",
+          "label": "814200145|863232580",
+          "matches": 100,
+          "w": 54,
+          "d": 6,
+          "l": 40,
+          "winRate": 54.0,
+          "goalsPerMatch": 1.89,
+          "goalsConcededPerMatch": 1.74,
+          "goalDifferencePerMatch": 0.15,
+          "shotAccuracy": 81.76,
+          "goalConversion": 38.73,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.47,
+          "cleanSheetRate": 12.0,
+          "concedeTwoPlusRate": 59.0,
+          "lastMatchDateKst": "2026-07-30T03:50:24+09:00",
+          "players": [
+            {
+              "spId": 814200145,
+              "name": "카제미루"
+            },
+            {
+              "spId": 863232580,
+              "name": "가브리엘 마갈량이스"
+            }
+          ]
+        },
+        {
+          "key": "814200145|866239580",
+          "label": "814200145|866239580",
+          "matches": 100,
+          "w": 54,
+          "d": 6,
+          "l": 40,
+          "winRate": 54.0,
+          "goalsPerMatch": 1.89,
+          "goalsConcededPerMatch": 1.74,
+          "goalDifferencePerMatch": 0.15,
+          "shotAccuracy": 81.76,
+          "goalConversion": 38.73,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.47,
+          "cleanSheetRate": 12.0,
+          "concedeTwoPlusRate": 59.0,
+          "lastMatchDateKst": "2026-07-30T03:50:24+09:00",
+          "players": [
+            {
+              "spId": 814200145,
+              "name": "카제미루"
+            },
+            {
+              "spId": 866239580,
+              "name": "브레메르"
+            }
+          ]
+        }
+      ],
+      "trios": [
+        {
+          "key": "814200145|848210257|848232805",
+          "label": "814200145|848210257|848232805",
+          "matches": 100,
+          "w": 54,
+          "d": 6,
+          "l": 40,
+          "winRate": 54.0,
+          "goalsPerMatch": 1.89,
+          "goalsConcededPerMatch": 1.74,
+          "goalDifferencePerMatch": 0.15,
+          "shotAccuracy": 81.76,
+          "goalConversion": 38.73,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.47,
+          "cleanSheetRate": 12.0,
+          "concedeTwoPlusRate": 59.0,
+          "lastMatchDateKst": "2026-07-30T03:50:24+09:00",
+          "players": [
+            {
+              "spId": 814200145,
+              "name": "카제미루"
+            },
+            {
+              "spId": 848210257,
+              "name": "에데르송"
+            },
+            {
+              "spId": 848232805,
+              "name": "베르나르두"
+            }
+          ]
+        },
+        {
+          "key": "814200145|848210257|848238794",
+          "label": "814200145|848210257|848238794",
+          "matches": 100,
+          "w": 54,
+          "d": 6,
+          "l": 40,
+          "winRate": 54.0,
+          "goalsPerMatch": 1.89,
+          "goalsConcededPerMatch": 1.74,
+          "goalDifferencePerMatch": 0.15,
+          "shotAccuracy": 81.76,
+          "goalConversion": 38.73,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.47,
+          "cleanSheetRate": 12.0,
+          "concedeTwoPlusRate": 59.0,
+          "lastMatchDateKst": "2026-07-30T03:50:24+09:00",
+          "players": [
+            {
+              "spId": 814200145,
+              "name": "카제미루"
+            },
+            {
+              "spId": 848210257,
+              "name": "에데르송"
+            },
+            {
+              "spId": 848238794,
+              "name": "비니시우스"
+            }
+          ]
+        },
+        {
+          "key": "814200145|848210257|851223334",
+          "label": "814200145|848210257|851223334",
+          "matches": 100,
+          "w": 54,
+          "d": 6,
+          "l": 40,
+          "winRate": 54.0,
+          "goalsPerMatch": 1.89,
+          "goalsConcededPerMatch": 1.74,
+          "goalDifferencePerMatch": 0.15,
+          "shotAccuracy": 81.76,
+          "goalConversion": 38.73,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.47,
+          "cleanSheetRate": 12.0,
+          "concedeTwoPlusRate": 59.0,
+          "lastMatchDateKst": "2026-07-30T03:50:24+09:00",
+          "players": [
+            {
+              "spId": 814200145,
+              "name": "카제미루"
+            },
+            {
+              "spId": 848210257,
+              "name": "에데르송"
+            },
+            {
+              "spId": 851223334,
+              "name": "조엘린통"
+            }
+          ]
+        },
+        {
+          "key": "814200145|848210257|851247851",
+          "label": "814200145|848210257|851247851",
+          "matches": 100,
+          "w": 54,
+          "d": 6,
+          "l": 40,
+          "winRate": 54.0,
+          "goalsPerMatch": 1.89,
+          "goalsConcededPerMatch": 1.74,
+          "goalDifferencePerMatch": 0.15,
+          "shotAccuracy": 81.76,
+          "goalConversion": 38.73,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.47,
+          "cleanSheetRate": 12.0,
+          "concedeTwoPlusRate": 59.0,
+          "lastMatchDateKst": "2026-07-30T03:50:24+09:00",
+          "players": [
+            {
+              "spId": 814200145,
+              "name": "카제미루"
+            },
+            {
+              "spId": 848210257,
+              "name": "에데르송"
+            },
+            {
+              "spId": 851247851,
+              "name": "브루누 기마랑이스"
+            }
+          ]
+        },
+        {
+          "key": "814200145|848210257|852004231",
+          "label": "814200145|848210257|852004231",
+          "matches": 100,
+          "w": 54,
+          "d": 6,
+          "l": 40,
+          "winRate": 54.0,
+          "goalsPerMatch": 1.89,
+          "goalsConcededPerMatch": 1.74,
+          "goalDifferencePerMatch": 0.15,
+          "shotAccuracy": 81.76,
+          "goalConversion": 38.73,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.47,
+          "cleanSheetRate": 12.0,
+          "concedeTwoPlusRate": 59.0,
+          "lastMatchDateKst": "2026-07-30T03:50:24+09:00",
+          "players": [
+            {
+              "spId": 814200145,
+              "name": "카제미루"
+            },
+            {
+              "spId": 848210257,
+              "name": "에데르송"
+            },
+            {
+              "spId": 852004231,
+              "name": "히바우두"
+            }
+          ]
+        },
+        {
+          "key": "814200145|848210257|852233419",
+          "label": "814200145|848210257|852233419",
+          "matches": 100,
+          "w": 54,
+          "d": 6,
+          "l": 40,
+          "winRate": 54.0,
+          "goalsPerMatch": 1.89,
+          "goalsConcededPerMatch": 1.74,
+          "goalDifferencePerMatch": 0.15,
+          "shotAccuracy": 81.76,
+          "goalConversion": 38.73,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.47,
+          "cleanSheetRate": 12.0,
+          "concedeTwoPlusRate": 59.0,
+          "lastMatchDateKst": "2026-07-30T03:50:24+09:00",
+          "players": [
+            {
+              "spId": 814200145,
+              "name": "카제미루"
+            },
+            {
+              "spId": 848210257,
+              "name": "에데르송"
+            },
+            {
+              "spId": 852233419,
+              "name": "하피냐"
+            }
+          ]
+        },
+        {
+          "key": "814200145|848210257|856257265",
+          "label": "814200145|848210257|856257265",
+          "matches": 100,
+          "w": 54,
+          "d": 6,
+          "l": 40,
+          "winRate": 54.0,
+          "goalsPerMatch": 1.89,
+          "goalsConcededPerMatch": 1.74,
+          "goalDifferencePerMatch": 0.15,
+          "shotAccuracy": 81.76,
+          "goalConversion": 38.73,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.47,
+          "cleanSheetRate": 12.0,
+          "concedeTwoPlusRate": 59.0,
+          "lastMatchDateKst": "2026-07-30T03:50:24+09:00",
+          "players": [
+            {
+              "spId": 814200145,
+              "name": "카제미루"
+            },
+            {
+              "spId": 848210257,
+              "name": "에데르송"
+            },
+            {
+              "spId": 856257265,
+              "name": "마테우스 시우바"
+            }
+          ]
+        },
+        {
+          "key": "814200145|848210257|863232580",
+          "label": "814200145|848210257|863232580",
+          "matches": 100,
+          "w": 54,
+          "d": 6,
+          "l": 40,
+          "winRate": 54.0,
+          "goalsPerMatch": 1.89,
+          "goalsConcededPerMatch": 1.74,
+          "goalDifferencePerMatch": 0.15,
+          "shotAccuracy": 81.76,
+          "goalConversion": 38.73,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.47,
+          "cleanSheetRate": 12.0,
+          "concedeTwoPlusRate": 59.0,
+          "lastMatchDateKst": "2026-07-30T03:50:24+09:00",
+          "players": [
+            {
+              "spId": 814200145,
+              "name": "카제미루"
+            },
+            {
+              "spId": 848210257,
+              "name": "에데르송"
+            },
+            {
+              "spId": 863232580,
+              "name": "가브리엘 마갈량이스"
+            }
+          ]
+        }
+      ]
+    },
+    "positionGroupPerformance": [
+      {
+        "key": "미드필더진",
+        "label": "미드필더진",
+        "matches": 100,
+        "w": 54,
+        "d": 6,
+        "l": 40,
+        "winRate": 54.0,
+        "goalsPerMatch": 1.89,
+        "goalsConcededPerMatch": 1.74,
+        "goalDifferencePerMatch": 0.15,
+        "shotAccuracy": 81.76,
+        "goalConversion": 38.73,
+        "averagePossession": 0.0,
+        "passSuccessRate": 85.47,
+        "cleanSheetRate": 12.0,
+        "concedeTwoPlusRate": 59.0,
+        "lastMatchDateKst": "2026-07-30T03:50:24+09:00"
+      },
+      {
+        "key": "수비진",
+        "label": "수비진",
+        "matches": 100,
+        "w": 54,
+        "d": 6,
+        "l": 40,
+        "winRate": 54.0,
+        "goalsPerMatch": 1.89,
+        "goalsConcededPerMatch": 1.74,
+        "goalDifferencePerMatch": 0.15,
+        "shotAccuracy": 81.76,
+        "goalConversion": 38.73,
+        "averagePossession": 0.0,
+        "passSuccessRate": 85.47,
+        "cleanSheetRate": 12.0,
+        "concedeTwoPlusRate": 59.0,
+        "lastMatchDateKst": "2026-07-30T03:50:24+09:00"
+      }
+    ]
+  },
+  "comparisons": {
+    "recent20VsPrevious20": {
+      "recent": {
+        "period": 20,
+        "sampleSize": 20,
+        "w": 12,
+        "d": 1,
+        "l": 7,
+        "winRate": 60.0,
+        "goalsPerMatch": 2.25,
+        "goalsConcededPerMatch": 1.85,
+        "goalDifferencePerMatch": 0.4,
+        "shotsPerMatch": 5.3,
+        "shotsOnTargetPerMatch": 4.55,
+        "shotAccuracy": 85.85,
+        "goalConversion": 42.45,
+        "averagePossession": 0.0,
+        "passSuccessRate": 84.27
+      },
+      "previous": {
+        "period": 20,
+        "sampleSize": 20,
+        "w": 13,
+        "d": 0,
+        "l": 7,
+        "winRate": 65.0,
+        "goalsPerMatch": 2.0,
+        "goalsConcededPerMatch": 1.6,
+        "goalDifferencePerMatch": 0.4,
+        "shotsPerMatch": 4.9,
+        "shotsOnTargetPerMatch": 3.7,
+        "shotAccuracy": 75.51,
+        "goalConversion": 40.82,
+        "averagePossession": 0.0,
+        "passSuccessRate": 84.96000000000001
+      },
+      "winRateDifference": -5.0,
+      "goalsPerMatchChangePercent": 12.5,
+      "goalsConcededPerMatchChangePercent": 15.62
+    }
+  },
+  "insights": [
+    {
+      "code": "LOW_POSSESSION_HIGH_EFFICIENCY",
+      "category": "CONTROL",
+      "severity": "positive",
+      "title": "낮은 점유율 고효율",
+      "description": "낮은 점유 비중에서도 평균 이상의 득점 전환과 승률이 관찰되었습니다.",
+      "sampleSize": 100,
+      "evidence": {
+        "averagePossession": 0.0,
+        "goalConversion": 38.73,
+        "winRate": 54.0
+      }
+    },
+    {
+      "code": "STYLE_PROFILE_DETECTED",
+      "category": "STYLE",
+      "severity": "info",
+      "title": "안정형 프로필",
+      "description": "최근 감독모드 경기 지표에서 가장 강하게 관찰된 운영 성향입니다.",
+      "sampleSize": 100,
+      "evidence": {
+        "primary": "안정형",
+        "scores": {
+          "점유형": 0.0,
+          "다득점형": 47.25,
+          "수비형": 30.7,
+          "고효율형": 57.63,
+          "다슈팅형": 48.8,
+          "안정형": 58.19
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,291 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:35:38.999896+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "status": "metadata_ready"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "82044429",
+    "nickname": "ES라울"
+  },
+  "season": "2026-4",
+  "status": "READY",
+  "squad": {
+    "formation": "4-6-0",
+    "clubValue": null,
+    "clubValueText": "-",
+    "salary": {
+      "current": 299,
+      "cap": 310
+    },
+    "playerCount": 11
+  },
+  "players": [
+    {
+      "spId": 863224258,
+      "name": "K. 아예르",
+      "role": "lcb",
+      "position": "lcb",
+      "spPosition": 6,
+      "spGrade": 11,
+      "pay": 27,
+      "price": 0,
+      "priceText": "-",
+      "order": 0,
+      "starter": true
+    },
+    {
+      "spId": 863229891,
+      "name": "J. 리에르손",
+      "role": "rb",
+      "position": "rb",
+      "spPosition": 3,
+      "spGrade": 11,
+      "pay": 27,
+      "price": 0,
+      "priceText": "-",
+      "order": 1,
+      "starter": true
+    },
+    {
+      "spId": 856222227,
+      "name": "P. 베르그",
+      "role": "rcm",
+      "position": "rcm",
+      "spPosition": 13,
+      "spGrade": 11,
+      "pay": 26,
+      "price": 0,
+      "priceText": "-",
+      "order": 2,
+      "starter": true
+    },
+    {
+      "spId": 863222665,
+      "name": "마르틴 외데고르",
+      "role": "ram",
+      "position": "ram",
+      "spPosition": 17,
+      "spGrade": 11,
+      "pay": 29,
+      "price": 0,
+      "priceText": "-",
+      "order": 3,
+      "starter": true
+    },
+    {
+      "spId": 863262135,
+      "name": "D. 볼페",
+      "role": "lb",
+      "position": "lb",
+      "spPosition": 7,
+      "spGrade": 11,
+      "pay": 25,
+      "price": 0,
+      "priceText": "-",
+      "order": 4,
+      "starter": true
+    },
+    {
+      "spId": 863185427,
+      "name": "외리안 뉠란",
+      "role": "gk",
+      "position": "gk",
+      "spPosition": 0,
+      "spGrade": 11,
+      "pay": 25,
+      "price": 0,
+      "priceText": "-",
+      "order": 5,
+      "starter": true
+    },
+    {
+      "spId": 852274967,
+      "name": "욘 아르네 리세",
+      "role": "lcm",
+      "position": "lcm",
+      "spPosition": 15,
+      "spGrade": 11,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 6,
+      "starter": true
+    },
+    {
+      "spId": 863248342,
+      "name": "T. 헤겜",
+      "role": "rcb",
+      "position": "rcb",
+      "spPosition": 4,
+      "spGrade": 11,
+      "pay": 25,
+      "price": 0,
+      "priceText": "-",
+      "order": 7,
+      "starter": true
+    },
+    {
+      "spId": 863228092,
+      "name": "산데르 베르게",
+      "role": "cdm",
+      "position": "cdm",
+      "spPosition": 10,
+      "spGrade": 11,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 8,
+      "starter": true
+    },
+    {
+      "spId": 863239085,
+      "name": "엘링 홀란",
+      "role": "cam",
+      "position": "cam",
+      "spPosition": 18,
+      "spGrade": 10,
+      "pay": 31,
+      "price": 0,
+      "priceText": "-",
+      "order": 9,
+      "starter": true
+    },
+    {
+      "spId": 863262863,
+      "name": "안토니오 누사",
+      "role": "lam",
+      "position": "lam",
+      "spPosition": 19,
+      "spGrade": 11,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 10,
+      "starter": true
+    }
+  ],
+  "teamColors": [
+    {
+      "id": "2058",
+      "group": "affiliation",
+      "groupLabel": "소속",
+      "level": 4,
+      "name": "노르웨이",
+      "playerCount": 11,
+      "activationPlayerCount": 11,
+      "skills": [
+        {
+          "name": "골 결정력",
+          "amount": 3,
+          "label": "골 결정력 +3"
+        },
+        {
+          "name": "전체 능력치",
+          "amount": 4,
+          "label": "전체 능력치 +4"
+        },
+        {
+          "name": "시야",
+          "amount": 3,
+          "label": "시야 +3"
+        }
+      ],
+      "image": "https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/countries/largeflags/f_36.png"
+    },
+    {
+      "id": "40677",
+      "group": "affiliation",
+      "groupLabel": "소속",
+      "level": 2,
+      "name": "Path to Glory",
+      "playerCount": 6,
+      "activationPlayerCount": 6,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 2,
+          "label": "전체 능력치 +2"
+        }
+      ],
+      "image": "https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/teamcolorboost/icon/medium/4_l999863.png"
+    },
+    {
+      "id": "40689",
+      "group": "feature",
+      "groupLabel": "특성",
+      "level": 1,
+      "name": "2026 노르웨이",
+      "playerCount": 10,
+      "activationPlayerCount": 10,
+      "skills": [
+        {
+          "name": "드리블",
+          "amount": 2,
+          "label": "드리블 +2"
+        },
+        {
+          "name": "골 결정력",
+          "amount": 3,
+          "label": "골 결정력 +3"
+        },
+        {
+          "name": "위치 선정",
+          "amount": 3,
+          "label": "위치 선정 +3"
+        },
+        {
+          "name": "속력",
+          "amount": 2,
+          "label": "속력 +2"
+        }
+      ],
+      "image": "https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/teamcolorboost/icon/medium/4_l3036.png"
+    },
+    {
+      "id": "10004",
+      "group": "enhance",
+      "groupLabel": "강화",
+      "level": 2,
+      "name": "백금빛 물결",
+      "playerCount": 10,
+      "activationPlayerCount": 10,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 5,
+          "label": "전체 능력치 +5"
+        }
+      ],
+      "image": "https://ssl.nexon.com/s2/game/fc/online/obt/datacenter/teamcolor/tc_u_p.png"
+    },
+    {
+      "id": "10001",
+      "group": "enhance",
+      "groupLabel": "강화",
+      "level": 2,
+      "name": "금빛 물결",
+      "playerCount": 1,
+      "activationPlayerCount": 11,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 4,
+          "label": "전체 능력치 +4"
+        }
+      ],
+      "image": "https://ssl.nexon.com/s2/game/fc/online/obt/datacenter/teamcolor/tc_u_g.png"
+    }
+  ],
+  "summary": {
+    "teamColorCount": 5,
+    "affiliationCount": 2,
+    "enhanceCount": 2,
+    "featureCount": 1
+  }
+}

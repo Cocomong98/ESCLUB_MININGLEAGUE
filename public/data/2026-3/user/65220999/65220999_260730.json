@@ -1,0 +1,38 @@
+[
+    {
+        "name": "ES로운",
+        "player_id": "65220999",
+        "stat_url": "https://fconline.nexon.com/profile/stat/popup/65220999",
+        "squad_url": "https://fconline.nexon.com/profile/squad/popup/65220999",
+        "구단주명": "ES로운",
+        "승": 547,
+        "무": 113,
+        "패": 536,
+        "판수": 1196,
+        "채굴 효율": 2954,
+        "승률": "45.7%",
+        "현재 티어": "슈퍼 챌린저",
+        "현재 티어 코드": "2",
+        "현재 티어 이미지": "https://ssl.nexon.com/s2/game/fo4/obt/rank/large/update_2026/ico_rank2_m.png",
+        "구단 가치": "2,786조",
+        "비고": "-",
+        "지난 시즌 승": 0,
+        "지난 시즌 무": 0,
+        "지난 시즌 패": 0,
+        "지난 시즌 판수": 0,
+        "지난 시즌 채굴 효율": 0,
+        "지난 시즌 승률": "0.0%",
+        "crawl_time": "2026-07-30",
+        "record_source": "nexon_open_api",
+        "openapi_sync": {
+            "ouid": "55b6b169ed69257d0a3d2e5836aabd89",
+            "newMatchCount": 1066,
+            "totalIndexCount": 1200,
+            "maxMatches": 1200
+        },
+        "순위": 18,
+        "성장력": -1487,
+        "crawl_time_detail": "2026-07-30 오후 1시",
+        "crawl_time_hhmm": "13:40"
+    }
+]

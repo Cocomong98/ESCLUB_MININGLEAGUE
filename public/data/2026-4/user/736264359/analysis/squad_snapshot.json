@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:36:55.609596+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "status": "metadata_ready"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "736264359",
+    "nickname": "Winners콜먼"
+  },
+  "season": "2026-4",
+  "status": "READY",
+  "squad": {
+    "formation": "UNKNOWN",
+    "clubValue": null,
+    "clubValueText": "-",
+    "salary": {
+      "current": 0,
+      "cap": 310
+    },
+    "playerCount": 0
+  },
+  "players": [],
+  "teamColors": [],
+  "summary": {
+    "teamColorCount": 0,
+    "affiliationCount": 0,
+    "enhanceCount": 0,
+    "featureCount": 0
+  }
+}

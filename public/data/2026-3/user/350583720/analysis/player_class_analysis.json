@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:15:33.713578+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "350583720",
+    "nickname": "멍웅찬"
+  },
+  "classRows": [
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 2,
+      "appearances": 2390,
+      "goals": 401,
+      "assists": 415,
+      "attackPoints": 816,
+      "avgRating": 6.7
+    },
+    {
+      "seasonId": 852,
+      "seasonName": "FAC (Football Association Champions)",
+      "players": 2,
+      "appearances": 2390,
+      "goals": 1228,
+      "assists": 603,
+      "attackPoints": 1831,
+      "avgRating": 7.13
+    },
+    {
+      "seasonId": 834,
+      "seasonName": "24 UCL (24 UEFA Champions League)",
+      "players": 1,
+      "appearances": 1195,
+      "goals": 34,
+      "assists": 15,
+      "attackPoints": 49,
+      "avgRating": 6.45
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 1,
+      "appearances": 1195,
+      "goals": 442,
+      "assists": 413,
+      "attackPoints": 855,
+      "avgRating": 7.04
+    },
+    {
+      "seasonId": 866,
+      "seasonName": "26 TOTS (26 Team Of The Season)",
+      "players": 1,
+      "appearances": 1195,
+      "goals": 93,
+      "assists": 282,
+      "attackPoints": 375,
+      "avgRating": 6.52
+    },
+    {
+      "seasonId": 855,
+      "seasonName": "26 TOTY-N (26 Team Of The Nominated)",
+      "players": 1,
+      "appearances": 1195,
+      "goals": 89,
+      "assists": 186,
+      "attackPoints": 275,
+      "avgRating": 6.51
+    },
+    {
+      "seasonId": 840,
+      "seasonName": "LE (Legend of Europa)",
+      "players": 1,
+      "appearances": 1195,
+      "goals": 0,
+      "assists": 1,
+      "attackPoints": 1,
+      "avgRating": 6.39
+    },
+    {
+      "seasonId": 814,
+      "seasonName": "UT (Unexpected Transfer)",
+      "players": 1,
+      "appearances": 1195,
+      "goals": 5,
+      "assists": 60,
+      "attackPoints": 65,
+      "avgRating": 6.4
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 1,
+      "appearances": 1195,
+      "goals": 9,
+      "assists": 70,
+      "attackPoints": 79,
+      "avgRating": 6.42
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

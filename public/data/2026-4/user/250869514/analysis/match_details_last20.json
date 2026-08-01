@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:35:30.081188+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52,
+    "matchtypeName": "감독모드"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "250869514",
+    "nickname": "ES데이비드베컴"
+  },
+  "scope": {
+    "recentMatches": 0
+  },
+  "rows": []
+}

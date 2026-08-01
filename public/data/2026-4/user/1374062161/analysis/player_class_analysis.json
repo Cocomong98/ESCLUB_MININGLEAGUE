@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:35:50.836669+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1374062161",
+    "nickname": "ES맨유"
+  },
+  "classRows": [
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 11,
+      "appearances": 1265,
+      "goals": 195,
+      "assists": 180,
+      "attackPoints": 375,
+      "avgRating": 6.47
+    },
+    {
+      "seasonId": 866,
+      "seasonName": "26 TOTS (26 Team Of The Season)",
+      "players": 10,
+      "appearances": 1080,
+      "goals": 180,
+      "assists": 158,
+      "attackPoints": 338,
+      "avgRating": 6.55
+    },
+    {
+      "seasonId": 300,
+      "seasonName": "25 LIVE (25 LIVE)",
+      "players": 1,
+      "appearances": 108,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.22
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

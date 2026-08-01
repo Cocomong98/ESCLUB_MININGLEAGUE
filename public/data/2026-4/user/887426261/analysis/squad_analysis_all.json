@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "0.1.2",
+  "generatedAt": "2026-08-01T14:15:54.917350+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52,
+    "matchtypeName": "감독모드"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "887426261",
+    "nickname": "로니"
+  },
+  "scope": {
+    "mode": "season_filtered_all",
+    "actualMatches": 0
+  },
+  "summary": {
+    "uniquePlayers": 0,
+    "totalAppearances": 0
+  },
+  "rows": []
+}

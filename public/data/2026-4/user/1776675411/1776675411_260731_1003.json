@@ -1,0 +1,38 @@
+[
+    {
+        "name": "ES구마적",
+        "player_id": "1776675411",
+        "stat_url": "https://fconline.nexon.com/profile/stat/popup/1776675411",
+        "squad_url": "https://fconline.nexon.com/profile/squad/popup/1776675411",
+        "구단주명": "ES구마적",
+        "승": 601,
+        "무": 64,
+        "패": 534,
+        "판수": 1199,
+        "채굴 효율": 3481,
+        "승률": "50.1%",
+        "현재 티어": "챌린저 3",
+        "현재 티어 코드": "5",
+        "현재 티어 이미지": "https://ssl.nexon.com/s2/game/fo4/obt/rank/large/update_2026/ico_rank5_m.png",
+        "구단 가치": "7경 2,545조",
+        "비고": "-",
+        "지난 시즌 승": 0,
+        "지난 시즌 무": 0,
+        "지난 시즌 패": 0,
+        "지난 시즌 판수": 0,
+        "지난 시즌 채굴 효율": 0,
+        "지난 시즌 승률": "0.0%",
+        "crawl_time": "2026-07-31",
+        "record_source": "nexon_open_api",
+        "openapi_sync": {
+            "ouid": "ff0e45cf6d4771e1361fb9ca25b67163",
+            "newMatchCount": 39,
+            "totalIndexCount": 1278,
+            "maxMatches": 1200
+        },
+        "순위": 6,
+        "성장력": 0,
+        "crawl_time_detail": "2026-07-31 오전 10시",
+        "crawl_time_hhmm": "10:03"
+    }
+]

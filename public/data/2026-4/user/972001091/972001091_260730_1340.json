@@ -1,0 +1,38 @@
+[
+    {
+        "name": "ES소보",
+        "player_id": "972001091",
+        "stat_url": "https://fconline.nexon.com/profile/stat/popup/972001091",
+        "squad_url": "https://fconline.nexon.com/profile/squad/popup/972001091",
+        "구단주명": "ES소보",
+        "승": 498,
+        "무": 72,
+        "패": 588,
+        "판수": 1158,
+        "채굴 효율": 2682,
+        "승률": "43.0%",
+        "현재 티어": "월드클래스 2",
+        "현재 티어 코드": "7",
+        "현재 티어 이미지": "https://ssl.nexon.com/s2/game/fo4/obt/rank/large/update_2026/ico_rank7_m.png",
+        "구단 가치": "11경 4,891조",
+        "비고": "-",
+        "지난 시즌 승": 0,
+        "지난 시즌 무": 0,
+        "지난 시즌 패": 0,
+        "지난 시즌 판수": 0,
+        "지난 시즌 채굴 효율": 0,
+        "지난 시즌 승률": "0.0%",
+        "crawl_time": "2026-07-30",
+        "record_source": "nexon_open_api",
+        "openapi_sync": {
+            "ouid": "91f0f0ea7411a6437223ca0cf2e471af",
+            "newMatchCount": 1066,
+            "totalIndexCount": 1200,
+            "maxMatches": 1200
+        },
+        "순위": 20,
+        "성장력": -11961,
+        "crawl_time_detail": "2026-07-30 오후 1시",
+        "crawl_time_hhmm": "13:40"
+    }
+]

@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:15:19.171573+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "65220999",
+    "nickname": "ES로운"
+  },
+  "classRows": [
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 13,
+      "appearances": 6490,
+      "goals": 1008,
+      "assists": 902,
+      "attackPoints": 1910,
+      "avgRating": 6.49
+    },
+    {
+      "seasonId": 861,
+      "seasonName": "WG (Warriors of Glory)",
+      "players": 10,
+      "appearances": 3860,
+      "goals": 704,
+      "assists": 634,
+      "attackPoints": 1338,
+      "avgRating": 6.52
+    },
+    {
+      "seasonId": 866,
+      "seasonName": "26 TOTS (26 Team Of The Season)",
+      "players": 15,
+      "appearances": 1959,
+      "goals": 350,
+      "assists": 313,
+      "attackPoints": 663,
+      "avgRating": 6.56
+    },
+    {
+      "seasonId": 253,
+      "seasonName": "BOE21 (Best of Europe 21)",
+      "players": 1,
+      "appearances": 386,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.33
+    },
+    {
+      "seasonId": 300,
+      "seasonName": "25 LIVE (25 LIVE)",
+      "players": 1,
+      "appearances": 147,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.31
+    },
+    {
+      "seasonId": 844,
+      "seasonName": "25 TOTS (25 Team Of The Season)",
+      "players": 1,
+      "appearances": 61,
+      "goals": 0,
+      "assists": 3,
+      "attackPoints": 3,
+      "avgRating": 6.41
+    },
+    {
+      "seasonId": 206,
+      "seasonName": "TB (Tournament Best)",
+      "players": 1,
+      "appearances": 55,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.29
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

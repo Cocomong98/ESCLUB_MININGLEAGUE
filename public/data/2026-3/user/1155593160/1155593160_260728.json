@@ -1,0 +1,31 @@
+[
+    {
+        "name": "ES코코몽",
+        "player_id": "1155593160",
+        "stat_url": "https://fconline.nexon.com/profile/stat/popup/1155593160",
+        "squad_url": "https://fconline.nexon.com/profile/squad/popup/1155593160",
+        "구단주명": "ES코코몽",
+        "승": 1433,
+        "무": 667,
+        "패": 1395,
+        "판수": 3495,
+        "채굴 효율": 6635,
+        "승률": "41.0%",
+        "현재 티어": "챔피언스",
+        "현재 티어 코드": "1",
+        "현재 티어 이미지": "https://ssl.nexon.com/s2/game/fo4/obt/rank/large/update_2009/ico_rank1_m.png",
+        "구단 가치": "29036조",
+        "비고": "-",
+        "지난 시즌 승": 1310,
+        "지난 시즌 무": 337,
+        "지난 시즌 패": 1316,
+        "지난 시즌 판수": 2963,
+        "지난 시즌 채굴 효율": 6843,
+        "지난 시즌 승률": "44.2%",
+        "crawl_time": "2026-07-28",
+        "순위": 29,
+        "성장력": 0,
+        "crawl_time_detail": "2026-07-28 오후 4시",
+        "crawl_time_hhmm": "16:14"
+    }
+]

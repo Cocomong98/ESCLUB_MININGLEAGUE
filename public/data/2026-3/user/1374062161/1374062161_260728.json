@@ -1,0 +1,31 @@
+[
+    {
+        "name": "ES맨유",
+        "player_id": "1374062161",
+        "stat_url": "https://fconline.nexon.com/profile/stat/popup/1374062161",
+        "squad_url": "https://fconline.nexon.com/profile/squad/popup/1374062161",
+        "구단주명": "ES맨유",
+        "승": 2496,
+        "무": 457,
+        "패": 2369,
+        "판수": 5322,
+        "채굴 효율": 13732,
+        "승률": "46.9%",
+        "현재 티어": "슈퍼 챌린저",
+        "현재 티어 코드": "2",
+        "현재 티어 이미지": "https://ssl.nexon.com/s2/game/fo4/obt/rank/large/update_2009/ico_rank2_m.png",
+        "구단 가치": "191조",
+        "비고": "-",
+        "지난 시즌 승": 3459,
+        "지난 시즌 무": 333,
+        "지난 시즌 패": 3182,
+        "지난 시즌 판수": 6974,
+        "지난 시즌 채굴 효율": 20032,
+        "지난 시즌 승률": "49.6%",
+        "crawl_time": "2026-07-28",
+        "순위": 15,
+        "성장력": 0,
+        "crawl_time_detail": "2026-07-28 오후 4시",
+        "crawl_time_hhmm": "16:14"
+    }
+]

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "0.1.0",
+  "status": "SUCCESS",
+  "generatedAt": "2026-08-01T16:36:50.231102+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1944734890",
+    "nickname": "winners내미"
+  },
+  "account": {
+    "ouidHash": "f245178bed59",
+    "nickname": "Winners내미",
+    "level": 4106,
+    "managerModeBestDivision": {
+      "matchType": 52,
+      "division": 800,
+      "achievementDate": "2026-07-14T16:49:21",
+      "divisionName": "슈퍼챔피언스"
+    },
+    "divisionRows": [
+      {
+        "matchType": 50,
+        "division": 2300,
+        "achievementDate": "2023-09-27T08:26:29",
+        "divisionName": "프로1"
+      },
+      {
+        "matchType": 52,
+        "division": 800,
+        "achievementDate": "2026-07-14T16:49:21",
+        "divisionName": "슈퍼챔피언스"
+      }
+    ]
+  }
+}

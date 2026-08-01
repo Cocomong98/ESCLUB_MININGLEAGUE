@@ -1,0 +1,204 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:15:59.698507+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "820659706",
+    "nickname": "ES타이슨"
+  },
+  "classRows": [
+    {
+      "seasonId": 866,
+      "seasonName": "26 TOTS (26 Team Of The Season)",
+      "players": 10,
+      "appearances": 3710,
+      "goals": 736,
+      "assists": 654,
+      "attackPoints": 1390,
+      "avgRating": 6.74
+    },
+    {
+      "seasonId": 862,
+      "seasonName": "KHD (Korea Heroes Debut)",
+      "players": 11,
+      "appearances": 2601,
+      "goals": 394,
+      "assists": 345,
+      "attackPoints": 739,
+      "avgRating": 6.49
+    },
+    {
+      "seasonId": 291,
+      "seasonName": "23HW (23 Hard Worker)",
+      "players": 7,
+      "appearances": 479,
+      "goals": 97,
+      "assists": 73,
+      "attackPoints": 170,
+      "avgRating": 6.55
+    },
+    {
+      "seasonId": 300,
+      "seasonName": "25 LIVE (25 LIVE)",
+      "players": 2,
+      "appearances": 384,
+      "goals": 0,
+      "assists": 2,
+      "attackPoints": 2,
+      "avgRating": 6.31
+    },
+    {
+      "seasonId": 268,
+      "seasonName": "LN (LEGENDARY NUMBERS)",
+      "players": 4,
+      "appearances": 101,
+      "goals": 18,
+      "assists": 22,
+      "attackPoints": 40,
+      "avgRating": 6.4
+    },
+    {
+      "seasonId": 283,
+      "seasonName": "HG (Home Grown)",
+      "players": 2,
+      "appearances": 97,
+      "goals": 26,
+      "assists": 24,
+      "attackPoints": 50,
+      "avgRating": 6.02
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 1,
+      "appearances": 95,
+      "goals": 6,
+      "assists": 0,
+      "attackPoints": 6,
+      "avgRating": 6.34
+    },
+    {
+      "seasonId": 270,
+      "seasonName": "SPL (Spotlight)",
+      "players": 1,
+      "appearances": 95,
+      "goals": 0,
+      "assists": 8,
+      "attackPoints": 8,
+      "avgRating": 6.48
+    },
+    {
+      "seasonId": 814,
+      "seasonName": "UT (Unexpected Transfer)",
+      "players": 1,
+      "appearances": 95,
+      "goals": 1,
+      "assists": 3,
+      "attackPoints": 4,
+      "avgRating": 6.48
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 1,
+      "appearances": 95,
+      "goals": 1,
+      "assists": 1,
+      "attackPoints": 2,
+      "avgRating": 6.38
+    },
+    {
+      "seasonId": 225,
+      "seasonName": "TKL (TEAM K LEAGUE)",
+      "players": 1,
+      "appearances": 13,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 5.88
+    },
+    {
+      "seasonId": 274,
+      "seasonName": "RMCF (Real Madrid Ambassador)",
+      "players": 2,
+      "appearances": 4,
+      "goals": 1,
+      "assists": 1,
+      "attackPoints": 2,
+      "avgRating": 6.53
+    },
+    {
+      "seasonId": 206,
+      "seasonName": "TB (Tournament Best)",
+      "players": 1,
+      "appearances": 3,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 5.23
+    },
+    {
+      "seasonId": 825,
+      "seasonName": "CU (Champions of Europe)",
+      "players": 1,
+      "appearances": 2,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.65
+    },
+    {
+      "seasonId": 829,
+      "seasonName": "GRU (Greatest Runner-Ups)",
+      "players": 1,
+      "appearances": 2,
+      "goals": 0,
+      "assists": 1,
+      "attackPoints": 1,
+      "avgRating": 6.7
+    },
+    {
+      "seasonId": 216,
+      "seasonName": "HOT (Heroes Of the Team)",
+      "players": 1,
+      "appearances": 2,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 3.55
+    }
+  ],
+  "samePlayerCardComparisons": [
+    {
+      "basePlayerId": "236703",
+      "name": "다비트 라움",
+      "cards": [
+        {
+          "spId": 866236703,
+          "seasonId": 866,
+          "seasonName": "26 TOTS (26 Team Of The Season)",
+          "appearances": 371,
+          "attackPoint": 121,
+          "avgRating": 6.62,
+          "playerWinRate": 50.94
+        },
+        {
+          "spId": 270236703,
+          "seasonId": 270,
+          "seasonName": "SPL (Spotlight)",
+          "appearances": 95,
+          "attackPoint": 8,
+          "avgRating": 6.48,
+          "playerWinRate": 35.79
+        }
+      ]
+    }
+  ]
+}

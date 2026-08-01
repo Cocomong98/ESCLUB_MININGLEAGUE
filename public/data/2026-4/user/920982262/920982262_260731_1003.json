@@ -1,0 +1,38 @@
+[
+    {
+        "name": "ES진",
+        "player_id": "920982262",
+        "stat_url": "https://fconline.nexon.com/profile/stat/popup/920982262",
+        "squad_url": "https://fconline.nexon.com/profile/squad/popup/920982262",
+        "구단주명": "ES진",
+        "승": 599,
+        "무": 42,
+        "패": 515,
+        "판수": 1156,
+        "채굴 효율": 3552,
+        "승률": "51.8%",
+        "현재 티어": "챌린저 1",
+        "현재 티어 코드": "3",
+        "현재 티어 이미지": "https://ssl.nexon.com/s2/game/fo4/obt/rank/large/update_2026/ico_rank3_m.png",
+        "구단 가치": "18경 8,140조",
+        "비고": "-",
+        "지난 시즌 승": 0,
+        "지난 시즌 무": 0,
+        "지난 시즌 패": 0,
+        "지난 시즌 판수": 0,
+        "지난 시즌 채굴 효율": 0,
+        "지난 시즌 승률": "0.0%",
+        "crawl_time": "2026-07-31",
+        "record_source": "nexon_open_api",
+        "openapi_sync": {
+            "ouid": "5eca44062fb751dc23f3389b2f74d09f",
+            "newMatchCount": 51,
+            "totalIndexCount": 1257,
+            "maxMatches": 1200
+        },
+        "순위": 5,
+        "성장력": 0,
+        "crawl_time_detail": "2026-07-31 오전 10시",
+        "crawl_time_hhmm": "10:03"
+    }
+]

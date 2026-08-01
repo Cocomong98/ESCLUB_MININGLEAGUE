@@ -1,0 +1,38 @@
+[
+    {
+        "name": "ES스페인",
+        "player_id": "1038218816",
+        "stat_url": "https://fconline.nexon.com/profile/stat/popup/1038218816",
+        "squad_url": "https://fconline.nexon.com/profile/squad/popup/1038218816",
+        "구단주명": "ES스페인",
+        "승": 550,
+        "무": 42,
+        "패": 576,
+        "판수": 1168,
+        "채굴 효율": 3148,
+        "승률": "47.1%",
+        "현재 티어": "월드클래스 3",
+        "현재 티어 코드": "8",
+        "현재 티어 이미지": "https://ssl.nexon.com/s2/game/fo4/obt/rank/large/update_2026/ico_rank8_m.png",
+        "구단 가치": "8경 5,213조",
+        "비고": "-",
+        "지난 시즌 승": 0,
+        "지난 시즌 무": 0,
+        "지난 시즌 패": 0,
+        "지난 시즌 판수": 0,
+        "지난 시즌 채굴 효율": 0,
+        "지난 시즌 승률": "0.0%",
+        "crawl_time": "2026-07-30",
+        "record_source": "nexon_open_api",
+        "openapi_sync": {
+            "ouid": "f9f2da3249df07d1669a75e979297e96",
+            "newMatchCount": 1063,
+            "totalIndexCount": 1200,
+            "maxMatches": 1200
+        },
+        "순위": 10,
+        "성장력": -13309,
+        "crawl_time_detail": "2026-07-30 오후 1시",
+        "crawl_time_hhmm": "13:40"
+    }
+]

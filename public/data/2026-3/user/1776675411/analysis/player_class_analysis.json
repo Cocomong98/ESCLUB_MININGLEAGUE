@@ -1,0 +1,249 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:14:52.445280+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1776675411",
+    "nickname": "ES구마적"
+  },
+  "classRows": [
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 4,
+      "appearances": 3082,
+      "goals": 432,
+      "assists": 424,
+      "attackPoints": 856,
+      "avgRating": 6.48
+    },
+    {
+      "seasonId": 866,
+      "seasonName": "26 TOTS (26 Team Of The Season)",
+      "players": 3,
+      "appearances": 2308,
+      "goals": 7,
+      "assists": 21,
+      "attackPoints": 28,
+      "avgRating": 6.36
+    },
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 3,
+      "appearances": 1602,
+      "goals": 116,
+      "assists": 136,
+      "attackPoints": 252,
+      "avgRating": 6.45
+    },
+    {
+      "seasonId": 826,
+      "seasonName": "24EP (2024 Energetic Player)",
+      "players": 2,
+      "appearances": 1408,
+      "goals": 338,
+      "assists": 273,
+      "attackPoints": 611,
+      "avgRating": 6.6
+    },
+    {
+      "seasonId": 825,
+      "seasonName": "CU (Champions of Europe)",
+      "players": 2,
+      "appearances": 1277,
+      "goals": 101,
+      "assists": 130,
+      "attackPoints": 231,
+      "avgRating": 6.36
+    },
+    {
+      "seasonId": 834,
+      "seasonName": "24 UCL (24 UEFA Champions League)",
+      "players": 1,
+      "appearances": 1195,
+      "goals": 271,
+      "assists": 387,
+      "attackPoints": 658,
+      "avgRating": 6.63
+    },
+    {
+      "seasonId": 852,
+      "seasonName": "FAC (Football Association Champions)",
+      "players": 2,
+      "appearances": 897,
+      "goals": 220,
+      "assists": 222,
+      "attackPoints": 442,
+      "avgRating": 6.52
+    },
+    {
+      "seasonId": 850,
+      "seasonName": "25FSL (25 FCO Superchampions League)",
+      "players": 1,
+      "appearances": 753,
+      "goals": 397,
+      "assists": 188,
+      "attackPoints": 585,
+      "avgRating": 6.75
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 1,
+      "appearances": 561,
+      "goals": 292,
+      "assists": 150,
+      "attackPoints": 442,
+      "avgRating": 6.81
+    },
+    {
+      "seasonId": 856,
+      "seasonName": "25 UCL (25 UEFA Champions League)",
+      "players": 2,
+      "appearances": 62,
+      "goals": 0,
+      "assists": 3,
+      "attackPoints": 3,
+      "avgRating": 6.38
+    }
+  ],
+  "samePlayerCardComparisons": [
+    {
+      "basePlayerId": "220901",
+      "name": "다비드 라야",
+      "cards": [
+        {
+          "spId": 866220901,
+          "seasonId": 866,
+          "seasonName": "26 TOTS (26 Team Of The Season)",
+          "appearances": 1183,
+          "attackPoint": 1,
+          "avgRating": 6.46,
+          "playerWinRate": 50.63
+        },
+        {
+          "spId": 856220901,
+          "seasonId": 856,
+          "seasonName": "25 UCL (25 UEFA Champions League)",
+          "appearances": 12,
+          "attackPoint": 0,
+          "avgRating": 6.28,
+          "playerWinRate": 16.67
+        }
+      ]
+    },
+    {
+      "basePlayerId": "225193",
+      "name": "미켈 메리노",
+      "cards": [
+        {
+          "spId": 826225193,
+          "seasonId": 826,
+          "seasonName": "24EP (2024 Energetic Player)",
+          "appearances": 953,
+          "attackPoint": 564,
+          "avgRating": 6.68,
+          "playerWinRate": 50.89
+        },
+        {
+          "spId": 852225193,
+          "seasonId": 852,
+          "seasonName": "FAC (Football Association Champions)",
+          "appearances": 242,
+          "attackPoint": 120,
+          "avgRating": 6.53,
+          "playerWinRate": 47.93
+        }
+      ]
+    },
+    {
+      "basePlayerId": "243576",
+      "name": "페드로 포로",
+      "cards": [
+        {
+          "spId": 851243576,
+          "seasonId": 851,
+          "seasonName": "25DP (25 Devoted Player)",
+          "appearances": 690,
+          "attackPoint": 68,
+          "avgRating": 6.55,
+          "playerWinRate": 51.16
+        },
+        {
+          "spId": 826243576,
+          "seasonId": 826,
+          "seasonName": "24EP (2024 Energetic Player)",
+          "appearances": 455,
+          "attackPoint": 47,
+          "avgRating": 6.52,
+          "playerWinRate": 47.91
+        },
+        {
+          "spId": 856243576,
+          "seasonId": 856,
+          "seasonName": "25 UCL (25 UEFA Champions League)",
+          "appearances": 50,
+          "attackPoint": 3,
+          "avgRating": 6.48,
+          "playerWinRate": 60.0
+        }
+      ]
+    },
+    {
+      "basePlayerId": "212218",
+      "name": "에므리크 라포르트",
+      "cards": [
+        {
+          "spId": 845212218,
+          "seasonId": 845,
+          "seasonName": "CH (Continental Heroes)",
+          "appearances": 1076,
+          "attackPoint": 60,
+          "avgRating": 6.42,
+          "playerWinRate": 50.19
+        },
+        {
+          "spId": 825212218,
+          "seasonId": 825,
+          "seasonName": "CU (Champions of Europe)",
+          "appearances": 82,
+          "attackPoint": 2,
+          "avgRating": 6.35,
+          "playerWinRate": 45.12
+        }
+      ]
+    },
+    {
+      "basePlayerId": "256516",
+      "name": "니코 윌리암스",
+      "cards": [
+        {
+          "spId": 852256516,
+          "seasonId": 852,
+          "seasonName": "FAC (Football Association Champions)",
+          "appearances": 655,
+          "attackPoint": 322,
+          "avgRating": 6.51,
+          "playerWinRate": 50.53
+        },
+        {
+          "spId": 845256516,
+          "seasonId": 845,
+          "seasonName": "CH (Continental Heroes)",
+          "appearances": 407,
+          "attackPoint": 185,
+          "avgRating": 6.48,
+          "playerWinRate": 50.61
+        }
+      ]
+    }
+  ]
+}

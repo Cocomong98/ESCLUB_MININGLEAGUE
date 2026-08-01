@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "0.1.0",
+  "status": "SUCCESS",
+  "generatedAt": "2026-08-01T16:35:27.808282+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1877051658",
+    "nickname": "ES누고"
+  },
+  "account": {
+    "ouidHash": "15a72fb0f747",
+    "nickname": "ES누고",
+    "level": 3496,
+    "managerModeBestDivision": {
+      "matchType": 52,
+      "division": 800,
+      "achievementDate": "2026-06-26T17:16:37",
+      "divisionName": "슈퍼챔피언스"
+    },
+    "divisionRows": [
+      {
+        "matchType": 50,
+        "division": 2200,
+        "achievementDate": "2024-07-13T08:14:28",
+        "divisionName": "월드클래스3"
+      },
+      {
+        "matchType": 52,
+        "division": 800,
+        "achievementDate": "2026-06-26T17:16:37",
+        "divisionName": "슈퍼챔피언스"
+      }
+    ]
+  }
+}

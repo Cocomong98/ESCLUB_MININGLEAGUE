@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:36:32.439967+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1793437746",
+    "nickname": "ES차발"
+  },
+  "classRows": [
+    {
+      "seasonId": 863,
+      "seasonName": "PTG (Path to Glory)",
+      "players": 4,
+      "appearances": 1036,
+      "goals": 140,
+      "assists": 120,
+      "attackPoints": 260,
+      "avgRating": 6.46
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 2,
+      "appearances": 518,
+      "goals": 15,
+      "assists": 23,
+      "attackPoints": 38,
+      "avgRating": 6.37
+    },
+    {
+      "seasonId": 852,
+      "seasonName": "FAC (Football Association Champions)",
+      "players": 2,
+      "appearances": 518,
+      "goals": 92,
+      "assists": 85,
+      "attackPoints": 177,
+      "avgRating": 6.53
+    },
+    {
+      "seasonId": 831,
+      "seasonName": "25 TOTY (25 Team Of The Year)",
+      "players": 1,
+      "appearances": 259,
+      "goals": 86,
+      "assists": 42,
+      "attackPoints": 128,
+      "avgRating": 6.69
+    },
+    {
+      "seasonId": 856,
+      "seasonName": "25 UCL (25 UEFA Champions League)",
+      "players": 1,
+      "appearances": 259,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.44
+    },
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 1,
+      "appearances": 259,
+      "goals": 68,
+      "assists": 84,
+      "attackPoints": 152,
+      "avgRating": 6.49
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

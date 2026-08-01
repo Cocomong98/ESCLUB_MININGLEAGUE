@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "0.1.0",
+  "status": "SUCCESS",
+  "generatedAt": "2026-08-01T16:36:55.609596+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "736264359",
+    "nickname": "Winners콜먼"
+  },
+  "account": {
+    "ouidHash": "6aa103dbbc43",
+    "nickname": "Winners콜먼",
+    "level": 1283,
+    "managerModeBestDivision": {
+      "matchType": 52,
+      "division": 800,
+      "achievementDate": "2025-12-23T17:19:39",
+      "divisionName": "슈퍼챔피언스"
+    },
+    "divisionRows": [
+      {
+        "matchType": 50,
+        "division": 2300,
+        "achievementDate": "2026-04-26T01:26:40",
+        "divisionName": "프로1"
+      },
+      {
+        "matchType": 52,
+        "division": 800,
+        "achievementDate": "2025-12-23T17:19:39",
+        "divisionName": "슈퍼챔피언스"
+      }
+    ]
+  }
+}

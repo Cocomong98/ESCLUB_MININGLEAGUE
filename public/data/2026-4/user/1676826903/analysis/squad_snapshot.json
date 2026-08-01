@@ -1,0 +1,274 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:36:58.943951+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "status": "metadata_ready"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1676826903",
+    "nickname": "ES독독"
+  },
+  "season": "2026-4",
+  "status": "READY",
+  "squad": {
+    "formation": "4-6-0",
+    "clubValue": null,
+    "clubValueText": "-",
+    "salary": {
+      "current": 301,
+      "cap": 310
+    },
+    "playerCount": 11
+  },
+  "players": [
+    {
+      "spId": 845233267,
+      "name": "매트 터너",
+      "role": "gk",
+      "position": "gk",
+      "spPosition": 0,
+      "spGrade": 11,
+      "pay": 24,
+      "price": 0,
+      "priceText": "-",
+      "order": 0,
+      "starter": true
+    },
+    {
+      "spId": 845155897,
+      "name": "클린트 뎀프시",
+      "role": "ram",
+      "position": "ram",
+      "spPosition": 17,
+      "spGrade": 11,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 1,
+      "starter": true
+    },
+    {
+      "spId": 845226807,
+      "name": "크리스천 롤던",
+      "role": "rcm",
+      "position": "rcm",
+      "spPosition": 13,
+      "spGrade": 11,
+      "pay": 27,
+      "price": 0,
+      "priceText": "-",
+      "order": 2,
+      "starter": true
+    },
+    {
+      "spId": 866238744,
+      "name": "웨스턴 매케니",
+      "role": "cdm",
+      "position": "cdm",
+      "spPosition": 10,
+      "spGrade": 9,
+      "pay": 31,
+      "price": 0,
+      "priceText": "-",
+      "order": 3,
+      "starter": true
+    },
+    {
+      "spId": 845213209,
+      "name": "켈린 아코스타",
+      "role": "lcm",
+      "position": "lcm",
+      "spPosition": 15,
+      "spGrade": 11,
+      "pay": 26,
+      "price": 0,
+      "priceText": "-",
+      "order": 4,
+      "starter": true
+    },
+    {
+      "spId": 845226035,
+      "name": "조던 모리스",
+      "role": "cam",
+      "position": "cam",
+      "spPosition": 18,
+      "spGrade": 11,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 5,
+      "starter": true
+    },
+    {
+      "spId": 848245541,
+      "name": "지오바니 레이나",
+      "role": "lam",
+      "position": "lam",
+      "spPosition": 19,
+      "spGrade": 11,
+      "pay": 28,
+      "price": 0,
+      "priceText": "-",
+      "order": 6,
+      "starter": true
+    },
+    {
+      "spId": 852250954,
+      "name": "크리스 리처즈",
+      "role": "lcb",
+      "position": "lcb",
+      "spPosition": 6,
+      "spGrade": 11,
+      "pay": 26,
+      "price": 0,
+      "priceText": "-",
+      "order": 7,
+      "starter": true
+    },
+    {
+      "spId": 845237255,
+      "name": "마일스 로빈슨",
+      "role": "rcb",
+      "position": "rcb",
+      "spPosition": 4,
+      "spGrade": 11,
+      "pay": 27,
+      "price": 0,
+      "priceText": "-",
+      "order": 8,
+      "starter": true
+    },
+    {
+      "spId": 845232120,
+      "name": "샤크 무어",
+      "role": "rb",
+      "position": "rb",
+      "spPosition": 3,
+      "spGrade": 11,
+      "pay": 27,
+      "price": 0,
+      "priceText": "-",
+      "order": 9,
+      "starter": true
+    },
+    {
+      "spId": 844229348,
+      "name": "안토니 로빈슨",
+      "role": "lb",
+      "position": "lb",
+      "spPosition": 7,
+      "spGrade": 8,
+      "pay": 29,
+      "price": 0,
+      "priceText": "-",
+      "order": 10,
+      "starter": true
+    }
+  ],
+  "teamColors": [
+    {
+      "id": "2012",
+      "group": "affiliation",
+      "groupLabel": "소속",
+      "level": 4,
+      "name": "미국",
+      "playerCount": 11,
+      "activationPlayerCount": 11,
+      "skills": [
+        {
+          "name": "가속력",
+          "amount": 3,
+          "label": "가속력 +3"
+        },
+        {
+          "name": "밸런스",
+          "amount": 3,
+          "label": "밸런스 +3"
+        },
+        {
+          "name": "전체 능력치",
+          "amount": 4,
+          "label": "전체 능력치 +4"
+        }
+      ],
+      "image": "https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/countries/largeflags/f_95.png"
+    },
+    {
+      "id": "40382",
+      "group": "feature",
+      "groupLabel": "특성",
+      "level": 1,
+      "name": "2022 미국",
+      "playerCount": 8,
+      "activationPlayerCount": 8,
+      "skills": [
+        {
+          "name": "적극성",
+          "amount": 2,
+          "label": "적극성 +2"
+        },
+        {
+          "name": "드리블",
+          "amount": 3,
+          "label": "드리블 +3"
+        },
+        {
+          "name": "짧은 패스",
+          "amount": 2,
+          "label": "짧은 패스 +2"
+        },
+        {
+          "name": "속력",
+          "amount": 3,
+          "label": "속력 +3"
+        }
+      ],
+      "image": "https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/teamcolorboost/icon/medium/4_l2095.png"
+    },
+    {
+      "id": "10004",
+      "group": "enhance",
+      "groupLabel": "강화",
+      "level": 2,
+      "name": "백금빛 물결",
+      "playerCount": 9,
+      "activationPlayerCount": 9,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 5,
+          "label": "전체 능력치 +5"
+        }
+      ],
+      "image": "https://ssl.nexon.com/s2/game/fc/online/obt/datacenter/teamcolor/tc_u_p.png"
+    },
+    {
+      "id": "10001",
+      "group": "enhance",
+      "groupLabel": "강화",
+      "level": 2,
+      "name": "금빛 물결",
+      "playerCount": 2,
+      "activationPlayerCount": 11,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 4,
+          "label": "전체 능력치 +4"
+        }
+      ],
+      "image": "https://ssl.nexon.com/s2/game/fc/online/obt/datacenter/teamcolor/tc_u_g.png"
+    }
+  ],
+  "summary": {
+    "teamColorCount": 4,
+    "affiliationCount": 1,
+    "enhanceCount": 2,
+    "featureCount": 1
+  }
+}

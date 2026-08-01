@@ -1,0 +1,295 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:16:12.671800+09:00",
+  "source": {
+    "provider": "FCOnlineProfileSquad",
+    "url": "https://fconline.nexon.com/profile/squad/popup/1038218816"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1038218816",
+    "nickname": "ES스페인"
+  },
+  "season": "2026-3",
+  "status": "READY",
+  "squad": {
+    "name": "스쿼드_20260731101615",
+    "formation": "",
+    "clubValue": 85289000000000000,
+    "clubValueText": "8경 5,289조",
+    "salary": {
+      "current": 308,
+      "cap": 310
+    },
+    "playerCount": 18
+  },
+  "players": [
+    {
+      "spId": 861005479,
+      "name": "카시야스",
+      "role": "gk",
+      "position": "gk",
+      "pay": 28,
+      "price": 927000000000000,
+      "priceText": "927조",
+      "order": 0,
+      "starter": true
+    },
+    {
+      "spId": 863225193,
+      "name": "미켈 메리노",
+      "role": "cdm",
+      "position": "cm",
+      "pay": 28,
+      "price": 26600000000000000,
+      "priceText": "2경 6,600조",
+      "order": 1,
+      "starter": true
+    },
+    {
+      "spId": 840189513,
+      "name": "파레호",
+      "role": "rcm",
+      "position": "cm",
+      "pay": 29,
+      "price": 4060000000000000,
+      "priceText": "4,060조",
+      "order": 2,
+      "starter": true
+    },
+    {
+      "spId": 845277643,
+      "name": "라민 야말",
+      "role": "lcm",
+      "position": "rw",
+      "pay": 29,
+      "price": 11400000000000000,
+      "priceText": "1경 1,400조",
+      "order": 3,
+      "starter": true
+    },
+    {
+      "spId": 826230786,
+      "name": "페펠루",
+      "role": "ram",
+      "position": "cdm",
+      "pay": 25,
+      "price": 1780000000000000,
+      "priceText": "1,780조",
+      "order": 4,
+      "starter": true
+    },
+    {
+      "spId": 836231866,
+      "name": "로드리",
+      "role": "cam",
+      "position": "cdm",
+      "pay": 27,
+      "price": 8150000000000000,
+      "priceText": "8,150조",
+      "order": 5,
+      "starter": true
+    },
+    {
+      "spId": 855256516,
+      "name": "니코 윌리암스",
+      "role": "lam",
+      "position": "lm",
+      "pay": 29,
+      "price": 11300000000000000,
+      "priceText": "1경 1,300조",
+      "order": 6,
+      "starter": true
+    },
+    {
+      "spId": 855226161,
+      "name": "마르코스 요렌테",
+      "role": "rb",
+      "position": "rb",
+      "pay": 31,
+      "price": 6140000000000000,
+      "priceText": "6,140조",
+      "order": 7,
+      "starter": true
+    },
+    {
+      "spId": 866266039,
+      "name": "푸빌",
+      "role": "rcb",
+      "position": "cb",
+      "pay": 30,
+      "price": 10600000000000000,
+      "priceText": "1경 600조",
+      "order": 8,
+      "starter": true
+    },
+    {
+      "spId": 861161840,
+      "name": "페르난도 이에로",
+      "role": "lcb",
+      "position": "cdm",
+      "pay": 29,
+      "price": 3580000000000000,
+      "priceText": "3,580조",
+      "order": 9,
+      "starter": true
+    },
+    {
+      "spId": 826262402,
+      "name": "세르지 카르도나",
+      "role": "lb",
+      "position": "lb",
+      "pay": 23,
+      "price": 752000000000000,
+      "priceText": "752조",
+      "order": 10,
+      "starter": true
+    },
+    {
+      "spId": 206024630,
+      "name": "페페 레이나",
+      "role": "GK",
+      "position": "gk",
+      "pay": 12,
+      "price": 9660000000000000,
+      "priceText": "9,660조",
+      "order": 11,
+      "starter": false
+    },
+    {
+      "spId": 300269271,
+      "name": "F. 스탄코비치",
+      "role": "GK",
+      "position": "gk",
+      "pay": 5,
+      "price": 62700,
+      "priceText": "1조 미만",
+      "order": 12,
+      "starter": false
+    },
+    {
+      "spId": 206193105,
+      "name": "알퐁스 아레올라",
+      "role": "GK",
+      "position": "gk",
+      "pay": 9,
+      "price": 817000,
+      "priceText": "1조 미만",
+      "order": 13,
+      "starter": false
+    },
+    {
+      "spId": 300206134,
+      "name": "디반트 콜",
+      "role": "ST",
+      "position": "st",
+      "pay": 5,
+      "price": 1000,
+      "priceText": "1조 미만",
+      "order": 14,
+      "starter": false
+    },
+    {
+      "spId": 300220517,
+      "name": "F. 디마리아노",
+      "role": "ST",
+      "position": "st",
+      "pay": 5,
+      "price": 1000,
+      "priceText": "1조 미만",
+      "order": 15,
+      "starter": false
+    },
+    {
+      "spId": 300271467,
+      "name": "H. 미카엘손",
+      "role": "ST",
+      "position": "st",
+      "pay": 5,
+      "price": 1000,
+      "priceText": "1조 미만",
+      "order": 16,
+      "starter": false
+    },
+    {
+      "spId": 283222400,
+      "name": "해리 윙크스",
+      "role": "CM",
+      "position": "cm",
+      "pay": 20,
+      "price": 59300000000,
+      "priceText": "1조 미만",
+      "order": 17,
+      "starter": false
+    }
+  ],
+  "teamColors": [
+    {
+      "id": "2010",
+      "group": "affiliation",
+      "groupLabel": "소속",
+      "level": 4,
+      "name": "스페인",
+      "playerCount": 11,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 4,
+          "label": "전체 능력치 +4"
+        },
+        {
+          "name": "짧은 패스",
+          "amount": 3,
+          "label": "짧은 패스 +3"
+        },
+        {
+          "name": "가로채기",
+          "amount": 3,
+          "label": "가로채기 +3"
+        }
+      ],
+      "image": "https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/countries/largeflags/f_45.png"
+    },
+    {
+      "id": "10001",
+      "group": "enhance",
+      "groupLabel": "강화",
+      "level": 2,
+      "name": "금빛 물결",
+      "playerCount": 6,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 4,
+          "label": "전체 능력치 +4"
+        }
+      ],
+      "image": "https://ssl.nexon.com/s2/game/fc/online/obt/datacenter/teamcolor/tc_u_g.png"
+    },
+    {
+      "id": "10004",
+      "group": "enhance",
+      "groupLabel": "강화",
+      "level": 1,
+      "name": "백금빛 물결",
+      "playerCount": 5,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 4,
+          "label": "전체 능력치 +4"
+        }
+      ],
+      "image": "https://ssl.nexon.com/s2/game/fc/online/obt/datacenter/teamcolor/tc_u_p.png"
+    }
+  ],
+  "summary": {
+    "teamColorCount": 3,
+    "affiliationCount": 1,
+    "enhanceCount": 2,
+    "featureCount": 0
+  }
+}

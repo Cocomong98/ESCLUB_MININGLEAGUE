@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "0.1.0",
+  "status": "SUCCESS",
+  "generatedAt": "2026-08-01T16:35:16.509712+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1156043302",
+    "nickname": "ES골팝"
+  },
+  "account": {
+    "ouidHash": "56f0e8fc50e0",
+    "nickname": "ES골팝",
+    "level": 3781,
+    "managerModeBestDivision": {
+      "matchType": 52,
+      "division": 800,
+      "achievementDate": "2026-07-15T11:36:37",
+      "divisionName": "슈퍼챔피언스"
+    },
+    "divisionRows": [
+      {
+        "matchType": 50,
+        "division": 2300,
+        "achievementDate": "2019-08-16T22:24:48",
+        "divisionName": "프로1"
+      },
+      {
+        "matchType": 52,
+        "division": 800,
+        "achievementDate": "2026-07-15T11:36:37",
+        "divisionName": "슈퍼챔피언스"
+      },
+      {
+        "matchType": 214,
+        "division": 2400,
+        "achievementDate": "2020-07-03T03:06:19",
+        "divisionName": "프로2"
+      }
+    ]
+  }
+}

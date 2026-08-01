@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:35:42.012612+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "65220999",
+    "nickname": "ES로운"
+  },
+  "classRows": [
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 11,
+      "appearances": 1166,
+      "goals": 162,
+      "assists": 141,
+      "attackPoints": 303,
+      "avgRating": 6.54
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

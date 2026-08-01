@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:36:05.125963+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "603181627",
+    "nickname": "ES비야"
+  },
+  "classRows": [
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 5,
+      "appearances": 290,
+      "goals": 10,
+      "assists": 15,
+      "attackPoints": 25,
+      "avgRating": 6.4
+    },
+    {
+      "seasonId": 856,
+      "seasonName": "25 UCL (25 UEFA Champions League)",
+      "players": 1,
+      "appearances": 58,
+      "goals": 0,
+      "assists": 2,
+      "attackPoints": 2,
+      "avgRating": 6.34
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 1,
+      "appearances": 58,
+      "goals": 20,
+      "assists": 12,
+      "attackPoints": 32,
+      "avgRating": 6.71
+    },
+    {
+      "seasonId": 866,
+      "seasonName": "26 TOTS (26 Team Of The Season)",
+      "players": 1,
+      "appearances": 58,
+      "goals": 30,
+      "assists": 14,
+      "attackPoints": 44,
+      "avgRating": 6.81
+    },
+    {
+      "seasonId": 852,
+      "seasonName": "FAC (Football Association Champions)",
+      "players": 1,
+      "appearances": 58,
+      "goals": 14,
+      "assists": 21,
+      "attackPoints": 35,
+      "avgRating": 6.73
+    },
+    {
+      "seasonId": 863,
+      "seasonName": "PTG (Path to Glory)",
+      "players": 1,
+      "appearances": 58,
+      "goals": 19,
+      "assists": 18,
+      "attackPoints": 37,
+      "avgRating": 6.71
+    },
+    {
+      "seasonId": 836,
+      "seasonName": "WB (Wonderboys)",
+      "players": 1,
+      "appearances": 58,
+      "goals": 7,
+      "assists": 8,
+      "attackPoints": 15,
+      "avgRating": 6.36
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

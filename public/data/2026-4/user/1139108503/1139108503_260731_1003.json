@@ -1,0 +1,38 @@
+[
+    {
+        "name": "ES갤럭시",
+        "player_id": "1139108503",
+        "stat_url": "https://fconline.nexon.com/profile/stat/popup/1139108503",
+        "squad_url": "https://fconline.nexon.com/profile/squad/popup/1139108503",
+        "구단주명": "ES갤럭시",
+        "승": 578,
+        "무": 73,
+        "패": 549,
+        "판수": 1200,
+        "채굴 효율": 3278,
+        "승률": "48.2%",
+        "현재 티어": "",
+        "현재 티어 코드": "",
+        "현재 티어 이미지": "https://ssl.nexon.com/s2/game/fo4/obt/rank/large/ico_rank_default.png",
+        "구단 가치": "5경 2,098조",
+        "비고": "-",
+        "지난 시즌 승": 0,
+        "지난 시즌 무": 0,
+        "지난 시즌 패": 0,
+        "지난 시즌 판수": 0,
+        "지난 시즌 채굴 효율": 0,
+        "지난 시즌 승률": "0.0%",
+        "crawl_time": "2026-07-31",
+        "record_source": "nexon_open_api",
+        "openapi_sync": {
+            "ouid": "667fd222e837cfc0ad0b43be5b322a1d",
+            "newMatchCount": 0,
+            "totalIndexCount": 1200,
+            "maxMatches": 1200
+        },
+        "순위": 8,
+        "성장력": 0,
+        "crawl_time_detail": "2026-07-31 오전 10시",
+        "crawl_time_hhmm": "10:03"
+    }
+]

@@ -1,0 +1,38 @@
+[
+    {
+        "name": "ES봄날",
+        "player_id": "199243516",
+        "stat_url": "https://fconline.nexon.com/profile/stat/popup/199243516",
+        "squad_url": "https://fconline.nexon.com/profile/squad/popup/199243516",
+        "구단주명": "ES봄날",
+        "승": 550,
+        "무": 65,
+        "패": 564,
+        "판수": 1179,
+        "채굴 효율": 3091,
+        "승률": "46.6%",
+        "현재 티어": "월드클래스 1",
+        "현재 티어 코드": "6",
+        "현재 티어 이미지": "https://ssl.nexon.com/s2/game/fo4/obt/rank/large/update_2026/ico_rank6_m.png",
+        "구단 가치": "1경 627조",
+        "비고": "-",
+        "지난 시즌 승": 0,
+        "지난 시즌 무": 0,
+        "지난 시즌 패": 0,
+        "지난 시즌 판수": 0,
+        "지난 시즌 채굴 효율": 0,
+        "지난 시즌 승률": "0.0%",
+        "crawl_time": "2026-07-30",
+        "record_source": "nexon_open_api",
+        "openapi_sync": {
+            "ouid": "7518e0d849dbb5833ee59e0d86319cd6",
+            "newMatchCount": 1068,
+            "totalIndexCount": 1200,
+            "maxMatches": 1200
+        },
+        "순위": 12,
+        "성장력": -9871,
+        "crawl_time_detail": "2026-07-30 오후 1시",
+        "crawl_time_hhmm": "13:40"
+    }
+]

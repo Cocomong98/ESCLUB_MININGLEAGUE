@@ -1,0 +1,279 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:16:42.446948+09:00",
+  "source": {
+    "provider": "FCOnlineProfileSquad",
+    "url": "https://fconline.nexon.com/profile/squad/popup/1155593160"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1155593160",
+    "nickname": "ES코코몽"
+  },
+  "season": "2026-3",
+  "status": "READY",
+  "squad": {
+    "name": "스쿼드_20260731101645",
+    "formation": "",
+    "clubValue": 29898000000000000,
+    "clubValueText": "2경 9,898조",
+    "salary": {
+      "current": 310,
+      "cap": 310
+    },
+    "playerCount": 18
+  },
+  "players": [
+    {
+      "spId": 848167948,
+      "name": "위고 요리스",
+      "role": "gk",
+      "position": "gk",
+      "pay": 25,
+      "price": 134000000000000,
+      "priceText": "134조",
+      "order": 0,
+      "starter": true
+    },
+    {
+      "spId": 855247851,
+      "name": "브루누 기마랑이스",
+      "role": "ldm",
+      "position": "cm",
+      "pay": 30,
+      "price": 7040000000000000,
+      "priceText": "7,040조",
+      "order": 1,
+      "starter": true
+    },
+    {
+      "spId": 826224221,
+      "name": "요아힘 아네르센",
+      "role": "cam",
+      "position": "cb",
+      "pay": 25,
+      "price": 4280000000000000,
+      "priceText": "4,280조",
+      "order": 2,
+      "starter": true
+    },
+    {
+      "spId": 866247050,
+      "name": "P. 슐츠",
+      "role": "rf",
+      "position": "cam",
+      "pay": 30,
+      "price": 2970000000000000,
+      "priceText": "2,970조",
+      "order": 3,
+      "starter": true
+    },
+    {
+      "spId": 825165153,
+      "name": "카림 벤제마",
+      "role": "cf",
+      "position": "st",
+      "pay": 30,
+      "price": 3950000000000000,
+      "priceText": "3,950조",
+      "order": 4,
+      "starter": true
+    },
+    {
+      "spId": 863202556,
+      "name": "멤피스 데파이",
+      "role": "lf",
+      "position": "st",
+      "pay": 31,
+      "price": 1330000000000000,
+      "priceText": "1,330조",
+      "order": 5,
+      "starter": true
+    },
+    {
+      "spId": 855219683,
+      "name": "코랑탕 톨리소",
+      "role": "rb",
+      "position": "cam",
+      "pay": 29,
+      "price": 3580000000000000,
+      "priceText": "3,580조",
+      "order": 6,
+      "starter": true
+    },
+    {
+      "spId": 840225782,
+      "name": "A. 메이틀랜드-나일스",
+      "role": "rcb",
+      "position": "rwb",
+      "pay": 27,
+      "price": 127000000000000,
+      "priceText": "127조",
+      "order": 7,
+      "starter": true
+    },
+    {
+      "spId": 840210736,
+      "name": "에메르손",
+      "role": "lcb",
+      "position": "lb",
+      "pay": 27,
+      "price": 116000000000000,
+      "priceText": "116조",
+      "order": 8,
+      "starter": true
+    },
+    {
+      "spId": 866225859,
+      "name": "무사 니아카테",
+      "role": "lb",
+      "position": "cb",
+      "pay": 29,
+      "price": 6240000000000000,
+      "priceText": "6,240조",
+      "order": 9,
+      "starter": true
+    },
+    {
+      "spId": 840191202,
+      "name": "네마냐 마티치",
+      "role": "rdm",
+      "position": "cdm",
+      "pay": 27,
+      "price": 131000000000000,
+      "priceText": "131조",
+      "order": 10,
+      "starter": true
+    },
+    {
+      "spId": 321215496,
+      "name": "만수르",
+      "role": "LB",
+      "position": "lb",
+      "pay": 5,
+      "price": 2110000000,
+      "priceText": "1조 미만",
+      "order": 11,
+      "starter": false
+    },
+    {
+      "spId": 806228010,
+      "name": "황인범",
+      "role": "CM",
+      "position": "cm",
+      "pay": 22,
+      "price": 452000000000,
+      "priceText": "1조 미만",
+      "order": 12,
+      "starter": false
+    },
+    {
+      "spId": 512244800,
+      "name": "김문환",
+      "role": "RB",
+      "position": "rb",
+      "pay": 13,
+      "price": 4650000000,
+      "priceText": "1조 미만",
+      "order": 13,
+      "starter": false
+    },
+    {
+      "spId": 300233189,
+      "name": "D. 바스케스",
+      "role": "GK",
+      "position": "gk",
+      "pay": 5,
+      "price": 44600000,
+      "priceText": "1조 미만",
+      "order": 14,
+      "starter": false
+    },
+    {
+      "spId": 517181291,
+      "name": "조르지뇨 베이날둠",
+      "role": "CAM",
+      "position": "cam",
+      "pay": 18,
+      "price": 215000000000,
+      "priceText": "1조 미만",
+      "order": 15,
+      "starter": false
+    },
+    {
+      "spId": 840216266,
+      "name": "케니 테테",
+      "role": "RB",
+      "position": "rb",
+      "pay": 27,
+      "price": 119000000000000,
+      "priceText": "119조",
+      "order": 16,
+      "starter": false
+    },
+    {
+      "spId": 840193301,
+      "name": "알렉상드르 라카제트",
+      "role": "ST",
+      "position": "st",
+      "pay": 28,
+      "price": 124000000000000,
+      "priceText": "124조",
+      "order": 17,
+      "starter": false
+    }
+  ],
+  "teamColors": [
+    {
+      "id": "1029",
+      "group": "affiliation",
+      "groupLabel": "소속",
+      "level": 4,
+      "name": "올랭피크 리옹",
+      "playerCount": 11,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 4,
+          "label": "전체 능력치 +4"
+        },
+        {
+          "name": "시야",
+          "amount": 3,
+          "label": "시야 +3"
+        },
+        {
+          "name": "민첩성",
+          "amount": 3,
+          "label": "민첩성 +3"
+        }
+      ],
+      "image": "https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/crests/light/medium/l66.png"
+    },
+    {
+      "id": "10001",
+      "group": "enhance",
+      "groupLabel": "강화",
+      "level": 2,
+      "name": "금빛 물결",
+      "playerCount": 11,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 4,
+          "label": "전체 능력치 +4"
+        }
+      ],
+      "image": "https://ssl.nexon.com/s2/game/fc/online/obt/datacenter/teamcolor/tc_u_g.png"
+    }
+  ],
+  "summary": {
+    "teamColorCount": 2,
+    "affiliationCount": 1,
+    "enhanceCount": 1,
+    "featureCount": 0
+  }
+}

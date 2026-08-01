@@ -1,0 +1,269 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:16:55.683288+09:00",
+  "source": {
+    "provider": "FCOnlineProfileSquad",
+    "url": "https://fconline.nexon.com/profile/squad/popup/1811090390"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1811090390",
+    "nickname": "ES쏘배"
+  },
+  "season": "2026-3",
+  "status": "READY",
+  "squad": {
+    "name": "스쿼드_20260731101658",
+    "formation": "",
+    "clubValue": 3234000000000000,
+    "clubValueText": "3,234조",
+    "salary": {
+      "current": 306,
+      "cap": 310
+    },
+    "playerCount": 18
+  },
+  "players": [
+    {
+      "spId": 851220901,
+      "name": "다비드 라야",
+      "role": "gk",
+      "position": "gk",
+      "pay": 25,
+      "price": 200000000000000,
+      "priceText": "200조",
+      "order": 0,
+      "starter": true
+    },
+    {
+      "spId": 851257191,
+      "name": "안톤 슈타흐",
+      "role": "cdm",
+      "position": "cdm",
+      "pay": 28,
+      "price": 123000000000000,
+      "priceText": "123조",
+      "order": 1,
+      "starter": true
+    },
+    {
+      "spId": 851247851,
+      "name": "브루누 기마랑이스",
+      "role": "rcm",
+      "position": "cdm",
+      "pay": 29,
+      "price": 286000000000000,
+      "priceText": "286조",
+      "order": 2,
+      "starter": true
+    },
+    {
+      "spId": 851232711,
+      "name": "옌센 스타에",
+      "role": "lcm",
+      "position": "cm",
+      "pay": 28,
+      "price": 149000000000000,
+      "priceText": "149조",
+      "order": 3,
+      "starter": true
+    },
+    {
+      "spId": 851197031,
+      "name": "마르빈 두크슈",
+      "role": "ram",
+      "position": "st",
+      "pay": 28,
+      "price": 182000000000000,
+      "priceText": "182조",
+      "order": 4,
+      "starter": true
+    },
+    {
+      "spId": 851216354,
+      "name": "A. 크라마리치",
+      "role": "cam",
+      "position": "cam",
+      "pay": 28,
+      "price": 129000000000000,
+      "priceText": "129조",
+      "order": 5,
+      "starter": true
+    },
+    {
+      "spId": 851260926,
+      "name": "케빈 샤데",
+      "role": "lam",
+      "position": "lw",
+      "pay": 28,
+      "price": 818000000000000,
+      "priceText": "818조",
+      "order": 6,
+      "starter": true
+    },
+    {
+      "spId": 851233301,
+      "name": "R. 크리스텐센",
+      "role": "rb",
+      "position": "rb",
+      "pay": 28,
+      "price": 179000000000000,
+      "priceText": "179조",
+      "order": 7,
+      "starter": true
+    },
+    {
+      "spId": 851236403,
+      "name": "에반 은디카",
+      "role": "rcb",
+      "position": "cb",
+      "pay": 28,
+      "price": 418000000000000,
+      "priceText": "418조",
+      "order": 8,
+      "starter": true
+    },
+    {
+      "spId": 851240359,
+      "name": "오마르 알데레테",
+      "role": "lcb",
+      "position": "cb",
+      "pay": 28,
+      "price": 547000000000000,
+      "priceText": "547조",
+      "order": 9,
+      "starter": true
+    },
+    {
+      "spId": 851262402,
+      "name": "세르지 카르도나",
+      "role": "lb",
+      "position": "lb",
+      "pay": 28,
+      "price": 203000000000000,
+      "priceText": "203조",
+      "order": 10,
+      "starter": true
+    },
+    {
+      "spId": 300259532,
+      "name": "주안 가르시아",
+      "role": "GK",
+      "position": "gk",
+      "pay": 7,
+      "price": 38000000000000,
+      "priceText": "38조",
+      "order": 11,
+      "starter": false
+    },
+    {
+      "spId": 300232645,
+      "name": "F. 캄베세스",
+      "role": "GK",
+      "position": "gk",
+      "pay": 5,
+      "price": 4980000,
+      "priceText": "1조 미만",
+      "order": 12,
+      "starter": false
+    },
+    {
+      "spId": 300240987,
+      "name": "마이클 쿠퍼",
+      "role": "GK",
+      "position": "gk",
+      "pay": 5,
+      "price": 13900000,
+      "priceText": "1조 미만",
+      "order": 13,
+      "starter": false
+    },
+    {
+      "spId": 300221850,
+      "name": "리쑹이",
+      "role": "CB",
+      "position": "cb",
+      "pay": 5,
+      "price": 1000,
+      "priceText": "1조 미만",
+      "order": 14,
+      "starter": false
+    },
+    {
+      "spId": 300237250,
+      "name": "S. 클리브랜드",
+      "role": "GK",
+      "position": "gk",
+      "pay": 5,
+      "price": 1000,
+      "priceText": "1조 미만",
+      "order": 15,
+      "starter": false
+    },
+    {
+      "spId": 851244238,
+      "name": "야카 비욜",
+      "role": "CB",
+      "position": "cb",
+      "pay": 26,
+      "price": 87300000000000,
+      "priceText": "87조",
+      "order": 16,
+      "starter": false
+    },
+    {
+      "spId": 829216266,
+      "name": "케니 테테",
+      "role": "RB",
+      "position": "rb",
+      "pay": 23,
+      "price": 19300000000000,
+      "priceText": "19조",
+      "order": 17,
+      "starter": false
+    }
+  ],
+  "teamColors": [
+    {
+      "id": "40665",
+      "group": "affiliation",
+      "groupLabel": "소속",
+      "level": 3,
+      "name": "25 Devoted Player",
+      "playerCount": 11,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 3,
+          "label": "전체 능력치 +3"
+        }
+      ],
+      "image": "https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/teamcolorboost/icon/medium/4_l999851.png"
+    },
+    {
+      "id": "10001",
+      "group": "enhance",
+      "groupLabel": "강화",
+      "level": 2,
+      "name": "금빛 물결",
+      "playerCount": 11,
+      "skills": [
+        {
+          "name": "전체 능력치",
+          "amount": 4,
+          "label": "전체 능력치 +4"
+        }
+      ],
+      "image": "https://ssl.nexon.com/s2/game/fc/online/obt/datacenter/teamcolor/tc_u_g.png"
+    }
+  ],
+  "summary": {
+    "teamColorCount": 2,
+    "affiliationCount": 1,
+    "enhanceCount": 1,
+    "featureCount": 0
+  }
+}

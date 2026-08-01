@@ -1,0 +1,38 @@
+[
+    {
+        "name": "ES컨",
+        "player_id": "854250469",
+        "stat_url": "https://fconline.nexon.com/profile/stat/popup/854250469",
+        "squad_url": "https://fconline.nexon.com/profile/squad/popup/854250469",
+        "구단주명": "ES컨",
+        "승": 0,
+        "무": 0,
+        "패": 0,
+        "판수": 0,
+        "채굴 효율": 0,
+        "승률": "0.0%",
+        "현재 티어": "",
+        "현재 티어 코드": "",
+        "현재 티어 이미지": "https://ssl.nexon.com/s2/game/fo4/obt/rank/large/ico_rank_default.png",
+        "구단 가치": "29조",
+        "비고": "-",
+        "지난 시즌 승": 0,
+        "지난 시즌 무": 0,
+        "지난 시즌 패": 0,
+        "지난 시즌 판수": 0,
+        "지난 시즌 채굴 효율": 0,
+        "지난 시즌 승률": "0.0%",
+        "crawl_time": "2026-07-30",
+        "record_source": "nexon_open_api",
+        "openapi_sync": {
+            "ouid": "7e610ff2ee19b4ff2e37f8a39236bd17",
+            "newMatchCount": 0,
+            "totalIndexCount": 0,
+            "maxMatches": 1200
+        },
+        "순위": 34,
+        "성장력": 0,
+        "crawl_time_detail": "2026-07-30 오후 1시",
+        "crawl_time_hhmm": "13:40"
+    }
+]

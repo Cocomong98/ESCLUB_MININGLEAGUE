@@ -1,0 +1,281 @@
+{
+  "schemaVersion": "0.1.5",
+  "generatedAt": "2026-08-01T16:36:55.609596+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52,
+    "matchtypeName": "감독모드"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "736264359",
+    "nickname": "Winners콜먼"
+  },
+  "window": {
+    "mode": "season_filtered_last_n",
+    "n": 100,
+    "actual": 0
+  },
+  "period": {
+    "from": null,
+    "to": null
+  },
+  "kpi": {
+    "w": 0,
+    "d": 0,
+    "l": 0,
+    "winRate": 0.0,
+    "avgGoalsFor": 0.0,
+    "avgGoalsAgainst": 0.0,
+    "avgShots": 0.0,
+    "avgShotsOnTarget": 0.0,
+    "avgPossession": 0.0,
+    "avgPassAcc": 0.0,
+    "avgTackleAcc": 0.0
+  },
+  "behavior": {
+    "firstGoalRate": 0.0,
+    "concedeFirstRate": 0.0,
+    "comebackWinRate": 0.0,
+    "leadAtHalfRate": 0.0,
+    "leadAtHalfWinRate": 0.0,
+    "concedeLateRate": 0.0
+  },
+  "advanced": {
+    "firstGoalWinRate": 0.0,
+    "comebackWinRate": 0.0,
+    "concedeWhileLeadingRate": 0.0,
+    "late75PlusGoalDiff": {
+      "for": 0,
+      "against": 0,
+      "diff": 0
+    },
+    "setPieceGoalRate": 0.0,
+    "cleanSheetRate": 0.0,
+    "concedeTwoPlusRate": 0.0,
+    "strongOppWinRate": {
+      "value": 0.0,
+      "wins": 0,
+      "matches": 0,
+      "oppAvgRatingThreshold": null
+    },
+    "highPerformanceIndex": {
+      "value": 0.0,
+      "points": 0,
+      "maxPoints": 0,
+      "matches": 0,
+      "oppAvgRatingThreshold": null
+    },
+    "shootoutRecord": {
+      "w": 0,
+      "l": 0,
+      "total": 0
+    },
+    "tempo": {
+      "passesPerMinute": 0.0,
+      "passesPerMatch": 0.0,
+      "shotsPerMatch": 0.0
+    },
+    "buildUpBreakRate": 0.0,
+    "flankRelianceShots": 0.0,
+    "flankRelianceAssistOrigin": 0.0,
+    "conversionRate": {
+      "value": 0.0,
+      "goals": 0,
+      "xg": 0.0,
+      "shots": 0
+    },
+    "centralPenetrationEfficiency": 0.0,
+    "recoveryIntensity": {
+      "value": 0.0,
+      "recoveries": 0,
+      "oppPassTry": 0
+    },
+    "secondBallRecoveryRate": 0.0,
+    "lateFocusCoefficient": {
+      "value": 0.0,
+      "lateConcedeShare": 0.0,
+      "lateConcede": 0,
+      "concedeTotal": 0,
+      "avgConcedePerMatch": 0.0
+    },
+    "gkDependencyRate": 0.0,
+    "scoringRouteConcentration": 0.0
+  },
+  "advancedStandard": {
+    "openingGoalConversion": {
+      "value": 0.0,
+      "method": "exact",
+      "wins": 0,
+      "matches": 0
+    },
+    "resilienceFactor": {
+      "value": 0.0,
+      "method": "exact",
+      "points": 0,
+      "maxPoints": 0,
+      "matches": 0
+    },
+    "leadErosionRate": {
+      "value": 0.0,
+      "method": "proxy",
+      "events": 0,
+      "leadMatches": 0
+    },
+    "eliteOpponentEfficiency": {
+      "value": 0.0,
+      "method": "proxy",
+      "points": 0,
+      "maxPoints": 0,
+      "matches": 0,
+      "oppAvgRatingThreshold": null
+    },
+    "transitionVelocity": {
+      "value": 0.0,
+      "method": "proxy",
+      "forwardPassRatio": 0.0,
+      "passesPerMinute": 0.0,
+      "forwardPassTry": 0,
+      "passTry": 0
+    },
+    "phase1TurnoverRate": {
+      "value": 0.0,
+      "method": "proxy",
+      "failures": 0,
+      "passTry": 0
+    },
+    "flankReliance": {
+      "shotsBased": 0.0,
+      "assistOriginBased": 0.0,
+      "method": "proxy",
+      "flankShots": 0,
+      "totalShots": 0,
+      "flankAssistOriginGoals": 0,
+      "knownAssistOriginGoals": 0
+    },
+    "verticalPenetrationYield": {
+      "value": 0.0,
+      "method": "proxy",
+      "goals": 0,
+      "attempts": 0
+    },
+    "scoringRouteConcentration": {
+      "value": 0.0,
+      "method": "exact",
+      "maxRouteShare": 0.0
+    },
+    "looseBallDominance": {
+      "value": 0.0,
+      "method": "proxy",
+      "recoveries": 0,
+      "oppPassTry": 0
+    },
+    "lateConcessionShare": {
+      "value": 0.0,
+      "method": "exact",
+      "lateConcede80": 0,
+      "concedeTotal": 0
+    },
+    "shotStoppingImpact": {
+      "value": 0.0,
+      "method": "exact",
+      "saves": 0,
+      "oppShotsOnTarget": 0
+    },
+    "highLeakageFrequency": {
+      "value": 0.0,
+      "method": "exact",
+      "matches2PlusConcede": 0,
+      "matches": 0
+    }
+  },
+  "distributions": {
+    "goalTimeFor": [
+      {
+        "bin": "0-15",
+        "count": 0
+      },
+      {
+        "bin": "16-30",
+        "count": 0
+      },
+      {
+        "bin": "31-45",
+        "count": 0
+      },
+      {
+        "bin": "46-60",
+        "count": 0
+      },
+      {
+        "bin": "61-75",
+        "count": 0
+      },
+      {
+        "bin": "76-90",
+        "count": 0
+      },
+      {
+        "bin": "91-105",
+        "count": 0
+      },
+      {
+        "bin": "106-120",
+        "count": 0
+      },
+      {
+        "bin": "120+",
+        "count": 0
+      }
+    ],
+    "goalTimeAgainst": [
+      {
+        "bin": "0-15",
+        "count": 0
+      },
+      {
+        "bin": "16-30",
+        "count": 0
+      },
+      {
+        "bin": "31-45",
+        "count": 0
+      },
+      {
+        "bin": "46-60",
+        "count": 0
+      },
+      {
+        "bin": "61-75",
+        "count": 0
+      },
+      {
+        "bin": "76-90",
+        "count": 0
+      },
+      {
+        "bin": "91-105",
+        "count": 0
+      },
+      {
+        "bin": "106-120",
+        "count": 0
+      },
+      {
+        "bin": "120+",
+        "count": 0
+      }
+    ],
+    "shotType": [],
+    "inPenalty": {
+      "in": 0,
+      "out": 0,
+      "rate": 0.0
+    },
+    "scorelinesTop": []
+  },
+  "recentMatches": []
+}

@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T11:50:41.946349+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "551649643",
+    "nickname": "ES린이대디"
+  },
+  "classRows": [
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 6,
+      "appearances": 7188,
+      "goals": 819,
+      "assists": 858,
+      "attackPoints": 1677,
+      "avgRating": 6.41
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 2,
+      "appearances": 2114,
+      "goals": 12,
+      "assists": 31,
+      "attackPoints": 43,
+      "avgRating": 6.43
+    },
+    {
+      "seasonId": 826,
+      "seasonName": "24EP (2024 Energetic Player)",
+      "players": 1,
+      "appearances": 1198,
+      "goals": 281,
+      "assists": 216,
+      "attackPoints": 497,
+      "avgRating": 6.59
+    },
+    {
+      "seasonId": 852,
+      "seasonName": "FAC (Football Association Champions)",
+      "players": 1,
+      "appearances": 1198,
+      "goals": 493,
+      "assists": 281,
+      "attackPoints": 774,
+      "avgRating": 6.59
+    },
+    {
+      "seasonId": 836,
+      "seasonName": "WB (Wonderboys)",
+      "players": 1,
+      "appearances": 1198,
+      "goals": 143,
+      "assists": 174,
+      "attackPoints": 317,
+      "avgRating": 6.51
+    },
+    {
+      "seasonId": 840,
+      "seasonName": "LE (Legend of Europa)",
+      "players": 1,
+      "appearances": 282,
+      "goals": 74,
+      "assists": 66,
+      "attackPoints": 140,
+      "avgRating": 6.58
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

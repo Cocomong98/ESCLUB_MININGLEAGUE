@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:36:01.808967+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "199243516",
+    "nickname": "ES봄날"
+  },
+  "classRows": [
+    {
+      "seasonId": 852,
+      "seasonName": "FAC (Football Association Champions)",
+      "players": 3,
+      "appearances": 440,
+      "goals": 60,
+      "assists": 71,
+      "attackPoints": 131,
+      "avgRating": 6.57
+    },
+    {
+      "seasonId": 861,
+      "seasonName": "WG (Warriors of Glory)",
+      "players": 3,
+      "appearances": 440,
+      "goals": 64,
+      "assists": 33,
+      "attackPoints": 97,
+      "avgRating": 6.48
+    },
+    {
+      "seasonId": 825,
+      "seasonName": "CU (Champions of Europe)",
+      "players": 2,
+      "appearances": 372,
+      "goals": 92,
+      "assists": 100,
+      "attackPoints": 192,
+      "avgRating": 6.64
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 1,
+      "appearances": 220,
+      "goals": 1,
+      "assists": 9,
+      "attackPoints": 10,
+      "avgRating": 6.42
+    },
+    {
+      "seasonId": 855,
+      "seasonName": "26 TOTY-N (26 Team Of The Nominated)",
+      "players": 1,
+      "appearances": 220,
+      "goals": 90,
+      "assists": 62,
+      "attackPoints": 152,
+      "avgRating": 6.72
+    },
+    {
+      "seasonId": 829,
+      "seasonName": "GRU (Greatest Runner-Ups)",
+      "players": 1,
+      "appearances": 180,
+      "goals": 1,
+      "assists": 4,
+      "attackPoints": 5,
+      "avgRating": 6.49
+    },
+    {
+      "seasonId": 835,
+      "seasonName": "25HR (25 Heroes)",
+      "players": 1,
+      "appearances": 178,
+      "goals": 1,
+      "assists": 3,
+      "attackPoints": 4,
+      "avgRating": 6.44
+    },
+    {
+      "seasonId": 840,
+      "seasonName": "LE (Legend of Europa)",
+      "players": 1,
+      "appearances": 178,
+      "goals": 25,
+      "assists": 20,
+      "attackPoints": 45,
+      "avgRating": 6.51
+    },
+    {
+      "seasonId": 265,
+      "seasonName": "LOL (LEGEND OF THE LOAN)",
+      "players": 1,
+      "appearances": 42,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.46
+    },
+    {
+      "seasonId": 839,
+      "seasonName": "NO7 (NUMBER 7)",
+      "players": 1,
+      "appearances": 42,
+      "goals": 15,
+      "assists": 9,
+      "attackPoints": 24,
+      "avgRating": 6.66
+    },
+    {
+      "seasonId": 850,
+      "seasonName": "25FSL (25 FCO Superchampions League)",
+      "players": 1,
+      "appearances": 40,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.36
+    },
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 1,
+      "appearances": 34,
+      "goals": 4,
+      "assists": 5,
+      "attackPoints": 9,
+      "avgRating": 6.41
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 1,
+      "appearances": 34,
+      "goals": 10,
+      "assists": 8,
+      "attackPoints": 18,
+      "avgRating": 6.4
+    }
+  ],
+  "samePlayerCardComparisons": [
+    {
+      "basePlayerId": "200145",
+      "name": "카제미루",
+      "cards": [
+        {
+          "spId": 825200145,
+          "seasonId": 825,
+          "seasonName": "CU (Champions of Europe)",
+          "appearances": 186,
+          "attackPoint": 91,
+          "avgRating": 6.7,
+          "playerWinRate": 41.4
+        },
+        {
+          "spId": 845200145,
+          "seasonId": 845,
+          "seasonName": "CH (Continental Heroes)",
+          "appearances": 34,
+          "attackPoint": 9,
+          "avgRating": 6.41,
+          "playerWinRate": 38.24
+        }
+      ]
+    },
+    {
+      "basePlayerId": "140601",
+      "name": "네마냐 비디치",
+      "cards": [
+        {
+          "spId": 829140601,
+          "seasonId": 829,
+          "seasonName": "GRU (Greatest Runner-Ups)",
+          "appearances": 180,
+          "attackPoint": 5,
+          "avgRating": 6.49,
+          "playerWinRate": 42.22
+        },
+        {
+          "spId": 850140601,
+          "seasonId": 850,
+          "seasonName": "25FSL (25 FCO Superchampions League)",
+          "appearances": 40,
+          "attackPoint": 0,
+          "avgRating": 6.36,
+          "playerWinRate": 35.0
+        }
+      ]
+    },
+    {
+      "basePlayerId": "5740",
+      "name": "야프 스탐",
+      "cards": [
+        {
+          "spId": 835005740,
+          "seasonId": 835,
+          "seasonName": "25HR (25 Heroes)",
+          "appearances": 178,
+          "attackPoint": 4,
+          "avgRating": 6.44,
+          "playerWinRate": 42.7
+        },
+        {
+          "spId": 861005740,
+          "seasonId": 861,
+          "seasonName": "WG (Warriors of Glory)",
+          "appearances": 42,
+          "attackPoint": 4,
+          "avgRating": 6.49,
+          "playerWinRate": 33.33
+        }
+      ]
+    },
+    {
+      "basePlayerId": "121944",
+      "name": "슈바인슈타이거",
+      "cards": [
+        {
+          "spId": 852121944,
+          "seasonId": 852,
+          "seasonName": "FAC (Football Association Champions)",
+          "appearances": 179,
+          "attackPoint": 86,
+          "avgRating": 6.51,
+          "playerWinRate": 42.46
+        },
+        {
+          "spId": 848121944,
+          "seasonId": 848,
+          "seasonName": "WS (Winning Streak)",
+          "appearances": 34,
+          "attackPoint": 18,
+          "avgRating": 6.4,
+          "playerWinRate": 38.24
+        }
+      ]
+    }
+  ]
+}

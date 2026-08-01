@@ -1,0 +1,38 @@
+[
+    {
+        "name": "ES쏘배",
+        "player_id": "1811090390",
+        "stat_url": "https://fconline.nexon.com/profile/stat/popup/1811090390",
+        "squad_url": "https://fconline.nexon.com/profile/squad/popup/1811090390",
+        "구단주명": "ES쏘배",
+        "승": 495,
+        "무": 68,
+        "패": 590,
+        "판수": 1153,
+        "채굴 효율": 2671,
+        "승률": "42.9%",
+        "현재 티어": "월드클래스 1",
+        "현재 티어 코드": "6",
+        "현재 티어 이미지": "https://ssl.nexon.com/s2/game/fo4/obt/rank/large/update_2026/ico_rank6_m.png",
+        "구단 가치": "3,365조",
+        "비고": "-",
+        "지난 시즌 승": 0,
+        "지난 시즌 무": 0,
+        "지난 시즌 패": 0,
+        "지난 시즌 판수": 0,
+        "지난 시즌 채굴 효율": 0,
+        "지난 시즌 승률": "0.0%",
+        "crawl_time": "2026-07-31",
+        "record_source": "nexon_open_api",
+        "openapi_sync": {
+            "ouid": "4cd7914d69c0840ed30741244ef3ac31",
+            "newMatchCount": 50,
+            "totalIndexCount": 1250,
+            "maxMatches": 1200
+        },
+        "순위": 21,
+        "성장력": 0,
+        "crawl_time_detail": "2026-07-31 오전 10시",
+        "crawl_time_hhmm": "10:03"
+    }
+]

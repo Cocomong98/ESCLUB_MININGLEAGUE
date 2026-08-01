@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:36:50.231102+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1944734890",
+    "nickname": "winners내미"
+  },
+  "classRows": [
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 5,
+      "appearances": 1190,
+      "goals": 139,
+      "assists": 143,
+      "attackPoints": 282,
+      "avgRating": 6.54
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 2,
+      "appearances": 476,
+      "goals": 1,
+      "assists": 9,
+      "attackPoints": 10,
+      "avgRating": 6.47
+    },
+    {
+      "seasonId": 834,
+      "seasonName": "24 UCL (24 UEFA Champions League)",
+      "players": 1,
+      "appearances": 238,
+      "goals": 61,
+      "assists": 76,
+      "attackPoints": 137,
+      "avgRating": 6.63
+    },
+    {
+      "seasonId": 863,
+      "seasonName": "PTG (Path to Glory)",
+      "players": 1,
+      "appearances": 238,
+      "goals": 65,
+      "assists": 50,
+      "attackPoints": 115,
+      "avgRating": 6.68
+    },
+    {
+      "seasonId": 836,
+      "seasonName": "WB (Wonderboys)",
+      "players": 1,
+      "appearances": 238,
+      "goals": 9,
+      "assists": 23,
+      "attackPoints": 32,
+      "avgRating": 6.37
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 1,
+      "appearances": 238,
+      "goals": 134,
+      "assists": 69,
+      "attackPoints": 203,
+      "avgRating": 6.92
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

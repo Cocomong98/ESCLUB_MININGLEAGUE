@@ -1,0 +1,38 @@
+[
+    {
+        "name": "멍웅찬",
+        "player_id": "350583720",
+        "stat_url": "https://fconline.nexon.com/profile/stat/popup/350583720",
+        "squad_url": "https://fconline.nexon.com/profile/squad/popup/350583720",
+        "구단주명": "멍웅찬",
+        "승": 645,
+        "무": 34,
+        "패": 517,
+        "판수": 1196,
+        "채굴 효율": 3896,
+        "승률": "53.9%",
+        "현재 티어": "챔피언스",
+        "현재 티어 코드": "1",
+        "현재 티어 이미지": "https://ssl.nexon.com/s2/game/fo4/obt/rank/large/update_2026/ico_rank1_m.png",
+        "구단 가치": "15경 4,640조",
+        "비고": "-",
+        "지난 시즌 승": 0,
+        "지난 시즌 무": 0,
+        "지난 시즌 패": 0,
+        "지난 시즌 판수": 0,
+        "지난 시즌 채굴 효율": 0,
+        "지난 시즌 승률": "0.0%",
+        "crawl_time": "2026-07-30",
+        "record_source": "nexon_open_api",
+        "openapi_sync": {
+            "ouid": "cf5a991d3858def7dbd932c732962385",
+            "newMatchCount": 1065,
+            "totalIndexCount": 1200,
+            "maxMatches": 1200
+        },
+        "순위": 1,
+        "성장력": -13350,
+        "crawl_time_detail": "2026-07-30 오후 1시",
+        "crawl_time_hhmm": "13:40"
+    }
+]

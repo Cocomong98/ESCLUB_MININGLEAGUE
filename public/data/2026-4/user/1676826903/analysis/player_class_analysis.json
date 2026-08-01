@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:36:58.943951+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1676826903",
+    "nickname": "ES독독"
+  },
+  "classRows": [
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 7,
+      "appearances": 1729,
+      "goals": 308,
+      "assists": 282,
+      "attackPoints": 590,
+      "avgRating": 6.54
+    },
+    {
+      "seasonId": 844,
+      "seasonName": "25 TOTS (25 Team Of The Season)",
+      "players": 1,
+      "appearances": 247,
+      "goals": 0,
+      "assists": 12,
+      "attackPoints": 12,
+      "avgRating": 6.43
+    },
+    {
+      "seasonId": 866,
+      "seasonName": "26 TOTS (26 Team Of The Season)",
+      "players": 1,
+      "appearances": 247,
+      "goals": 22,
+      "assists": 32,
+      "attackPoints": 54,
+      "avgRating": 6.46
+    },
+    {
+      "seasonId": 852,
+      "seasonName": "FAC (Football Association Champions)",
+      "players": 1,
+      "appearances": 247,
+      "goals": 9,
+      "assists": 5,
+      "attackPoints": 14,
+      "avgRating": 6.4
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 1,
+      "appearances": 247,
+      "goals": 93,
+      "assists": 66,
+      "attackPoints": 159,
+      "avgRating": 6.54
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

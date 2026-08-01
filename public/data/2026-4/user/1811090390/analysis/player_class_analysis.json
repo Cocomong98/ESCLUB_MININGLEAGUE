@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-08-01T16:36:20.784484+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1811090390",
+    "nickname": "ES쏘배"
+  },
+  "classRows": [
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 12,
+      "appearances": 2805,
+      "goals": 429,
+      "assists": 378,
+      "attackPoints": 807,
+      "avgRating": 6.52
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

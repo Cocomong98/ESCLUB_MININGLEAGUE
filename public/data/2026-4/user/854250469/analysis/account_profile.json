@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "0.1.0",
+  "status": "SUCCESS",
+  "generatedAt": "2026-08-01T16:36:41.335948+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "854250469",
+    "nickname": "ES컨"
+  },
+  "account": {
+    "ouidHash": "ffaf63d24649",
+    "nickname": "ES컨",
+    "level": 1912,
+    "managerModeBestDivision": {
+      "matchType": 52,
+      "division": 900,
+      "achievementDate": "2026-03-13T11:32:50",
+      "divisionName": "챔피언스"
+    },
+    "divisionRows": [
+      {
+        "matchType": 50,
+        "division": 2100,
+        "achievementDate": "2022-10-11T05:29:12",
+        "divisionName": "월드클래스2"
+      },
+      {
+        "matchType": 52,
+        "division": 900,
+        "achievementDate": "2026-03-13T11:32:50",
+        "divisionName": "챔피언스"
+      }
+    ]
+  }
+}

@@ -1,0 +1,966 @@
+{
+  "schemaVersion": "0.1.0",
+  "status": "SUCCESS",
+  "generatedAt": "2026-08-01T16:36:17.728707+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52,
+    "matchtypeName": "감독모드"
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1038218816",
+    "nickname": "ES스페인"
+  },
+  "sample": {
+    "requested": 100,
+    "valid": 100,
+    "excluded": 0,
+    "minimumForInsights": 20
+  },
+  "period": {
+    "from": "2026-07-31T18:50:41+09:00",
+    "to": "2026-08-01T14:51:09+09:00"
+  },
+  "summary": {
+    "sampleSize": 100,
+    "w": 31,
+    "d": 34,
+    "l": 35,
+    "winRate": 31.0,
+    "goalsPerMatch": 1.55,
+    "goalsConcededPerMatch": 1.63,
+    "goalDifferencePerMatch": -0.08,
+    "shotsPerMatch": 3.89,
+    "shotsOnTargetPerMatch": 3.01,
+    "shotAccuracy": 77.38,
+    "goalConversion": 39.85,
+    "shotOnTargetConversion": 51.5,
+    "averagePossession": 0.0,
+    "passSuccessRate": 84.93,
+    "tackleSuccessRate": 64.92,
+    "cleanSheetRate": 16.0,
+    "concedeTwoPlusRate": 52.0
+  },
+  "recentForm": [
+    {
+      "period": 20,
+      "sampleSize": 20,
+      "w": 6,
+      "d": 8,
+      "l": 6,
+      "winRate": 30.0,
+      "goalsPerMatch": 1.7,
+      "goalsConcededPerMatch": 1.65,
+      "goalDifferencePerMatch": 0.05,
+      "shotsPerMatch": 4.05,
+      "shotsOnTargetPerMatch": 3.1,
+      "shotAccuracy": 76.54,
+      "goalConversion": 41.98,
+      "averagePossession": 0.0,
+      "passSuccessRate": 83.76
+    }
+  ],
+  "expanded": {
+    "schemaVersion": "0.1.0",
+    "styleProfile": {
+      "primary": "고효율형",
+      "scores": {
+        "점유형": 0.0,
+        "다득점형": 38.75,
+        "수비형": 34.85,
+        "고효율형": 50.7,
+        "다슈팅형": 38.9,
+        "안정형": 49.57
+      }
+    },
+    "formationPerformance": [
+      {
+        "key": "4-6-0",
+        "label": "4-6-0",
+        "matches": 99,
+        "w": 31,
+        "d": 34,
+        "l": 34,
+        "winRate": 31.31,
+        "goalsPerMatch": 1.566,
+        "goalsConcededPerMatch": 1.616,
+        "goalDifferencePerMatch": -0.051,
+        "shotAccuracy": 77.38,
+        "goalConversion": 39.85,
+        "averagePossession": 0.0,
+        "passSuccessRate": 84.93,
+        "cleanSheetRate": 16.16,
+        "concedeTwoPlusRate": 51.52,
+        "lastMatchDateKst": "2026-08-01T14:51:09+09:00"
+      }
+    ],
+    "timeSlotPerformance": [
+      {
+        "key": "새벽",
+        "label": "새벽",
+        "matches": 33,
+        "w": 15,
+        "d": 8,
+        "l": 10,
+        "winRate": 45.45,
+        "goalsPerMatch": 1.606,
+        "goalsConcededPerMatch": 1.424,
+        "goalDifferencePerMatch": 0.182,
+        "shotAccuracy": 81.68,
+        "goalConversion": 40.46,
+        "averagePossession": 0.0,
+        "passSuccessRate": 85.18,
+        "cleanSheetRate": 24.24,
+        "concedeTwoPlusRate": 42.42,
+        "lastMatchDateKst": "2026-08-01T05:57:49+09:00"
+      },
+      {
+        "key": "오전",
+        "label": "오전",
+        "matches": 28,
+        "w": 9,
+        "d": 9,
+        "l": 10,
+        "winRate": 32.14,
+        "goalsPerMatch": 1.571,
+        "goalsConcededPerMatch": 1.75,
+        "goalDifferencePerMatch": -0.179,
+        "shotAccuracy": 75.45,
+        "goalConversion": 40.0,
+        "averagePossession": 0.0,
+        "passSuccessRate": 85.35,
+        "cleanSheetRate": 10.71,
+        "concedeTwoPlusRate": 53.57,
+        "lastMatchDateKst": "2026-08-01T11:50:04+09:00"
+      },
+      {
+        "key": "오후",
+        "label": "오후",
+        "matches": 13,
+        "w": 2,
+        "d": 6,
+        "l": 5,
+        "winRate": 15.38,
+        "goalsPerMatch": 1.615,
+        "goalsConcededPerMatch": 1.769,
+        "goalDifferencePerMatch": -0.154,
+        "shotAccuracy": 78.18,
+        "goalConversion": 38.18,
+        "averagePossession": 0.0,
+        "passSuccessRate": 83.33,
+        "cleanSheetRate": 15.38,
+        "concedeTwoPlusRate": 61.54,
+        "lastMatchDateKst": "2026-08-01T14:51:09+09:00"
+      },
+      {
+        "key": "야간",
+        "label": "야간",
+        "matches": 26,
+        "w": 5,
+        "d": 11,
+        "l": 10,
+        "winRate": 19.23,
+        "goalsPerMatch": 1.423,
+        "goalsConcededPerMatch": 1.692,
+        "goalDifferencePerMatch": -0.269,
+        "shotAccuracy": 73.12,
+        "goalConversion": 39.78,
+        "averagePossession": 0.0,
+        "passSuccessRate": 84.89,
+        "cleanSheetRate": 11.54,
+        "concedeTwoPlusRate": 57.69,
+        "lastMatchDateKst": "2026-07-31T23:54:05+09:00"
+      }
+    ],
+    "weekdayPerformance": [
+      {
+        "key": "4",
+        "label": "금",
+        "matches": 26,
+        "w": 5,
+        "d": 11,
+        "l": 10,
+        "winRate": 19.23,
+        "goalsPerMatch": 1.423,
+        "goalsConcededPerMatch": 1.692,
+        "goalDifferencePerMatch": -0.269,
+        "shotAccuracy": 73.12,
+        "goalConversion": 39.78,
+        "averagePossession": 0.0,
+        "passSuccessRate": 84.89,
+        "cleanSheetRate": 11.54,
+        "concedeTwoPlusRate": 57.69,
+        "lastMatchDateKst": "2026-07-31T23:54:05+09:00"
+      },
+      {
+        "key": "5",
+        "label": "토",
+        "matches": 74,
+        "w": 26,
+        "d": 23,
+        "l": 25,
+        "winRate": 35.14,
+        "goalsPerMatch": 1.595,
+        "goalsConcededPerMatch": 1.608,
+        "goalDifferencePerMatch": -0.014,
+        "shotAccuracy": 78.72,
+        "goalConversion": 39.86,
+        "averagePossession": 0.0,
+        "passSuccessRate": 84.94,
+        "cleanSheetRate": 17.57,
+        "concedeTwoPlusRate": 50.0,
+        "lastMatchDateKst": "2026-08-01T14:51:09+09:00"
+      }
+    ],
+    "opponentHeadToHead": [],
+    "matchFlowTypes": [
+      {
+        "type": "균형형 경기",
+        "count": 34,
+        "share": 34.0
+      },
+      {
+        "type": "수비 불안",
+        "count": 17,
+        "share": 17.0
+      },
+      {
+        "type": "역습형 승리",
+        "count": 16,
+        "share": 16.0
+      },
+      {
+        "type": "저득점 접전",
+        "count": 14,
+        "share": 14.0
+      },
+      {
+        "type": "난타전",
+        "count": 10,
+        "share": 10.0
+      },
+      {
+        "type": "압도적 승리",
+        "count": 5,
+        "share": 5.0
+      },
+      {
+        "type": "슈팅 우세 패배",
+        "count": 3,
+        "share": 3.0
+      },
+      {
+        "type": "결정력 부족",
+        "count": 1,
+        "share": 1.0
+      }
+    ],
+    "playerCombinations": {
+      "pairs": [
+        {
+          "key": "826230786|866270728",
+          "label": "826230786|866270728",
+          "matches": 76,
+          "w": 25,
+          "d": 23,
+          "l": 28,
+          "winRate": 32.89,
+          "goalsPerMatch": 1.526,
+          "goalsConcededPerMatch": 1.618,
+          "goalDifferencePerMatch": -0.092,
+          "shotAccuracy": 77.0,
+          "goalConversion": 38.67,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.01,
+          "cleanSheetRate": 17.11,
+          "concedeTwoPlusRate": 51.32,
+          "lastMatchDateKst": "2026-08-01T13:12:55+09:00",
+          "players": [
+            {
+              "spId": 826230786,
+              "name": "페펠루"
+            },
+            {
+              "spId": 866270728,
+              "name": "카를로스 로메로"
+            }
+          ]
+        },
+        {
+          "key": "826262402|866270728",
+          "label": "826262402|866270728",
+          "matches": 76,
+          "w": 25,
+          "d": 23,
+          "l": 28,
+          "winRate": 32.89,
+          "goalsPerMatch": 1.526,
+          "goalsConcededPerMatch": 1.618,
+          "goalDifferencePerMatch": -0.092,
+          "shotAccuracy": 77.0,
+          "goalConversion": 38.67,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.01,
+          "cleanSheetRate": 17.11,
+          "concedeTwoPlusRate": 51.32,
+          "lastMatchDateKst": "2026-08-01T13:12:55+09:00",
+          "players": [
+            {
+              "spId": 826262402,
+              "name": "세르지 카르도나"
+            },
+            {
+              "spId": 866270728,
+              "name": "카를로스 로메로"
+            }
+          ]
+        },
+        {
+          "key": "836231866|866270728",
+          "label": "836231866|866270728",
+          "matches": 76,
+          "w": 25,
+          "d": 23,
+          "l": 28,
+          "winRate": 32.89,
+          "goalsPerMatch": 1.526,
+          "goalsConcededPerMatch": 1.618,
+          "goalDifferencePerMatch": -0.092,
+          "shotAccuracy": 77.0,
+          "goalConversion": 38.67,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.01,
+          "cleanSheetRate": 17.11,
+          "concedeTwoPlusRate": 51.32,
+          "lastMatchDateKst": "2026-08-01T13:12:55+09:00",
+          "players": [
+            {
+              "spId": 836231866,
+              "name": "로드리"
+            },
+            {
+              "spId": 866270728,
+              "name": "카를로스 로메로"
+            }
+          ]
+        },
+        {
+          "key": "840189513|866270728",
+          "label": "840189513|866270728",
+          "matches": 76,
+          "w": 25,
+          "d": 23,
+          "l": 28,
+          "winRate": 32.89,
+          "goalsPerMatch": 1.526,
+          "goalsConcededPerMatch": 1.618,
+          "goalDifferencePerMatch": -0.092,
+          "shotAccuracy": 77.0,
+          "goalConversion": 38.67,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.01,
+          "cleanSheetRate": 17.11,
+          "concedeTwoPlusRate": 51.32,
+          "lastMatchDateKst": "2026-08-01T13:12:55+09:00",
+          "players": [
+            {
+              "spId": 840189513,
+              "name": "파레호"
+            },
+            {
+              "spId": 866270728,
+              "name": "카를로스 로메로"
+            }
+          ]
+        },
+        {
+          "key": "855226161|866270728",
+          "label": "855226161|866270728",
+          "matches": 76,
+          "w": 25,
+          "d": 23,
+          "l": 28,
+          "winRate": 32.89,
+          "goalsPerMatch": 1.526,
+          "goalsConcededPerMatch": 1.618,
+          "goalDifferencePerMatch": -0.092,
+          "shotAccuracy": 77.0,
+          "goalConversion": 38.67,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.01,
+          "cleanSheetRate": 17.11,
+          "concedeTwoPlusRate": 51.32,
+          "lastMatchDateKst": "2026-08-01T13:12:55+09:00",
+          "players": [
+            {
+              "spId": 855226161,
+              "name": "마르코스 요렌테"
+            },
+            {
+              "spId": 866270728,
+              "name": "카를로스 로메로"
+            }
+          ]
+        },
+        {
+          "key": "855256516|866270728",
+          "label": "855256516|866270728",
+          "matches": 76,
+          "w": 25,
+          "d": 23,
+          "l": 28,
+          "winRate": 32.89,
+          "goalsPerMatch": 1.526,
+          "goalsConcededPerMatch": 1.618,
+          "goalDifferencePerMatch": -0.092,
+          "shotAccuracy": 77.0,
+          "goalConversion": 38.67,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.01,
+          "cleanSheetRate": 17.11,
+          "concedeTwoPlusRate": 51.32,
+          "lastMatchDateKst": "2026-08-01T13:12:55+09:00",
+          "players": [
+            {
+              "spId": 855256516,
+              "name": "니코 윌리암스"
+            },
+            {
+              "spId": 866270728,
+              "name": "카를로스 로메로"
+            }
+          ]
+        },
+        {
+          "key": "861005479|866270728",
+          "label": "861005479|866270728",
+          "matches": 76,
+          "w": 25,
+          "d": 23,
+          "l": 28,
+          "winRate": 32.89,
+          "goalsPerMatch": 1.526,
+          "goalsConcededPerMatch": 1.618,
+          "goalDifferencePerMatch": -0.092,
+          "shotAccuracy": 77.0,
+          "goalConversion": 38.67,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.01,
+          "cleanSheetRate": 17.11,
+          "concedeTwoPlusRate": 51.32,
+          "lastMatchDateKst": "2026-08-01T13:12:55+09:00",
+          "players": [
+            {
+              "spId": 861005479,
+              "name": "카시야스"
+            },
+            {
+              "spId": 866270728,
+              "name": "카를로스 로메로"
+            }
+          ]
+        },
+        {
+          "key": "861161840|866270728",
+          "label": "861161840|866270728",
+          "matches": 76,
+          "w": 25,
+          "d": 23,
+          "l": 28,
+          "winRate": 32.89,
+          "goalsPerMatch": 1.526,
+          "goalsConcededPerMatch": 1.618,
+          "goalDifferencePerMatch": -0.092,
+          "shotAccuracy": 77.0,
+          "goalConversion": 38.67,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.01,
+          "cleanSheetRate": 17.11,
+          "concedeTwoPlusRate": 51.32,
+          "lastMatchDateKst": "2026-08-01T13:12:55+09:00",
+          "players": [
+            {
+              "spId": 861161840,
+              "name": "페르난도 이에로"
+            },
+            {
+              "spId": 866270728,
+              "name": "카를로스 로메로"
+            }
+          ]
+        },
+        {
+          "key": "863225193|866270728",
+          "label": "863225193|866270728",
+          "matches": 76,
+          "w": 25,
+          "d": 23,
+          "l": 28,
+          "winRate": 32.89,
+          "goalsPerMatch": 1.526,
+          "goalsConcededPerMatch": 1.618,
+          "goalDifferencePerMatch": -0.092,
+          "shotAccuracy": 77.0,
+          "goalConversion": 38.67,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.01,
+          "cleanSheetRate": 17.11,
+          "concedeTwoPlusRate": 51.32,
+          "lastMatchDateKst": "2026-08-01T13:12:55+09:00",
+          "players": [
+            {
+              "spId": 863225193,
+              "name": "미켈 메리노"
+            },
+            {
+              "spId": 866270728,
+              "name": "카를로스 로메로"
+            }
+          ]
+        },
+        {
+          "key": "866266039|866270728",
+          "label": "866266039|866270728",
+          "matches": 76,
+          "w": 25,
+          "d": 23,
+          "l": 28,
+          "winRate": 32.89,
+          "goalsPerMatch": 1.526,
+          "goalsConcededPerMatch": 1.618,
+          "goalDifferencePerMatch": -0.092,
+          "shotAccuracy": 77.0,
+          "goalConversion": 38.67,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.01,
+          "cleanSheetRate": 17.11,
+          "concedeTwoPlusRate": 51.32,
+          "lastMatchDateKst": "2026-08-01T13:12:55+09:00",
+          "players": [
+            {
+              "spId": 866266039,
+              "name": "푸빌"
+            },
+            {
+              "spId": 866270728,
+              "name": "카를로스 로메로"
+            }
+          ]
+        }
+      ],
+      "trios": [
+        {
+          "key": "826230786|826262402|866270728",
+          "label": "826230786|826262402|866270728",
+          "matches": 76,
+          "w": 25,
+          "d": 23,
+          "l": 28,
+          "winRate": 32.89,
+          "goalsPerMatch": 1.526,
+          "goalsConcededPerMatch": 1.618,
+          "goalDifferencePerMatch": -0.092,
+          "shotAccuracy": 77.0,
+          "goalConversion": 38.67,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.01,
+          "cleanSheetRate": 17.11,
+          "concedeTwoPlusRate": 51.32,
+          "lastMatchDateKst": "2026-08-01T13:12:55+09:00",
+          "players": [
+            {
+              "spId": 826230786,
+              "name": "페펠루"
+            },
+            {
+              "spId": 826262402,
+              "name": "세르지 카르도나"
+            },
+            {
+              "spId": 866270728,
+              "name": "카를로스 로메로"
+            }
+          ]
+        },
+        {
+          "key": "826230786|836231866|866270728",
+          "label": "826230786|836231866|866270728",
+          "matches": 76,
+          "w": 25,
+          "d": 23,
+          "l": 28,
+          "winRate": 32.89,
+          "goalsPerMatch": 1.526,
+          "goalsConcededPerMatch": 1.618,
+          "goalDifferencePerMatch": -0.092,
+          "shotAccuracy": 77.0,
+          "goalConversion": 38.67,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.01,
+          "cleanSheetRate": 17.11,
+          "concedeTwoPlusRate": 51.32,
+          "lastMatchDateKst": "2026-08-01T13:12:55+09:00",
+          "players": [
+            {
+              "spId": 826230786,
+              "name": "페펠루"
+            },
+            {
+              "spId": 836231866,
+              "name": "로드리"
+            },
+            {
+              "spId": 866270728,
+              "name": "카를로스 로메로"
+            }
+          ]
+        },
+        {
+          "key": "826230786|840189513|866270728",
+          "label": "826230786|840189513|866270728",
+          "matches": 76,
+          "w": 25,
+          "d": 23,
+          "l": 28,
+          "winRate": 32.89,
+          "goalsPerMatch": 1.526,
+          "goalsConcededPerMatch": 1.618,
+          "goalDifferencePerMatch": -0.092,
+          "shotAccuracy": 77.0,
+          "goalConversion": 38.67,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.01,
+          "cleanSheetRate": 17.11,
+          "concedeTwoPlusRate": 51.32,
+          "lastMatchDateKst": "2026-08-01T13:12:55+09:00",
+          "players": [
+            {
+              "spId": 826230786,
+              "name": "페펠루"
+            },
+            {
+              "spId": 840189513,
+              "name": "파레호"
+            },
+            {
+              "spId": 866270728,
+              "name": "카를로스 로메로"
+            }
+          ]
+        },
+        {
+          "key": "826230786|855226161|866270728",
+          "label": "826230786|855226161|866270728",
+          "matches": 76,
+          "w": 25,
+          "d": 23,
+          "l": 28,
+          "winRate": 32.89,
+          "goalsPerMatch": 1.526,
+          "goalsConcededPerMatch": 1.618,
+          "goalDifferencePerMatch": -0.092,
+          "shotAccuracy": 77.0,
+          "goalConversion": 38.67,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.01,
+          "cleanSheetRate": 17.11,
+          "concedeTwoPlusRate": 51.32,
+          "lastMatchDateKst": "2026-08-01T13:12:55+09:00",
+          "players": [
+            {
+              "spId": 826230786,
+              "name": "페펠루"
+            },
+            {
+              "spId": 855226161,
+              "name": "마르코스 요렌테"
+            },
+            {
+              "spId": 866270728,
+              "name": "카를로스 로메로"
+            }
+          ]
+        },
+        {
+          "key": "826230786|855256516|866270728",
+          "label": "826230786|855256516|866270728",
+          "matches": 76,
+          "w": 25,
+          "d": 23,
+          "l": 28,
+          "winRate": 32.89,
+          "goalsPerMatch": 1.526,
+          "goalsConcededPerMatch": 1.618,
+          "goalDifferencePerMatch": -0.092,
+          "shotAccuracy": 77.0,
+          "goalConversion": 38.67,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.01,
+          "cleanSheetRate": 17.11,
+          "concedeTwoPlusRate": 51.32,
+          "lastMatchDateKst": "2026-08-01T13:12:55+09:00",
+          "players": [
+            {
+              "spId": 826230786,
+              "name": "페펠루"
+            },
+            {
+              "spId": 855256516,
+              "name": "니코 윌리암스"
+            },
+            {
+              "spId": 866270728,
+              "name": "카를로스 로메로"
+            }
+          ]
+        },
+        {
+          "key": "826230786|861005479|866270728",
+          "label": "826230786|861005479|866270728",
+          "matches": 76,
+          "w": 25,
+          "d": 23,
+          "l": 28,
+          "winRate": 32.89,
+          "goalsPerMatch": 1.526,
+          "goalsConcededPerMatch": 1.618,
+          "goalDifferencePerMatch": -0.092,
+          "shotAccuracy": 77.0,
+          "goalConversion": 38.67,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.01,
+          "cleanSheetRate": 17.11,
+          "concedeTwoPlusRate": 51.32,
+          "lastMatchDateKst": "2026-08-01T13:12:55+09:00",
+          "players": [
+            {
+              "spId": 826230786,
+              "name": "페펠루"
+            },
+            {
+              "spId": 861005479,
+              "name": "카시야스"
+            },
+            {
+              "spId": 866270728,
+              "name": "카를로스 로메로"
+            }
+          ]
+        },
+        {
+          "key": "826230786|861161840|866270728",
+          "label": "826230786|861161840|866270728",
+          "matches": 76,
+          "w": 25,
+          "d": 23,
+          "l": 28,
+          "winRate": 32.89,
+          "goalsPerMatch": 1.526,
+          "goalsConcededPerMatch": 1.618,
+          "goalDifferencePerMatch": -0.092,
+          "shotAccuracy": 77.0,
+          "goalConversion": 38.67,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.01,
+          "cleanSheetRate": 17.11,
+          "concedeTwoPlusRate": 51.32,
+          "lastMatchDateKst": "2026-08-01T13:12:55+09:00",
+          "players": [
+            {
+              "spId": 826230786,
+              "name": "페펠루"
+            },
+            {
+              "spId": 861161840,
+              "name": "페르난도 이에로"
+            },
+            {
+              "spId": 866270728,
+              "name": "카를로스 로메로"
+            }
+          ]
+        },
+        {
+          "key": "826230786|863225193|866270728",
+          "label": "826230786|863225193|866270728",
+          "matches": 76,
+          "w": 25,
+          "d": 23,
+          "l": 28,
+          "winRate": 32.89,
+          "goalsPerMatch": 1.526,
+          "goalsConcededPerMatch": 1.618,
+          "goalDifferencePerMatch": -0.092,
+          "shotAccuracy": 77.0,
+          "goalConversion": 38.67,
+          "averagePossession": 0.0,
+          "passSuccessRate": 85.01,
+          "cleanSheetRate": 17.11,
+          "concedeTwoPlusRate": 51.32,
+          "lastMatchDateKst": "2026-08-01T13:12:55+09:00",
+          "players": [
+            {
+              "spId": 826230786,
+              "name": "페펠루"
+            },
+            {
+              "spId": 863225193,
+              "name": "미켈 메리노"
+            },
+            {
+              "spId": 866270728,
+              "name": "카를로스 로메로"
+            }
+          ]
+        }
+      ]
+    },
+    "positionGroupPerformance": [
+      {
+        "key": "미드필더진",
+        "label": "미드필더진",
+        "matches": 99,
+        "w": 31,
+        "d": 34,
+        "l": 34,
+        "winRate": 31.31,
+        "goalsPerMatch": 1.566,
+        "goalsConcededPerMatch": 1.616,
+        "goalDifferencePerMatch": -0.051,
+        "shotAccuracy": 77.38,
+        "goalConversion": 39.85,
+        "averagePossession": 0.0,
+        "passSuccessRate": 84.93,
+        "cleanSheetRate": 16.16,
+        "concedeTwoPlusRate": 51.52,
+        "lastMatchDateKst": "2026-08-01T14:51:09+09:00"
+      },
+      {
+        "key": "수비진",
+        "label": "수비진",
+        "matches": 99,
+        "w": 31,
+        "d": 34,
+        "l": 34,
+        "winRate": 31.31,
+        "goalsPerMatch": 1.566,
+        "goalsConcededPerMatch": 1.616,
+        "goalDifferencePerMatch": -0.051,
+        "shotAccuracy": 77.38,
+        "goalConversion": 39.85,
+        "averagePossession": 0.0,
+        "passSuccessRate": 84.93,
+        "cleanSheetRate": 16.16,
+        "concedeTwoPlusRate": 51.52,
+        "lastMatchDateKst": "2026-08-01T14:51:09+09:00"
+      }
+    ]
+  },
+  "comparisons": {
+    "recent20VsPrevious20": {
+      "recent": {
+        "period": 20,
+        "sampleSize": 20,
+        "w": 6,
+        "d": 8,
+        "l": 6,
+        "winRate": 30.0,
+        "goalsPerMatch": 1.7,
+        "goalsConcededPerMatch": 1.65,
+        "goalDifferencePerMatch": 0.05,
+        "shotsPerMatch": 4.05,
+        "shotsOnTargetPerMatch": 3.1,
+        "shotAccuracy": 76.54,
+        "goalConversion": 41.98,
+        "averagePossession": 0.0,
+        "passSuccessRate": 83.76
+      },
+      "previous": {
+        "period": 20,
+        "sampleSize": 20,
+        "w": 5,
+        "d": 7,
+        "l": 8,
+        "winRate": 25.0,
+        "goalsPerMatch": 1.4,
+        "goalsConcededPerMatch": 1.7,
+        "goalDifferencePerMatch": -0.3,
+        "shotsPerMatch": 4.0,
+        "shotsOnTargetPerMatch": 3.0,
+        "shotAccuracy": 75.0,
+        "goalConversion": 35.0,
+        "averagePossession": 0.0,
+        "passSuccessRate": 80.4
+      },
+      "winRateDifference": 5.0,
+      "goalsPerMatchChangePercent": 21.43,
+      "goalsConcededPerMatchChangePercent": -2.94
+    }
+  },
+  "insights": [
+    {
+      "code": "RECENT_ATTACK_IMPROVEMENT",
+      "category": "ATTACK",
+      "severity": "positive",
+      "title": "최근 득점 성과 상승",
+      "description": "최근 20경기의 경기당 득점이 직전 20경기보다 높게 나타났습니다.",
+      "sampleSize": 20,
+      "evidence": {
+        "recentGoalsPerMatch": 1.7,
+        "previousGoalsPerMatch": 1.4,
+        "changePercent": 21.43,
+        "winRateDifference": 5.0
+      }
+    },
+    {
+      "code": "STYLE_PROFILE_DETECTED",
+      "category": "STYLE",
+      "severity": "info",
+      "title": "고효율형 프로필",
+      "description": "최근 감독모드 경기 지표에서 가장 강하게 관찰된 운영 성향입니다.",
+      "sampleSize": 100,
+      "evidence": {
+        "primary": "고효율형",
+        "scores": {
+          "점유형": 0.0,
+          "다득점형": 38.75,
+          "수비형": 34.85,
+          "고효율형": 50.7,
+          "다슈팅형": 38.9,
+          "안정형": 49.57
+        }
+      }
+    },
+    {
+      "code": "TIME_SLOT_UNDERPERFORMANCE",
+      "category": "TIME",
+      "severity": "warning",
+      "title": "오후 시간대 성과 저하",
+      "description": "해당 시간대 경기의 승률이 전체 평균보다 낮게 관찰되었습니다.",
+      "sampleSize": 13,
+      "evidence": {
+        "key": "오후",
+        "label": "오후",
+        "matches": 13,
+        "w": 2,
+        "d": 6,
+        "l": 5,
+        "winRate": 15.38,
+        "goalsPerMatch": 1.615,
+        "goalsConcededPerMatch": 1.769,
+        "goalDifferencePerMatch": -0.154,
+        "shotAccuracy": 78.18,
+        "goalConversion": 38.18,
+        "averagePossession": 0.0,
+        "passSuccessRate": 83.33,
+        "cleanSheetRate": 15.38,
+        "concedeTwoPlusRate": 61.54,
+        "lastMatchDateKst": "2026-08-01T14:51:09+09:00"
+      }
+    }
+  ]
+}

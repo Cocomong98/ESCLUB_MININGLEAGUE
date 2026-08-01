@@ -1,0 +1,38 @@
+[
+    {
+        "name": "ES라울",
+        "player_id": "82044429",
+        "stat_url": "https://fconline.nexon.com/profile/stat/popup/82044429",
+        "squad_url": "https://fconline.nexon.com/profile/squad/popup/82044429",
+        "구단주명": "ES라울",
+        "승": 614,
+        "무": 47,
+        "패": 538,
+        "판수": 1199,
+        "채굴 효율": 3619,
+        "승률": "51.2%",
+        "현재 티어": "챔피언스",
+        "현재 티어 코드": "1",
+        "현재 티어 이미지": "https://ssl.nexon.com/s2/game/fo4/obt/rank/large/update_2026/ico_rank1_m.png",
+        "구단 가치": "33경 690조",
+        "비고": "-",
+        "지난 시즌 승": 0,
+        "지난 시즌 무": 0,
+        "지난 시즌 패": 0,
+        "지난 시즌 판수": 0,
+        "지난 시즌 채굴 효율": 0,
+        "지난 시즌 승률": "0.0%",
+        "crawl_time": "2026-07-30",
+        "record_source": "nexon_open_api",
+        "openapi_sync": {
+            "ouid": "627ee2901b346844c020168543562109",
+            "newMatchCount": 1067,
+            "totalIndexCount": 1200,
+            "maxMatches": 1200
+        },
+        "순위": 3,
+        "성장력": -10446,
+        "crawl_time_detail": "2026-07-30 오후 1시",
+        "crawl_time_hhmm": "13:40"
+    }
+]

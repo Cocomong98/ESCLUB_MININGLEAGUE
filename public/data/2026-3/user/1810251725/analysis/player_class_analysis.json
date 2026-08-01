@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:15:44.817386+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1810251725",
+    "nickname": "ES베니"
+  },
+  "classRows": [
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 3,
+      "appearances": 924,
+      "goals": 321,
+      "assists": 236,
+      "attackPoints": 557,
+      "avgRating": 6.65
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 1,
+      "appearances": 308,
+      "goals": 3,
+      "assists": 22,
+      "attackPoints": 25,
+      "avgRating": 6.51
+    },
+    {
+      "seasonId": 850,
+      "seasonName": "25FSL (25 FCO Superchampions League)",
+      "players": 1,
+      "appearances": 308,
+      "goals": 5,
+      "assists": 16,
+      "attackPoints": 21,
+      "avgRating": 6.46
+    },
+    {
+      "seasonId": 866,
+      "seasonName": "26 TOTS (26 Team Of The Season)",
+      "players": 1,
+      "appearances": 308,
+      "goals": 69,
+      "assists": 84,
+      "attackPoints": 153,
+      "avgRating": 6.6
+    },
+    {
+      "seasonId": 825,
+      "seasonName": "CU (Champions of Europe)",
+      "players": 1,
+      "appearances": 308,
+      "goals": 1,
+      "assists": 5,
+      "attackPoints": 6,
+      "avgRating": 6.46
+    },
+    {
+      "seasonId": 846,
+      "seasonName": "DCB (Dramatic Comebacks)",
+      "players": 1,
+      "appearances": 308,
+      "goals": 1,
+      "assists": 2,
+      "attackPoints": 3,
+      "avgRating": 6.47
+    },
+    {
+      "seasonId": 206,
+      "seasonName": "TB (Tournament Best)",
+      "players": 1,
+      "appearances": 308,
+      "goals": 0,
+      "assists": 1,
+      "attackPoints": 1,
+      "avgRating": 6.28
+    },
+    {
+      "seasonId": 861,
+      "seasonName": "WG (Warriors of Glory)",
+      "players": 1,
+      "appearances": 308,
+      "goals": 76,
+      "assists": 68,
+      "attackPoints": 144,
+      "avgRating": 6.63
+    },
+    {
+      "seasonId": 848,
+      "seasonName": "WS (Winning Streak)",
+      "players": 1,
+      "appearances": 308,
+      "goals": 121,
+      "assists": 104,
+      "attackPoints": 225,
+      "avgRating": 6.66
+    }
+  ],
+  "samePlayerCardComparisons": []
+}

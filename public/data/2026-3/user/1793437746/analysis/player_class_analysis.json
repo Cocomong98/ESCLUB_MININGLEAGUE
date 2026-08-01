@@ -1,0 +1,196 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-31T10:16:28.050824+09:00",
+  "source": {
+    "provider": "NexonOpenAPI",
+    "matchtype": 52
+  },
+  "privacy": {
+    "matchId": "hashed",
+    "ouid": "omitted"
+  },
+  "player": {
+    "playerId": "1793437746",
+    "nickname": "ES차발"
+  },
+  "classRows": [
+    {
+      "seasonId": 852,
+      "seasonName": "FAC (Football Association Champions)",
+      "players": 3,
+      "appearances": 3064,
+      "goals": 691,
+      "assists": 516,
+      "attackPoints": 1207,
+      "avgRating": 6.56
+    },
+    {
+      "seasonId": 863,
+      "seasonName": "PTG (Path to Glory)",
+      "players": 4,
+      "appearances": 2361,
+      "goals": 281,
+      "assists": 247,
+      "attackPoints": 528,
+      "avgRating": 6.47
+    },
+    {
+      "seasonId": 851,
+      "seasonName": "25DP (25 Devoted Player)",
+      "players": 2,
+      "appearances": 2300,
+      "goals": 43,
+      "assists": 163,
+      "attackPoints": 206,
+      "avgRating": 6.38
+    },
+    {
+      "seasonId": 845,
+      "seasonName": "CH (Continental Heroes)",
+      "players": 2,
+      "appearances": 1914,
+      "goals": 391,
+      "assists": 357,
+      "attackPoints": 748,
+      "avgRating": 6.45
+    },
+    {
+      "seasonId": 831,
+      "seasonName": "25 TOTY (25 Team Of The Year)",
+      "players": 1,
+      "appearances": 1150,
+      "goals": 296,
+      "assists": 258,
+      "attackPoints": 554,
+      "avgRating": 6.59
+    },
+    {
+      "seasonId": 834,
+      "seasonName": "24 UCL (24 UEFA Champions League)",
+      "players": 1,
+      "appearances": 711,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.36
+    },
+    {
+      "seasonId": 866,
+      "seasonName": "26 TOTS (26 Team Of The Season)",
+      "players": 1,
+      "appearances": 711,
+      "goals": 246,
+      "assists": 180,
+      "attackPoints": 426,
+      "avgRating": 6.47
+    },
+    {
+      "seasonId": 856,
+      "seasonName": "25 UCL (25 UEFA Champions League)",
+      "players": 1,
+      "appearances": 439,
+      "goals": 0,
+      "assists": 0,
+      "attackPoints": 0,
+      "avgRating": 6.5
+    }
+  ],
+  "samePlayerCardComparisons": [
+    {
+      "basePlayerId": "225193",
+      "name": "미켈 메리노",
+      "cards": [
+        {
+          "spId": 852225193,
+          "seasonId": 852,
+          "seasonName": "FAC (Football Association Champions)",
+          "appearances": 764,
+          "attackPoint": 392,
+          "avgRating": 6.61,
+          "playerWinRate": 48.17
+        },
+        {
+          "spId": 863225193,
+          "seasonId": 863,
+          "seasonName": "PTG (Path to Glory)",
+          "appearances": 386,
+          "attackPoint": 204,
+          "avgRating": 6.61,
+          "playerWinRate": 44.82
+        }
+      ]
+    },
+    {
+      "basePlayerId": "212218",
+      "name": "에므리크 라포르트",
+      "cards": [
+        {
+          "spId": 845212218,
+          "seasonId": 845,
+          "seasonName": "CH (Continental Heroes)",
+          "appearances": 764,
+          "attackPoint": 11,
+          "avgRating": 6.35,
+          "playerWinRate": 48.17
+        },
+        {
+          "spId": 863212218,
+          "seasonId": 863,
+          "seasonName": "PTG (Path to Glory)",
+          "appearances": 386,
+          "attackPoint": 5,
+          "avgRating": 6.41,
+          "playerWinRate": 44.82
+        }
+      ]
+    },
+    {
+      "basePlayerId": "230142",
+      "name": "오야르사발",
+      "cards": [
+        {
+          "spId": 866230142,
+          "seasonId": 866,
+          "seasonName": "26 TOTS (26 Team Of The Season)",
+          "appearances": 711,
+          "attackPoint": 426,
+          "avgRating": 6.47,
+          "playerWinRate": 47.26
+        },
+        {
+          "spId": 863230142,
+          "seasonId": 863,
+          "seasonName": "PTG (Path to Glory)",
+          "appearances": 439,
+          "attackPoint": 276,
+          "avgRating": 6.5,
+          "playerWinRate": 46.7
+        }
+      ]
+    },
+    {
+      "basePlayerId": "220901",
+      "name": "다비드 라야",
+      "cards": [
+        {
+          "spId": 834220901,
+          "seasonId": 834,
+          "seasonName": "24 UCL (24 UEFA Champions League)",
+          "appearances": 711,
+          "attackPoint": 0,
+          "avgRating": 6.36,
+          "playerWinRate": 47.26
+        },
+        {
+          "spId": 856220901,
+          "seasonId": 856,
+          "seasonName": "25 UCL (25 UEFA Champions League)",
+          "appearances": 439,
+          "attackPoint": 0,
+          "avgRating": 6.5,
+          "playerWinRate": 46.7
+        }
+      ]
+    }
+  ]
+}
