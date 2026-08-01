@@ -114,20 +114,14 @@ OPENAPI_JOB_LOCK_FILE = os.path.join(PRIVATE_LOCK_DIR, "openapi.lock")
 DAILY_CRAWL_LOCK_FILE = os.path.join(PRIVATE_LOCK_DIR, "daily_crawl.lock")
 DAILY_PUBLISH_MARKER_FILE = os.path.join(PRIVATE_LOCK_DIR, "daily_publish_marker.json")
 
-def is_strong_admin_password(value):
-    if len(value) < 20:
-        return False
-    classes = sum(
-        bool(re.search(pattern, value))
-        for pattern in (r"[a-z]", r"[A-Z]", r"\d", r"[^A-Za-z0-9]")
-    )
-    return classes >= 3
+def is_valid_admin_password(value):
+    return bool(re.fullmatch(r"\d{6}", value))
 
 
 if not ADMIN_PASSWORD:
     print("[WARN] ADMIN_PASSWORD is not set. Admin login will be unavailable.", flush=True)
-elif not is_strong_admin_password(ADMIN_PASSWORD):
-    raise RuntimeError("ADMIN_PASSWORD must be at least 20 characters and use at least 3 character classes")
+elif not is_valid_admin_password(ADMIN_PASSWORD):
+    raise RuntimeError("ADMIN_PASSWORD must be exactly 6 digits")
 
 def ensure_scheduler_running():
     if not scheduler.running:
