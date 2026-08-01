@@ -1,8 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSeason } from "@/lib/season-context";
-import { RANKINGS, SEASONS, toRankingView } from "@/lib/mockData";
+import { formatSeasonLabel } from "@/lib/mockData";
+import { fetchRankingData, fallbackRankingData, type RankingData } from "@/lib/service-data";
 import { FormPips, FormDots } from "@/components/form-pips";
+import { TierBadge } from "@/components/tier-badge";
 import { ChevronUp, ChevronDown, Minus } from "lucide-react";
 
 export const Route = createFileRoute("/tables")({
@@ -31,8 +33,7 @@ function DeltaCell({ delta }: { delta: number | null }) {
         NEW
       </span>
     );
-  if (delta === 0)
-    return <Minus className="size-3 text-muted-foreground" aria-label="변동 없음" />;
+  if (delta === 0) return <Minus className="size-3 text-muted-foreground" aria-label="변동 없음" />;
   if (delta > 0)
     return (
       <span className="flex items-center gap-0.5 text-pos font-mono-num text-xs">
@@ -49,12 +50,29 @@ function DeltaCell({ delta }: { delta: number | null }) {
 }
 
 function TablesPage() {
-  const { season } = useSeason();
-  const rows = useMemo(() => toRankingView(RANKINGS[season] ?? []), [season]);
-  const seasonMeta = SEASONS.find((s) => s.id === season)!;
+  const { season, seasons } = useSeason();
+  const [data, setData] = useState<RankingData>(() => fallbackRankingData(season));
+  const [loading, setLoading] = useState(true);
+  const rows = useMemo(() => data.rows, [data]);
+  const seasonMeta = seasons.find((s) => s.id === season) ?? {
+    id: season,
+    label: formatSeasonLabel(season),
+  };
 
-  // Contract note: 과거 시즌에 현재 시즌 데이터를 fallback하지 않음.
-  if (rows.length === 0) {
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    fetchRankingData(season).then((next) => {
+      if (cancelled) return;
+      setData(next);
+      setLoading(false);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [season]);
+
+  if (!loading && rows.length === 0) {
     return <EmptyState seasonLabel={seasonMeta.label} />;
   }
 
@@ -64,17 +82,16 @@ function TablesPage() {
       <div className="hidden md:flex items-center justify-between px-8 py-3 border-b border-border bg-surface/40 text-[11px] font-mono text-muted-foreground">
         <div className="flex gap-6">
           <span>
-            SOURCE:{" "}
-            <span className="text-foreground">
-              /data/{season}/current_crawl_display_data.json
-            </span>
+            최근 갱신: <span className="text-foreground">{data.lastUpdated ?? "확인 중"}</span>
           </span>
           <span>
-            ROWS: <span className="text-foreground">{rows.length}</span>
+            ROWS: <span className="text-foreground">{loading ? "..." : rows.length}</span>
           </span>
         </div>
-        <span>정렬: 승점 → 득실차 → 득점</span>
+        <span>정렬: 순위 → 누적채굴량</span>
       </div>
+
+      {data.kings && <KingStrip data={data} />}
 
       {/* Desktop table */}
       <div className="hidden md:block flex-1 overflow-x-auto">
@@ -84,38 +101,40 @@ function TablesPage() {
               <Th className="pl-8 w-20">순위</Th>
               <Th className="w-14">변동</Th>
               <Th>구단주</Th>
-              <ThNum>GP</ThNum>
+              <ThNum>판수</ThNum>
               <ThNum>W</ThNum>
               <ThNum>D</ThNum>
               <ThNum>L</ThNum>
-              <ThNum>GF</ThNum>
-              <ThNum>GA</ThNum>
-              <ThNum>GD</ThNum>
-              <ThNum className="text-foreground">PTS</ThNum>
+              <ThNum className="text-foreground">누적</ThNum>
+              <ThNum>일일</ThNum>
               <ThNum>승률</ThNum>
+              <ThNum>구단가치</ThNum>
               <Th className="pr-8">최근 5경기</Th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border/50">
             {rows.map((r) => (
-              <tr
-                key={r.id}
-                className="hover:bg-surface-2/60 transition-colors group"
-              >
+              <tr key={r.id} className="hover:bg-surface-2/60 transition-colors group">
                 <td className="py-3.5 pl-8 pr-3">
                   <div className="flex items-center gap-3">
                     <span
                       className={
                         "font-mono-num text-sm " +
-                        (r.rank <= 3 ? "text-foreground font-semibold" : "text-foreground")
+                        (!r.unranked && r.rank <= 3
+                          ? "text-foreground font-semibold"
+                          : "text-foreground")
                       }
                     >
-                      {String(r.rank).padStart(2, "0")}
+                      {formatRank(r)}
                     </span>
                   </div>
                 </td>
                 <td className="py-3.5 px-3">
-                  <DeltaCell delta={r.delta} />
+                  {r.unranked ? (
+                    <span className="text-muted-foreground">—</span>
+                  ) : (
+                    <DeltaCell delta={r.delta} />
+                  )}
                 </td>
                 <td className="py-3.5 px-3">
                   <Link
@@ -123,7 +142,7 @@ function TablesPage() {
                     params={{ id: r.id }}
                     className="flex items-center gap-3 group-hover:text-accent transition-colors"
                   >
-                    <div className="size-6 rounded-sm bg-surface-2 outline-1 -outline-offset-1 outline-white/5" />
+                    <TierBadge image={r.tierImage} name={r.tierName} />
                     <span className="text-sm font-medium">{r.name}</span>
                   </Link>
                 </td>
@@ -131,15 +150,20 @@ function TablesPage() {
                 <TdNum>{r.w}</TdNum>
                 <TdNum>{r.d}</TdNum>
                 <TdNum>{r.l}</TdNum>
-                <TdNum muted>{r.gf}</TdNum>
-                <TdNum muted>{r.ga}</TdNum>
-                <TdNum className={r.gd > 0 ? "text-pos" : r.gd < 0 ? "text-neg" : ""}>
-                  {r.gd > 0 ? `+${r.gd}` : r.gd}
+                <TdNum className="text-foreground font-medium">{r.miningPower}</TdNum>
+                <TdNum
+                  className={
+                    r.growth && r.growth > 0
+                      ? "text-pos"
+                      : r.growth && r.growth < 0
+                        ? "text-neg"
+                        : ""
+                  }
+                >
+                  {r.growth === null ? "—" : r.growth > 0 ? `+${r.growth}` : r.growth}
                 </TdNum>
-                <TdNum className="text-foreground font-medium">{r.pts}</TdNum>
-                <TdNum>
-                  {r.winRate === null ? "—" : `${(r.winRate * 100).toFixed(1)}%`}
-                </TdNum>
+                <TdNum>{r.winRate === null ? "—" : `${(r.winRate * 100).toFixed(1)}%`}</TdNum>
+                <TdNum muted>{r.clubValue ?? "—"}</TdNum>
                 <td className="py-3.5 pl-3 pr-8">
                   <FormPips form={r.form} />
                 </td>
@@ -152,10 +176,10 @@ function TablesPage() {
       {/* Mobile list — separate information structure, not a squished table */}
       <div className="md:hidden flex flex-col">
         <div className="px-4 py-2.5 bg-surface/60 border-b border-border">
-          <div className="grid grid-cols-12 text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">
+          <div className="grid grid-cols-12 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
             <div className="col-span-2">RANK</div>
             <div className="col-span-6">구단주</div>
-            <div className="col-span-2 text-right">PTS</div>
+            <div className="col-span-2 text-right">누적</div>
             <div className="col-span-2 text-right">FORM</div>
           </div>
         </div>
@@ -168,10 +192,8 @@ function TablesPage() {
               className="px-4 py-3.5 grid grid-cols-12 items-center active:bg-surface-2/60"
             >
               <div className="col-span-2 flex items-center gap-1.5">
-                <span className="font-mono-num text-sm">
-                  {String(r.rank).padStart(2, "0")}
-                </span>
-                {r.delta !== null && r.delta !== 0 && (
+                <span className="font-mono-num text-sm">{formatRank(r)}</span>
+                {!r.unranked && r.delta !== null && r.delta !== 0 && (
                   <span className={r.delta > 0 ? "text-pos" : "text-neg"}>
                     {r.delta > 0 ? (
                       <ChevronUp className="size-3" />
@@ -181,14 +203,20 @@ function TablesPage() {
                   </span>
                 )}
               </div>
-              <div className="col-span-6 flex flex-col min-w-0">
-                <span className="text-sm font-medium truncate">{r.name}</span>
-                <span className="text-[10px] text-muted-foreground font-mono-num">
-                  W{r.w} D{r.d} L{r.l} · GD {r.gd > 0 ? `+${r.gd}` : r.gd}
-                </span>
+              <div className="col-span-6 flex min-w-0 items-center gap-2">
+                <TierBadge image={r.tierImage} name={r.tierName} size="sm" />
+                <div className="flex min-w-0 flex-col">
+                  <span className="text-sm font-medium truncate">{r.name}</span>
+                  <span className="truncate whitespace-nowrap text-[11px] text-muted-foreground font-mono-num">
+                    {r.gp}판 · W{r.w} D{r.d} L{r.l}
+                  </span>
+                  <span className="truncate whitespace-nowrap text-[11px] text-muted-foreground font-mono-num">
+                    구단가치 {r.clubValue ?? "가치 없음"}
+                  </span>
+                </div>
               </div>
               <div className="col-span-2 text-right font-mono-num font-semibold text-sm">
-                {r.pts}
+                {r.miningPower}
               </div>
               <div className="col-span-2">
                 <FormDots form={r.form} />
@@ -201,13 +229,59 @@ function TablesPage() {
       <footer className="mt-auto border-t border-border p-6 md:px-8">
         <div className="max-w-prose">
           <p className="text-[11px] leading-relaxed text-muted-foreground text-pretty">
-            승점 = 승×3 + 무×1. 순위는 승점 → 득실차 → 득점 순으로 결정됩니다.
-            누락된 지표는 0으로 취급하지 않습니다. 구단주명을 클릭하면 개별 대시보드로
-            이동합니다.
+            누적채굴량은 매치 당시 플레이어 티어 기준 승리 FC 합산입니다. 순위는 원본 시즌 집계의
+            순위 필드를 우선 사용하고, 누락 시 누적채굴량 기준으로 정렬합니다.
           </p>
         </div>
       </footer>
     </div>
+  );
+}
+
+function formatRank(row: { rank: number; unranked?: boolean }): string {
+  if (row.unranked) return "-";
+  return String(row.rank).padStart(2, "0");
+}
+
+function KingStrip({ data }: { data: RankingData }) {
+  const items = [
+    {
+      label: "채굴왕",
+      row: data.kings?.mining,
+      value: data.kings?.mining?.["지난 시즌 누적채굴량"] ?? data.kings?.mining?.누적채굴량,
+    },
+    { label: "승률왕", row: data.kings?.winRate, value: data.kings?.winRate?.["지난 시즌 승률"] },
+    {
+      label: "판수왕",
+      row: data.kings?.gameCount,
+      value: data.kings?.gameCount?.["지난 시즌 판수"],
+    },
+    { label: "승부왕", row: data.kings?.draw, value: data.kings?.draw?.["지난 시즌 무"] },
+  ].filter((item) => item.row);
+
+  if (items.length === 0) return null;
+
+  return (
+    <section className="grid gap-0 border-b border-border md:grid-cols-4">
+      {items.map((item) => (
+        <Link
+          key={item.label}
+          to="/dashboard/$id"
+          params={{ id: item.row?.player_id ?? item.row?.name ?? "" }}
+          className="border-border px-4 py-3 transition-colors hover:bg-surface-2/50 md:border-r md:px-8"
+        >
+          <div className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground">
+            {item.label}
+          </div>
+          <div className="mt-1 flex items-baseline justify-between gap-3">
+            <span className="truncate text-sm font-semibold">
+              {item.row?.구단주명 ?? item.row?.name}
+            </span>
+            <span className="shrink-0 font-mono-num text-xs text-accent">{item.value ?? "—"}</span>
+          </div>
+        </Link>
+      ))}
+    </section>
   );
 }
 
@@ -266,8 +340,8 @@ function EmptyState({ seasonLabel }: { seasonLabel: string }) {
         </div>
         <h2 className="text-sm font-semibold">데이터 없음</h2>
         <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
-          {seasonLabel} 시즌의 순위 데이터가 아직 없습니다. 과거 시즌으로 현재 데이터를
-          대체하지 않습니다.
+          {seasonLabel} 시즌의 순위 데이터가 아직 없습니다. 과거 시즌으로 현재 데이터를 대체하지
+          않습니다.
         </p>
       </div>
     </div>
