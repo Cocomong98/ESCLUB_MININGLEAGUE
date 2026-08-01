@@ -11,6 +11,7 @@ services:
     environment:
       TZ: Asia/Seoul
       DATA_BASE_DIR: public/data
+      OPENAPI_CACHE_DIR: /app/.private/openapi_cache
     volumes:
       - ./config:/app/config
       - ./public/data:/app/public/data

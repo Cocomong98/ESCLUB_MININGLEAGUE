@@ -248,16 +248,16 @@ function KingStrip({ data }: { data: RankingData }) {
     {
       label: "채굴왕",
       row: data.kings?.mining,
-      value: data.kings?.mining?.["지난 시즌 누적채굴량"] ?? data.kings?.mining?.누적채굴량,
+      value: data.kings?.mining?.누적채굴량,
     },
-    { label: "승률왕", row: data.kings?.winRate, value: data.kings?.winRate?.["지난 시즌 승률"] },
+    { label: "승률왕", row: data.kings?.winRate, value: data.kings?.winRate?.승률 },
     {
       label: "판수왕",
       row: data.kings?.gameCount,
-      value: data.kings?.gameCount?.["지난 시즌 판수"],
+      value: data.kings?.gameCount?.판수,
     },
-    { label: "승부왕", row: data.kings?.draw, value: data.kings?.draw?.["지난 시즌 무"] },
-  ].filter((item) => item.row);
+    { label: "승부왕", row: data.kings?.draw, value: data.kings?.draw?.무 },
+  ].filter((item) => item.row && (item.row.player_id || item.row.name || item.row.구단주명));
 
   if (items.length === 0) return null;
 

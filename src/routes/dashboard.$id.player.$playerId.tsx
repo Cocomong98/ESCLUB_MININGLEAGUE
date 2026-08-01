@@ -244,7 +244,7 @@ function PlayerPage() {
                     {m.일자}
                   </td>
                   <td className="py-2.5 px-3 text-sm">{m.상대}</td>
-                  <td className="py-2.5 px-3 text-xs text-muted-foreground">{m.홈원정}</td>
+                  <td className="py-2.5 px-3 text-xs text-muted-foreground">{m.결과}</td>
                   <Td muted>{m.분}</Td>
                   <Td>{m.득점 || <span className="text-muted-foreground">·</span>}</Td>
                   <Td>{m.도움 || <span className="text-muted-foreground">·</span>}</Td>
@@ -366,7 +366,8 @@ function recentRatings(row: OpenApiSquadPlayer, bundle: SquadBundle | null): Mat
         matchKey: match.matchKey ?? "unknown",
         일자: formatDate(match.dateKst),
         상대: match.opponent?.nickname ?? "UNKNOWN",
-        홈원정: resultLabel(match.result),
+        홈원정: "-",
+        결과: normalizeMatchResult(match.result) ?? "D",
         분: numberOr(found.shoot, 0),
         평점: numberOr(found.rating, 0),
         득점: numberOr(found.goal, 0),
@@ -460,13 +461,20 @@ function averageRating(rows: MatchRatingRaw[]): number {
   return Math.round((rows.reduce((sum, row) => sum + row.평점, 0) / rows.length) * 10) / 10;
 }
 
-function resultLabel(result: string | undefined): "홈" | "원정" {
-  return result === "승" ? "홈" : "원정";
-}
-
 function formatDate(value: string | undefined): string {
   if (!value) return "-";
   return value.slice(0, 10);
+}
+
+function normalizeMatchResult(value: string | undefined): MatchRatingRaw["결과"] | null {
+  if (value === "승" || value === "W") return "W";
+  if (value === "무" || value === "D") return "D";
+  if (value === "패" || value === "L") return "L";
+  return null;
+}
+
+function resultLabel(result: MatchRatingRaw["결과"]): string {
+  return result === "W" ? "승" : result === "L" ? "패" : "무";
 }
 
 function ratingTone(v: number): string {

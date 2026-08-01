@@ -2,4 +2,5 @@ APScheduler>=3.10,<4
 beautifulsoup4>=4.12,<5
 flask>=3,<4
 flask-compress>=1.15,<2
+gunicorn>=23,<24
 requests>=2.31,<3

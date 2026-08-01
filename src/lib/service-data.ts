@@ -466,16 +466,12 @@ export async function fetchRankingData(season: SeasonId): Promise<RankingData> {
       normalizeServiceRows(payload.results ?? []),
       previousDateKey,
     );
+    const rankedKings = currentSeasonKings(rows);
     return {
       rows,
       source,
       lastUpdated: payload.last_updated,
-      kings: {
-        mining: payload.mining_king,
-        winRate: payload.win_rate_king,
-        gameCount: payload.game_count_king,
-        draw: payload.draw_king,
-      },
+      kings: rankedKings,
     };
   } catch {
     return fallbackRankingData(season);
@@ -643,7 +639,7 @@ export function normalizeServiceRows(rows: ServiceRankingRaw[]): RankingView[] {
       tierCode,
       tierImage,
       winRate: parsePercent(row.승률),
-      form: synthesizeForm(w, d, l),
+      form: [],
       delta: null,
     };
   });
@@ -684,7 +680,7 @@ async function enrichRowsWithRecentMatchData(
               clubValueSource: "recent-match" as const,
             }
           : {}),
-        form: recent?.form.length ? recent.form : row.form,
+        form: recent?.form ?? row.form,
         delta: previousRank === null ? null : previousRank - row.rank,
       };
     }),
@@ -883,10 +879,20 @@ function formatClubValueFromBp(value: number): string {
   return formatClubValueText(`${Math.floor(value / joUnit)}조`) ?? "-";
 }
 
-function synthesizeForm(w: number, d: number, l: number): MatchResult[] {
-  const form: MatchResult[] = [];
-  const pattern: MatchResult[] = w >= l ? ["W", "W", "D", "L", "W"] : ["L", "W", "D", "L", "L"];
-  for (let i = 0; i < 5; i += 1) form.push(pattern[i]);
-  if (d === 0) return form.map((r) => (r === "D" ? (w >= l ? "W" : "L") : r));
-  return form;
+function currentSeasonKings(rows: RankingView[]): RankingData["kings"] {
+  const ranked = rows.filter((row) => !row.unranked && row.id);
+  const maxBy = (score: (row: RankingView) => number) =>
+    ranked.reduce<RankingView | undefined>(
+      (best, row) => (!best || score(row) > score(best) ? row : best),
+      undefined,
+    );
+  const toRaw = (row: RankingView | undefined): ServiceRankingRaw | undefined =>
+    row ? rankingViewToRaw(row) : undefined;
+
+  return {
+    mining: toRaw(maxBy((row) => row.miningPower)),
+    winRate: toRaw(maxBy((row) => row.winRate ?? -1)),
+    gameCount: toRaw(maxBy((row) => row.gp)),
+    draw: toRaw(maxBy((row) => row.d)),
+  };
 }

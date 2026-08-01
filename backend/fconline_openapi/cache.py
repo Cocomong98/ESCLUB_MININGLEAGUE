@@ -17,7 +17,8 @@ from typing import Any
 KST = timezone(timedelta(hours=9))
 DEFAULT_MAX_AGE_DAYS = 29
 DEFAULT_META_MAX_AGE_HOURS = 24
-REPO_ROOT = Path(__file__).resolve().parents[1]
+# Cache lives beside the project-level Docker volume, not inside backend code.
+REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_OPENAPI_CACHE_DIR = REPO_ROOT / ".private" / "openapi_cache"
 OPENAPI_CACHE_ENV_KEY = "OPENAPI_CACHE_DIR"
 

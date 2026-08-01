@@ -13,7 +13,8 @@ export interface MatchRatingRaw {
   matchKey: string;
   일자: string;
   상대: string;
-  홈원정: "홈" | "원정";
+  홈원정: "홈" | "원정" | "-";
+  결과: MatchResult;
   분: number;
   평점: number;
   득점: number;
@@ -139,6 +140,7 @@ function ratingHistory(ownerId: string, p: SquadPlayerRaw): MatchRatingRaw[] {
       일자: m.일자,
       상대: m.상대,
       홈원정: m.홈원정,
+      결과: m.결과,
       분: 88 - ((seed + i) % 20),
       평점: Math.round(rating * 10) / 10,
       득점: scored,

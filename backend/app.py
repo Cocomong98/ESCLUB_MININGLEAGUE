@@ -114,8 +114,20 @@ OPENAPI_JOB_LOCK_FILE = os.path.join(PRIVATE_LOCK_DIR, "openapi.lock")
 DAILY_CRAWL_LOCK_FILE = os.path.join(PRIVATE_LOCK_DIR, "daily_crawl.lock")
 DAILY_PUBLISH_MARKER_FILE = os.path.join(PRIVATE_LOCK_DIR, "daily_publish_marker.json")
 
+def is_strong_admin_password(value):
+    if len(value) < 20:
+        return False
+    classes = sum(
+        bool(re.search(pattern, value))
+        for pattern in (r"[a-z]", r"[A-Z]", r"\d", r"[^A-Za-z0-9]")
+    )
+    return classes >= 3
+
+
 if not ADMIN_PASSWORD:
     print("[WARN] ADMIN_PASSWORD is not set. Admin login will be unavailable.", flush=True)
+elif not is_strong_admin_password(ADMIN_PASSWORD):
+    raise RuntimeError("ADMIN_PASSWORD must be at least 20 characters and use at least 3 character classes")
 
 def ensure_scheduler_running():
     if not scheduler.running:
@@ -278,10 +290,8 @@ def add_header(response):
 
 # --- 유틸리티 함수 ---
 def get_client_ip():
-    forwarded = request.headers.get("X-Forwarded-For", "")
-    if forwarded:
-        return forwarded.split(",")[0].strip()
-    return request.remote_addr or "unknown"
+    # Nginx overwrites X-Real-IP with the connected client address.
+    return request.headers.get("X-Real-IP") or request.remote_addr or "unknown"
 
 def consume_rate_limit(bucket_key, max_requests, window_seconds):
     now = time.time()
@@ -1541,12 +1551,18 @@ def run_full_crawl(*, now_kst=None, season=None, publish_daily_outputs=True):
                 json.dump([item], f, indent=4, ensure_ascii=False)
 
     if publish_daily_outputs and results:
-        empty = {"구단주명": "-", "지난 시즌 누적채굴량": 0, "지난 시즌 채굴 효율": 0, "지난 시즌 승률": "0%", "지난 시즌 판수": 0, "지난 시즌 무": 0}
-        mining_king = max(results, key=lambda x: x.get('지난 시즌 누적채굴량', x.get('지난 시즌 채굴 효율', -1)), default=empty)
-        win_king = max(results, key=lambda x: float(str(x.get('지난 시즌 승률', '0%')).replace('%','')), default=empty)
-        game_king = max(results, key=lambda x: x.get('지난 시즌 판수', -1), default=empty)
-        heavy = [r for r in results if r.get('지난 시즌 판수', 0) >= 4000]
-        draw_king = min(heavy, key=lambda x: x.get('지난 시즌 무', 9999), default=empty)
+        mining_king = max(
+            results,
+            key=lambda x: x.get('누적채굴량', x.get('채굴 효율', -1)),
+            default=None,
+        )
+        win_king = max(
+            results,
+            key=lambda x: float(str(x.get('승률', '0%')).replace('%', '')),
+            default=None,
+        )
+        game_king = max(results, key=lambda x: x.get('판수', -1), default=None)
+        draw_king = max(results, key=lambda x: x.get('무', -1), default=None)
         summary = {
             "results": results,
             "last_updated": now_kst.strftime("%Y-%m-%d %H:%M:%S"),
@@ -1963,9 +1979,31 @@ def catch_all(path):
         return send_from_directory(app.root_path, "index.html")
     return jsonify({"error": "Frontend not found"}), 404
 
+def configure_scheduler():
+    scheduler.add_job(
+        func=run_daily_crawl_then_openapi,
+        trigger="cron",
+        hour="*/2",
+        minute=10,
+        id="crawl_openapi_chain",
+        replace_existing=True,
+        coalesce=True,
+    )
+    ensure_scheduler_running()
+
+
 if __name__ == '__main__':
     if len(sys.argv) >= 2:
         cmd = sys.argv[1].strip().lower()
+        if cmd == "scheduler":
+            configure_scheduler()
+            print("[SCHEDULER] OpenAPI crawl scheduler started.", flush=True)
+            try:
+                while True:
+                    time.sleep(3600)
+            except KeyboardInterrupt:
+                scheduler.shutdown(wait=False)
+            raise SystemExit(0)
         if cmd == "openapi-security-selfcheck":
             usage = (
                 "Usage: python app.py openapi-security-selfcheck "
@@ -2259,16 +2297,5 @@ if __name__ == '__main__':
             "openapi-sync-user | openapi-update-analysis"
         )
 
-    # 운영 배치: 짝수시 10분마다 전적 크롤링 -> OpenAPI 분석 순차 실행
-    scheduler.add_job(
-        func=run_daily_crawl_then_openapi,
-        trigger="cron",
-        hour="*/2",
-        minute=10,
-        id="crawl_openapi_chain",
-        replace_existing=True,
-        coalesce=True,
-    )
-    ensure_scheduler_running()
     port = int(os.environ.get("PORT", "80"))
     app.run(host='0.0.0.0', port=port, threaded=True)
