@@ -15,6 +15,12 @@ dist-ssr
 .tanstack/**
 .nitro
 *.local
+.env
+.env.*
+__pycache__/
+*.py[cod]
+.venv/
+.private/
 
 # Wrangler / Cloudflare
 .wrangler/
