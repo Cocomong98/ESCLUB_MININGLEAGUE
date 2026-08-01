@@ -1,0 +1,20 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: miningleague
+    ports:
+      - "45815:80"
+    env_file:
+      - .env
+    environment:
+      TZ: Asia/Seoul
+      DATA_BASE_DIR: public/data
+    volumes:
+      - ./config:/app/config
+      - ./public/data:/app/public/data
+      - ./data/meta:/app/data/meta
+      - ./.private/openapi_cache:/app/.private/openapi_cache
+      - ./.private/run_logs:/app/.private/run_logs
+    restart: always

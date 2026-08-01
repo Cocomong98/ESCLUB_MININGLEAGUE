@@ -1,0 +1,13 @@
+.git
+.gitignore
+.env
+.venv
+node_modules
+**/node_modules
+.output
+.wrangler
+.private/openapi_cache
+.private/run_logs
+*.log
+__pycache__
+**/__pycache__
