@@ -9,6 +9,7 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
+    "test": "node --test scripts/quality-smoke.test.mjs",
     "format": "prettier --write .",
     "backend:install": "python3 -m venv .venv && .venv/bin/pip install -r backend/requirements.txt",
     "backend:check": ".venv/bin/python -m py_compile backend/app.py backend/fconline_openapi/*.py",

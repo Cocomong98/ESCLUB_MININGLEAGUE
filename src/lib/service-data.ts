@@ -435,7 +435,7 @@ export interface OpenApiAccountProfile {
 }
 
 export interface SquadBundle {
-  status: "ready" | "partial" | "pending";
+  status: "ready" | "partial" | "empty" | "pending";
   squad: OpenApiSquadAnalysis | null;
   manager: OpenApiManagerModeAnalysis | null;
   snapshot: OpenApiSquadSnapshot | null;
@@ -545,9 +545,18 @@ export async function fetchSquadBundle(season: SeasonId, playerId: string): Prom
     fetchOptionalJson<OpenApiPlayerClassAnalysis>(`${base}/player_class_analysis.json`),
     fetchOptionalJson<OpenApiAccountProfile>(`${base}/account_profile.json`),
   ]);
-  const readyCount = [squad, manager, snapshot, matches, classes, profile].filter(Boolean).length;
+  const meaningful = [
+    (squad?.rows?.length ?? 0) > 0,
+    (manager?.summary?.sampleSize ?? 0) > 0 ||
+      (manager?.expanded?.formationPerformance?.length ?? 0) > 0,
+    (snapshot?.players?.length ?? 0) > 0,
+    (matches?.rows?.length ?? 0) > 0,
+    (classes?.classRows?.length ?? 0) > 0,
+    Boolean(profile?.account),
+  ];
+  const readyCount = meaningful.filter(Boolean).length;
   return {
-    status: readyCount === 6 ? "ready" : readyCount > 0 ? "partial" : "pending",
+    status: readyCount === 6 ? "ready" : readyCount > 0 ? "partial" : "empty",
     squad,
     manager,
     snapshot,

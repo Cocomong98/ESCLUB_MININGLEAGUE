@@ -95,6 +95,10 @@ function SquadPage() {
   const totalForms = mm.포메이션별.reduce((s, f) => s + f.경기수, 0);
   const totalStyles = mm.전술스타일.reduce((s, f) => s + f.경기수, 0);
 
+  if (bundle?.status === "empty") {
+    return <EmptySquadState id={id} ownerName={owner.구단주} />;
+  }
+
   return (
     <div className="flex flex-col">
       <div className="px-4 md:px-8 py-6 border-b border-border">
@@ -129,7 +133,7 @@ function SquadPage() {
         </div>
       </div>
 
-      <section className="px-4 md:px-8 py-6 grid items-stretch gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(420px,0.5fr)]">
+      <section className="min-w-0 px-4 md:px-8 py-6 grid items-stretch gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(420px,0.5fr)]">
         <div className="order-2 flex min-w-0 flex-col lg:order-1">
           <SectionTitle>주전 11인</SectionTitle>
           <div className="mt-3 flex-1 overflow-x-auto rounded-md border border-border p-3 lg:min-h-[589px]">
@@ -143,7 +147,7 @@ function SquadPage() {
             />
           </div>
         </div>
-        <div className="order-1 lg:order-2">
+        <div className="order-1 min-w-0 lg:order-2">
           <SectionTitle>주 포메이션</SectionTitle>
           <div className="mt-3 border border-border rounded-md p-4">
             <div className="flex items-baseline justify-between">
@@ -1223,8 +1227,33 @@ function formatUpdatedAt(value: string | null | undefined): string {
 function statusLabel(status: SquadBundle["status"] | undefined): string {
   if (status === "ready") return "정상";
   if (status === "partial") return "일부 데이터";
-  if (status === "missing") return "대기";
+  if (status === "empty") return "데이터 없음";
   return "확인 중";
+}
+
+function EmptySquadState({ id, ownerName }: { id: string; ownerName: string }) {
+  return (
+    <div className="flex flex-col">
+      <div className="px-4 py-6 md:px-8 border-b border-border">
+        <Link
+          to="/dashboard/$id"
+          params={{ id }}
+          className="flex items-center gap-1 text-[11px] font-mono text-muted-foreground hover:text-foreground"
+        >
+          <ChevronLeft className="size-3" /> {ownerName}
+        </Link>
+        <h2 className="mt-4 text-2xl font-semibold tracking-tight">스쿼드 분석</h2>
+      </div>
+      <div className="px-4 py-12 md:px-8">
+        <div className="border-y border-border py-8">
+          <p className="text-sm font-medium">이번 시즌 유효 스쿼드 데이터 없음</p>
+          <p className="mt-2 text-xs text-muted-foreground">
+            분석 가능한 경기와 선수 데이터가 수집된 후 표시됩니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function Kpi({

@@ -224,11 +224,10 @@ config/managers.json
 ### 시즌 설정
 
 ```text
-config/season_config.json
 public/season_config.json
 ```
 
-시즌 구간은 매치 종료 시각 기준으로 설정한다. 새 시즌을 추가할 때 시작일·시작시각과 종료일·종료시각을 함께 기록한다.
+`public/season_config.json`을 canonical 경로로 사용한다. 시즌 구간은 매치 종료 시각 기준으로 설정한다. 새 시즌을 추가할 때 시작일·시작시각과 종료일·종료시각을 함께 기록한다. `config/season_config.json`은 사용하지 않는다.
 
 ### 팀컬러 메타데이터
 
@@ -307,7 +306,7 @@ docker/supervisord.conf
 ## 10. 배포 전 점검표
 
 - [ ] `config/managers.json` 회원 명단 확인
-- [ ] `config/season_config.json` 현재 시즌 확인
+- [ ] `public/season_config.json` 현재 시즌 확인
 - [ ] 26-4 시작 시각이 `2026-07-30 12:00 KST`인지 확인
 - [ ] Nexon Open API 키 주입 확인
 - [ ] 관리자 비밀번호 및 Flask secret 주입 확인
