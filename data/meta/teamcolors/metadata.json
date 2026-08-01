@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "collected_at": "2026-07-31T18:15:14+09:00",
+  "source": "https://fconline.nexon.com/datacenter/teamcolor",
+  "files": [
+    "team_colors.csv",
+    "activation_stages.csv",
+    "effects.csv",
+    "teamcolor_players.csv",
+    "players.csv"
+  ],
+  "join_contract": "Open API matchInfo.spPlayer[].spId = teamcolor_players.spid",
+  "counts": {
+    "team_colors": 643,
+    "activation_stages": 1434,
+    "effects": 3020,
+    "teamcolor_players": 55739,
+    "players": 19013,
+    "category_counts": {
+      "소속 팀컬러": 294,
+      "특성 팀컬러": 344,
+      "강화 팀컬러": 5
+    },
+    "type_counts": {
+      "클럽": 207,
+      "국가": 56,
+      "강화": 5,
+      "관계": 344,
+      "스페셜": 31
+    },
+    "unknown_effects": []
+  },
+  "empty_player_teamcolors": [
+    {
+      "teamcolor_id": 10001,
+      "name": "금빛 물결",
+      "category": "강화 팀컬러"
+    },
+    {
+      "teamcolor_id": 10002,
+      "name": "은빛 물결",
+      "category": "강화 팀컬러"
+    },
+    {
+      "teamcolor_id": 10003,
+      "name": "동빛 물결",
+      "category": "강화 팀컬러"
+    },
+    {
+      "teamcolor_id": 10004,
+      "name": "백금빛 물결",
+      "category": "강화 팀컬러"
+    },
+    {
+      "teamcolor_id": 10005,
+      "name": "초심자 가호",
+      "category": "강화 팀컬러"
+    },
+    {
+      "teamcolor_id": 40679,
+      "name": "Step Higher",
+      "category": "소속 팀컬러"
+    }
+  ],
+  "source_notes": [
+    "강화 팀컬러 5개는 강화 등급 기반이므로 고정 teamcolor_players 관계가 없습니다.",
+    "teamcolor_id 40679 Step Higher는 공식 웹 선수 목록 응답이 빈 배열입니다."
+  ]
+}
